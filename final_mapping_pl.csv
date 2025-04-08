@@ -3,391 +3,391 @@ id_uczestnika,UID,Unique ID
 waga_próby,Waga,Waga
 obszar_realizacji,Real,REALIZACJA
 segment_uczestnika,Seg,Segment
-lokalizacja_płeć,GminaPlec,Gmina / Płeć (na podst. S4/S5A/S5B/S1)
-płeć,S1,S1. Z jaką płcią się identyfikujesz?
-grupa_wiekowa,rrS2,S2. W którym roku się urodziłeś(aś)?
-województwo,S3,S3. W jakim województwie Pan(i) mieszka?
-miasto,S4,S4. W jakim mieście lub powiecie Pan(i) mieszka?
-gmina,S5A,S5A. W jakiej gminie Pan(i) mieszka?
-dzielnica_katowic,S5B,S5B. W jakiej dzielnicy Katowic Pan(i) mieszka?
-wolny_czas_praktyczność,A1_1,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny
-wolny_czas_duma,A1_2,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym z tego, kim jestem
-wolny_czas_rękodzieło,A1_3,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś własnymi rękoma
-wolny_czas_radość,A1_4,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości
-wolny_czas_rodzina,A1_5,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi spędzić czas z rodziną
-wolny_czas_potrzeby_bliskich,A1_6,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Przede wszystkim zaspokaja potrzeby moich bliskich
-wolny_czas_zakupy,A1_7,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Dodatkowo umożliwia zrobienie zakupów
-wolny_czas_nowość,A1_8,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością
-wolny_czas_samopoznanie,A1_9,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi lepiej zrozumieć kim jestem
-wolny_czas_praktyczność_top2,T2B_A1_1,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny (Top 2 Box)
-wolny_czas_duma_top2,T2B_A1_2,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym (Top 2 Box)
-wolny_czas_rękodzieło_top2,T2B_A1_3,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś (Top 2 Box)
-wolny_czas_radość_top2,T2B_A1_4,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości (Top 2 Box)
-wolny_czas_rodzina_top2,T2B_A1_5,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala spędzić czas z rodziną (Top 2 Box)
-wolny_czas_potrzeby_bliskich_top2,T2B_A1_6,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Zaspokaja potrzeby bliskich (Top 2 Box)
-wolny_czas_zakupy_top2,T2B_A1_7,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Umożliwia zrobienie zakupów (Top 2 Box)
-wolny_czas_nowość_top2,T2B_A1_8,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością (Top 2 Box)
-wolny_czas_samopoznanie_top2,T2B_A1_9,A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala zrozumieć kim jestem (Top 2 Box)
-częstotliwość_galeria_sztuki,A2_1,A2. Kiedy po raz ostatni był(a) Pan(i) w galerii sztuki / na wystawie sztuki
-częstotliwość_teatr,A2_2,A2. Kiedy po raz ostatni był(a) Pan(i) w teatrze / na przedstawieniu teatralnym / operowym
-częstotliwość_prasa_kulturalna,A2_3,A2. Kiedy po raz ostatni czytał(a) Pan(i) prasę / czasopisma poświęcone kulturze
-częstotliwość_nagrania_teatralne,A2_4,A2. Kiedy po raz ostatni oglądał(a) Pan(i) nagrania sztuk teatralnych, oper, baletów
-częstotliwość_programy_kulturalne,A2_5,A2. Kiedy po raz ostatni oglądał(a) Pan(i) programy / kanały kulturalne
-częstotliwość_wykłady,A2_6,A2. Kiedy po raz ostatni brał(a) Pan(i) udział w wykładzie, odczycie, dyskusji
-częstotliwość_wydarzenia_literackie,A2_7,A2. Kiedy po raz ostatni brał(a) Pan(i) udział w wydarzeniu literackim
-częstotliwość_archiwa,A2_8,A2. Kiedy po raz ostatni korzystał(a) Pan(i) z archiwum instytucji kulturalnej
-częstotliwość_czytanie_książek,A2_9,A2. Kiedy po raz ostatni czytał(a) Pan(i) książki dla przyjemności
-częstotliwość_muzeum,A2_10,A2. Kiedy po raz ostatni był(a) Pan(i) w muzeum
-częstotliwość_zoo,A2_11,A2. Kiedy po raz ostatni był(a) Pan(i) w ogrodzie zoologicznym / botanicznym
-częstotliwość_piknik,A2_12,A2. Kiedy po raz ostatni brał(a) Pan(i) udział w pikniku / imprezie plenerowej
-częstotliwość_festyn,A2_13,A2. Kiedy po raz ostatni był(a) Pan(i) na festynie, jarmarku, imprezie folklorystycznej
-częstotliwość_koncert,A2_14,A2. Kiedy po raz ostatni był(a) Pan(i) na koncercie / festiwalu muzycznym
-częstotliwość_kino,A2_15,A2. Kiedy po raz ostatni był(a) Pan(i) w kinie / festiwalu filmowym
-częstotliwość_dom_kultury,A2_16,A2. Kiedy po raz ostatni był(a) Pan(i) w centrum kultury, domu kultury
-częstotliwość_rekonstrukcja_historyczna,A2_17,A2. Kiedy po raz ostatni uczestniczył(a) Pan(i) w rekonstrukcji historycznej
-częstotliwość_filharmonia,A2_18,A2. Kiedy po raz ostatni był(a) Pan(i) w filharmonii / sali koncertowej
-znajomość_metropolii_gzm,P1,P1. Czy spotkałeś(aś) się z określeniem Górnośląsko-Zagłębiowska Metropolia?
-definicja_kultury_tekst,P2_TXT,P2. Różni ludzie w rozmaity sposób określają to, co należy do pojęcia kultury
-definicja_kultury_kategoria,P2_TXT_1,P2. Różni ludzie w rozmaity sposób określają to, co należy do pojęcia kultury (kategorie)
+lokalizacja_płeć,GminaPlec,"Gmina / Płeć (na podst. S4/S5A/S5B/S1)"
+płeć,S1,"S1. Z jaką płcią się identyfikujesz?"
+grupa_wiekowa,rrS2,"S2. W którym roku się urodziłeś(aś)?"
+województwo,S3,"S3. W jakim województwie Pan(i) mieszka?"
+miasto,S4,"S4. W jakim mieście lub powiecie Pan(i) mieszka?"
+gmina,S5A,"S5A. W jakiej gminie Pan(i) mieszka?"
+dzielnica_katowic,S5B,"S5B. W jakiej dzielnicy Katowic Pan(i) mieszka?"
+wolny_czas_praktyczność,A1_1,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny"
+wolny_czas_duma,A1_2,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym z tego, kim jestem"
+wolny_czas_rękodzieło,A1_3,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś własnymi rękoma"
+wolny_czas_radość,A1_4,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości"
+wolny_czas_rodzina,A1_5,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi spędzić czas z rodziną"
+wolny_czas_potrzeby_bliskich,A1_6,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Przede wszystkim zaspokaja potrzeby moich bliskich"
+wolny_czas_zakupy,A1_7,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Dodatkowo umożliwia zrobienie zakupów"
+wolny_czas_nowość,A1_8,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością"
+wolny_czas_samopoznanie,A1_9,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi lepiej zrozumieć kim jestem"
+wolny_czas_praktyczność_top2,T2B_A1_1,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny (Top 2 Box)"
+wolny_czas_duma_top2,T2B_A1_2,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym (Top 2 Box)"
+wolny_czas_rękodzieło_top2,T2B_A1_3,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś (Top 2 Box)"
+wolny_czas_radość_top2,T2B_A1_4,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości (Top 2 Box)"
+wolny_czas_rodzina_top2,T2B_A1_5,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala spędzić czas z rodziną (Top 2 Box)"
+wolny_czas_potrzeby_bliskich_top2,T2B_A1_6,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Zaspokaja potrzeby bliskich (Top 2 Box)"
+wolny_czas_zakupy_top2,T2B_A1_7,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Umożliwia zrobienie zakupów (Top 2 Box)"
+wolny_czas_nowość_top2,T2B_A1_8,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością (Top 2 Box)"
+wolny_czas_samopoznanie_top2,T2B_A1_9,"A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala zrozumieć kim jestem (Top 2 Box)"
+częstotliwość_galeria_sztuki,A2_1,"A2. Kiedy po raz ostatni był(a) Pan(i) w galerii sztuki / na wystawie sztuki"
+częstotliwość_teatr,A2_2,"A2. Kiedy po raz ostatni był(a) Pan(i) w teatrze / na przedstawieniu teatralnym / operowym"
+częstotliwość_prasa_kulturalna,A2_3,"A2. Kiedy po raz ostatni czytał(a) Pan(i) prasę / czasopisma poświęcone kulturze"
+częstotliwość_nagrania_teatralne,A2_4,"A2. Kiedy po raz ostatni oglądał(a) Pan(i) nagrania sztuk teatralnych, oper, baletów"
+częstotliwość_programy_kulturalne,A2_5,"A2. Kiedy po raz ostatni oglądał(a) Pan(i) programy / kanały kulturalne"
+częstotliwość_wykłady,A2_6,"A2. Kiedy po raz ostatni brał(a) Pan(i) udział w wykładzie, odczycie, dyskusji"
+częstotliwość_wydarzenia_literackie,A2_7,"A2. Kiedy po raz ostatni brał(a) Pan(i) udział w wydarzeniu literackim"
+częstotliwość_archiwa,A2_8,"A2. Kiedy po raz ostatni korzystał(a) Pan(i) z archiwum instytucji kulturalnej"
+częstotliwość_czytanie_książek,A2_9,"A2. Kiedy po raz ostatni czytał(a) Pan(i) książki dla przyjemności"
+częstotliwość_muzeum,A2_10,"A2. Kiedy po raz ostatni był(a) Pan(i) w muzeum"
+częstotliwość_zoo,A2_11,"A2. Kiedy po raz ostatni był(a) Pan(i) w ogrodzie zoologicznym / botanicznym"
+częstotliwość_piknik,A2_12,"A2. Kiedy po raz ostatni brał(a) Pan(i) udział w pikniku / imprezie plenerowej"
+częstotliwość_festyn,A2_13,"A2. Kiedy po raz ostatni był(a) Pan(i) na festynie, jarmarku, imprezie folklorystycznej"
+częstotliwość_koncert,A2_14,"A2. Kiedy po raz ostatni był(a) Pan(i) na koncercie / festiwalu muzycznym"
+częstotliwość_kino,A2_15,"A2. Kiedy po raz ostatni był(a) Pan(i) w kinie / festiwalu filmowym"
+częstotliwość_dom_kultury,A2_16,"A2. Kiedy po raz ostatni był(a) Pan(i) w centrum kultury, domu kultury"
+częstotliwość_rekonstrukcja_historyczna,A2_17,"A2. Kiedy po raz ostatni uczestniczył(a) Pan(i) w rekonstrukcji historycznej"
+częstotliwość_filharmonia,A2_18,"A2. Kiedy po raz ostatni był(a) Pan(i) w filharmonii / sali koncertowej"
+znajomość_metropolii_gzm,P1,"P1. Czy spotkałeś(aś) się z określeniem Górnośląsko-Zagłębiowska Metropolia?"
+definicja_kultury_tekst,P2_TXT,"P2. Różni ludzie w rozmaity sposób określają to, co należy do pojęcia kultury"
+definicja_kultury_kategoria,P2_TXT_1,"P2. Różni ludzie w rozmaity sposób określają to, co należy do pojęcia kultury (kategorie)"
 definicja_kultury_tekst2,P2_TXT_2,P2_TXT_2
 definicja_kultury_tekst3,P2_TXT_3,P2_TXT_3
-kultura_fotografia,P3_1,P3. Czy zaliczył(a)by Pan(i) do kultury: Fotografia
-kultura_gotowanie,P3_2,P3. Czy zaliczył(a)by Pan(i) do kultury: Gotowanie
-kultura_gry_komputerowe,P3_3,P3. Czy zaliczył(a)by Pan(i) do kultury: Gry komputerowe
-kultura_moda,P3_4,P3. Czy zaliczył(a)by Pan(i) do kultury: Moda
-kultura_moralność,P3_5,P3. Czy zaliczył(a)by Pan(i) do kultury: Moralność
-kultura_muzyka_rozrywkowa,P3_6,P3. Czy zaliczył(a)by Pan(i) do kultury: Muzyka rozrywkowa
-kultura_patriotyzm,P3_7,P3. Czy zaliczył(a)by Pan(i) do kultury: Patriotyzm
-kultura_pornografia,P3_8,P3. Czy zaliczył(a)by Pan(i) do kultury: Pornografia
-kultura_telewizja,P3_9,P3. Czy zaliczył(a)by Pan(i) do kultury: Programy telewizyjne
-kultura_religia,P3_10,P3. Czy zaliczył(a)by Pan(i) do kultury: Religia
-kultura_taniec,P3_11,P3. Czy zaliczył(a)by Pan(i) do kultury: Taniec
-kultura_sposób_zwracania_się,P3_12,P3. Czy zaliczył(a)by Pan(i) do kultury: To, jak się do siebie zwracamy
-kultura_traktowanie_narodów,P3_13,P3. Czy zaliczył(a)by Pan(i) do kultury: To, jak traktujemy inne narody
-kultura_urządzanie_mieszkania,P3_14,P3. Czy zaliczył(a)by Pan(i) do kultury: To, jak urządzamy mieszkanie
-kultura_tradycja,P3_15,P3. Czy zaliczył(a)by Pan(i) do kultury: Tradycja
-kultura_umiejętność_rozmowy,P3_16,P3. Czy zaliczył(a)by Pan(i) do kultury: Umiejętność rozmawiania z innymi
-kultura_ogrodnictwo,P3_17,P3. Czy zaliczył(a)by Pan(i) do kultury: Uprawianie ogrodu
-kultura_malarstwo,P3_18,P3. Czy zaliczył(a)by Pan(i) do kultury: Malarstwo
-kultura_muzyka_poważna,P3_19,P3. Czy zaliczył(a)by Pan(i) do kultury: Muzyka poważna
-kultura_kino,P3_20,P3. Czy zaliczył(a)by Pan(i) do kultury: Kino
-istotność_uczestnictwa_w_kulturze,P4,P4. Na ile dla Pana(i) osobiście istotne jest uczestnictwo w kulturze
-istotność_uczestnictwa_w_kulturze_top3,T3B_P4,P4. Na ile dla Pana(i) osobiście istotne jest uczestnictwo w kulturze (Top 3 Box)
-ocena_dostępu_do_kultury_gzm,P5,P5. Jak ocenił(a)by Pan(i) dostęp do kultury na terenie Metropolii GZM
-ocena_dostępu_do_kultury_gzm_top3,T3B_P5,P5. Jak ocenił(a)by Pan(i) dostęp do kultury na terenie Metropolii GZM (Top 3 Box)
-bariera_wysokie_ceny,rP6_1,Bariera: wysokie ceny / koszty korzystania
-bariera_dojazd,rP6_2,Bariera: problemy z dojazdem / komunikacją
-bariera_nieatrakcyjna_oferta,rP6_3,Bariera: mało atrakcyjna oferta tematyczna
-bariera_brak_informacji,rP6_4,Bariera: niewystarczająca ilość informacji o ofercie
-bariera_dostęp_fizyczny,rP6_5,Bariera: trudności z fizycznym dostępem / bariery architektoniczne
-bariera_godziny_otwarcia,rP6_6,Bariera: mało dogodne godziny otwarcia instytucji
-bariera_brak_czasu,rP6_7,Bariera: brak czasu / za dużo innych spraw na głowie
-bariera_opieka,rP6_8,Bariera: opieka nad inną osobą/ osobą zależną
-bariera_niska_jakość,rP6_9,Bariera: mało atrakcyjna jakościowa oferta
-bariera_dostępność_biletów,rP6_10,Bariera: niska dostępność biletów/są szybko wykupywane
-bariera_brak_oferty_lokalnej,rP6_11,Bariera: moja miejscowość nie ma żadnej oferty kulturalnej
-bariera_nieznajomość_oferty,rP6_12,Bariera: nie znam oferty kulturalnej w mojej okolicy
-bariera_inne,rP6_13,Bariera: inne problemy
-bariera_żadne,rP6_14,Bariera: żadne z powyższych
-bariera_inne_tekst,P6_TXT,Bariera: inne (tekst)
-bariera_inne_kategoria,rP6_TXT_1,Bariera: inne (kategoria)
-wiedza_o_ofercie_kulturalnej_gzm,P7,P7. Poziom wiedzy na temat aktualnej oferty kulturalnej w Metropolii GZM
-wiedza_o_ofercie_kulturalnej_gzm_top3,T3B_P7,P7. Poziom wiedzy na temat aktualnej oferty kulturalnej w Metropolii GZM (Top 3 Box)
-ostatnio_kino,rP8_1,Ostatnio odwiedzone: wizyta w kinie
-ostatnio_teatr,rP8_2,Ostatnio odwiedzone: wizyta w teatrze
-ostatnio_koncert,rP8_3,Ostatnio odwiedzone: uczestnictwo w koncercie
-ostatnio_muzeum,rP8_4,Ostatnio odwiedzone: wizyta w muzeum / galerii sztuki
-ostatnio_park_rozrywki,rP8_5,Ostatnio odwiedzone: wizyta w parku rozrywki
-ostatnio_dom_kultury,rP8_6,Ostatnio odwiedzone: wizyta w domu kultury / centrum kultury
-ostatnio_biblioteka,rP8_7,Ostatnio odwiedzone: wizyta w bibliotece
-ostatnio_zoo,rP8_8,Ostatnio odwiedzone: wizyta w zoo
-ostatnio_filharmonia,rP8_9,Ostatnio odwiedzone: wizyta w filharmonii lub operze
-ostatnio_spotkanie_z_artystą,rP8_10,Ostatnio odwiedzone: uczestnictwo w spotkaniu z artystą
-ostatnio_piknik,rP8_11,Ostatnio odwiedzone: udział w pikniku / festynie
-ostatnio_inna_aktywność,rP8_12,Ostatnio odwiedzone: inna aktywność
-ostatnio_żadne,rP8_13,Ostatnio odwiedzone: żadna z powyższych
+kultura_fotografia,P3_1,"P3. Czy zaliczył(a)by Pan(i) do kultury: Fotografia"
+kultura_gotowanie,P3_2,"P3. Czy zaliczył(a)by Pan(i) do kultury: Gotowanie"
+kultura_gry_komputerowe,P3_3,"P3. Czy zaliczył(a)by Pan(i) do kultury: Gry komputerowe"
+kultura_moda,P3_4,"P3. Czy zaliczył(a)by Pan(i) do kultury: Moda"
+kultura_moralność,P3_5,"P3. Czy zaliczył(a)by Pan(i) do kultury: Moralność"
+kultura_muzyka_rozrywkowa,P3_6,"P3. Czy zaliczył(a)by Pan(i) do kultury: Muzyka rozrywkowa"
+kultura_patriotyzm,P3_7,"P3. Czy zaliczył(a)by Pan(i) do kultury: Patriotyzm"
+kultura_pornografia,P3_8,"P3. Czy zaliczył(a)by Pan(i) do kultury: Pornografia"
+kultura_telewizja,P3_9,"P3. Czy zaliczył(a)by Pan(i) do kultury: Programy telewizyjne"
+kultura_religia,P3_10,"P3. Czy zaliczył(a)by Pan(i) do kultury: Religia"
+kultura_taniec,P3_11,"P3. Czy zaliczył(a)by Pan(i) do kultury: Taniec"
+kultura_sposób_zwracania_się,P3_12,"P3. Czy zaliczył(a)by Pan(i) do kultury: To, jak się do siebie zwracamy"
+kultura_traktowanie_narodów,P3_13,"P3. Czy zaliczył(a)by Pan(i) do kultury: To, jak traktujemy inne narody"
+kultura_urządzanie_mieszkania,P3_14,"P3. Czy zaliczył(a)by Pan(i) do kultury: To, jak urządzamy mieszkanie"
+kultura_tradycja,P3_15,"P3. Czy zaliczył(a)by Pan(i) do kultury: Tradycja"
+kultura_umiejętność_rozmowy,P3_16,"P3. Czy zaliczył(a)by Pan(i) do kultury: Umiejętność rozmawiania z innymi"
+kultura_ogrodnictwo,P3_17,"P3. Czy zaliczył(a)by Pan(i) do kultury: Uprawianie ogrodu"
+kultura_malarstwo,P3_18,"P3. Czy zaliczył(a)by Pan(i) do kultury: Malarstwo"
+kultura_muzyka_poważna,P3_19,"P3. Czy zaliczył(a)by Pan(i) do kultury: Muzyka poważna"
+kultura_kino,P3_20,"P3. Czy zaliczył(a)by Pan(i) do kultury: Kino"
+istotność_uczestnictwa_w_kulturze,P4,"P4. Na ile dla Pana(i) osobiście istotne jest uczestnictwo w kulturze"
+istotność_uczestnictwa_w_kulturze_top3,T3B_P4,"P4. Na ile dla Pana(i) osobiście istotne jest uczestnictwo w kulturze (Top 3 Box)"
+ocena_dostępu_do_kultury_gzm,P5,"P5. Jak ocenił(a)by Pan(i) dostęp do kultury na terenie Metropolii GZM"
+ocena_dostępu_do_kultury_gzm_top3,T3B_P5,"P5. Jak ocenił(a)by Pan(i) dostęp do kultury na terenie Metropolii GZM (Top 3 Box)"
+bariera_wysokie_ceny,rP6_1,"Bariera: wysokie ceny / koszty korzystania"
+bariera_dojazd,rP6_2,"Bariera: problemy z dojazdem / komunikacją"
+bariera_nieatrakcyjna_oferta,rP6_3,"Bariera: mało atrakcyjna oferta tematyczna"
+bariera_brak_informacji,rP6_4,"Bariera: niewystarczająca ilość informacji o ofercie"
+bariera_dostęp_fizyczny,rP6_5,"Bariera: trudności z fizycznym dostępem / bariery architektoniczne"
+bariera_godziny_otwarcia,rP6_6,"Bariera: mało dogodne godziny otwarcia instytucji"
+bariera_brak_czasu,rP6_7,"Bariera: brak czasu / za dużo innych spraw na głowie"
+bariera_opieka,rP6_8,"Bariera: opieka nad inną osobą/ osobą zależną"
+bariera_niska_jakość,rP6_9,"Bariera: mało atrakcyjna jakościowa oferta"
+bariera_dostępność_biletów,rP6_10,"Bariera: niska dostępność biletów/są szybko wykupywane"
+bariera_brak_oferty_lokalnej,rP6_11,"Bariera: moja miejscowość nie ma żadnej oferty kulturalnej"
+bariera_nieznajomość_oferty,rP6_12,"Bariera: nie znam oferty kulturalnej w mojej okolicy"
+bariera_inne,rP6_13,"Bariera: inne problemy"
+bariera_żadne,rP6_14,"Bariera: żadne z powyższych"
+bariera_inne_tekst,P6_TXT,"Bariera: inne (tekst)"
+bariera_inne_kategoria,rP6_TXT_1,"Bariera: inne (kategoria)"
+wiedza_o_ofercie_kulturalnej_gzm,P7,"P7. Poziom wiedzy na temat aktualnej oferty kulturalnej w Metropolii GZM"
+wiedza_o_ofercie_kulturalnej_gzm_top3,T3B_P7,"P7. Poziom wiedzy na temat aktualnej oferty kulturalnej w Metropolii GZM (Top 3 Box)"
+ostatnio_kino,rP8_1,"Ostatnio odwiedzone: wizyta w kinie"
+ostatnio_teatr,rP8_2,"Ostatnio odwiedzone: wizyta w teatrze"
+ostatnio_koncert,rP8_3,"Ostatnio odwiedzone: uczestnictwo w koncercie"
+ostatnio_muzeum,rP8_4,"Ostatnio odwiedzone: wizyta w muzeum / galerii sztuki"
+ostatnio_park_rozrywki,rP8_5,"Ostatnio odwiedzone: wizyta w parku rozrywki"
+ostatnio_dom_kultury,rP8_6,"Ostatnio odwiedzone: wizyta w domu kultury / centrum kultury"
+ostatnio_biblioteka,rP8_7,"Ostatnio odwiedzone: wizyta w bibliotece"
+ostatnio_zoo,rP8_8,"Ostatnio odwiedzone: wizyta w zoo"
+ostatnio_filharmonia,rP8_9,"Ostatnio odwiedzone: wizyta w filharmonii lub operze"
+ostatnio_spotkanie_z_artystą,rP8_10,"Ostatnio odwiedzone: uczestnictwo w spotkaniu z artystą"
+ostatnio_piknik,rP8_11,"Ostatnio odwiedzone: udział w pikniku / festynie"
+ostatnio_inna_aktywność,rP8_12,"Ostatnio odwiedzone: inna aktywność"
+ostatnio_żadne,rP8_13,"Ostatnio odwiedzone: żadna z powyższych"
 nazwa_odwiedzonego_teatru,P8_2_TXT,Nazwa odwiedzonego teatru
 kategoria_odwiedzonego_teatru,P8_2_TXT_1,Kategoria odwiedzonego teatru
-szczegóły_odwiedzonego_teatru_2,P8_2_TXT_2,Szczegóły odwiedzonego teatru 2
-szczegóły_odwiedzonego_teatru_3,P8_2_TXT_3,Szczegóły odwiedzonego teatru 3
-szczegóły_odwiedzonego_teatru_4,P8_2_TXT_4,Szczegóły odwiedzonego teatru 4
-nazwa_artysty_koncertowego,P8_3_TXT,Nazwa artysty koncertowego
-kategoria_artysty_koncertowego,P8_3_TXT_1,Kategoria artysty koncertowego
-szczegóły_artysty_koncertowego_2,P8_3_TXT_2,Szczegóły artysty koncertowego 2
-szczegóły_artysty_koncertowego_3,P8_3_TXT_3,Szczegóły artysty koncertowego 3
-nazwa_odwiedzonego_muzeum,P8_4_TXT,Nazwa odwiedzonego muzeum
-kategoria_odwiedzonego_muzeum,P8_4_TXT_1,Kategoria odwiedzonego muzeum
-szczegóły_odwiedzonego_muzeum_2,P8_4_TXT_2,Szczegóły odwiedzonego muzeum 2
-nazwa_odwiedzonego_domu_kultury,P8_6_TXT,Nazwa odwiedzonego domu/centrum kultury
-kategoria_odwiedzonego_domu_kultury,P8_6_TXT_1,Kategoria odwiedzonego domu/centrum kultury
-szczegóły_odwiedzonego_domu_kultury_2,P8_6_TXT_2,Szczegóły odwiedzonego domu/centrum kultury 2
-szczegóły_odwiedzonego_domu_kultury_3,P8_6_TXT_3,Szczegóły odwiedzonego domu/centrum kultury 3
-nazwa_odwiedzonej_filharmonii,P8_9_TXT,Nazwa odwiedzonej filharmonii/opery
-kategoria_odwiedzonej_filharmonii,P8_9_TXT_1,Kategoria odwiedzonej filharmonii/opery
-szczegóły_odwiedzonej_filharmonii_2,P8_9_TXT_2,Szczegóły odwiedzonej filharmonii/opery 2
-nazwa_artysty_ze_spotkania,P8_10_TXT,Nazwa artysty ze spotkania
-kategoria_artysty_ze_spotkania,P8_10_TXT_1,Kategoria artysty ze spotkania
-szczegóły_artysty_ze_spotkania_2,P8_10_TXT_2,Szczegóły artysty ze spotkania 2
-szczegóły_artysty_ze_spotkania_3,P8_10_TXT_3,Szczegóły artysty ze spotkania 3
-inna_aktywność_tekst,P8_12_TXT,Inna aktywność (tekst)
-inna_aktywność_kategoria,rP8_12_TXT_1,Inna aktywność (kategoria)
-inna_aktywność_szczegóły_2,rP8_12_TXT_2,Szczegóły innej aktywności 2
-biblioteka_wypożyczanie_książek,P9_1,Aktywność w bibliotece: wypożyczanie książek
-biblioteka_wypożyczanie_innych_rzeczy,P9_2,Aktywność w bibliotece: wypożyczanie innych rzeczy
-biblioteka_spotkanie_z_artystą,P9_3,Aktywność w bibliotece: spotkanie z artystą
-biblioteka_prelekcja,P9_4,Aktywność w bibliotece: odczyt / prelekcja
-biblioteka_wystawa,P9_5,Aktywność w bibliotece: wystawa
-biblioteka_inne,P9_6,Aktywność w bibliotece: coś innego
-dom_kultury_spotkanie_z_artystą,P10_1,Aktywność w domu kultury: spotkanie z artystą
-dom_kultury_prelekcja,P10_2,Aktywność w domu kultury: odczyt / prelekcja
-dom_kultury_film,P10_3,Aktywność w domu kultury: pokaz filmu
-dom_kultury_teatr,P10_4,Aktywność w domu kultury: przedstawienie teatralne
-dom_kultury_koncert,P10_5,Aktywność w domu kultury: koncert
-dom_kultury_wystawa,P10_6,Aktywność w domu kultury: wystawa
-dom_kultury_inne,P10_7,Aktywność w domu kultury: coś innego
-powód_braku_uczestnictwa_tekst,P11_TXT,Powód braku uczestnictwa w wydarzeniach kulturalnych (tekst)
-powód_braku_uczestnictwa_kategoria,P11_TXT_1,Powód braku uczestnictwa w wydarzeniach kulturalnych (kategoria)
-powód_braku_uczestnictwa_szczegóły_2,P11_TXT_2,Szczegóły powodu braku uczestnictwa 2
-powód_braku_uczestnictwa_szczegóły_3,P11_TXT_3,Szczegóły powodu braku uczestnictwa 3
-cyfrowa_kultura_wydarzenia_online,P12_1,Cyfrowa kultura: wydarzenia kulturalne transmitowane online
-cyfrowa_kultura_wystawy_interaktywne,P12_2,Cyfrowa kultura: interaktywne wystawy
-cyfrowa_kultura_nowe_media,P12_3,Cyfrowa kultura: wydarzenia związane ze sztuką nowych mediów
-cyfrowa_kultura_podcasty,P12_4,Cyfrowa kultura: opowieści dźwiękowe i podcasty
-cyfrowa_kultura_social_media,P12_5,Cyfrowa kultura: oglądanie lub tworzenie treści na Youtube/TikToku
-cyfrowa_kultura_wsparcie_artystów,P12_6,Cyfrowa kultura: wsparcie finansowe artystów z GZM
-cyfrowa_kultura_instalacje_dźwiękowe,P12_7,Cyfrowa kultura: interaktywne instalacje dźwiękowe
-cyfrowa_kultura_gry,P12_8,Cyfrowa kultura: gry komputerowe i kultura gamingowa
-cyfrowa_kultura_vr,P12_9,Cyfrowa kultura: immersyjne doświadczenia w wirtualnej rzeczywistości
-cyfrowa_kultura_inne,P12_10,Cyfrowa kultura: inne
-cyfrowa_kultura_żadne,P12_11,Cyfrowa kultura: żadna z powyższych
-uczestnictwo_miejsce_zamieszkania,P13_1,Miejsce uczestnictwa w kulturze: w mieście/wsi gdzie mieszkam
-uczestnictwo_miejsce_pracy,P13_2,Miejsce uczestnictwa w kulturze: w mieście/wsi, w którym pracuję
-uczestnictwo_inne_miejsce_gzm,P13_3,Miejsce uczestnictwa w kulturze: w innym mieście/wsi na terenie GZM
-uczestnictwo_poza_gzm,P13_4,Miejsce uczestnictwa w kulturze: poza terenem GZM
-uczestnictwo_żadne_miejsca,P13_5,Miejsce uczestnictwa w kulturze: żadne z powyższych
-skojarzenia_wydarzenia_gzm_1_tekst,P14_1_TXT,Skojarzenia z wydarzeniami GZM 1 (tekst)
-skojarzenia_wydarzenia_gzm_2_tekst,P14_2_TXT,Skojarzenia z wydarzeniami GZM 2 (tekst)
-skojarzenia_wydarzenia_gzm_3_tekst,P14_3_TXT,Skojarzenia z wydarzeniami GZM 3 (tekst)
-skojarzenia_wydarzenia_gzm_4_tekst,P14_4_TXT,Skojarzenia z wydarzeniami GZM 4 (tekst)
-skojarzenia_wydarzenia_gzm_5_tekst,P14_5_TXT,Skojarzenia z wydarzeniami GZM 5 (tekst)
-skojarzenia_wydarzenia_gzm_1_kategoria,P14_1_TXT_1,Skojarzenia z wydarzeniami GZM 1 (kategoria)
-skojarzenia_wydarzenia_gzm_1_szczegóły_2,P14_1_TXT_2,Szczegóły skojarzeń z wydarzeniami GZM 1.2
-skojarzenia_wydarzenia_gzm_1_szczegóły_3,P14_1_TXT_3,Szczegóły skojarzeń z wydarzeniami GZM 1.3
-skojarzenia_wydarzenia_gzm_2_kategoria,P14_2_TXT_1,Skojarzenia z wydarzeniami GZM 2 (kategoria)
-skojarzenia_wydarzenia_gzm_3_kategoria,P14_3_TXT_1,Skojarzenia z wydarzeniami GZM 3 (kategoria)
-skojarzenia_wydarzenia_gzm_3_szczegóły_2,P14_3_TXT_2,Szczegóły skojarzeń z wydarzeniami GZM 3.2
-skojarzenia_wydarzenia_gzm_4_kategoria,P14_4_TXT_1,Skojarzenia z wydarzeniami GZM 4 (kategoria)
-skojarzenia_wydarzenia_gzm_4_szczegóły_2,P14_4_TXT_2,Szczegóły skojarzeń z wydarzeniami GZM 4.2
-skojarzenia_wydarzenia_gzm_5_kategoria,P14_5_TXT_1,Skojarzenia z wydarzeniami GZM 5 (kategoria)
-skojarzenia_miejsca_gzm_1_tekst,P15_1_TXT,Skojarzenia z instytucjami/miejscami GZM 1 (tekst)
-skojarzenia_miejsca_gzm_2_tekst,P15_2_TXT,Skojarzenia z instytucjami/miejscami GZM 2 (tekst)
-skojarzenia_miejsca_gzm_3_tekst,P15_3_TXT,Skojarzenia z instytucjami/miejscami GZM 3 (tekst)
-skojarzenia_miejsca_gzm_4_tekst,P15_4_TXT,Skojarzenia z instytucjami/miejscami GZM 4 (tekst)
-skojarzenia_miejsca_gzm_5_tekst,P15_5_TXT,Skojarzenia z instytucjami/miejscami GZM 5 (tekst)
-skojarzenia_miejsca_gzm_1_kategoria,P15_1_TXT_1,Skojarzenia z instytucjami/miejscami GZM 1 (kategoria)
-skojarzenia_miejsca_gzm_1_szczegóły_2,P15_1_TXT_2,Szczegóły skojarzeń z instytucjami/miejscami GZM 1.2
-skojarzenia_miejsca_gzm_2_kategoria,P15_2_TXT_1,Skojarzenia z instytucjami/miejscami GZM 2 (kategoria)
-skojarzenia_miejsca_gzm_3_kategoria,P15_3_TXT_1,Skojarzenia z instytucjami/miejscami GZM 3 (kategoria)
-skojarzenia_miejsca_gzm_3_szczegóły_2,P15_3_TXT_2,Szczegóły skojarzeń z instytucjami/miejscami GZM 3.2
-skojarzenia_miejsca_gzm_4_kategoria,P15_4_TXT_1,Skojarzenia z instytucjami/miejscami GZM 4 (kategoria)
-skojarzenia_miejsca_gzm_5_kategoria,P15_5_TXT_1,Skojarzenia z instytucjami/miejscami GZM 5 (kategoria)
-skojarzenia_miejsca_gzm_5_szczegóły_2,P15_5_TXT_2,Szczegóły skojarzeń z instytucjami/miejscami GZM 5.2
-informacja_prasa_drukowana,P16_1,Źródło informacji o kulturze: prasa drukowana
-informacja_plakaty,P16_2,Źródło informacji o kulturze: plakaty/ogłoszenia/reklamy
-informacja_portale_lokalne,P16_3,Źródło informacji o kulturze: lokalne portale/strony
-informacja_portale_ogólnopolskie,P16_4,Źródło informacji o kulturze: ogólnopolskie portale/strony
-informacja_social_media_instytucje,P16_5,Źródło informacji o kulturze: profile instytucji w mediach społecznościowych
-informacja_social_media_twórcy,P16_6,Źródło informacji o kulturze: profile twórców w mediach społecznościowych
-informacja_social_media_inne,P16_7,Źródło informacji o kulturze: inne profile w mediach społecznościowych
-informacja_znajomi_rodzina,P16_8,Źródło informacji o kulturze: od znajomych/rodziny
-informacja_radio,P16_9,Źródło informacji o kulturze: radio
-informacja_telewizja,P16_10,Źródło informacji o kulturze: telewizja
-informacja_strony_instytucji,P16_11,Źródło informacji o kulturze: strony internetowe instytucji kultury
-informacja_strony_ogólne,P16_12,Źródło informacji o kulturze: ogólnotematyczne strony internetowe
-informacja_inne_źródła,P16_13,Źródło informacji o kulturze: inne źródła
-informacja_żadne_źródła,P16_14,Źródło informacji o kulturze: żadne z powyższych
-preferowane_miejsce_dom,P17_1,Preferowane miejsce wydarzeń: w domu
-preferowane_miejsce_instytucja_kultury,P17_2,Preferowane miejsce wydarzeń: w siedzibie instytucji kultury
-preferowane_miejsce_przestrzeń_publiczna,P17_3,Preferowane miejsce wydarzeń: w przestrzeni publicznej
-preferowane_miejsce_przestrzeń_tymczasowa,P17_4,Preferowane miejsce wydarzeń: w tymczasowo zaaranżowanej przestrzeni
-preferowane_miejsce_stadion,P17_5,Preferowane miejsce wydarzeń: na stadionie
-preferowane_miejsce_pub_klub,P17_6,Preferowane miejsce wydarzeń: w pubie/klubie/restauracji
-preferowane_miejsce_inne,P17_7,Preferowane miejsce wydarzeń: inne miejsce
-preferowane_miejsce_żadne,P17_8,Preferowane miejsce wydarzeń: żadne z powyższych
-miejsce_kultury_bytom,rP18_1,Miejsce kulturalne: Bytom
-miejsce_kultury_chorzów,rP18_2,Miejsce kulturalne: Chorzów
-miejsce_kultury_dąbrowa_górnicza,rP18_3,Miejsce kulturalne: Dąbrowa Górnicza
-miejsce_kultury_gliwice,rP18_4,Miejsce kulturalne: Gliwice
-miejsce_kultury_katowice,rP18_5,Miejsce kulturalne: Katowice
-miejsce_kultury_mysłowice,rP18_6,Miejsce kulturalne: Mysłowice
-miejsce_kultury_piekary_śląskie,rP18_7,Miejsce kulturalne: Piekary Śląskie
-miejsce_kultury_ruda_śląska,rP18_8,Miejsce kulturalne: Ruda Śląska
-miejsce_kultury_siemianowice_śląskie,rP18_9,Miejsce kulturalne: Siemianowice Śląskie
-miejsce_kultury_sosnowiec,rP18_10,Miejsce kulturalne: Sosnowiec
-miejsce_kultury_świętochłowice,rP18_11,Miejsce kulturalne: Świętochłowice
-miejsce_kultury_tychy,rP18_12,Miejsce kulturalne: Tychy
-miejsce_kultury_zabrze,rP18_13,Miejsce kulturalne: Zabrze
-miejsce_kultury_inne,rP18_14,Miejsce kulturalne: Innego
-miejsce_kultury_nie_pamiętam,rP18_15,Miejsce kulturalne: Nie pamiętam
-miejsce_kultury_żadne,rP18_16,Miejsce kulturalne: Żadne z powyższych
-miejsce_kultury_inne_tekst,P18_TXT,Miejsce kulturalne: Inne (tekst)
-miejsce_kultury_inne_kategoria,rP18_TXT_1,Miejsce kulturalne: Inne (kategoria)
-miejsce_kultury_inne_szczegóły_2,rP18_TXT_2,Szczegóły innego miejsca kulturalnego 2
-miejsce_kultury_inne_szczegóły_3,rP18_TXT_3,Szczegóły innego miejsca kulturalnego 3
-wydarzenie_dzielnicowe,P19_1,Preferowany zasięg wydarzenia: dzielnicowe
-wydarzenie_miejskie,P19_2,Preferowany zasięg wydarzenia: miejskie
-wydarzenie_regionalne,P19_3,Preferowany zasięg wydarzenia: regionalne
-wydarzenie_ogólnopolskie,P19_4,Preferowany zasięg wydarzenia: ogólnopolskie
-wydarzenie_międzynarodowe,P19_5,Preferowany zasięg wydarzenia: międzynarodowe
-wydarzenie_niezależne,P19_6,Preferowany zasięg wydarzenia: niezależne od administracji
-wydarzenie_brak_opinii,P19_7,Preferowany zasięg wydarzenia: trudno powiedzieć
-wydatki_na_kulturę_kwota,rP20,Miesięczne wydatki na kulturę
-wydatki_na_kulturę_kategoria,rrP20,Miesięczne wydatki na kulturę (kategoria)
-uczestnictwo_poza_gzm_czas,P21,Korzystanie z oferty kulturalnej poza GZM
-miejsce_poza_gzm_tekst,P21a_TXT,Lokalizacja poza GZM
-miejsce_poza_gzm_kategoria,P21a_TXT_1,Kategoria lokalizacji poza GZM
-miejsce_poza_gzm_szczegóły_2,P21a_TXT_2,Szczegóły lokalizacji poza GZM 2
-miejsce_poza_gzm_szczegóły_3,P21a_TXT_3,Szczegóły lokalizacji poza GZM 3
-miejsce_poza_gzm_szczegóły_4,P21a_TXT_4,Szczegóły lokalizacji poza GZM 4
-miejsce_poza_gzm_szczegóły_5,P21a_TXT_5,Szczegóły lokalizacji poza GZM 5
-aktywność_poza_gzm_tekst,P21b_TXT,Aktywność poza GZM
-aktywność_poza_gzm_kategoria,P21b_TXT_1,Kategoria aktywności poza GZM
-aktywność_poza_gzm_szczegóły_2,P21b_TXT_2,Szczegóły aktywności poza GZM 2
-aktywność_poza_gzm_szczegóły_3,P21b_TXT_3,Szczegóły aktywności poza GZM 3
-aktywność_poza_gzm_szczegóły_4,P21b_TXT_4,Szczegóły aktywności poza GZM 4
-aktywność_poza_gzm_szczegóły_5,P21b_TXT_5,Szczegóły aktywności poza GZM 5
-kultura_domowa_tv,P22_1,Uczestnictwo w kulturze w domu: oglądanie programów w TV
-kultura_domowa_radio,P22_2,Uczestnictwo w kulturze w domu: słuchanie audycji w radiu
-kultura_domowa_podcasty,P22_3,Uczestnictwo w kulturze w domu: słuchanie podcastów
-kultura_domowa_internet,P22_4,Uczestnictwo w kulturze w domu: oglądanie/czytanie treści w Internecie
-kultura_domowa_prasa,P22_5,Uczestnictwo w kulturze w domu: czytanie prasy drukowanej
-kultura_domowa_książki,P22_6,Uczestnictwo w kulturze w domu: czytanie książek dla przyjemności
-kultura_domowa_inne,P22_7,Uczestnictwo w kulturze w domu: inne aktywności
-kultura_domowa_żadne,P22_8,Uczestnictwo w kulturze w domu: żadne z powyższych
-kontakt_z_artystą_lokalnym,P23,Zetknięcie się z twórczością lokalnego artysty z GZM
-nazwa_artysty_lokalnego,P23a_TXT,Nazwisko lokalnego artysty
-kategoria_artysty_lokalnego,P23a_TXT_1,Kategoria lokalnego artysty
-szczegóły_artysty_lokalnego_2,P23a_TXT_2,Szczegóły lokalnego artysty 2
-szczegóły_artysty_lokalnego_3,P23a_TXT_3,Szczegóły lokalnego artysty 3
-osoba_wpływająca_na_wybory_kulturalne_1,P24_1_TXT,Osoba/instytucja wpływająca na wybory kulturalne 1
-osoba_wpływająca_na_wybory_kulturalne_2,P24_2_TXT,Osoba/instytucja wpływająca na wybory kulturalne 2
-osoba_wpływająca_na_wybory_kulturalne_3,P24_3_TXT,Osoba/instytucja wpływająca na wybory kulturalne 3
-osoba_wpływająca_na_wybory_kulturalne_4,P24_4_TXT,Osoba/instytucja wpływająca na wybory kulturalne 4
-osoba_wpływająca_na_wybory_kulturalne_5,P24_5_TXT,Osoba/instytucja wpływająca na wybory kulturalne 5
-kategoria_osoby_wpływającej_1,P24_1_TXT_1,Kategoria osoby/instytucji wpływającej 1
-kategoria_osoby_wpływającej_2,P24_2_TXT_1,Kategoria osoby/instytucji wpływającej 2
-kategoria_osoby_wpływającej_3,P24_3_TXT_1,Kategoria osoby/instytucji wpływającej 3
-kategoria_osoby_wpływającej_4,P24_4_TXT_1,Kategoria osoby/instytucji wpływającej 4
-kategoria_osoby_wpływającej_5,P24_5_TXT_1,Kategoria osoby/instytucji wpływającej 5
-częstotliwość_kultura_online,P25,Częstotliwość korzystania z kultury przez internet
-częstotliwość_kultura_online_top3,T3B_P25,Częstotliwość korzystania z kultury przez internet (Top 3 Box)
-kultura_online_youtube,P26_1,Kultura online: YouTube
-kultura_online_facebook,P26_2,Kultura online: Facebook
-kultura_online_instagram,P26_3,Kultura online: Instagram
-kultura_online_twitter,P26_4,Kultura online: Twitter/X
-kultura_online_strony_www,P26_5,Kultura online: strony internetowe
-kultura_online_inne_źródła,P26_6,Kultura online: inne źródła
-youtube_profile_instytucji,rP26a_1_1,YouTube: Profile instytucji kultury
-youtube_profile_twórców,rP26a_1_2,YouTube: Profile twórców
-youtube_profile_instytucji_miejskich,rP26a_1_3,YouTube: Profile instytucji miejskich/regionalnych
-youtube_żadne_profile,rP26a_1_4,YouTube: Żadne z powyższych
-facebook_profile_instytucji,rP26a_2_1,Facebook: Profile instytucji kultury
-facebook_profile_twórców,rP26a_2_2,Facebook: Profile twórców
-facebook_profile_instytucji_miejskich,rP26a_2_3,Facebook: Profile instytucji miejskich/regionalnych
-facebook_żadne_profile,rP26a_2_4,Facebook: Żadne z powyższych
-instagram_profile_instytucji,rP26a_3_1,Instagram: Profile instytucji kultury
-instagram_profile_twórców,rP26a_3_2,Instagram: Profile twórców
-instagram_profile_instytucji_miejskich,rP26a_3_3,Instagram: Profile instytucji miejskich/regionalnych
-instagram_żadne_profile,rP26a_3_4,Instagram: Żadne z powyższych
-twitter_profile_instytucji,rP26a_4_1,Twitter/X: Profile instytucji kultury
-twitter_profile_twórców,rP26a_4_2,Twitter/X: Profile twórców
-twitter_profile_instytucji_miejskich,rP26a_4_3,Twitter/X: Profile instytucji miejskich/regionalnych
-twitter_żadne_profile,rP26a_4_4,Twitter/X: Żadne z powyższych
-strony_www_profile_instytucji,rP26a_5_1,Strony internetowe: Profile instytucji kultury
-strony_www_profile_twórców,rP26a_5_2,Strony internetowe: Profile twórców
-strony_www_profile_instytucji_miejskich,rP26a_5_3,Strony internetowe: Profile instytucji miejskich/regionalnych
-strony_www_żadne_profile,rP26a_5_4,Strony internetowe: Żadne z powyższych
-znajomość_twórcy_cyfrowego_1,P27_1_TXT,Znajomość twórcy kultury cyfrowej 1
-znajomość_twórcy_cyfrowego_2,P27_2_TXT,Znajomość twórcy kultury cyfrowej 2
-znajomość_twórcy_cyfrowego_3,P27_3_TXT,Znajomość twórcy kultury cyfrowej 3
-znajomość_twórcy_cyfrowego_4,P27_4_TXT,Znajomość twórcy kultury cyfrowej 4
-znajomość_twórcy_cyfrowego_5,P27_5_TXT,Znajomość twórcy kultury cyfrowej 5
-kategoria_twórcy_cyfrowego_1,P27_1_TXT_1,Kategoria twórcy kultury cyfrowej 1
-kategoria_twórcy_cyfrowego_2,P27_2_TXT_1,Kategoria twórcy kultury cyfrowej 2
-kategoria_twórcy_cyfrowego_3,P27_3_TXT_1,Kategoria twórcy kultury cyfrowej 3
-kategoria_twórcy_cyfrowego_4,P27_4_TXT_1,Kategoria twórcy kultury cyfrowej 4
-kategoria_twórcy_cyfrowego_5,P27_5_TXT_1,Kategoria twórcy kultury cyfrowej 5
-twórczość_gra_na_instrumencie,rP28_1,Aktywność twórcza: gram na instrumencie
-twórczość_pisanie_tekstów,rP28_2,Aktywność twórcza: piszę teksty
-twórczość_fotografia,rP28_3,Aktywność twórcza: robię zdjęcia
-twórczość_rysowanie_malowanie,rP28_4,Aktywność twórcza: rysuję lub maluję
-twórczość_szycie_haftowanie,rP28_5,Aktywność twórcza: szyję/haftuję
-twórczość_śpiew,rP28_6,Aktywność twórcza: śpiewam
-twórczość_komponowanie,rP28_7,Aktywność twórcza: komponuję muzykę
-twórczość_inna,rP28_8,Aktywność twórcza: inna twórczość
-twórczość_żadna,rP28_9,Aktywność twórcza: żadne z powyższych
-twórczość_inna_tekst,P28_TXT,Inna aktywność twórcza (tekst)
-twórczość_inna_kategoria,rP28_TXT_1,Inna aktywność twórcza (kategoria)
-opinia_kultura_dla_wszystkich,P29_1,Opinia: działalność kulturalna jest dla wszystkich
-opinia_kultura_bycie_na_bieżąco,P29_2,Opinia: wypada być na bieżąco z kulturą
-opinia_kultura_relacje_międzyludzkie,P29_3,Opinia: dzięki kulturze mogę nawiązywać relacje
-opinia_kultura_przeżycia,P29_4,Opinia: udział w wydarzeniach kulturalnych zapewnia przeżycia
-opinia_kultura_nowe_miejsca,P29_5,Opinia: lubię poznawać nowe miejsca związane z kulturą
-opinia_kultura_atrakcyjność_regionu,P29_6,Opinia: działalność kulturalna podnosi atrakcyjność regionu
-opinia_kultura_przynależność,P29_7,Opinia: uczestnictwo w kulturze daje poczucie przynależności
-opinia_kultura_samorealizacja,P29_8,Opinia: uczestnictwo w kulturze pozwala realizować się
-opinia_kultura_sens_życia,P29_9,Opinia: dzięki kulturze życie ma sens
-opinia_kultura_prestiż,P29_10,Opinia: uczestnictwo w kulturze daje poczucie prestiżu
-opinia_kultura_przyjemność,P29_11,Opinia: konsumpcja kultury sprawia przyjemność
-opinia_kultura_uboższe_życie,P29_12,Opinia: bez dostępu do kultury życie byłoby uboższe
-opinia_ważniejsze_rzeczy_niż_kultura,P29_13,Opinia: jest wiele ważniejszych rzeczy niż kultura
-opinia_wydatki_publiczne_na_kulturę,P29_14,Opinia: nakłady publiczne na kulturę powinny być mniejsze
-opinia_kultura_nieistotne_tematy,P29_15,Opinia: w kulturze poruszane są mało istotne dla mnie tematy
-opinia_kultura_dla_wszystkich_top3,T3B_P29_1,Opinia: działalność kulturalna jest dla wszystkich (Top 3 Box)
-opinia_kultura_bycie_na_bieżąco_top3,T3B_P29_2,Opinia: wypada być na bieżąco z kulturą (Top 3 Box)
-opinia_kultura_relacje_międzyludzkie_top3,T3B_P29_3,Opinia: dzięki kulturze mogę nawiązywać relacje (Top 3 Box)
-opinia_kultura_przeżycia_top3,T3B_P29_4,Opinia: udział w wydarzeniach kulturalnych zapewnia przeżycia (Top 3 Box)
-opinia_kultura_nowe_miejsca_top3,T3B_P29_5,Opinia: lubię poznawać nowe miejsca związane z kulturą (Top 3 Box)
-opinia_kultura_atrakcyjność_regionu_top3,T3B_P29_6,Opinia: działalność kulturalna podnosi atrakcyjność regionu (Top 3 Box)
-opinia_kultura_przynależność_top3,T3B_P29_7,Opinia: uczestnictwo w kulturze daje poczucie przynależności (Top 3 Box)
-opinia_kultura_samorealizacja_top3,T3B_P29_8,Opinia: uczestnictwo w kulturze pozwala realizować się (Top 3 Box)
-opinia_kultura_sens_życia_top3,T3B_P29_9,Opinia: dzięki kulturze życie ma sens (Top 3 Box)
-opinia_kultura_prestiż_top3,T3B_P29_10,Opinia: uczestnictwo w kulturze daje poczucie prestiżu (Top 3 Box)
-opinia_kultura_przyjemność_top3,T3B_P29_11,Opinia: konsumpcja kultury sprawia przyjemność (Top 3 Box)
-opinia_kultura_uboższe_życie_top3,T3B_P29_12,Opinia: bez dostępu do kultury życie byłoby uboższe (Top 3 Box)
-opinia_ważniejsze_rzeczy_niż_kultura_top3,T3B_P29_13,Opinia: jest wiele ważniejszych rzeczy niż kultura (Top 3 Box)
-opinia_wydatki_publiczne_na_kulturę_top3,T3B_P29_14,Opinia: nakłady publiczne na kulturę powinny być mniejsze (Top 3 Box)
-opinia_kultura_nieistotne_tematy_top3,T3B_P29_15,Opinia: w kulturze poruszane są mało istotne dla mnie tematy (Top 3 Box)
-wielkość_miejscowości,M1,M1. Jaka jest wielkość miejscowości zamieszkania
-wykształcenie,rM2,M2. Jakie ma Pan(i) wykształcenie?
-zatrudnienie_bezrobotny,M3_1,Status zatrudnienia: bezrobotny/nie pracuję
-zatrudnienie_pracujący,M3_2,Status zatrudnienia: jestem zatrudniony/-a
-zatrudnienie_samozatrudniony,M3_3,Status zatrudnienia: jestem samozatrudniony/-a
-zatrudnienie_student,M3_4,Status zatrudnienia: uczę się/studiuję
-zatrudnienie_rencista,M3_5,Status zatrudnienia: rencist(k)a
-zatrudnienie_emeryt,M3_6,Status zatrudnienia: emeryt(ka)
-status_zatrudnienia,M3,Status zawodowy
-właściciel_firmy_mśp,M4,Prowadzenie firmy sektora małych i średnich przedsiębiorstw
-praca_w_sektorze_kultury,M5,Praca w sektorze kultury
-miejsce_wykonywania_pracy,M6,Miejsce wykonywania pracy
-praca_w_miejscu_zamieszkania,M7,Miejsce pracy względem miejsca zamieszkania
-sponsorowanie_kultury,M8,Sponsorowanie działalności artystycznej na terenie GZM
-zainteresowanie_sponsorowaniem_kultury,M9,Zainteresowanie sponsorowaniem działalności artystycznej
-przedział_wynagrodzenia,M10,Przedział wynagrodzenia miesięcznego netto
-opieka_nad_dzieckiem,M11,Opieka nad dzieckiem/dziećmi poniżej 13 roku życia
-opieka_nad_osobą_zależną,M12,Opieka nad osobą wymagającą stałej opieki
-niepełnosprawność_wzrok,M13_1,Niepełnosprawność: wzrokowa
-niepełnosprawność_słuch,M13_2,Niepełnosprawność: słuchowa
-niepełnosprawność_ruch,M13_3,Niepełnosprawność: ruchowa
-niepełnosprawność_inna,M13_4,Niepełnosprawność: inny typ
-niepełnosprawność_żadna,M13_5,Niepełnosprawność: żadna z powyższych
-transport_komunikacja_miejska,M14_1,Transport: komunikacja miejska (autobus, tramwaj)
-transport_komunikacja_regionalna,M14_2,Transport: komunikacja regionalna (kolej)
-transport_własny_samochód,M14_3,Transport: własny samochód
-transport_własny_rower,M14_4,Transport: własny rower
-transport_współdzielony,M14_5,Transport: pojazd na minuty (rower, hulajnoga)
-transport_pieszo,M14_6,Transport: pieszo
-transport_inny,M14_7,Transport: inaczej
-internet_w_domu,M15_1,Dostęp do internetu: w domu
-internet_w_pracy,M15_2,Dostęp do internetu: w pracy
-internet_w_telefonie,M15_3,Dostęp do internetu: w telefonie komórkowym
+szczegóły_odwiedzonego_teatru_2,P8_2_TXT_2,"Szczegóły odwiedzonego teatru 2"
+szczegóły_odwiedzonego_teatru_3,P8_2_TXT_3,"Szczegóły odwiedzonego teatru 3"
+szczegóły_odwiedzonego_teatru_4,P8_2_TXT_4,"Szczegóły odwiedzonego teatru 4"
+nazwa_artysty_koncertowego,P8_3_TXT,"Nazwa artysty koncertowego"
+kategoria_artysty_koncertowego,P8_3_TXT_1,"Kategoria artysty koncertowego"
+szczegóły_artysty_koncertowego_2,P8_3_TXT_2,"Szczegóły artysty koncertowego 2"
+szczegóły_artysty_koncertowego_3,P8_3_TXT_3,"Szczegóły artysty koncertowego 3"
+nazwa_odwiedzonego_muzeum,P8_4_TXT,"Nazwa odwiedzonego muzeum"
+kategoria_odwiedzonego_muzeum,P8_4_TXT_1,"Kategoria odwiedzonego muzeum"
+szczegóły_odwiedzonego_muzeum_2,P8_4_TXT_2,"Szczegóły odwiedzonego muzeum 2"
+nazwa_odwiedzonego_domu_kultury,P8_6_TXT,"Nazwa odwiedzonego domu/centrum kultury"
+kategoria_odwiedzonego_domu_kultury,P8_6_TXT_1,"Kategoria odwiedzonego domu/centrum kultury"
+szczegóły_odwiedzonego_domu_kultury_2,P8_6_TXT_2,"Szczegóły odwiedzonego domu/centrum kultury 2"
+szczegóły_odwiedzonego_domu_kultury_3,P8_6_TXT_3,"Szczegóły odwiedzonego domu/centrum kultury 3"
+nazwa_odwiedzonej_filharmonii,P8_9_TXT,"Nazwa odwiedzonej filharmonii/opery"
+kategoria_odwiedzonej_filharmonii,P8_9_TXT_1,"Kategoria odwiedzonej filharmonii/opery"
+szczegóły_odwiedzonej_filharmonii_2,P8_9_TXT_2,"Szczegóły odwiedzonej filharmonii/opery 2"
+nazwa_artysty_ze_spotkania,P8_10_TXT,"Nazwa artysty ze spotkania"
+kategoria_artysty_ze_spotkania,P8_10_TXT_1,"Kategoria artysty ze spotkania"
+szczegóły_artysty_ze_spotkania_2,P8_10_TXT_2,"Szczegóły artysty ze spotkania 2"
+szczegóły_artysty_ze_spotkania_3,P8_10_TXT_3,"Szczegóły artysty ze spotkania 3"
+inna_aktywność_tekst,P8_12_TXT,"Inna aktywność (tekst)"
+inna_aktywność_kategoria,rP8_12_TXT_1,"Inna aktywność (kategoria)"
+inna_aktywność_szczegóły_2,rP8_12_TXT_2,"Szczegóły innej aktywności 2"
+biblioteka_wypożyczanie_książek,P9_1,"Aktywność w bibliotece: wypożyczanie książek"
+biblioteka_wypożyczanie_innych_rzeczy,P9_2,"Aktywność w bibliotece: wypożyczanie innych rzeczy"
+biblioteka_spotkanie_z_artystą,P9_3,"Aktywność w bibliotece: spotkanie z artystą"
+biblioteka_prelekcja,P9_4,"Aktywność w bibliotece: odczyt / prelekcja"
+biblioteka_wystawa,P9_5,"Aktywność w bibliotece: wystawa"
+biblioteka_inne,P9_6,"Aktywność w bibliotece: coś innego"
+dom_kultury_spotkanie_z_artystą,P10_1,"Aktywność w domu kultury: spotkanie z artystą"
+dom_kultury_prelekcja,P10_2,"Aktywność w domu kultury: odczyt / prelekcja"
+dom_kultury_film,P10_3,"Aktywność w domu kultury: pokaz filmu"
+dom_kultury_teatr,P10_4,"Aktywność w domu kultury: przedstawienie teatralne"
+dom_kultury_koncert,P10_5,"Aktywność w domu kultury: koncert"
+dom_kultury_wystawa,P10_6,"Aktywność w domu kultury: wystawa"
+dom_kultury_inne,P10_7,"Aktywność w domu kultury: coś innego"
+powód_braku_uczestnictwa_tekst,P11_TXT,"Powód braku uczestnictwa w wydarzeniach kulturalnych (tekst)"
+powód_braku_uczestnictwa_kategoria,P11_TXT_1,"Powód braku uczestnictwa w wydarzeniach kulturalnych (kategoria)"
+powód_braku_uczestnictwa_szczegóły_2,P11_TXT_2,"Szczegóły powodu braku uczestnictwa 2"
+powód_braku_uczestnictwa_szczegóły_3,P11_TXT_3,"Szczegóły powodu braku uczestnictwa 3"
+cyfrowa_kultura_wydarzenia_online,P12_1,"Cyfrowa kultura: wydarzenia kulturalne transmitowane online"
+cyfrowa_kultura_wystawy_interaktywne,P12_2,"Cyfrowa kultura: interaktywne wystawy"
+cyfrowa_kultura_nowe_media,P12_3,"Cyfrowa kultura: wydarzenia związane ze sztuką nowych mediów"
+cyfrowa_kultura_podcasty,P12_4,"Cyfrowa kultura: opowieści dźwiękowe i podcasty"
+cyfrowa_kultura_social_media,P12_5,"Cyfrowa kultura: oglądanie lub tworzenie treści na Youtube/TikToku"
+cyfrowa_kultura_wsparcie_artystów,P12_6,"Cyfrowa kultura: wsparcie finansowe artystów z GZM"
+cyfrowa_kultura_instalacje_dźwiękowe,P12_7,"Cyfrowa kultura: interaktywne instalacje dźwiękowe"
+cyfrowa_kultura_gry,P12_8,"Cyfrowa kultura: gry komputerowe i kultura gamingowa"
+cyfrowa_kultura_vr,P12_9,"Cyfrowa kultura: immersyjne doświadczenia w wirtualnej rzeczywistości"
+cyfrowa_kultura_inne,P12_10,"Cyfrowa kultura: inne"
+cyfrowa_kultura_żadne,P12_11,"Cyfrowa kultura: żadna z powyższych"
+uczestnictwo_miejsce_zamieszkania,P13_1,"Miejsce uczestnictwa w kulturze: w mieście/wsi gdzie mieszkam"
+uczestnictwo_miejsce_pracy,P13_2,"Miejsce uczestnictwa w kulturze: w mieście/wsi, w którym pracuję"
+uczestnictwo_inne_miejsce_gzm,P13_3,"Miejsce uczestnictwa w kulturze: w innym mieście/wsi na terenie GZM"
+uczestnictwo_poza_gzm,P13_4,"Miejsce uczestnictwa w kulturze: poza terenem GZM"
+uczestnictwo_żadne_miejsca,P13_5,"Miejsce uczestnictwa w kulturze: żadne z powyższych"
+skojarzenia_wydarzenia_gzm_1_tekst,P14_1_TXT,"Skojarzenia z wydarzeniami GZM 1 (tekst)"
+skojarzenia_wydarzenia_gzm_2_tekst,P14_2_TXT,"Skojarzenia z wydarzeniami GZM 2 (tekst)"
+skojarzenia_wydarzenia_gzm_3_tekst,P14_3_TXT,"Skojarzenia z wydarzeniami GZM 3 (tekst)"
+skojarzenia_wydarzenia_gzm_4_tekst,P14_4_TXT,"Skojarzenia z wydarzeniami GZM 4 (tekst)"
+skojarzenia_wydarzenia_gzm_5_tekst,P14_5_TXT,"Skojarzenia z wydarzeniami GZM 5 (tekst)"
+skojarzenia_wydarzenia_gzm_1_kategoria,P14_1_TXT_1,"Skojarzenia z wydarzeniami GZM 1 (kategoria)"
+skojarzenia_wydarzenia_gzm_1_szczegóły_2,P14_1_TXT_2,"Szczegóły skojarzeń z wydarzeniami GZM 1.2"
+skojarzenia_wydarzenia_gzm_1_szczegóły_3,P14_1_TXT_3,"Szczegóły skojarzeń z wydarzeniami GZM 1.3"
+skojarzenia_wydarzenia_gzm_2_kategoria,P14_2_TXT_1,"Skojarzenia z wydarzeniami GZM 2 (kategoria)"
+skojarzenia_wydarzenia_gzm_3_kategoria,P14_3_TXT_1,"Skojarzenia z wydarzeniami GZM 3 (kategoria)"
+skojarzenia_wydarzenia_gzm_3_szczegóły_2,P14_3_TXT_2,"Szczegóły skojarzeń z wydarzeniami GZM 3.2"
+skojarzenia_wydarzenia_gzm_4_kategoria,P14_4_TXT_1,"Skojarzenia z wydarzeniami GZM 4 (kategoria)"
+skojarzenia_wydarzenia_gzm_4_szczegóły_2,P14_4_TXT_2,"Szczegóły skojarzeń z wydarzeniami GZM 4.2"
+skojarzenia_wydarzenia_gzm_5_kategoria,P14_5_TXT_1,"Skojarzenia z wydarzeniami GZM 5 (kategoria)"
+skojarzenia_miejsca_gzm_1_tekst,P15_1_TXT,"Skojarzenia z instytucjami/miejscami GZM 1 (tekst)"
+skojarzenia_miejsca_gzm_2_tekst,P15_2_TXT,"Skojarzenia z instytucjami/miejscami GZM 2 (tekst)"
+skojarzenia_miejsca_gzm_3_tekst,P15_3_TXT,"Skojarzenia z instytucjami/miejscami GZM 3 (tekst)"
+skojarzenia_miejsca_gzm_4_tekst,P15_4_TXT,"Skojarzenia z instytucjami/miejscami GZM 4 (tekst)"
+skojarzenia_miejsca_gzm_5_tekst,P15_5_TXT,"Skojarzenia z instytucjami/miejscami GZM 5 (tekst)"
+skojarzenia_miejsca_gzm_1_kategoria,P15_1_TXT_1,"Skojarzenia z instytucjami/miejscami GZM 1 (kategoria)"
+skojarzenia_miejsca_gzm_1_szczegóły_2,P15_1_TXT_2,"Szczegóły skojarzeń z instytucjami/miejscami GZM 1.2"
+skojarzenia_miejsca_gzm_2_kategoria,P15_2_TXT_1,"Skojarzenia z instytucjami/miejscami GZM 2 (kategoria)"
+skojarzenia_miejsca_gzm_3_kategoria,P15_3_TXT_1,"Skojarzenia z instytucjami/miejscami GZM 3 (kategoria)"
+skojarzenia_miejsca_gzm_3_szczegóły_2,P15_3_TXT_2,"Szczegóły skojarzeń z instytucjami/miejscami GZM 3.2"
+skojarzenia_miejsca_gzm_4_kategoria,P15_4_TXT_1,"Skojarzenia z instytucjami/miejscami GZM 4 (kategoria)"
+skojarzenia_miejsca_gzm_5_kategoria,P15_5_TXT_1,"Skojarzenia z instytucjami/miejscami GZM 5 (kategoria)"
+skojarzenia_miejsca_gzm_5_szczegóły_2,P15_5_TXT_2,"Szczegóły skojarzeń z instytucjami/miejscami GZM 5.2"
+informacja_prasa_drukowana,P16_1,"Źródło informacji o kulturze: prasa drukowana"
+informacja_plakaty,P16_2,"Źródło informacji o kulturze: plakaty/ogłoszenia/reklamy"
+informacja_portale_lokalne,P16_3,"Źródło informacji o kulturze: lokalne portale/strony"
+informacja_portale_ogólnopolskie,P16_4,"Źródło informacji o kulturze: ogólnopolskie portale/strony"
+informacja_social_media_instytucje,P16_5,"Źródło informacji o kulturze: profile instytucji w mediach społecznościowych"
+informacja_social_media_twórcy,P16_6,"Źródło informacji o kulturze: profile twórców w mediach społecznościowych"
+informacja_social_media_inne,P16_7,"Źródło informacji o kulturze: inne profile w mediach społecznościowych"
+informacja_znajomi_rodzina,P16_8,"Źródło informacji o kulturze: od znajomych/rodziny"
+informacja_radio,P16_9,"Źródło informacji o kulturze: radio"
+informacja_telewizja,P16_10,"Źródło informacji o kulturze: telewizja"
+informacja_strony_instytucji,P16_11,"Źródło informacji o kulturze: strony internetowe instytucji kultury"
+informacja_strony_ogólne,P16_12,"Źródło informacji o kulturze: ogólnotematyczne strony internetowe"
+informacja_inne_źródła,P16_13,"Źródło informacji o kulturze: inne źródła"
+informacja_żadne_źródła,P16_14,"Źródło informacji o kulturze: żadne z powyższych"
+preferowane_miejsce_dom,P17_1,"Preferowane miejsce wydarzeń: w domu"
+preferowane_miejsce_instytucja_kultury,P17_2,"Preferowane miejsce wydarzeń: w siedzibie instytucji kultury"
+preferowane_miejsce_przestrzeń_publiczna,P17_3,"Preferowane miejsce wydarzeń: w przestrzeni publicznej"
+preferowane_miejsce_przestrzeń_tymczasowa,P17_4,"Preferowane miejsce wydarzeń: w tymczasowo zaaranżowanej przestrzeni"
+preferowane_miejsce_stadion,P17_5,"Preferowane miejsce wydarzeń: na stadionie"
+preferowane_miejsce_pub_klub,P17_6,"Preferowane miejsce wydarzeń: w pubie/klubie/restauracji"
+preferowane_miejsce_inne,P17_7,"Preferowane miejsce wydarzeń: inne miejsce"
+preferowane_miejsce_żadne,P17_8,"Preferowane miejsce wydarzeń: żadne z powyższych"
+miejsce_kultury_bytom,rP18_1,"Miejsce kulturalne: Bytom"
+miejsce_kultury_chorzów,rP18_2,"Miejsce kulturalne: Chorzów"
+miejsce_kultury_dąbrowa_górnicza,rP18_3,"Miejsce kulturalne: Dąbrowa Górnicza"
+miejsce_kultury_gliwice,rP18_4,"Miejsce kulturalne: Gliwice"
+miejsce_kultury_katowice,rP18_5,"Miejsce kulturalne: Katowice"
+miejsce_kultury_mysłowice,rP18_6,"Miejsce kulturalne: Mysłowice"
+miejsce_kultury_piekary_śląskie,rP18_7,"Miejsce kulturalne: Piekary Śląskie"
+miejsce_kultury_ruda_śląska,rP18_8,"Miejsce kulturalne: Ruda Śląska"
+miejsce_kultury_siemianowice_śląskie,rP18_9,"Miejsce kulturalne: Siemianowice Śląskie"
+miejsce_kultury_sosnowiec,rP18_10,"Miejsce kulturalne: Sosnowiec"
+miejsce_kultury_świętochłowice,rP18_11,"Miejsce kulturalne: Świętochłowice"
+miejsce_kultury_tychy,rP18_12,"Miejsce kulturalne: Tychy"
+miejsce_kultury_zabrze,rP18_13,"Miejsce kulturalne: Zabrze"
+miejsce_kultury_inne,rP18_14,"Miejsce kulturalne: Innego"
+miejsce_kultury_nie_pamiętam,rP18_15,"Miejsce kulturalne: Nie pamiętam"
+miejsce_kultury_żadne,rP18_16,"Miejsce kulturalne: Żadne z powyższych"
+miejsce_kultury_inne_tekst,P18_TXT,"Miejsce kulturalne: Inne (tekst)"
+miejsce_kultury_inne_kategoria,rP18_TXT_1,"Miejsce kulturalne: Inne (kategoria)"
+miejsce_kultury_inne_szczegóły_2,rP18_TXT_2,"Szczegóły innego miejsca kulturalnego 2"
+miejsce_kultury_inne_szczegóły_3,rP18_TXT_3,"Szczegóły innego miejsca kulturalnego 3"
+wydarzenie_dzielnicowe,P19_1,"Preferowany zasięg wydarzenia: dzielnicowe"
+wydarzenie_miejskie,P19_2,"Preferowany zasięg wydarzenia: miejskie"
+wydarzenie_regionalne,P19_3,"Preferowany zasięg wydarzenia: regionalne"
+wydarzenie_ogólnopolskie,P19_4,"Preferowany zasięg wydarzenia: ogólnopolskie"
+wydarzenie_międzynarodowe,P19_5,"Preferowany zasięg wydarzenia: międzynarodowe"
+wydarzenie_niezależne,P19_6,"Preferowany zasięg wydarzenia: niezależne od administracji"
+wydarzenie_brak_opinii,P19_7,"Preferowany zasięg wydarzenia: trudno powiedzieć"
+wydatki_na_kulturę_kwota,rP20,"Miesięczne wydatki na kulturę"
+wydatki_na_kulturę_kategoria,rrP20,"Miesięczne wydatki na kulturę (kategoria)"
+uczestnictwo_poza_gzm_czas,P21,"Korzystanie z oferty kulturalnej poza GZM"
+miejsce_poza_gzm_tekst,P21a_TXT,"Lokalizacja poza GZM"
+miejsce_poza_gzm_kategoria,P21a_TXT_1,"Kategoria lokalizacji poza GZM"
+miejsce_poza_gzm_szczegóły_2,P21a_TXT_2,"Szczegóły lokalizacji poza GZM 2"
+miejsce_poza_gzm_szczegóły_3,P21a_TXT_3,"Szczegóły lokalizacji poza GZM 3"
+miejsce_poza_gzm_szczegóły_4,P21a_TXT_4,"Szczegóły lokalizacji poza GZM 4"
+miejsce_poza_gzm_szczegóły_5,P21a_TXT_5,"Szczegóły lokalizacji poza GZM 5"
+aktywność_poza_gzm_tekst,P21b_TXT,"Aktywność poza GZM"
+aktywność_poza_gzm_kategoria,P21b_TXT_1,"Kategoria aktywności poza GZM"
+aktywność_poza_gzm_szczegóły_2,P21b_TXT_2,"Szczegóły aktywności poza GZM 2"
+aktywność_poza_gzm_szczegóły_3,P21b_TXT_3,"Szczegóły aktywności poza GZM 3"
+aktywność_poza_gzm_szczegóły_4,P21b_TXT_4,"Szczegóły aktywności poza GZM 4"
+aktywność_poza_gzm_szczegóły_5,P21b_TXT_5,"Szczegóły aktywności poza GZM 5"
+kultura_domowa_tv,P22_1,"Uczestnictwo w kulturze w domu: oglądanie programów w TV"
+kultura_domowa_radio,P22_2,"Uczestnictwo w kulturze w domu: słuchanie audycji w radiu"
+kultura_domowa_podcasty,P22_3,"Uczestnictwo w kulturze w domu: słuchanie podcastów"
+kultura_domowa_internet,P22_4,"Uczestnictwo w kulturze w domu: oglądanie/czytanie treści w Internecie"
+kultura_domowa_prasa,P22_5,"Uczestnictwo w kulturze w domu: czytanie prasy drukowanej"
+kultura_domowa_książki,P22_6,"Uczestnictwo w kulturze w domu: czytanie książek dla przyjemności"
+kultura_domowa_inne,P22_7,"Uczestnictwo w kulturze w domu: inne aktywności"
+kultura_domowa_żadne,P22_8,"Uczestnictwo w kulturze w domu: żadne z powyższych"
+kontakt_z_artystą_lokalnym,P23,"Zetknięcie się z twórczością lokalnego artysty z GZM"
+nazwa_artysty_lokalnego,P23a_TXT,"Nazwisko lokalnego artysty"
+kategoria_artysty_lokalnego,P23a_TXT_1,"Kategoria lokalnego artysty"
+szczegóły_artysty_lokalnego_2,P23a_TXT_2,"Szczegóły lokalnego artysty 2"
+szczegóły_artysty_lokalnego_3,P23a_TXT_3,"Szczegóły lokalnego artysty 3"
+osoba_wpływająca_na_wybory_kulturalne_1,P24_1_TXT,"Osoba/instytucja wpływająca na wybory kulturalne 1"
+osoba_wpływająca_na_wybory_kulturalne_2,P24_2_TXT,"Osoba/instytucja wpływająca na wybory kulturalne 2"
+osoba_wpływająca_na_wybory_kulturalne_3,P24_3_TXT,"Osoba/instytucja wpływająca na wybory kulturalne 3"
+osoba_wpływająca_na_wybory_kulturalne_4,P24_4_TXT,"Osoba/instytucja wpływająca na wybory kulturalne 4"
+osoba_wpływająca_na_wybory_kulturalne_5,P24_5_TXT,"Osoba/instytucja wpływająca na wybory kulturalne 5"
+kategoria_osoby_wpływającej_1,P24_1_TXT_1,"Kategoria osoby/instytucji wpływającej 1"
+kategoria_osoby_wpływającej_2,P24_2_TXT_1,"Kategoria osoby/instytucji wpływającej 2"
+kategoria_osoby_wpływającej_3,P24_3_TXT_1,"Kategoria osoby/instytucji wpływającej 3"
+kategoria_osoby_wpływającej_4,P24_4_TXT_1,"Kategoria osoby/instytucji wpływającej 4"
+kategoria_osoby_wpływającej_5,P24_5_TXT_1,"Kategoria osoby/instytucji wpływającej 5"
+częstotliwość_kultura_online,P25,"Częstotliwość korzystania z kultury przez internet"
+częstotliwość_kultura_online_top3,T3B_P25,"Częstotliwość korzystania z kultury przez internet (Top 3 Box)"
+kultura_online_youtube,P26_1,"Kultura online: YouTube"
+kultura_online_facebook,P26_2,"Kultura online: Facebook"
+kultura_online_instagram,P26_3,"Kultura online: Instagram"
+kultura_online_twitter,P26_4,"Kultura online: Twitter/X"
+kultura_online_strony_www,P26_5,"Kultura online: strony internetowe"
+kultura_online_inne_źródła,P26_6,"Kultura online: inne źródła"
+youtube_profile_instytucji,rP26a_1_1,"YouTube: Profile instytucji kultury"
+youtube_profile_twórców,rP26a_1_2,"YouTube: Profile twórców"
+youtube_profile_instytucji_miejskich,rP26a_1_3,"YouTube: Profile instytucji miejskich/regionalnych"
+youtube_żadne_profile,rP26a_1_4,"YouTube: Żadne z powyższych"
+facebook_profile_instytucji,rP26a_2_1,"Facebook: Profile instytucji kultury"
+facebook_profile_twórców,rP26a_2_2,"Facebook: Profile twórców"
+facebook_profile_instytucji_miejskich,rP26a_2_3,"Facebook: Profile instytucji miejskich/regionalnych"
+facebook_żadne_profile,rP26a_2_4,"Facebook: Żadne z powyższych"
+instagram_profile_instytucji,rP26a_3_1,"Instagram: Profile instytucji kultury"
+instagram_profile_twórców,rP26a_3_2,"Instagram: Profile twórców"
+instagram_profile_instytucji_miejskich,rP26a_3_3,"Instagram: Profile instytucji miejskich/regionalnych"
+instagram_żadne_profile,rP26a_3_4,"Instagram: Żadne z powyższych"
+twitter_profile_instytucji,rP26a_4_1,"Twitter/X: Profile instytucji kultury"
+twitter_profile_twórców,rP26a_4_2,"Twitter/X: Profile twórców"
+twitter_profile_instytucji_miejskich,rP26a_4_3,"Twitter/X: Profile instytucji miejskich/regionalnych"
+twitter_żadne_profile,rP26a_4_4,"Twitter/X: Żadne z powyższych"
+strony_www_profile_instytucji,rP26a_5_1,"Strony internetowe: Profile instytucji kultury"
+strony_www_profile_twórców,rP26a_5_2,"Strony internetowe: Profile twórców"
+strony_www_profile_instytucji_miejskich,rP26a_5_3,"Strony internetowe: Profile instytucji miejskich/regionalnych"
+strony_www_żadne_profile,rP26a_5_4,"Strony internetowe: Żadne z powyższych"
+znajomość_twórcy_cyfrowego_1,P27_1_TXT,"Znajomość twórcy kultury cyfrowej 1"
+znajomość_twórcy_cyfrowego_2,P27_2_TXT,"Znajomość twórcy kultury cyfrowej 2"
+znajomość_twórcy_cyfrowego_3,P27_3_TXT,"Znajomość twórcy kultury cyfrowej 3"
+znajomość_twórcy_cyfrowego_4,P27_4_TXT,"Znajomość twórcy kultury cyfrowej 4"
+znajomość_twórcy_cyfrowego_5,P27_5_TXT,"Znajomość twórcy kultury cyfrowej 5"
+kategoria_twórcy_cyfrowego_1,P27_1_TXT_1,"Kategoria twórcy kultury cyfrowej 1"
+kategoria_twórcy_cyfrowego_2,P27_2_TXT_1,"Kategoria twórcy kultury cyfrowej 2"
+kategoria_twórcy_cyfrowego_3,P27_3_TXT_1,"Kategoria twórcy kultury cyfrowej 3"
+kategoria_twórcy_cyfrowego_4,P27_4_TXT_1,"Kategoria twórcy kultury cyfrowej 4"
+kategoria_twórcy_cyfrowego_5,P27_5_TXT_1,"Kategoria twórcy kultury cyfrowej 5"
+twórczość_gra_na_instrumencie,rP28_1,"Aktywność twórcza: gram na instrumencie"
+twórczość_pisanie_tekstów,rP28_2,"Aktywność twórcza: piszę teksty"
+twórczość_fotografia,rP28_3,"Aktywność twórcza: robię zdjęcia"
+twórczość_rysowanie_malowanie,rP28_4,"Aktywność twórcza: rysuję lub maluję"
+twórczość_szycie_haftowanie,rP28_5,"Aktywność twórcza: szyję/haftuję"
+twórczość_śpiew,rP28_6,"Aktywność twórcza: śpiewam"
+twórczość_komponowanie,rP28_7,"Aktywność twórcza: komponuję muzykę"
+twórczość_inna,rP28_8,"Aktywność twórcza: inna twórczość"
+twórczość_żadna,rP28_9,"Aktywność twórcza: żadne z powyższych"
+twórczość_inna_tekst,P28_TXT,"Inna aktywność twórcza (tekst)"
+twórczość_inna_kategoria,rP28_TXT_1,"Inna aktywność twórcza (kategoria)"
+opinia_kultura_dla_wszystkich,P29_1,"Opinia: działalność kulturalna jest dla wszystkich"
+opinia_kultura_bycie_na_bieżąco,P29_2,"Opinia: wypada być na bieżąco z kulturą"
+opinia_kultura_relacje_międzyludzkie,P29_3,"Opinia: dzięki kulturze mogę nawiązywać relacje"
+opinia_kultura_przeżycia,P29_4,"Opinia: udział w wydarzeniach kulturalnych zapewnia przeżycia"
+opinia_kultura_nowe_miejsca,P29_5,"Opinia: lubię poznawać nowe miejsca związane z kulturą"
+opinia_kultura_atrakcyjność_regionu,P29_6,"Opinia: działalność kulturalna podnosi atrakcyjność regionu"
+opinia_kultura_przynależność,P29_7,"Opinia: uczestnictwo w kulturze daje poczucie przynależności"
+opinia_kultura_samorealizacja,P29_8,"Opinia: uczestnictwo w kulturze pozwala realizować się"
+opinia_kultura_sens_życia,P29_9,"Opinia: dzięki kulturze życie ma sens"
+opinia_kultura_prestiż,P29_10,"Opinia: uczestnictwo w kulturze daje poczucie prestiżu"
+opinia_kultura_przyjemność,P29_11,"Opinia: konsumpcja kultury sprawia przyjemność"
+opinia_kultura_uboższe_życie,P29_12,"Opinia: bez dostępu do kultury życie byłoby uboższe"
+opinia_ważniejsze_rzeczy_niż_kultura,P29_13,"Opinia: jest wiele ważniejszych rzeczy niż kultura"
+opinia_wydatki_publiczne_na_kulturę,P29_14,"Opinia: nakłady publiczne na kulturę powinny być mniejsze"
+opinia_kultura_nieistotne_tematy,P29_15,"Opinia: w kulturze poruszane są mało istotne dla mnie tematy"
+opinia_kultura_dla_wszystkich_top3,T3B_P29_1,"Opinia: działalność kulturalna jest dla wszystkich (Top 3 Box)"
+opinia_kultura_bycie_na_bieżąco_top3,T3B_P29_2,"Opinia: wypada być na bieżąco z kulturą (Top 3 Box)"
+opinia_kultura_relacje_międzyludzkie_top3,T3B_P29_3,"Opinia: dzięki kulturze mogę nawiązywać relacje (Top 3 Box)"
+opinia_kultura_przeżycia_top3,T3B_P29_4,"Opinia: udział w wydarzeniach kulturalnych zapewnia przeżycia (Top 3 Box)"
+opinia_kultura_nowe_miejsca_top3,T3B_P29_5,"Opinia: lubię poznawać nowe miejsca związane z kulturą (Top 3 Box)"
+opinia_kultura_atrakcyjność_regionu_top3,T3B_P29_6,"Opinia: działalność kulturalna podnosi atrakcyjność regionu (Top 3 Box)"
+opinia_kultura_przynależność_top3,T3B_P29_7,"Opinia: uczestnictwo w kulturze daje poczucie przynależności (Top 3 Box)"
+opinia_kultura_samorealizacja_top3,T3B_P29_8,"Opinia: uczestnictwo w kulturze pozwala realizować się (Top 3 Box)"
+opinia_kultura_sens_życia_top3,T3B_P29_9,"Opinia: dzięki kulturze życie ma sens (Top 3 Box)"
+opinia_kultura_prestiż_top3,T3B_P29_10,"Opinia: uczestnictwo w kulturze daje poczucie prestiżu (Top 3 Box)"
+opinia_kultura_przyjemność_top3,T3B_P29_11,"Opinia: konsumpcja kultury sprawia przyjemność (Top 3 Box)"
+opinia_kultura_uboższe_życie_top3,T3B_P29_12,"Opinia: bez dostępu do kultury życie byłoby uboższe (Top 3 Box)"
+opinia_ważniejsze_rzeczy_niż_kultura_top3,T3B_P29_13,"Opinia: jest wiele ważniejszych rzeczy niż kultura (Top 3 Box)"
+opinia_wydatki_publiczne_na_kulturę_top3,T3B_P29_14,"Opinia: nakłady publiczne na kulturę powinny być mniejsze (Top 3 Box)"
+opinia_kultura_nieistotne_tematy_top3,T3B_P29_15,"Opinia: w kulturze poruszane są mało istotne dla mnie tematy (Top 3 Box)"
+wielkość_miejscowości,M1,"M1. Jaka jest wielkość miejscowości zamieszkania"
+wykształcenie,rM2,"M2. Jakie ma Pan(i) wykształcenie?"
+zatrudnienie_bezrobotny,M3_1,"Status zatrudnienia: bezrobotny/nie pracuję"
+zatrudnienie_pracujący,M3_2,"Status zatrudnienia: jestem zatrudniony/-a"
+zatrudnienie_samozatrudniony,M3_3,"Status zatrudnienia: jestem samozatrudniony/-a"
+zatrudnienie_student,M3_4,"Status zatrudnienia: uczę się/studiuję"
+zatrudnienie_rencista,M3_5,"Status zatrudnienia: rencist(k)a"
+zatrudnienie_emeryt,M3_6,"Status zatrudnienia: emeryt(ka)"
+status_zatrudnienia,M3,"Status zawodowy"
+właściciel_firmy_mśp,M4,"Prowadzenie firmy sektora małych i średnich przedsiębiorstw"
+praca_w_sektorze_kultury,M5,"Praca w sektorze kultury"
+miejsce_wykonywania_pracy,M6,"Miejsce wykonywania pracy"
+praca_w_miejscu_zamieszkania,M7,"Miejsce pracy względem miejsca zamieszkania"
+sponsorowanie_kultury,M8,"Sponsorowanie działalności artystycznej na terenie GZM"
+zainteresowanie_sponsorowaniem_kultury,M9,"Zainteresowanie sponsorowaniem działalności artystycznej"
+przedział_wynagrodzenia,M10,"Przedział wynagrodzenia miesięcznego netto"
+opieka_nad_dzieckiem,M11,"Opieka nad dzieckiem/dziećmi poniżej 13 roku życia"
+opieka_nad_osobą_zależną,M12,"Opieka nad osobą wymagającą stałej opieki"
+niepełnosprawność_wzrok,M13_1,"Niepełnosprawność: wzrokowa"
+niepełnosprawność_słuch,M13_2,"Niepełnosprawność: słuchowa"
+niepełnosprawność_ruch,M13_3,"Niepełnosprawność: ruchowa"
+niepełnosprawność_inna,M13_4,"Niepełnosprawność: inny typ"
+niepełnosprawność_żadna,M13_5,"Niepełnosprawność: żadna z powyższych"
+transport_komunikacja_miejska,M14_1,"Transport: komunikacja miejska (autobus, tramwaj)"
+transport_komunikacja_regionalna,M14_2,"Transport: komunikacja regionalna (kolej)"
+transport_własny_samochód,M14_3,"Transport: własny samochód"
+transport_własny_rower,M14_4,"Transport: własny rower"
+transport_współdzielony,M14_5,"Transport: pojazd na minuty (rower, hulajnoga)"
+transport_pieszo,M14_6,"Transport: pieszo"
+transport_inny,M14_7,"Transport: inaczej"
+internet_w_domu,M15_1,"Dostęp do internetu: w domu"
+internet_w_pracy,M15_2,"Dostęp do internetu: w pracy"
+internet_w_telefonie,M15_3,"Dostęp do internetu: w telefonie komórkowym"
