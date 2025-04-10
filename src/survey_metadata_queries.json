@@ -1,0 +1,3108 @@
+[
+    {
+        "semantic_name": "id_uczestnika",
+        "data_type": "identifier",
+        "description": "Unikalny identyfikator uczestnika badania.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "waga_proby",
+        "data_type": "numeric",
+        "description": "Waga statystyczna przypisana uczestnikowi do celów reprezentatywności.",
+        "possible_values": null,
+        "hints": [
+            "Używaj zawsze, chyba że użytkownik prosi o sumy rekordów (counts)"
+        ]
+    },
+    {
+        "semantic_name": "subregion_metropolii_gzm",
+        "data_type": "text",
+        "description": "Subregion GZM lub Katowice, w którym przeprowadzono badanie.",
+        "possible_values": [
+            "KATOWICE",
+            "BYTOMSKI",
+            "GLIWICKI",
+            "KATOWICKI",
+            "SOSNOWIECKI",
+            "TYSKI",
+            "Inny"
+        ],
+        "hints": [
+            "Metropolia GZM podzielona jest na subregiony: używaj tej wartości w odniesieniu do lokalizacji wyłącznie na dosłowne żądanie dotyczące subregionów GZM/Metropolii"
+        ]
+    },
+    {
+        "semantic_name": "segment_uczestnika",
+        "data_type": "text",
+        "description": "Przypisany segment uczestnictwa w kulturze.",
+        "possible_values": [
+            "Ludowi Tradycjonaliści",
+            "Zdobywcy Wiedzy",
+            "Aspirujący Mainstream",
+            "Wycofani",
+            "Młodzi Uciekinierzy",
+            "Konsumenci Kultury Instytucjonalnej",
+            "Przymusowi Domatorzy",
+            "Sensualni",
+            "Poprawni Konformiści"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "plec",
+        "data_type": "text",
+        "description": "Płeć respondenta, z którą się identyfikuje.",
+        "possible_values": [
+            "Kobieta",
+            "Mężczyzna",
+            "Osoba niebinarna",
+            "Wolę nie odpowiadać",
+            "Inna (jaka?)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "grupa_wiekowa",
+        "data_type": "text",
+        "description": "Przedział wiekowy respondenta.",
+        "possible_values": [
+            "Mniej niż 30",
+            "30-39",
+            "40-49",
+            "50-59",
+            "60 i więcej"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wojewodztwo",
+        "data_type": "text",
+        "description": "Województwo zamieszkania respondenta.",
+        "possible_values": [
+            "dolnośląskie",
+            "kujawsko-pomorskie",
+            "lubelskie",
+            "lubuskie",
+            "łódzkie",
+            "małopolskie",
+            "mazowieckie",
+            "opolskie",
+            "podkarpackie",
+            "podlaskie",
+            "pomorskie",
+            "śląskie",
+            "świętokrzyskie",
+            "warmińsko-mazurskie",
+            "wielkopolskie",
+            "zachodniopomorske"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "miasto_powiat",
+        "data_type": "text",
+        "description": "Miasto na prawach powiatu lub powiat zamieszkania respondenta w GZM.",
+        "possible_values": [
+            "Bytom",
+            "Chorzów",
+            "Dąbrowa Górnicza",
+            "Gliwice",
+            "Katowice",
+            "Mysłowice",
+            "Piekary Śląskie",
+            "Ruda Śląska",
+            "Siemianowice Śląskie",
+            "Sosnowiec",
+            "Świętochłowice",
+            "Tychy",
+            "Zabrze",
+            "Powiat będziński",
+            "Powiat bieruńsko-lędziński",
+            "Powiat gliwicki",
+            "Powiat mikołowski",
+            "Powiat pszczyński",
+            "Powiat tarnogórski",
+            "inne miasto| powiat"
+        ],
+        "hints": [
+            "Użyj gdy zarówno gdy użytkownik pyta o miasto jak i powiat",
+            "MAP: Będzin -> Powiat będziński [W danych dla tego obszaru używana jest nazwa powiatu.]",
+            "MAP: Mikołów -> Powiat mikołowski [W danych dla tego obszaru używana jest nazwa powiatu.]",
+            "MAP: Pszczyna -> Powiat pszczyński [W danych dla tego obszaru używana jest nazwa powiatu.]",
+            "MAP: Tarnowskie Góry -> Powiat tarnogórski [W danych dla tego obszaru używana jest nazwa powiatu.]"
+        ]
+    },
+    {
+        "semantic_name": "gmina_miejscowosc",
+        "data_type": "text",
+        "description": "Gmina zamieszkania respondenta (dla powiatów).",
+        "possible_values": [
+            "Będzin",
+            "Bobrowniki",
+            "Czeladź",
+            "Mierzęcice",
+            "Psary",
+            "Siewierz",
+            "Sławków",
+            "Wojkowice",
+            "Bieruń",
+            "Bojszowy",
+            "Chełm Śląski",
+            "Imielin",
+            "Lędziny",
+            "Gierałtowice",
+            "Knurów",
+            "Pilchowice",
+            "Pyskowice",
+            "Rudziniec",
+            "Sośnicowice",
+            "Łaziska Górne",
+            "Mikołów",
+            "Wyry",
+            "Kobiór",
+            "Ożarowice",
+            "Radzionków",
+            "Świerklaniec",
+            "Tarnowskie Góry",
+            "Zbrosławice",
+            "inna gmina"
+        ],
+        "hints": [
+            "Użyj gdy zarówno gdy użytkownik pyta o gminę jak i miejscowość"
+        ]
+    },
+    {
+        "semantic_name": "dzielnica_katowic",
+        "data_type": "text",
+        "description": "Dzielnica Katowic zamieszkania respondenta.",
+        "possible_values": [
+            "Bogucice",
+            "Brynów Część Wschodnia - Os. Zgrzebnioka",
+            "Dąb",
+            "Dąbrówka Mała",
+            "Giszowiec",
+            "Janów - Nikiszowiec",
+            "Kostuchna",
+            "Koszutka",
+            "Ligota-Panewniki",
+            "Murcki",
+            "Os. Paderewskiego - Muchowiec",
+            "Osiedle Tysiąclecia",
+            "Osiedle Witosa",
+            "Piotrowice - Ochojec",
+            "Podlesie",
+            "Śródmieście",
+            "Szopienice-Burowiec",
+            "Wełnowiec-Józefowiec",
+            "Załęska Hałda - Brynów Część Zachodnia",
+            "Załęże",
+            "Zarzecze",
+            "Zawodzie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wolny_czas_definicja_praktycznosc",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu jest użyteczny/praktyczny.",
+        "possible_values": [
+            "zdecydowanie tak",
+            "raczej tak",
+            "raczej nie",
+            "zdecydowanie nie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wolny_czas_definicja_duma",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu pozwala poczuć się dumnym z tego, kim jestem.",
+        "possible_values": [
+            "zdecydowanie tak",
+            "raczej tak",
+            "raczej nie",
+            "zdecydowanie nie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wolny_czas_definicja_rekodzielo",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu daje możliwość stworzenia czegoś własnymi rękoma.",
+        "possible_values": [
+            "zdecydowanie tak",
+            "raczej tak",
+            "raczej nie",
+            "zdecydowanie nie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wolny_czas_definicja_radosc",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu daje dużo radości.",
+        "possible_values": [
+            "zdecydowanie tak",
+            "raczej tak",
+            "raczej nie",
+            "zdecydowanie nie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wolny_czas_definicja_rodzina",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu pozwala mi spędzić czas z rodziną.",
+        "possible_values": [
+            "zdecydowanie tak",
+            "raczej tak",
+            "raczej nie",
+            "zdecydowanie nie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wolny_czas_definicja_potrzeby_bliskich",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu przede wszystkim zaspokaja potrzeby moich bliskich.",
+        "possible_values": [
+            "zdecydowanie tak",
+            "raczej tak",
+            "raczej nie",
+            "zdecydowanie nie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wolny_czas_definicja_zakupy",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu dodatkowo umożliwia zrobienie zakupów.",
+        "possible_values": [
+            "zdecydowanie tak",
+            "raczej tak",
+            "raczej nie",
+            "zdecydowanie nie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wolny_czas_definicja_nowosc",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu jest zupełną nowością.",
+        "possible_values": [
+            "zdecydowanie tak",
+            "raczej tak",
+            "raczej nie",
+            "zdecydowanie nie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wolny_czas_definicja_samopoznanie",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu pozwala mi lepiej zrozumieć kim jestem.",
+        "possible_values": [
+            "zdecydowanie tak",
+            "raczej tak",
+            "raczej nie",
+            "zdecydowanie nie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_galeria_sztuki",
+        "data_type": "text",
+        "description": "Częstotliwość wizyt w galerii sztuki / na wystawie sztuki.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_teatr",
+        "data_type": "text",
+        "description": "Częstotliwość wizyt w teatrze / na przedstawieniu teatralnym / operowym.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_prasa_kulturalna",
+        "data_type": "text",
+        "description": "Częstotliwość czytania prasy / czasopism poświęconych kulturze.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_nagrania_teatralne",
+        "data_type": "text",
+        "description": "Częstotliwość oglądania nagrań sztuk teatralnych, oper, baletów.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_programy_kulturalne",
+        "data_type": "text",
+        "description": "Częstotliwość oglądania programów / kanałów kulturalnych.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_wyklady",
+        "data_type": "text",
+        "description": "Częstotliwość udziału w wykładzie, odczycie, dyskusji.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_wydarzenia_literackie",
+        "data_type": "text",
+        "description": "Częstotliwość udziału w wydarzeniu literackim.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_archiwa",
+        "data_type": "text",
+        "description": "Częstotliwość korzystania z archiwum instytucji kulturalnej.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_czytanie_ksiazek",
+        "data_type": "text",
+        "description": "Częstotliwość czytania książek dla przyjemności.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_muzeum",
+        "data_type": "text",
+        "description": "Częstotliwość wizyt w muzeum.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_zoo",
+        "data_type": "text",
+        "description": "Częstotliwość wizyt w ogrodzie zoologicznym / botanicznym.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_piknik",
+        "data_type": "text",
+        "description": "Częstotliwość udziału w pikniku / imprezie plenerowej.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_festyn",
+        "data_type": "text",
+        "description": "Częstotliwość wizyt na festynie, jarmarku, imprezie folklorystycznej.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_koncert",
+        "data_type": "text",
+        "description": "Częstotliwość wizyt na koncercie / festiwalu muzycznym.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_kino",
+        "data_type": "text",
+        "description": "Częstotliwość wizyt w kinie / na festiwalu filmowym.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_dom_kultury",
+        "data_type": "text",
+        "description": "Częstotliwość wizyt w centrum kultury, domu kultury.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_rekonstrukcja_historyczna",
+        "data_type": "text",
+        "description": "Częstotliwość uczestnictwa w rekonstrukcji historycznej.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_filharmonia",
+        "data_type": "text",
+        "description": "Częstotliwość wizyt w filharmonii / sali koncertowej.",
+        "possible_values": [
+            "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
+            "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
+            "Dawniej niż w ciągu ostatnich 3 lat",
+            "Nigdy, ale chciał(a)bym w przyszłości",
+            "Nigdy i nie jestem tym zainteresowany(a)"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "znajomosc_metropolii_gzm",
+        "data_type": "boolean",
+        "description": "Czy respondent spotkał się z określeniem Górnośląsko-Zagłębiowska Metropolia.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "definicja_kultury_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź respondenta na pytanie, co rozumie przez pojęcie kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "definicja_kultury_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowana odpowiedź tekstowa na pytanie o definicję kultury.",
+        "possible_values": [
+            "Kultura osobista/zachowanie ludzi/zachowanie w stosunku do innych ludzi/tolerancja",
+            "Dobra materialne",
+            "Duchowość/religia/wartości niematerialne",
+            "Sztuka/artyzm/wyrażanie siebie",
+            "Dziedzictwo/historia/narodowość/regionalność/tożsamość",
+            "Czymś wpływającym/pozytywnym/potrzebnym/ubogacającym",
+            "Zasady/wartości/moralność",
+            "Społeczność/cechy społeczne/otoczenie/więzi",
+            "Literatura",
+            "Wszystkim/całość/wiele znaczeń",
+            "Obyczaje/tradycja/zwyczaje",
+            "Muzyka",
+            "Kino/film/TV",
+            "Język",
+            "Poznawanie/zwiedzanie/edukacja/wiedza",
+            "Obrazy/rzeźby",
+            "Ubiór/wygląd",
+            "Aktywność/udział w kulturze/spotkania/wolny czas",
+            "Rozrywka/relaksem",
+            "Teatr/opera/muzeum",
+            "Wydarzenia/występy/wystawy/koncerty",
+            "Sposób bycia",
+            "Inne",
+            "Nie wiem, trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_fotografia",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Fotografia.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_gotowanie",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Gotowanie.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_gry_komputerowe",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Gry komputerowe.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_moda",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Moda.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_moralnosc",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Moralność.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_muzyka_rozrywkowa",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Muzyka rozrywkowa.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_patriotyzm",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Patriotyzm.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_pornografia",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Pornografia.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_telewizja",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Programy telewizyjne.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_religia",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Religia.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_taniec",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Taniec.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_sposob_zwracania_sie",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: To, jak się do siebie zwracamy.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_traktowanie_narodow",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: To, jak traktujemy inne narody.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_urzadzanie_mieszkania",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: To, jak urządzamy mieszkanie.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_tradycja",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Tradycja.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_umiejetnosc_rozmowy",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Umiejętność rozmawiania z innymi.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_ogrodnictwo",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Uprawianie ogrodu.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_malarstwo",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Malarstwo.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_muzyka_powazna",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Muzyka poważna.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_kino",
+        "data_type": "text",
+        "description": "Czy respondent zaliczyłby do kultury: Kino.",
+        "possible_values": [
+            "Tak",
+            "Nie",
+            "Trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "istotnosc_uczestnictwa_w_kulturze",
+        "data_type": "text",
+        "description": "Ocena respondenta na skali 1-7, na ile istotne jest dla niego uczestnictwo w kulturze.",
+        "possible_values": [
+            "1 zupełnie nieistotne",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 bardzo istotne"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "ocena_dostepu_do_kultury_gzm",
+        "data_type": "text",
+        "description": "Ocena respondenta na skali 1-7 dotycząca dostępu do kultury na terenie Metropolii GZM.",
+        "possible_values": [
+            "1 całkowicie niewystarczający",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni wystarczający"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_wysokie_ceny",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: wysokie ceny / koszty korzystania.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_dojazd",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: problemy z dojazdem / komunikacją.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_nieatrakcyjna_oferta",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: mało atrakcyjna oferta tematyczna.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_brak_informacji",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: niewystarczająca ilość informacji o ofercie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_dostep_fizyczny",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: trudności z fizycznym dostępem / bariery architektoniczne.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_godziny_otwarcia",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: mało dogodne godziny otwarcia instytucji.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_brak_czasu",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: brak czasu / za dużo innych spraw na głowie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_opieka",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: opieka nad inną osobą/ osobą zależną.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_niska_jakosc",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: mało atrakcyjna jakościowa oferta.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_dostepnosc_biletow",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: niska dostępność biletów/są szybko wykupywane.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_brak_oferty_lokalnej",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: moja miejscowość nie ma żadnej oferty kulturalnej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_nieznajomosc_oferty",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: nie znam oferty kulturalnej w mojej okolicy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_inne",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał barierę: inne problemy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_zadne",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: żadne z powyższych barier.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_inne_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa dla bariery: inne problemy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "bariera_inne_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowana odpowiedź tekstowa dla bariery: inne problemy.",
+        "possible_values": [
+            "Cena/koszta",
+            "Mało atrakcyjna ofreta",
+            "Mało informacji",
+            "Brak czasu",
+            "Opieka nad inną osobą / osobą zależną / obowiązki z tym związane",
+            "Zdrowotne",
+            "Brak chęci/zainteresowania",
+            "Wiek",
+            "Inne",
+            "Nie wiem, trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wiedza_o_ofercie_kulturalnej_gzm",
+        "data_type": "text",
+        "description": "Ocena respondenta na skali 1-7 dotycząca poziomu wiedzy o ofercie kulturalnej GZM.",
+        "possible_values": [
+            "1 bardzo niska",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 bardzo wysoka"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_kino",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: wizyta w kinie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_teatr",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: wizyta w teatrze.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_koncert",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: uczestnictwo w koncercie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_muzeum",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: wizyta w muzeum / galerii sztuki.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_park_rozrywki",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: wizyta w parku rozrywki.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_dom_kultury",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: wizyta w domu kultury / centrum kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_biblioteka",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: wizyta w bibliotece.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_zoo",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: wizyta w zoo.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_filharmonia",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: wizyta w filharmonii lub operze.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_spotkanie_z_artysta",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: uczestnictwo w spotkaniu z artystą.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_piknik",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: udział w pikniku / festynie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_inna_aktywnosc",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczył ostatnio w: inna aktywność.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "ostatnio_zadne",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: żadna z ostatnio odwiedzonych aktywności.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "nazwa_odwiedzonego_teatru",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Nazwa ostatnio odwiedzonego teatru.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kategoria_odwiedzonego_teatru",
+        "data_type": "text",
+        "description": "Skategoryzowana nazwa ostatnio odwiedzonego teatru.",
+        "possible_values": [
+            "Teatr Ateneum w Katowicach",
+            "Teatr Miejski w Gliwicach",
+            "Teatr Korez w Katowicach",
+            "Teatr w Katowicach (ogólnie)",
+            "Teatr Rozrywki w Chorzowie",
+            "Teatr Śląski im. Stanisława Wyspiańskiego w Katowicach",
+            "Teatr Żelazny w Katowicach",
+            "Teatr Nowy w Zabrzu",
+            "Teatr Zagłębia w Sosnowcu",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "nazwa_artysty_koncertowego",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Nazwa artysty/zespołu z ostatniego koncertu.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kategoria_artysty_koncertowego",
+        "data_type": "text",
+        "description": "Skategoryzowana nazwa artysty/zespołu z ostatniego koncertu.",
+        "possible_values": [
+            "Agnieszka Chylińska",
+            "Andrea Boccelli",
+            "Bajm",
+            "Dawid Podsiadło",
+            "Rammstein",
+            "sanah",
+            "Smolasty",
+            "Mrozu",
+            "Dżem",
+            "Dni miasta / Festiwal",
+            "muzyka rozrywkowa",
+            "Kult",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "nazwa_odwiedzonego_muzeum",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Nazwa ostatnio odwiedzonego muzeum/galerii.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kategoria_odwiedzonego_muzeum",
+        "data_type": "text",
+        "description": "Skategoryzowana nazwa ostatnio odwiedzonego muzeum/galerii.",
+        "possible_values": [
+            "Muzeum w Gliwicach",
+            "Muzeum Śląskie w Katowicach",
+            "Muzeum Górnośląskie w Bytomiu",
+            "Muzuem Powstań Śląskich w Świętochłowicach",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "nazwa_odwiedzonego_domu_kultury",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Nazwa ostatnio odwiedzonego domu/centrum kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kategoria_odwiedzonego_domu_kultury",
+        "data_type": "text",
+        "description": "Skategoryzowana nazwa ostatnio odwiedzonego domu/centrum kultury.",
+        "possible_values": [
+            "Bytomskie Centrum Kultury",
+            "Centrum Kultury \"Karolinka\" w Radzionce",
+            "Chorzowskie Centrum Kultury",
+            "Pałac Kultury Zagłębia",
+            "Młodzieżowy Dom Kultury w Tychach",
+            "Młodzieżowy Dom Kultury w Mysłowicach",
+            "Tarnogórskie Centrum Kultury",
+            "MDK",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "nazwa_odwiedzonej_filharmonii",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Nazwa ostatnio odwiedzonej filharmonii/opery.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kategoria_odwiedzonej_filharmonii",
+        "data_type": "text",
+        "description": "Skategoryzowana nazwa ostatnio odwiedzonej filharmonii/opery.",
+        "possible_values": [
+            "Filharmonia Śląska w Katowicach",
+            "Opera Śląska w Bytomiu",
+            "NOSPR",
+            "Katowice",
+            "Śląska (Filharmonia/Opera)",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "nazwa_artysty_ze_spotkania",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Nazwisko artysty z ostatniego spotkania autorskiego.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kategoria_artysty_ze_spotkania",
+        "data_type": "text",
+        "description": "Skategoryzowane nazwisko artysty z ostatniego spotkania autorskiego.",
+        "possible_values": [
+            "Andrzej Poniedzielski",
+            "Filip Springer",
+            "Artur Rojek",
+            "Zbigniew Rokita",
+            "Sylwia Chutnik",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "inna_aktywnosc_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Opis innej ostatnio podejmowanej aktywności kulturalnej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "inna_aktywnosc_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowana inna ostatnio podejmowana aktywność kulturalna.",
+        "possible_values": [
+            "wystawy",
+            "czytanie książek",
+            "spacery",
+            "jazda na rowerze",
+            "zwiedzanie turystyczne",
+            "mecz sportowy",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "biblioteka_wypozyczanie_ksiazek",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z biblioteki w celu: wypożyczania książek.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "biblioteka_wypozyczanie_innych_rzeczy",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z biblioteki w celu: wypożyczania innych rzeczy (np. filmów, gier).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "biblioteka_spotkanie_z_artysta",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z biblioteki w celu: uczestnictwa w spotkaniu z artystą.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "biblioteka_prelekcja",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z biblioteki w celu: uczestnictwa w odczycie / prelekcji.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "biblioteka_wystawa",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z biblioteki w celu: obejrzenia wystawy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "biblioteka_inne",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z biblioteki w innym celu.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "dom_kultury_spotkanie_z_artysta",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z domu kultury w celu: uczestnictwa w spotkaniu z artystą.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "dom_kultury_prelekcja",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z domu kultury w celu: uczestnictwa w odczycie / prelekcji.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "dom_kultury_film",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z domu kultury w celu: obejrzenia pokazu filmu.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "dom_kultury_teatr",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z domu kultury w celu: obejrzenia przedstawienia teatralnego.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "dom_kultury_koncert",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z domu kultury w celu: uczestnictwa w koncercie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "dom_kultury_wystawa",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z domu kultury w celu: obejrzenia wystawy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "dom_kultury_inne",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z domu kultury w innym celu.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "powod_braku_uczestnictwa_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Powód braku uczestnictwa w wydarzeniach kulturalnych (jeśli nie uczestniczył).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "powod_braku_uczestnictwa_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowany powód braku uczestnictwa w wydarzeniach kulturalnych.",
+        "possible_values": [
+            "Wysoka cena biletów",
+            "Brak czasu/inne obowiązki zapełniają mi plan dnia",
+            "Brak ochoty/nie interesuje mnie to",
+            "Nie było nic ciekawego",
+            "Interesują mnie inne typy wydarzeń/inne formy spędzania czasu",
+            "Niedostępne informacje o wydarzeniach",
+            "Mój stan zdrowia mi nie pozwala/wiek/zmęczenie",
+            "Brak towarzystwa",
+            "Dojazd",
+            "Inne",
+            "Nie wiem, trudno powiedzić"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_wydarzenia_online",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: wydarzenia kulturalne transmitowane online.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_wystawy_interaktywne",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: interaktywne wystawy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_nowe_media",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: wydarzenia związane ze sztuką nowych mediów.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_podcasty",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: opowieści dźwiękowe i podcasty.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_social_media",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: oglądanie lub tworzenie treści na Youtube/TikToku.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_wsparcie_artystow",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: wsparcie finansowe artystów z GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_instalacje_dzwiekowe",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: interaktywne instalacje dźwiękowe.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_gry",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: gry komputerowe i kultura gamingowa.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_vr",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: immersyjne doświadczenia w wirtualnej rzeczywistości.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_inne",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z cyfrowej kultury: inne formy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "cyfrowa_kultura_zadne",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: żadna z wymienionych form kultury cyfrowej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "uczestnictwo_miejsce_zamieszkania",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze: w mieście/wsi gdzie mieszka.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "uczestnictwo_miejsce_pracy",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze: w mieście/wsi, w którym pracuje.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "uczestnictwo_inne_miejsce_gzm",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze: w innym mieście/wsi na terenie GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "uczestnictwo_poza_gzm",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze: poza terenem GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "uczestnictwo_zadne_miejsca",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: żadne z powyższych miejsc uczestnictwa w kulturze.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_wydarzenia_gzm_1_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Pierwsze skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_wydarzenia_gzm_2_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Drugie skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_wydarzenia_gzm_3_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Trzecie skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_wydarzenia_gzm_4_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Czwarte skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_wydarzenia_gzm_5_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Piąte skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_wydarzenia_gzm_1_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowane pierwsze skojarzenie z wydarzeniami kulturalnymi GZM.",
+        "possible_values": [
+            "brak",
+            "dni miasta",
+            "festiwale muzyczne",
+            "festyny/jarmarki/pikniki",
+            "koncerty / imprezy muzyczne",
+            "muzea/zabytki",
+            "mecze / wydarzenia sportowe",
+            "kino / imprezy filmowe",
+            "teatr",
+            "wystawy artystyczne",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_miejsca_gzm_1_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Pierwsze skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_miejsca_gzm_2_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Drugie skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_miejsca_gzm_3_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Trzecie skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_miejsca_gzm_4_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Czwarte skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_miejsca_gzm_5_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Piąte skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "skojarzenia_miejsca_gzm_1_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowane pierwsze skojarzenie z instytucjami/miejscami kultury GZM.",
+        "possible_values": [
+            "brak",
+            "centrum/dom kultury",
+            "NOSPR",
+            "kino",
+            "filharmonia/opera",
+            "stadion / obiekt sportowy",
+            "Spodek",
+            "park",
+            "muzeum",
+            "teatr",
+            "rynek",
+            "ZOO",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_prasa_drukowana",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: prasa drukowana.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_plakaty",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: plakaty/ogłoszenia/reklamy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_portale_lokalne",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: lokalne portale/strony.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_portale_ogolnopolskie",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: ogólnopolskie portale/strony.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_social_media_instytucje",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: profile instytucji w mediach społecznościowych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_social_media_tworcy",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: profile twórców w mediach społecznościowych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_social_media_inne",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: inne profile w mediach społecznościowych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_znajomi_rodzina",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: od znajomych/rodziny.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_radio",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: radio.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_telewizja",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: telewizja.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_strony_instytucji",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: strony internetowe instytucji kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_strony_ogolne",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: ogólnotematyczne strony internetowe.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_inne_zrodla",
+        "data_type": "boolean",
+        "description": "Czy respondent czerpie informacje o kulturze z: inne źródła.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "informacja_zadne_zrodla",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: żadne z powyższych źródeł informacji.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "preferowane_miejsce_dom",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w domu.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "preferowane_miejsce_instytucja_kultury",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w siedzibie instytucji kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "preferowane_miejsce_przestrzen_publiczna",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w przestrzeni publicznej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "preferowane_miejsce_przestrzen_tymczasowa",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w tymczasowo zaaranżowanej przestrzeni.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "preferowane_miejsce_stadion",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: na stadionie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "preferowane_miejsce_pub_klub",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w pubie/klubie/restauracji.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "preferowane_miejsce_inne",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: inne miejsce.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "preferowane_miejsce_zadne",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: żadne z powyższych preferowanych miejsc.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_bytom",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Bytom.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_chorzow",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Chorzów.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_dabrowa_gornicza",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Dąbrowa Górnicza.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_gliwice",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Gliwice.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_katowice",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Katowice.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_myslowice",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Mysłowice.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_piekary_slaskie",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Piekary Śląskie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_ruda_slaska",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Ruda Śląska.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_siemianowice_slaskie",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Siemianowice Śląskie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_sosnowiec",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Sosnowiec.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_swietochlowice",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Świętochłowice.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_tychy",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Tychy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_zabrze",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Zabrze.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_inne",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza miejsca kultury w: Innym mieście/gminie GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_nie_pamietam",
+        "data_type": "boolean",
+        "description": "Czy respondent odpowiedział: Nie pamiętam (dot. miejsc kultury).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_zadne",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: Żadne z powyższych miast/gmin GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_inne_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Nazwa innego miasta/gminy GZM, gdzie respondent odwiedza miejsca kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_kultury_inne_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowana nazwa innego miasta/gminy GZM, gdzie respondent odwiedza miejsca kultury.",
+        "possible_values": [
+            "Bytom",
+            "Chorzów",
+            "Dąbrowa Górnicza",
+            "Gliwice",
+            "Katowice",
+            "Mysłowice",
+            "Piekary Śląskie",
+            "Ruda Śląska",
+            "Siemianowice Śląskie",
+            "Sosnowiec",
+            "Świętochłowice",
+            "Tychy",
+            "Zabrze",
+            "Będzin",
+            "Łaziska Górne",
+            "Bielsko Biała",
+            "Bobrowniki",
+            "Bieruń",
+            "Dobieszowice",
+            "Rogoźnik",
+            "Czeladź",
+            "Jaworzno",
+            "Knurów",
+            "Mikołów",
+            "Ogrodzieniec",
+            "Opole",
+            "Warszawa",
+            "Kraków",
+            "Ożarowice",
+            "Psary",
+            "Pyskowice",
+            "Radzionków",
+            "Tarnowskie Góry",
+            "Rudziniec",
+            "Sosnicowice",
+            "Świerklaniec",
+            "Zbrosławice",
+            "Żory",
+            "Inne",
+            "Nie wiem, trudno powiedzić"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wydarzenie_dzielnicowe",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje wydarzenia o zasięgu: dzielnicowym.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "wydarzenie_miejskie",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje wydarzenia o zasięgu: miejskim.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "wydarzenie_regionalne",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje wydarzenia o zasięgu: regionalnym.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "wydarzenie_ogolnopolskie",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje wydarzenia o zasięgu: ogólnopolskim.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "wydarzenie_miedzynarodowe",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje wydarzenia o zasięgu: międzynarodowym.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "wydarzenie_niezalezne",
+        "data_type": "boolean",
+        "description": "Czy respondent preferuje wydarzenia o zasięgu: niezależnym od podziałów administracyjnych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "wydarzenie_brak_opinii",
+        "data_type": "boolean",
+        "description": "Czy respondent odpowiedział: trudno powiedzieć (dot. preferowanego zasięgu wydarzeń).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "wydatki_na_kulture_kwota",
+        "data_type": "numeric",
+        "description": "Miesięczne wydatki respondenta na kulturę w PLN (wartość numeryczna).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "wydatki_na_kulture_kategoria",
+        "data_type": "text",
+        "description": "Przedział miesięcznych wydatków respondenta na kulturę.",
+        "possible_values": [
+            "Mniej niż 50",
+            "50-99",
+            "100-149",
+            "150-199",
+            "200-249",
+            "250 i więcej",
+            "Zero / Nie wiem, trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "uczestnictwo_poza_gzm_czas",
+        "data_type": "boolean",
+        "description": "Czy respondent korzystał z oferty kulturalnej poza GZM w ciągu ostatnich 12 miesięcy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_poza_gzm_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Lokalizacja poza GZM, gdzie respondent korzystał z kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_poza_gzm_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowana lokalizacja poza GZM, gdzie respondent korzystał z kultury.",
+        "possible_values": [
+            "Bielsko-biała",
+            "Bieszczady",
+            "Brenna",
+            "Warszawa",
+            "Bytom",
+            "Chorwacja",
+            "Chorzów",
+            "Ciechocinek",
+            "Czaplinek",
+            "Czechy",
+            "Częstochowa",
+            "Energylandia",
+            "Francja",
+            "Gdańsk",
+            "Gdynia",
+            "Irlandia",
+            "Katowice",
+            "Kołobrzeg",
+            "Kraków",
+            "Łódź",
+            "Berlin",
+            "Międzyzdroje",
+            "Nad morzem",
+            "Ogrodzieniec",
+            "Poznań",
+            "Opole",
+            "Oświęcim",
+            "Pomorze",
+            "Praga",
+            "Rybnik",
+            "Sanok",
+            "Sopot",
+            "Słowacja",
+            "Toruń",
+            "Tychy",
+            "Ustroń",
+            "Wiedeń",
+            "Wisła",
+            "Wrocław",
+            "Zabrze",
+            "Za granicą",
+            "Zakopane",
+            "Zator",
+            "Żywiec",
+            "Niemcy",
+            "Londyn",
+            "Wałbrzych",
+            "Inne",
+            "Nie wiem, trudno powiedzić"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "aktywnosc_poza_gzm_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Rodzaj aktywności kulturalnej podejmowanej poza GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "aktywnosc_poza_gzm_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowany rodzaj aktywności kulturalnej podejmowanej poza GZM.",
+        "possible_values": [
+            "dni miasta",
+            "ZOO",
+            "zwiedzanie miasta",
+            "dożynki/festym",
+            "koncert/festiwal muzyczny",
+            "muzeum/zabytki",
+            "wydarzenie sportowe",
+            "kino / festiwal filmowy",
+            "teatr",
+            "wystawa artystyczna",
+            "inne",
+            "nie wiem/trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_domowa_tv",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze w domu przez: oglądanie programów w TV.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_domowa_radio",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze w domu przez: słuchanie audycji w radiu.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_domowa_podcasty",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze w domu przez: słuchanie podcastów.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_domowa_internet",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze w domu przez: oglądanie/czytanie treści w Internecie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_domowa_prasa",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze w domu przez: czytanie prasy drukowanej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_domowa_ksiazki",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze w domu przez: czytanie książek dla przyjemności.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_domowa_inne",
+        "data_type": "boolean",
+        "description": "Czy respondent uczestniczy w kulturze w domu przez: inne aktywności.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_domowa_zadne",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: żadne z powyższych form uczestnictwa w kulturze w domu.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kontakt_z_artysta_lokalnym",
+        "data_type": "text",
+        "description": "Częstotliwość zetknięcia się respondenta z twórczością lokalnego artysty z GZM.",
+        "possible_values": [
+            "tak, wielokrotnie",
+            "tak, raz czy dwa",
+            "nie zetknąłe(a)m się"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "nazwa_artysty_lokalnego",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Nazwisko/nazwa znanego lokalnego artysty z GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kategoria_artysty_lokalnego",
+        "data_type": "text",
+        "description": "Skategoryzowane nazwisko/nazwa znanego lokalnego artysty z GZM.",
+        "possible_values": [
+            "Andrea Bocelli",
+            "C-Bool",
+            "Ewa Uryga",
+            "Kabaret",
+            "Lokalny/uliczny artysta",
+            "Malarz",
+            "Rawa Blues",
+            "Rojek",
+            "Styrna",
+            "Weronika  Maksimowicz",
+            "Bajm",
+            "OSTR",
+            "Piotr Klima",
+            "Myslovitz",
+            "Dawid Koczur",
+            "Piosenkarz",
+            "Muzyk",
+            "Pisarz",
+            "Fotograf",
+            "Marek Motyka",
+            "Inne",
+            "Nie wiem, trudno powiedzić"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_1",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Pierwsza osoba/instytucja wpływająca na wybory kulturalne respondenta.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_2",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Druga osoba/instytucja wpływająca na wybory kulturalne respondenta.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_3",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Trzecia osoba/instytucja wpływająca na wybory kulturalne respondenta.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_4",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Czwarta osoba/instytucja wpływająca na wybory kulturalne respondenta.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_5",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Piąta osoba/instytucja wpływająca na wybory kulturalne respondenta.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kategoria_osoby_wplywajacej_1",
+        "data_type": "text",
+        "description": "Skategoryzowana pierwsza osoba/instytucja wpływająca na wybory kulturalne.",
+        "possible_values": [
+            "Aktorzy",
+            "Arkadiusz Chęciński",
+            "Arena Gliwice",
+            "Artur Rojek",
+            "Artyści",
+            "Dawid Podsiadło",
+            "Kościół",
+            "Becek",
+            "Biblioteka",
+            "Burmistrz",
+            "C-Bool",
+            "Celebryci",
+            "Centrum Kultury",
+            "Doda",
+            "Dom Kultury",
+            "Dom muzyki i tańca",
+            "Dziennikarze",
+            "Filharmonia",
+            "Jurek Owsiak",
+            "Kabarety",
+            "Kina",
+            "Muzycy",
+            "Nospr",
+            "Koncerty",
+            "Lewandowski",
+            "Opera",
+            "Muzeum",
+            "Pałac Kultury",
+            "Paprocany",
+            "Piosenkarze",
+            "Prezydent",
+            "Rada Osiedla",
+            "Sanah",
+            "Socha",
+            "Spodek",
+            "Sportowcy",
+            "Stadion",
+            "Teatr",
+            "Urząd gminy/miasta",
+            "Park",
+            "Inne",
+            "Nie wiem, trudno powiedzić"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "czestotliwosc_kultura_online",
+        "data_type": "text",
+        "description": "Ocena respondenta na skali 1-7 dotycząca częstotliwości korzystania z kultury przez internet.",
+        "possible_values": [
+            "1 bardzo rzadko lub wcale",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 bardzo często"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_online_youtube",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z kultury online przez: YouTube.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_online_facebook",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z kultury online przez: Facebook.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_online_instagram",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z kultury online przez: Instagram.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_online_twitter",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z kultury online przez: Twitter/X.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_online_strony_www",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z kultury online przez: strony internetowe.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kultura_online_inne_zrodla",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z kultury online przez: inne źródła.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "youtube_profile_instytucji",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na YouTube: Profile instytucji kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "youtube_profile_tworcow",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na YouTube: Profile twórców.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "youtube_profile_instytucji_miejskich",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na YouTube: Profile instytucji miejskich/regionalnych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "youtube_zadne_profile",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na YouTube).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "facebook_profile_instytucji",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na Facebooku: Profile instytucji kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "facebook_profile_tworcow",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na Facebooku: Profile twórców.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "facebook_profile_instytucji_miejskich",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na Facebooku: Profile instytucji miejskich/regionalnych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "facebook_zadne_profile",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na Facebooku).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "instagram_profile_instytucji",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na Instagramie: Profile instytucji kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "instagram_profile_tworcow",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na Instagramie: Profile twórców.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "instagram_profile_instytucji_miejskich",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na Instagramie: Profile instytucji miejskich/regionalnych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "instagram_zadne_profile",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na Instagramie).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "twitter_profile_instytucji",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na Twitter/X: Profile instytucji kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "twitter_profile_tworcow",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na Twitter/X: Profile twórców.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "twitter_profile_instytucji_miejskich",
+        "data_type": "boolean",
+        "description": "Czy respondent śledzi na Twitter/X: Profile instytucji miejskich/regionalnych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "twitter_zadne_profile",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na Twitter/X).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "strony_www_profile_instytucji",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza na stronach WWW: Profile instytucji kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "strony_www_profile_tworcow",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza na stronach WWW: Profile twórców.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "strony_www_profile_instytucji_miejskich",
+        "data_type": "boolean",
+        "description": "Czy respondent odwiedza na stronach WWW: Profile instytucji miejskich/regionalnych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "strony_www_zadne_profile",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na stronach WWW).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "znajomosc_tworcy_cyfrowego_1",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Pierwszy znany respondentowi twórca kultury cyfrowej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "znajomosc_tworcy_cyfrowego_2",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Drugi znany respondentowi twórca kultury cyfrowej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "znajomosc_tworcy_cyfrowego_3",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Trzeci znany respondentowi twórca kultury cyfrowej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "znajomosc_tworcy_cyfrowego_4",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Czwarty znany respondentowi twórca kultury cyfrowej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "znajomosc_tworcy_cyfrowego_5",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Piąty znany respondentowi twórca kultury cyfrowej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "kategoria_tworcy_cyfrowego_1",
+        "data_type": "text",
+        "description": "Skategoryzowany pierwszy znany twórca kultury cyfrowej.",
+        "possible_values": [
+            "Muzeum",
+            "Biblioteka",
+            "Arkadiusz Chęciński",
+            "Artur Rojek",
+            "Cbool",
+            "Ennzi",
+            "Frele",
+            "Frizz",
+            "Kabarety",
+            "Kazimierz Kutz",
+            "Łukasz Folda",
+            "Mama na obrotach",
+            "Marlena Sojek",
+            "Mediateka",
+            "Dom Kultury",
+            "MiKlaus",
+            "Miuosh",
+            "Mirosław Szołtysek",
+            "Myslovitz",
+            "Niklaus",
+            "Opera",
+            "Piotr Jakowenko",
+            "Polsat",
+            "Sanah",
+            "Socha",
+            "Sosnowiec Łączy",
+            "Spodek",
+            "Teatr",
+            "Telewizja",
+            "Tvp",
+            "Youtube",
+            "Bonkol",
+            "Inne",
+            "Nie wiem, trudno powiedzić"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_gra_na_instrumencie",
+        "data_type": "boolean",
+        "description": "Czy respondent podejmuje aktywność twórczą: granie na instrumencie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_pisanie_tekstow",
+        "data_type": "boolean",
+        "description": "Czy respondent podejmuje aktywność twórczą: pisanie tekstów.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_fotografia",
+        "data_type": "boolean",
+        "description": "Czy respondent podejmuje aktywność twórczą: robienie zdjęć.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_rysowanie_malowanie",
+        "data_type": "boolean",
+        "description": "Czy respondent podejmuje aktywność twórczą: rysowanie lub malowanie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_szycie_haftowanie",
+        "data_type": "boolean",
+        "description": "Czy respondent podejmuje aktywność twórczą: szycie/haftowanie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_spiew",
+        "data_type": "boolean",
+        "description": "Czy respondent podejmuje aktywność twórczą: śpiewanie.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_komponowanie",
+        "data_type": "boolean",
+        "description": "Czy respondent podejmuje aktywność twórczą: komponowanie muzyki.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_inna",
+        "data_type": "boolean",
+        "description": "Czy respondent podejmuje aktywność twórczą: inna twórczość.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_zadna",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: żadne z powyższych aktywności twórczych.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_inna_tekst",
+        "data_type": "text",
+        "description": "Otwarta odpowiedź tekstowa: Opis innej aktywności twórczej respondenta.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "tworczosc_inna_kategoria",
+        "data_type": "text",
+        "description": "Skategoryzowana inna aktywność twórcza respondenta.",
+        "possible_values": [
+            "Gram na instrumencie",
+            "Piszę teksty",
+            "Robię zdjęcia",
+            "Rysuję lub maluję",
+            "Szyję / haftuję",
+            "Śpiewam",
+            "Komponuję muzykę",
+            "Inna twórczość",
+            "Żadne z powyższych",
+            "Ogrodnictwo",
+            "Taniec",
+            "Stolrstwo, rzeźbienie w drewnie",
+            "Szydełkowanie",
+            "Piszę wiersze",
+            "Czytanie",
+            "Rower",
+            "Inne",
+            "Nie wiem, trudno powiedzieć"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_dla_wszystkich",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Działalność kulturalna jest dla wszystkich.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_bycie_na_biezaco",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Wypada być na bieżąco z kulturą.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_relacje_miedzyludzkie",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Dzięki kulturze mogę nawiązywać relacje.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_przezycia",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Udział w wydarzeniach kulturalnych zapewnia przeżycia.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_nowe_miejsca",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Lubię poznawać nowe miejsca związane z kulturą.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_atrakcyjnosc_regionu",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Działalność kulturalna podnosi atrakcyjność regionu.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_przynaleznosc",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Uczestnictwo w kulturze daje poczucie przynależności.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_samorealizacja",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Uczestnictwo w kulturze pozwala realizować się.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_sens_zycia",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Dzięki kulturze życie ma sens.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_prestiz",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Uczestnictwo w kulturze daje poczucie prestiżu.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_przyjemnosc",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Konsumpcja kultury sprawia przyjemność.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_ubozsze_zycie",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Bez dostępu do kultury życie byłoby uboższe.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_wazniejsze_rzeczy_niz_kultura",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Jest wiele ważniejszych rzeczy niż kultura.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_wydatki_publiczne_na_kulture",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: Nakłady publiczne na kulturę powinny być mniejsze.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opinia_kultura_nieistotne_tematy",
+        "data_type": "text",
+        "description": "Ocena stwierdzenia na skali 1-7: W kulturze poruszane są mało istotne dla mnie tematy.",
+        "possible_values": [
+            "1 zupełnie się nie zgadzam",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7 w pełni sie zgadzam"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wielkosc_miejscowosci",
+        "data_type": "text",
+        "description": "Wielkość miejscowości zamieszkania respondenta.",
+        "possible_values": [
+            "wieś",
+            "miasto  poniżej 20 tys. mieszkańców",
+            "miasto 20 - 99 tys. mieszkańców",
+            "miasto 100 - 199 tys. mieszkańców",
+            "miasto powyżej 200 tys. mieszkańców"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "wyksztalcenie",
+        "data_type": "text",
+        "description": "Poziom wykształcenia respondenta.",
+        "possible_values": [
+            "niższe niż średnie",
+            "średnie",
+            "wyższe"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "zatrudnienie_bezrobotny",
+        "data_type": "boolean",
+        "description": "Czy respondent ma status: bezrobotny/nie pracuję/zajmuję się domem.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "zatrudnienie_pracujacy",
+        "data_type": "boolean",
+        "description": "Czy respondent ma status: jestem zatrudniony/-a.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "zatrudnienie_samozatrudniony",
+        "data_type": "boolean",
+        "description": "Czy respondent ma status: jestem samozatrudniony/-a.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "zatrudnienie_student",
+        "data_type": "boolean",
+        "description": "Czy respondent ma status: uczę się/studiuję.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "zatrudnienie_rencista",
+        "data_type": "boolean",
+        "description": "Czy respondent ma status: rencist(k)a.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "zatrudnienie_emeryt",
+        "data_type": "boolean",
+        "description": "Czy respondent ma status: emeryt(ka).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "wlasciciel_firmy_msp",
+        "data_type": "boolean",
+        "description": "Czy respondent prowadzi firmę sektora małych i średnich przedsiębiorstw.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "praca_w_sektorze_kultury",
+        "data_type": "boolean",
+        "description": "Czy respondent pracuje w sektorze kultury.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "miejsce_wykonywania_pracy",
+        "data_type": "text",
+        "description": "Miejsce wykonywania pracy przez respondenta.",
+        "possible_values": [
+            "wyłącznie w miejscu pracy | poza domem",
+            "częściowo w miejscu pracy, częściowo w domu lub zdalnie",
+            "wyłącznie w domu | zdalnie"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "praca_w_miejscu_zamieszkania",
+        "data_type": "text",
+        "description": "Czy miejsce pracy respondenta znajduje się w miejscowości zamieszkania.",
+        "possible_values": [
+            "w miejscowości zamieszkania",
+            "poza miejscowością zamieszkania"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "sponsorowanie_kultury",
+        "data_type": "boolean",
+        "description": "Czy firma respondenta sponsorowała działalność artystyczną na terenie GZM.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "zainteresowanie_sponsorowaniem_kultury",
+        "data_type": "boolean",
+        "description": "Czy firma respondenta byłaby zainteresowana sponsorowaniem działalności artystycznej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "przedzial_wynagrodzenia",
+        "data_type": "text",
+        "description": "Przedział wynagrodzenia miesięcznego netto respondenta.",
+        "possible_values": [
+            "do 3500 zł",
+            "3501 - 4000 zł",
+            "4001 - 4500 zł",
+            "4501 - 5000 zł",
+            "5001 - 6000 zł",
+            "6001 - 7000 zł",
+            "7001 - 8000 zł",
+            "8001 - 9000 zł",
+            "powyżej 9000 zł",
+            "nie wiem, trudno powiedzieć",
+            "odmowa odpowiedzi"
+        ],
+        "hints": []
+    },
+    {
+        "semantic_name": "opieka_nad_dzieckiem",
+        "data_type": "boolean",
+        "description": "Czy respondent opiekuje się dzieckiem/dziećmi poniżej 13 roku życia.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "opieka_nad_osoba_zalezna",
+        "data_type": "boolean",
+        "description": "Czy respondent opiekuje się osobą wymagającą stałej opieki (chorą, niepełnosprawną).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "niepelnosprawnosc_wzrok",
+        "data_type": "boolean",
+        "description": "Czy respondent ma niepełnosprawność: wzrokową.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "niepelnosprawnosc_sluch",
+        "data_type": "boolean",
+        "description": "Czy respondent ma niepełnosprawność: słuchową.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "niepelnosprawnosc_ruch",
+        "data_type": "boolean",
+        "description": "Czy respondent ma niepełnosprawność: ruchową.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "niepelnosprawnosc_inna",
+        "data_type": "boolean",
+        "description": "Czy respondent ma niepełnosprawność: inny typ.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "niepelnosprawnosc_zadna",
+        "data_type": "boolean",
+        "description": "Czy respondent wskazał: żadna z powyższych niepełnosprawności.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "transport_komunikacja_miejska",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z transportu: komunikacja miejska (autobus, tramwaj).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "transport_komunikacja_regionalna",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z transportu: komunikacja regionalna (kolej).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "transport_wlasny_samochod",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z transportu: własny samochód.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "transport_wlasny_rower",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z transportu: własny rower.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "transport_wspoldzielony",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z transportu: pojazd na minuty (rower, hulajnoga).",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "transport_pieszo",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z transportu: pieszo.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "transport_inny",
+        "data_type": "boolean",
+        "description": "Czy respondent korzysta z transportu: inaczej.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "internet_w_domu",
+        "data_type": "boolean",
+        "description": "Czy respondent ma dostęp do internetu: w domu.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "internet_w_pracy",
+        "data_type": "boolean",
+        "description": "Czy respondent ma dostęp do internetu: w pracy.",
+        "possible_values": null,
+        "hints": []
+    },
+    {
+        "semantic_name": "internet_w_telefonie",
+        "data_type": "boolean",
+        "description": "Czy respondent ma dostęp do internetu: w telefonie komórkowym.",
+        "possible_values": null,
+        "hints": []
+    }
+]

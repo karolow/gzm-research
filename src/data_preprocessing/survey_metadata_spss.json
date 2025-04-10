@@ -17,7 +17,7 @@
     },
     {
         "original_symbol": "Real",
-        "semantic_name": "obszar_realizacji",
+        "semantic_name": "subregion_metropolii_gzm",
         "original_question": "REALIZACJA",
         "data_type": "categorical",
         "value_mapping": {
@@ -48,6 +48,140 @@
             "9.0": "Poprawni Konformiści"
         },
         "notes": "Kolumna 'Seg' (segment_uczestnika). Odpowiedź kategoryczna na pytanie: Segment"
+    },
+    {
+        "original_symbol": "GminaPlec",
+        "semantic_name": "lokalizacja_plec",
+        "original_question": "Gmina / Płeć (na podst. S4/S5A/S5B/S1)",
+        "data_type": "categorical",
+        "value_mapping": {
+            "1.0": "Bytom / Mężczyzna",
+            "2.0": "Ożarowice / Mężczyzna",
+            "3.0": "Piekary Śląskie / Mężczyzna",
+            "4.0": "Radzionków / Mężczyzna",
+            "5.0": "Świerklaniec / Mężczyzna",
+            "6.0": "Tarnowskie Góry / Mężczyzna",
+            "7.0": "Zbrosławice / Mężczyzna",
+            "8.0": "Gierałtowice / Mężczyzna",
+            "9.0": "Gliwice / Mężczyzna",
+            "10.0": "Knurów / Mężczyzna",
+            "11.0": "Pilchowice / Mężczyzna",
+            "12.0": "Pyskowice / Mężczyzna",
+            "13.0": "Rudziniec / Mężczyzna",
+            "14.0": "Sośnicowice / Mężczyzna",
+            "15.0": "Zabrze / Mężczyzna",
+            "16.0": "Chorzów / Mężczyzna",
+            "17.0": "Mysłowice / Mężczyzna",
+            "18.0": "Ruda Śląska / Mężczyzna",
+            "19.0": "Siemianowice Śląskie / Mężczyzna",
+            "20.0": "Świętochłowice / Mężczyzna",
+            "21.0": "Będzin / Mężczyzna",
+            "22.0": "Bobrowniki / Mężczyzna",
+            "23.0": "Czeladź / Mężczyzna",
+            "24.0": "Dąbrowa Górnicza / Mężczyzna",
+            "25.0": "Mierzęcice / Mężczyzna",
+            "26.0": "Psary / Mężczyzna",
+            "27.0": "Siewierz / Mężczyzna",
+            "28.0": "Sławków / Mężczyzna",
+            "29.0": "Sosnowiec / Mężczyzna",
+            "30.0": "Wojkowice / Mężczyzna",
+            "31.0": "Bieruń / Mężczyzna",
+            "32.0": "Bojszowy / Mężczyzna",
+            "33.0": "Chełm Śląski / Mężczyzna",
+            "34.0": "Imielin / Mężczyzna",
+            "35.0": "Kobiór / Mężczyzna",
+            "36.0": "Lędziny / Mężczyzna",
+            "37.0": "Łaziska Górne / Mężczyzna",
+            "38.0": "Mikołów / Mężczyzna",
+            "39.0": "Tychy / Mężczyzna",
+            "40.0": "Wyry / Mężczyzna",
+            "41.0": "KATOWICE: Bogucice / Mężczyzna",
+            "42.0": "KATOWICE: Brynów Część Wschodnia - Os. Zgrzebnioka / Mężczyzna",
+            "43.0": "KATOWICE: Dąb / Mężczyzna",
+            "44.0": "KATOWICE: Dąbrówka Mała / Mężczyzna",
+            "45.0": "KATOWICE: Giszowiec / Mężczyzna",
+            "46.0": "KATOWICE: Janów - Nikiszowiec / Mężczyzna",
+            "47.0": "KATOWICE: Kostuchna / Mężczyzna",
+            "48.0": "KATOWICE: Koszutka / Mężczyzna",
+            "49.0": "KATOWICE: Ligota-Panewniki / Mężczyzna",
+            "50.0": "KATOWICE: Murcki / Mężczyzna",
+            "51.0": "KATOWICE: Os. Paderewskiego - Muchowiec / Mężczyzna",
+            "52.0": "KATOWICE: Osiedle Tysiąclecia / Mężczyzna",
+            "53.0": "KATOWICE: Osiedle Witosa / Mężczyzna",
+            "54.0": "KATOWICE: Piotrowice - Ochojec / Mężczyzna",
+            "55.0": "KATOWICE: Podlesie / Mężczyzna",
+            "56.0": "KATOWICE: Śródmieście / Mężczyzna",
+            "57.0": "KATOWICE: Szopienice-Burowiec / Mężczyzna",
+            "58.0": "KATOWICE: Wełnowiec-Józefowiec / Mężczyzna",
+            "59.0": "KATOWICE: Załęska Hałda - Brynów Część Zachodnia / Mężczyzna",
+            "60.0": "KATOWICE: Załęże / Mężczyzna",
+            "61.0": "KATOWICE: Zarzecze / Mężczyzna",
+            "62.0": "KATOWICE: Zawodzie / Mężczyzna",
+            "63.0": "Bytom / Kobieta",
+            "64.0": "Ożarowice / Kobieta",
+            "65.0": "Piekary Śląskie / Kobieta",
+            "66.0": "Radzionków / Kobieta",
+            "67.0": "Świerklaniec / Kobieta",
+            "68.0": "Tarnowskie Góry / Kobieta",
+            "69.0": "Zbrosławice / Kobieta",
+            "70.0": "Gierałtowice / Kobieta",
+            "71.0": "Gliwice / Kobieta",
+            "72.0": "Knurów / Kobieta",
+            "73.0": "Pilchowice / Kobieta",
+            "74.0": "Pyskowice / Kobieta",
+            "75.0": "Rudziniec / Kobieta",
+            "76.0": "Sośnicowice / Kobieta",
+            "77.0": "Zabrze / Kobieta",
+            "78.0": "Chorzów / Kobieta",
+            "79.0": "Mysłowice / Kobieta",
+            "80.0": "Ruda Śląska / Kobieta",
+            "81.0": "Siemianowice Śląskie / Kobieta",
+            "82.0": "Świętochłowice / Kobieta",
+            "83.0": "Będzin / Kobieta",
+            "84.0": "Bobrowniki / Kobieta",
+            "85.0": "Czeladź / Kobieta",
+            "86.0": "Dąbrowa Górnicza / Kobieta",
+            "87.0": "Mierzęcice / Kobieta",
+            "88.0": "Psary / Kobieta",
+            "89.0": "Siewierz / Kobieta",
+            "90.0": "Sławków / Kobieta",
+            "91.0": "Sosnowiec / Kobieta",
+            "92.0": "Wojkowice / Kobieta",
+            "93.0": "Bieruń / Kobieta",
+            "94.0": "Bojszowy / Kobieta",
+            "95.0": "Chełm Śląski / Kobieta",
+            "96.0": "Imielin / Kobieta",
+            "97.0": "Kobiór / Kobieta",
+            "98.0": "Lędziny / Kobieta",
+            "99.0": "Łaziska Górne / Kobieta",
+            "100.0": "Mikołów / Kobieta",
+            "101.0": "Tychy / Kobieta",
+            "102.0": "Wyry / Kobieta",
+            "103.0": "KATOWICE: Bogucice / Kobieta",
+            "104.0": "KATOWICE: Brynów Część Wschodnia - Os. Zgrzebnioka / Kobieta",
+            "105.0": "KATOWICE: Dąb / Kobieta",
+            "106.0": "KATOWICE: Dąbrówka Mała / Kobieta",
+            "107.0": "KATOWICE: Giszowiec / Kobieta",
+            "108.0": "KATOWICE: Janów - Nikiszowiec / Kobieta",
+            "109.0": "KATOWICE: Kostuchna / Kobieta",
+            "110.0": "KATOWICE: Koszutka / Kobieta",
+            "111.0": "KATOWICE: Ligota-Panewniki / Kobieta",
+            "112.0": "KATOWICE: Murcki / Kobieta",
+            "113.0": "KATOWICE: Os. Paderewskiego - Muchowiec / Kobieta",
+            "114.0": "KATOWICE: Osiedle Tysiąclecia / Kobieta",
+            "115.0": "KATOWICE: Osiedle Witosa / Kobieta",
+            "116.0": "KATOWICE: Piotrowice - Ochojec / Kobieta",
+            "117.0": "KATOWICE: Podlesie / Kobieta",
+            "118.0": "KATOWICE: Śródmieście / Kobieta",
+            "119.0": "KATOWICE: Szopienice-Burowiec / Kobieta",
+            "120.0": "KATOWICE: Wełnowiec-Józefowiec / Kobieta",
+            "121.0": "KATOWICE: Załęska Hałda - Brynów Część Zachodnia / Kobieta",
+            "122.0": "KATOWICE: Załęże / Kobieta",
+            "123.0": "KATOWICE: Zarzecze / Kobieta",
+            "124.0": "KATOWICE: Zawodzie / Kobieta",
+            "900.0": "Inna odpowiedź na pytaniu o płeć"
+        },
+        "notes": "Kolumna 'GminaPlec' (lokalizacja_plec). Odpowiedź kategoryczna na pytanie: Gmina / Płeć (na podst. S4/S5A/S5B/S1)"
     },
     {
         "original_symbol": "S1",
@@ -202,7 +336,7 @@
     },
     {
         "original_symbol": "A1_1",
-        "semantic_name": "wolny_czas_praktycznosc",
+        "semantic_name": "wolny_czas_definicja_praktycznosc",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny",
         "data_type": "ordinal",
         "value_mapping": {
@@ -211,11 +345,11 @@
             "3.0": "raczej nie",
             "4.0": "zdecydowanie nie"
         },
-        "notes": "Kolumna 'A1_1' (wolny_czas_praktycznosc). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny"
+        "notes": "Kolumna 'A1_1' (wolny_czas_definicja_praktycznosc). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny"
     },
     {
         "original_symbol": "A1_2",
-        "semantic_name": "wolny_czas_duma",
+        "semantic_name": "wolny_czas_definicja_duma",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym z tego, kim jestem",
         "data_type": "ordinal",
         "value_mapping": {
@@ -224,11 +358,11 @@
             "3.0": "raczej nie",
             "4.0": "zdecydowanie nie"
         },
-        "notes": "Kolumna 'A1_2' (wolny_czas_duma). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym z tego, kim jestem"
+        "notes": "Kolumna 'A1_2' (wolny_czas_definicja_duma). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym z tego, kim jestem"
     },
     {
         "original_symbol": "A1_3",
-        "semantic_name": "wolny_czas_rekodzielo",
+        "semantic_name": "wolny_czas_definicja_rekodzielo",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś własnymi rękoma",
         "data_type": "ordinal",
         "value_mapping": {
@@ -237,11 +371,11 @@
             "3.0": "raczej nie",
             "4.0": "zdecydowanie nie"
         },
-        "notes": "Kolumna 'A1_3' (wolny_czas_rekodzielo). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś własnymi rękoma"
+        "notes": "Kolumna 'A1_3' (wolny_czas_definicja_rekodzielo). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś własnymi rękoma"
     },
     {
         "original_symbol": "A1_4",
-        "semantic_name": "wolny_czas_radosc",
+        "semantic_name": "wolny_czas_definicja_radosc",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości",
         "data_type": "ordinal",
         "value_mapping": {
@@ -250,11 +384,11 @@
             "3.0": "raczej nie",
             "4.0": "zdecydowanie nie"
         },
-        "notes": "Kolumna 'A1_4' (wolny_czas_radosc). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości"
+        "notes": "Kolumna 'A1_4' (wolny_czas_definicja_radosc). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości"
     },
     {
         "original_symbol": "A1_5",
-        "semantic_name": "wolny_czas_rodzina",
+        "semantic_name": "wolny_czas_definicja_rodzina",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi spędzić czas z rodziną",
         "data_type": "ordinal",
         "value_mapping": {
@@ -263,11 +397,11 @@
             "3.0": "raczej nie",
             "4.0": "zdecydowanie nie"
         },
-        "notes": "Kolumna 'A1_5' (wolny_czas_rodzina). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi spędzić czas z rodziną"
+        "notes": "Kolumna 'A1_5' (wolny_czas_definicja_rodzina). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi spędzić czas z rodziną"
     },
     {
         "original_symbol": "A1_6",
-        "semantic_name": "wolny_czas_potrzeby_bliskich",
+        "semantic_name": "wolny_czas_definicja_potrzeby_bliskich",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Przede wszystkim zaspokaja potrzeby moich bliskich",
         "data_type": "ordinal",
         "value_mapping": {
@@ -276,11 +410,11 @@
             "3.0": "raczej nie",
             "4.0": "zdecydowanie nie"
         },
-        "notes": "Kolumna 'A1_6' (wolny_czas_potrzeby_bliskich). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Przede wszystkim zaspokaja potrzeby moich bliskich"
+        "notes": "Kolumna 'A1_6' (wolny_czas_definicja_potrzeby_bliskich). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Przede wszystkim zaspokaja potrzeby moich bliskich"
     },
     {
         "original_symbol": "A1_7",
-        "semantic_name": "wolny_czas_zakupy",
+        "semantic_name": "wolny_czas_definicja_zakupy",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Dodatkowo umożliwia zrobienie zakupów",
         "data_type": "ordinal",
         "value_mapping": {
@@ -289,11 +423,11 @@
             "3.0": "raczej nie",
             "4.0": "zdecydowanie nie"
         },
-        "notes": "Kolumna 'A1_7' (wolny_czas_zakupy). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Dodatkowo umożliwia zrobienie zakupów"
+        "notes": "Kolumna 'A1_7' (wolny_czas_definicja_zakupy). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Dodatkowo umożliwia zrobienie zakupów"
     },
     {
         "original_symbol": "A1_8",
-        "semantic_name": "wolny_czas_nowosc",
+        "semantic_name": "wolny_czas_definicja_nowosc",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością",
         "data_type": "ordinal",
         "value_mapping": {
@@ -302,11 +436,11 @@
             "3.0": "raczej nie",
             "4.0": "zdecydowanie nie"
         },
-        "notes": "Kolumna 'A1_8' (wolny_czas_nowosc). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością"
+        "notes": "Kolumna 'A1_8' (wolny_czas_definicja_nowosc). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością"
     },
     {
         "original_symbol": "A1_9",
-        "semantic_name": "wolny_czas_samopoznanie",
+        "semantic_name": "wolny_czas_definicja_samopoznanie",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi lepiej zrozumieć kim jestem",
         "data_type": "ordinal",
         "value_mapping": {
@@ -315,11 +449,11 @@
             "3.0": "raczej nie",
             "4.0": "zdecydowanie nie"
         },
-        "notes": "Kolumna 'A1_9' (wolny_czas_samopoznanie). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi lepiej zrozumieć kim jestem"
+        "notes": "Kolumna 'A1_9' (wolny_czas_definicja_samopoznanie). Odpowiedź na skali porządkowej: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala mi lepiej zrozumieć kim jestem"
     },
     {
         "original_symbol": "T2B_A1_1",
-        "semantic_name": "wolny_czas_praktycznosc_top2",
+        "semantic_name": "wolny_czas_definicja_praktycznosc_top2",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny (Top 2 Box)",
         "data_type": "derived_categorical",
         "value_mapping": {
@@ -327,11 +461,11 @@
             "2.0": "B2B",
             "4.0": "nie wiem / inne"
         },
-        "notes": "Kolumna 'T2B_A1_1' (wolny_czas_praktycznosc_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny (Top 2 Box)"
+        "notes": "Kolumna 'T2B_A1_1' (wolny_czas_definicja_praktycznosc_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest użyteczny / praktyczny (Top 2 Box)"
     },
     {
         "original_symbol": "T2B_A1_2",
-        "semantic_name": "wolny_czas_duma_top2",
+        "semantic_name": "wolny_czas_definicja_duma_top2",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym (Top 2 Box)",
         "data_type": "derived_categorical",
         "value_mapping": {
@@ -339,11 +473,11 @@
             "2.0": "B2B",
             "4.0": "nie wiem / inne"
         },
-        "notes": "Kolumna 'T2B_A1_2' (wolny_czas_duma_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym (Top 2 Box)"
+        "notes": "Kolumna 'T2B_A1_2' (wolny_czas_definicja_duma_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala poczuć się dumnym (Top 2 Box)"
     },
     {
         "original_symbol": "T2B_A1_3",
-        "semantic_name": "wolny_czas_rekodzielo_top2",
+        "semantic_name": "wolny_czas_definicja_rekodzielo_top2",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś (Top 2 Box)",
         "data_type": "derived_categorical",
         "value_mapping": {
@@ -351,11 +485,11 @@
             "2.0": "B2B",
             "4.0": "nie wiem / inne"
         },
-        "notes": "Kolumna 'T2B_A1_3' (wolny_czas_rekodzielo_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś (Top 2 Box)"
+        "notes": "Kolumna 'T2B_A1_3' (wolny_czas_definicja_rekodzielo_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje możliwość stworzenia czegoś (Top 2 Box)"
     },
     {
         "original_symbol": "T2B_A1_4",
-        "semantic_name": "wolny_czas_radosc_top2",
+        "semantic_name": "wolny_czas_definicja_radosc_top2",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości (Top 2 Box)",
         "data_type": "derived_categorical",
         "value_mapping": {
@@ -363,11 +497,11 @@
             "2.0": "B2B",
             "4.0": "nie wiem / inne"
         },
-        "notes": "Kolumna 'T2B_A1_4' (wolny_czas_radosc_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości (Top 2 Box)"
+        "notes": "Kolumna 'T2B_A1_4' (wolny_czas_definicja_radosc_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Daje dużo radości (Top 2 Box)"
     },
     {
         "original_symbol": "T2B_A1_5",
-        "semantic_name": "wolny_czas_rodzina_top2",
+        "semantic_name": "wolny_czas_definicja_rodzina_top2",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala spędzić czas z rodziną (Top 2 Box)",
         "data_type": "derived_categorical",
         "value_mapping": {
@@ -375,11 +509,11 @@
             "2.0": "B2B",
             "4.0": "nie wiem / inne"
         },
-        "notes": "Kolumna 'T2B_A1_5' (wolny_czas_rodzina_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala spędzić czas z rodziną (Top 2 Box)"
+        "notes": "Kolumna 'T2B_A1_5' (wolny_czas_definicja_rodzina_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala spędzić czas z rodziną (Top 2 Box)"
     },
     {
         "original_symbol": "T2B_A1_6",
-        "semantic_name": "wolny_czas_potrzeby_bliskich_top2",
+        "semantic_name": "wolny_czas_definicja_potrzeby_bliskich_top2",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Zaspokaja potrzeby bliskich (Top 2 Box)",
         "data_type": "derived_categorical",
         "value_mapping": {
@@ -387,11 +521,11 @@
             "2.0": "B2B",
             "4.0": "nie wiem / inne"
         },
-        "notes": "Kolumna 'T2B_A1_6' (wolny_czas_potrzeby_bliskich_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Zaspokaja potrzeby bliskich (Top 2 Box)"
+        "notes": "Kolumna 'T2B_A1_6' (wolny_czas_definicja_potrzeby_bliskich_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Zaspokaja potrzeby bliskich (Top 2 Box)"
     },
     {
         "original_symbol": "T2B_A1_7",
-        "semantic_name": "wolny_czas_zakupy_top2",
+        "semantic_name": "wolny_czas_definicja_zakupy_top2",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Umożliwia zrobienie zakupów (Top 2 Box)",
         "data_type": "derived_categorical",
         "value_mapping": {
@@ -399,11 +533,11 @@
             "2.0": "B2B",
             "4.0": "nie wiem / inne"
         },
-        "notes": "Kolumna 'T2B_A1_7' (wolny_czas_zakupy_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Umożliwia zrobienie zakupów (Top 2 Box)"
+        "notes": "Kolumna 'T2B_A1_7' (wolny_czas_definicja_zakupy_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Umożliwia zrobienie zakupów (Top 2 Box)"
     },
     {
         "original_symbol": "T2B_A1_8",
-        "semantic_name": "wolny_czas_nowosc_top2",
+        "semantic_name": "wolny_czas_definicja_nowosc_top2",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością (Top 2 Box)",
         "data_type": "derived_categorical",
         "value_mapping": {
@@ -411,11 +545,11 @@
             "2.0": "B2B",
             "4.0": "nie wiem / inne"
         },
-        "notes": "Kolumna 'T2B_A1_8' (wolny_czas_nowosc_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością (Top 2 Box)"
+        "notes": "Kolumna 'T2B_A1_8' (wolny_czas_definicja_nowosc_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Jest zupełną nowością (Top 2 Box)"
     },
     {
         "original_symbol": "T2B_A1_9",
-        "semantic_name": "wolny_czas_samopoznanie_top2",
+        "semantic_name": "wolny_czas_definicja_samopoznanie_top2",
         "original_question": "A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala zrozumieć kim jestem (Top 2 Box)",
         "data_type": "derived_categorical",
         "value_mapping": {
@@ -423,7 +557,7 @@
             "2.0": "B2B",
             "4.0": "nie wiem / inne"
         },
-        "notes": "Kolumna 'T2B_A1_9' (wolny_czas_samopoznanie_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala zrozumieć kim jestem (Top 2 Box)"
+        "notes": "Kolumna 'T2B_A1_9' (wolny_czas_definicja_samopoznanie_top2). Zmienna pochodna (np. Top/Bottom Box) dla pytania: A1. Jaki jest najlepszy sposób spędzania wolnego czasu?: Pozwala zrozumieć kim jestem (Top 2 Box)"
     },
     {
         "original_symbol": "A2_1",
@@ -432,7 +566,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -446,7 +580,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -460,7 +594,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -474,7 +608,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -488,7 +622,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -502,7 +636,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -516,7 +650,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -530,7 +664,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -544,7 +678,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -558,7 +692,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -572,7 +706,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -586,7 +720,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -600,7 +734,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -614,7 +748,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -628,7 +762,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -642,7 +776,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -656,7 +790,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
@@ -670,7 +804,7 @@
         "data_type": "ordinal",
         "value_mapping": {
             "1.0": "Przynajmniej raz w ciągu ostatnich 12 miesięcy",
-            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu os...",
+            "2.0": "Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat",
             "3.0": "Dawniej niż w ciągu ostatnich 3 lat",
             "4.0": "Nigdy, ale chciał(a)bym w przyszłości",
             "5.0": "Nigdy i nie jestem tym zainteresowany(a)"
