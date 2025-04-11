@@ -1,0 +1,68 @@
+{
+    "$schema": "eval_dataset_schema.json",
+    "cases": [
+        {
+            "name": "117",
+            "inputs": "Czy mieszkańcy Tarnowskich Gór częściej chodzą na koncerty niż mieszkańcy innych miejscowości w powiecie tarnogórskim?",
+            "expected_output": {
+                "sql_query": "WITH PTTG AS (SELECT id_uczestnika, gmina_miejscowosc, czestotliwosc_koncert, waga_proby FROM participation_survey WHERE miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc IS NOT NULL) SELECT CASE WHEN gmina_miejscowosc = 'Tarnowskie Góry' THEN 'Tarnowskie Góry' ELSE 'Inne gminy w powiecie TG' END AS miejsce, ROUND(SUM(CASE WHEN czestotliwosc_koncert = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_koncerty_rocznie FROM PTTG GROUP BY miejsce;",
+                "result": "miejsce|procent_koncerty_rocznie\nTarnowskie Góry|25.88\nInne gminy w powiecie TG|40.92"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Uses `gmina_miejscowosc` to differentiate within `miasto_powiat` = 'Powiat tarnogórski'. Compares annual concert attendance (at least once)."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "118",
+            "inputs": "Jaki jest średni miesięczny wydatek na kulturę wśród studentów w Katowicach w porównaniu do studentów w Gliwicach?",
+            "expected_output": {
+                "sql_query": "SELECT miasto_powiat, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS sredni_wydatek_studenci FROM participation_survey WHERE zatrudnienie_student = TRUE AND miasto_powiat IN ('Katowice', 'Gliwice') AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY miasto_powiat;",
+                "result": "miasto_powiat|sredni_wydatek_studenci\nKatowice|105.62\nGliwice|50.76"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Filters for students in two specific cities and calculates weighted average spending."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "119",
+            "inputs": "Czy osoby w wieku 40-49 lat w subregionie katowickim częściej jako barierę wskazują brak czasu niż osoby w tym samym wieku w subregionie bytomskim?",
+            "expected_output": {
+                "sql_query": "SELECT subregion_metropolii_gzm, ROUND(SUM(CASE WHEN bariera_brak_czasu = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_czas FROM participation_survey WHERE grupa_wiekowa = '40-49' AND subregion_metropolii_gzm IN ('KATOWICKI', 'BYTOMSKI') GROUP BY subregion_metropolii_gzm;",
+                "result": "subregion_metropolii_gzm|procent_bariera_czas\nKATOWICKI|41.95\nBYTOMSKI|38.61"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Compares a specific barrier for a specific age group between two subregions."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "120",
+            "inputs": "Wśród osób z najniższymi dochodami (do 3500 zł), jaki procent uważa, że działalność kulturalna podnosi atrakcyjność regionu (ocena 5-7)?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN opinia_kultura_atrakcyjnosc_regionu IN ('5', '6', '7 w pełni sie zgadzam') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zgody_atrakcyjnosc FROM participation_survey WHERE przedzial_wynagrodzenia = 'do 3500 zł';",
+                "result": "procent_zgody_atrakcyjnosc\n63.69"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Filters for a specific income group and calculates the percentage agreement with a statement."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        }
+    ],
+    "evaluators": [ 
+        "ResultEquals"
+    ]
+}

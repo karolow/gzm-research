@@ -1,0 +1,147 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Dataset[str, Result, Any]",
+    "description": "A dataset of test cases.",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "title": "Schema Reference"
+        },
+        "cases": {
+            "title": "Cases",
+            "description": "List of test cases in the dataset.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Case_str_Result_Any"
+            }
+        },
+        "evaluators": {
+            "title": "Evaluators",
+            "description": "List of evaluators to be used on all cases in the dataset.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/EvaluatorSpec"
+            },
+            "default": []
+        }
+    },
+    "required": [
+        "cases"
+    ],
+    "definitions": {
+        "Result": {
+            "title": "Result",
+            "type": "object",
+            "properties": {
+                "sql_query": {
+                    "title": "Sql Query",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "result": {
+                    "title": "Result",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "result"
+            ]
+        },
+        "EvaluatorSpec": {
+            "anyOf": [
+                {
+                    "type": "string",
+                    "enum": [
+                        "ResultWeighted",
+                        "ResultEquals"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "ResultWeighted": {
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "ResultWeighted"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "ResultEquals": {
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "ResultEquals"
+                    ]
+                }
+            ]
+        },
+        "Case_str_Result_Any": {
+            "title": "Case[str, Result, Any]",
+            "description": "A single row of a `Dataset`.",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "description": "Name of the case. This is used to identify the case in the report and can be used to filter cases.",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "inputs": {
+                    "title": "Inputs",
+                    "description": "Inputs to the task. This is the input to the task that will be evaluated.",
+                    "type": "string"
+                },
+                "metadata": {
+                    "title": "Metadata",
+                    "description": "Metadata to be used in the evaluation.\n\nThis can be used to provide additional information about the case to the evaluators.",
+                    "type": [
+                        "object",
+                        "null"
+                    ]
+                },
+                "expected_output": {
+                    "title": "Expected Output",
+                    "description": "Expected output of the task. This is the expected output of the task that will be evaluated.",
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Result"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "evaluators": {
+                    "title": "Evaluators",
+                    "description": "Evaluators to be used just on this case.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EvaluatorSpec"
+                    },
+                    "default": []
+                }
+            },
+            "required": [
+                "inputs"
+            ]
+        }
+    }
+}
