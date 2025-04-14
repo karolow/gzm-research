@@ -39,8 +39,8 @@ venv.bak/
 # Logs and databases
 *.log
 *.sqlite
-*.duckdb
-*.duckdb.wal
+*.db
+
 
 # Testing
 .coverage

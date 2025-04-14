@@ -1,6 +1,9 @@
+import asyncio
+import json
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Optional, Sequence
 
+import click
 import dotenv
 from pydantic import BaseModel
 from pydantic_ai import Agent
@@ -10,12 +13,11 @@ from pydantic_evals.evaluators import Evaluator, EvaluatorContext
 
 from db_operations import query_duckdb
 from src.llm_sql import create_prompt, load_metadata
+from src.utils import setup_logger
 
 dotenv.load_dotenv(override=True)
 
-metadata_json_path = "src/survey_metadata_queries.json"
-template_path = "src/sql_query_prompt.jinja2"
-eval_cases_json_path = "src/eval_dataset.json"
+logger = setup_logger("evaluation")
 
 
 class Result(BaseModel):
@@ -44,119 +46,196 @@ class ResultEquals(Evaluator):
         data_lines = lines[1:] if len(lines) > 1 else lines
 
         for line in data_lines:
-            # Try different separators
+            # First split by pipe which is the primary column separator
             if "|" in line:
-                values = [v.strip() for v in line.split("|")]
+                columns = [col.strip() for col in line.split("|")]
+                for col in columns:
+                    # Check if this column has a format like "text,number"
+                    if "," in col and any(c.isdigit() for c in col):
+                        # In cases like "value1,12.34", extract both parts separately
+                        parts = [part.strip() for part in col.split(",")]
+                        all_values.extend(parts)
+                    else:
+                        all_values.append(col)
+            # If no pipe, try comma as separator
             elif "," in line:
-                values = [v.strip() for v in line.split(",")]
+                all_values.extend([v.strip() for v in line.split(",")])
             else:
-                values = [line.strip()]
-            all_values.extend(values)
+                all_values.append(line.strip())
 
         return all_values
+
+    def extract_numeric_values(self, text: str | Result) -> list[str]:
+        """Extract only numeric values from the result."""
+        values = self.extract_values(text)
+        # Filter to keep only numeric values
+        numeric_values: list[str] = []
+        for val in values:
+            # Try to determine if it's a numeric value
+            # This handles both integers and floats
+            val = val.strip()
+            try:
+                float(val)  # Check if convertible to float
+                numeric_values.append(val)
+            except ValueError:
+                pass
+
+        return numeric_values
 
     async def evaluate(self, ctx: EvaluatorContext[str, Result]) -> float:
         # Handle empty strings and None values
         if not ctx.expected_output or not ctx.output:
             return 0.0
 
-        # Exact match case
-        if ctx.expected_output == ctx.output:
-            return 1.0
+        # Extract numeric values only
+        expected_numbers = self.extract_numeric_values(ctx.expected_output)
+        output_numbers = self.extract_numeric_values(ctx.output)
 
-        expected_values = self.extract_values(ctx.expected_output)
-        output_values = self.extract_values(ctx.output)
-
-        print(f"Expected values: {expected_values}")
-        print(f"Output values: {output_values}")
+        logger.debug(f"Expected numeric values: {expected_numbers}")
+        logger.debug(f"Output numeric values: {output_numbers}")
 
         # If no values to check, return 0
-        if not expected_values:
+        if not expected_numbers:
             return 0.0
 
-        # Count how many expected values are in the output
+        # Count matches - numeric values should match exactly or very closely
         matches = 0
-        for expected_val in expected_values:
-            normalized_expected = expected_val.lower().strip()
-            if any(
-                normalized_expected == out_val.lower().strip()
-                or normalized_expected in out_val.lower()
-                or out_val.lower() in normalized_expected
-                for out_val in output_values
-            ):
+        for expected_num in expected_numbers:
+            # Try with exact matches first, then with close matches for floating point
+            if any(expected_num == output_num for output_num in output_numbers):
                 matches += 1
+            else:
+                # Try with close match for floating point
+                try:
+                    expected_float = float(expected_num)
+                    for output_num in output_numbers:
+                        try:
+                            output_float = float(output_num)
+                            # Allow small difference (0.01 or 0.1%)
+                            if abs(expected_float - output_float) < max(
+                                0.01, abs(expected_float * 0.001)
+                            ):
+                                matches += 1
+                                break
+                        except ValueError:
+                            continue
+                except ValueError:
+                    continue
 
-        # Calculate the match ratio
-        match_ratio = matches / len(expected_values)
+        # Calculate base match ratio for correct numbers
+        if len(expected_numbers) > 0:
+            match_ratio = matches / len(expected_numbers)
+        else:
+            match_ratio = 0.0
 
-        # Scale to 0.9 max for partial matches
-        if 0 < match_ratio < 1:
-            return match_ratio * 1.0
+        # Penalize for extra numbers (noise)
+        # If we have more numbers than expected, reduce the score
+        if len(output_numbers) > len(expected_numbers):
+            extra_numbers = len(output_numbers) - len(expected_numbers)
+            # Penalty grows with the number of extra values, but caps at 0.5
+            penalty = min(0.5, extra_numbers / len(expected_numbers) * 0.5)
+            match_ratio *= 1 - penalty
+
+        # Bonus for exact match of all numeric values and count
+        if matches == len(expected_numbers) and len(output_numbers) == len(
+            expected_numbers
+        ):
+            match_ratio = 1.0
 
         return match_ratio
 
 
-case1 = Case(
-    name="117",
-    inputs="Czy mieszkańcy Tarnowskich Gór częściej chodzą na koncery niż mieszkańcy innych miejscowości w powiecie tarnogórskim?",
-    expected_output=Result(
-        result="miejsce|procent_koncerty_rocznie\nTarnowskie Góry|25.88\nInne gminy w powiecie TG|40.92",
-        sql_query=None,
-    ),
-    metadata={
-        "complexity": "medium",
-        "ambiguity_note": "Uses `gmina_miejscowosc` to differentiate within `miasto_powiat` = 'Powiat tarnogórski'. Compares annual concert attendance (at least once).",
-    },
-    evaluators=(ResultWeighted(),),
-)
-case2 = Case[str, Result, Any](
-    name="118",
-    inputs="Jaki jest średni miesięczny wydatek na kulturę wśród studentów w Katowicach w porównaniu do studentów w Gliwicach?",
-    expected_output=Result(
-        result="miasto_powiat|sredni_wydatek_studenci\nKatowicki|101.84\nGliwicki|65.47",
-        sql_query=None,
-    ),
-    metadata={
-        "complexity": "medium",
-        "ambiguity_note": "",
-    },
-    evaluators=(ResultWeighted(),),
-)
+# Rate limiter class to control LLM API calls
+class RateLimiter:
+    """Limits the rate of API calls using a token bucket algorithm."""
+
+    def __init__(self, rate_limit_per_minute: int = 60):
+        """
+        Initialize the rate limiter.
+
+        Args:
+            rate_limit_per_minute: Maximum number of requests per minute
+        """
+        self.rate_limit = rate_limit_per_minute
+        self.tokens = rate_limit_per_minute
+        self.last_refill_time = asyncio.get_event_loop().time()
+        self.lock = asyncio.Lock()
+
+        # Calculate token refill rate (tokens per second)
+        self.refill_rate = rate_limit_per_minute / 60.0
+
+    async def acquire(self) -> None:
+        """Acquire a token, waiting if necessary."""
+        while True:
+            async with self.lock:
+                # Refill tokens based on time elapsed
+                current_time = asyncio.get_event_loop().time()
+                time_elapsed = current_time - self.last_refill_time
+                new_tokens = time_elapsed * self.refill_rate
+
+                if new_tokens > 0:
+                    self.tokens = min(self.rate_limit, self.tokens + new_tokens)
+                    self.last_refill_time = current_time
+
+                if self.tokens >= 1:
+                    self.tokens -= 1
+                    return
+
+            # If no tokens available, wait a bit before trying again
+            wait_time = (
+                1 / self.refill_rate
+            ) * 0.8  # Wait for ~80% of the time to get a new token
+            logger.debug("Rate limit reached, waiting for next available token")
+            await asyncio.sleep(wait_time)
 
 
-# dataset = Dataset[str, Result, Any](cases=[case2])
+async def generate_sql_query(
+    question: str,
+    model_name: str,
+    temperature: float,
+    database_path: str,
+    metadata_json_path: str,
+    template_path: str,
+    rate_limiter: Optional[RateLimiter] = None,
+    max_tokens: int = 1024,
+) -> Result:
+    """
+    Generate an SQL query from a natural language question and execute it.
 
+    Args:
+        question: The natural language question
+        model_name: The LLM model to use
+        temperature: The temperature setting for the model
+        database_path: Path to the database file
+        metadata_json_path: Path to the metadata JSON file
+        template_path: Path to the prompt template
+        rate_limiter: Optional rate limiter to control API call frequency
+        max_tokens: Maximum tokens for model response
 
-# dataset.add_evaluator(ResultEquals())
+    Returns:
+        A Result object containing the SQL query and the execution result
+    """
+    # Apply rate limiting if a limiter is provided
+    if rate_limiter:
+        await rate_limiter.acquire()
+        logger.debug("Rate limit token acquired, proceeding with API call")
 
-# Load the metadata content properly
-metadata_content = load_metadata(metadata_json_path)
-system_prompt = create_prompt(metadata_content, template_path)
+    # Load the metadata content
+    metadata_content = load_metadata(metadata_json_path)
+    system_prompt = create_prompt(metadata_content, template_path)
 
-print(system_prompt)
+    model_settings = ModelSettings(
+        temperature=temperature,
+        max_tokens=max_tokens,
+    )
 
-model_settings = ModelSettings(
-    temperature=0.2,
-    top_p=0.95,
-    max_tokens=1024,
-)
+    agent = Agent(
+        model_name,
+        result_type=str,
+        system_prompt=system_prompt,
+        model_settings=model_settings,
+    )
 
-
-agent = Agent(
-    # "groq:llama-3.3-70b-versatile",
-    # "google-gla:gemini-2.5-pro-exp-03-25",
-    "google-gla:gemini-2.0-flash",
-    result_type=str,
-    system_prompt=system_prompt,
-    model_settings=model_settings,
-)
-
-
-async def mock_evaluation(question: str) -> str:
-    return "miejsce|procent_koncerty_rocznie\nInne gminy w powiecie TG|40.92\nTarnowskie Góry|25.88\n"
-
-
-async def generate_sql_query(question: str) -> Result:
     output = await agent.run(question)
     response = output.data
 
@@ -166,9 +245,9 @@ async def generate_sql_query(question: str) -> Result:
     else:
         sql_query = response.strip()
 
-    print(sql_query)
+    logger.info(f"Generated SQL query: {sql_query}")
+
     # Execute query against the database
-    database_path = "research.db"
     result_df = query_duckdb(database_path, sql_query)
 
     # Convert result to string format expected by the evaluator
@@ -177,32 +256,253 @@ async def generate_sql_query(question: str) -> Result:
     return result
 
 
-def main():
+def parse_range(range_str: str) -> tuple[int, int]:
+    """
+    Parse a range string in format 'start-end' to a tuple of integers.
+
+    Examples:
+        '1-5' -> (1, 5)
+        '3-7' -> (3, 7)
+
+    Args:
+        range_str: Range string in format 'start-end'
+
+    Returns:
+        Tuple of (start, end) as zero-indexed integers
+
+    Raises:
+        ValueError: If the range string is invalid
+    """
+    if not range_str:
+        raise ValueError("Range string cannot be empty")
+
+    parts = range_str.split("-")
+    if len(parts) != 2:
+        raise ValueError(
+            f"Invalid range format: {range_str}. Expected format: 'start-end'"
+        )
+
+    try:
+        # Convert to zero-indexed integers
+        start = int(parts[0]) - 1
+        end = int(parts[1])
+
+        if start < 0:
+            raise ValueError(f"Start index must be at least 1, got {start + 1}")
+        if end <= start:
+            raise ValueError("End index must be greater than start index")
+
+        return start, end
+    except ValueError as e:
+        if "invalid literal for int" in str(e):
+            raise ValueError(f"Range values must be integers: {range_str}")
+        raise
+
+
+def filter_cases_by_range(
+    cases: Sequence[Case], case_range: Optional[str] = None
+) -> list[Case]:
+    """
+    Filter cases by the specified range.
+
+    Args:
+        cases: The sequence of cases to filter
+        case_range: Optional range string in format 'start-end' (1-indexed)
+
+    Returns:
+        Filtered list of cases
+    """
+    if not case_range:
+        return list(cases)
+
+    try:
+        start_idx, end_idx = parse_range(case_range)
+        # Ensure indices are within bounds
+        if start_idx >= len(cases):
+            logger.warning(
+                f"Start index {start_idx + 1} exceeds number of cases ({len(cases)})"
+            )
+            return []
+
+        end_idx = min(end_idx, len(cases))
+        selected_cases = list(cases[start_idx:end_idx])
+        logger.info(
+            f"Selected cases {start_idx + 1} to {end_idx} (out of {len(cases)} total cases)"
+        )
+        return selected_cases
+    except ValueError as e:
+        logger.error(f"Invalid range: {e}")
+        return list(cases)
+
+
+@click.command()
+@click.option(
+    "--eval-cases",
+    "-e",
+    help="Path to evaluation cases JSON file",
+    type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+)
+@click.option(
+    "--metadata-json",
+    "-m",
+    default="src/survey_metadata_queries.json",
+    help="Path to metadata JSON file",
+    type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+)
+@click.option(
+    "--template-path",
+    "-t",
+    default="src/sql_query_prompt.jinja2",
+    help="Path to prompt template file",
+    type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+)
+@click.option(
+    "--model", "-m", default="google-gla:gemini-2.0-flash", help="LLM model to use"
+)
+@click.option(
+    "--temperature",
+    "-T",
+    default=0.2,
+    help="Temperature setting for the model",
+    type=float,
+)
+@click.option(
+    "--database",
+    "-d",
+    default="research.db",
+    help="Path to the database file",
+    type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+)
+@click.option(
+    "--log-level",
+    "-l",
+    default="INFO",
+    help="Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
+    type=click.Choice(
+        ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], case_sensitive=False
+    ),
+)
+@click.option(
+    "--rate-limit",
+    "-r",
+    default=0,
+    help="Rate limit for LLM API calls (requests per minute, 0 = no limit)",
+    type=int,
+)
+@click.option(
+    "--range",
+    "-R",
+    help="Range of cases to evaluate (format: 'start-end', 1-indexed, inclusive-exclusive)",
+    type=str,
+)
+@click.option(
+    "--max-concurrency",
+    "-c",
+    default=0,
+    help="Maximum number of concurrent evaluations (0 = unlimited)",
+    type=int,
+)
+def main(
+    eval_cases: str,
+    metadata_json: str,
+    template_path: str,
+    model: str,
+    temperature: float,
+    database: str,
+    log_level: str,
+    rate_limit: int,
+    range: Optional[str],
+    max_concurrency: int,
+) -> None:
+    """
+    Run model evaluation against SQL queries.
+
+    This tool evaluates the model's ability to generate SQL queries
+    from natural language questions and produce correct results.
+    """
+    # Set the log level
+    global logger
+    logger = setup_logger("evaluation", log_level)
+
+    logger.info(f"Starting evaluation with model: {model}")
+    logger.info(f"Using database at: {database}")
+    logger.info(f"Loading evaluation cases from: {eval_cases}")
+
+    # Set up rate limiter if needed
+    rate_limiter = None
+    if rate_limit > 0:
+        logger.info(f"Setting rate limit to {rate_limit} requests per minute")
+        rate_limiter = RateLimiter(rate_limit_per_minute=rate_limit)
+
     try:
         # --- Load directly using Dataset.from_file ---
         # Specify the generic types: Input=str, Output=Result, Metadata=Any
         # Register custom evaluators needed for deserialization
-        dataset = Dataset[str, Result, Any].from_file(
-            eval_cases_json_path,
+        full_dataset = Dataset[str, Result, Any].from_file(
+            eval_cases,
             fmt="json",
             custom_evaluator_types=[ResultWeighted, ResultEquals],
         )
-        print(f"Loaded {len(dataset.cases)} cases for evaluation.")
+        logger.info(f"Loaded {len(full_dataset.cases)} cases for evaluation.")
+
+        # Filter cases by range if specified
+        if range:
+            filtered_cases = filter_cases_by_range(full_dataset.cases, range)
+            if not filtered_cases:
+                logger.error("No cases to evaluate after applying range filter")
+                return
+
+            # Create a new dataset with the filtered cases
+            dataset = Dataset[str, Result, Any](
+                cases=filtered_cases,
+                evaluators=full_dataset.evaluators,
+            )
+            logger.info(
+                f"Evaluating {len(dataset.cases)} cases (filtered by range: {range})"
+            )
+        else:
+            dataset = full_dataset
+            logger.info(f"Evaluating all {len(dataset.cases)} cases")
 
     except FileNotFoundError:
-        print(f"Error: Evaluation cases file not found at {eval_cases_json_path}")
+        logger.error(f"Error: Evaluation cases file not found at {eval_cases}")
         return
-    except ValueError as e:  # Catches JSON errors and validation errors
-        print(f"Error loading dataset from {eval_cases_json_path}: {e}")
+    except json.JSONDecodeError as e:
+        logger.error(f"JSON parsing error in {eval_cases}: {e}")
+        return
+    except ValueError as e:  # Catches other validation errors
+        logger.error(f"Error loading dataset from {eval_cases}: {e}")
         return
     except Exception as e:
-        print(f"An unexpected error occurred while loading cases: {e}")
+        logger.error(f"An unexpected error occurred while loading cases: {e}")
         return
 
+    # Create generator function for the evaluation
+    async def query_generator(question: str) -> Result:
+        return await generate_sql_query(
+            question=question,
+            model_name=model,
+            temperature=temperature,
+            database_path=database,
+            metadata_json_path=metadata_json,
+            template_path=template_path,
+            rate_limiter=rate_limiter,
+        )
+
+    # Set concurrency if specified
+    concurrency_args = {}
+    if max_concurrency > 0:
+        logger.info(f"Setting maximum concurrency to {max_concurrency}")
+        concurrency_args["max_concurrency"] = max_concurrency
+
     # Evaluate the model
-    report = dataset.evaluate_sync(generate_sql_query)
+    report = dataset.evaluate_sync(
+        query_generator,
+        max_concurrency=max_concurrency if max_concurrency > 0 else None,
+    )
 
     # Print evaluation report
+    logger.info("Evaluation completed. Report:")
     report.print(
         include_input=True,
         include_output=True,
