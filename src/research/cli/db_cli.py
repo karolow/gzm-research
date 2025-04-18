@@ -1,36 +1,31 @@
 #!/usr/bin/env python3
 """
-Query tool for the research database.
+Command-line interface for database operations.
 Allows executing SQL queries against the DuckDB database.
 """
 
-import logging
 import sys
+from pathlib import Path
 from typing import Optional
 
 import click
 import pandas as pd
 
-from db_operations import query_duckdb
+from research.db.operations import get_table_schema, list_tables, query_duckdb
+from research.utils.logging import setup_logger
 
-
-def setup_logging(verbose: bool = False) -> None:
-    """Set up logging configuration."""
-    level = logging.DEBUG if verbose else logging.INFO
-
-    logging.basicConfig(
-        level=level,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[logging.StreamHandler()],
-    )
+logger = setup_logger(__name__)
 
 
 @click.group()
 @click.option("--verbose", is_flag=True, help="Enable verbose output")
 @click.pass_context
 def cli(ctx: click.Context, verbose: bool) -> None:
-    """Query tool for the research database."""
-    setup_logging(verbose)
+    """Database query and management tools."""
+    # Set up logging
+    if verbose:
+        logger.setLevel("DEBUG")
+
     ctx.ensure_object(dict)
     ctx.obj["verbose"] = verbose
 
@@ -70,12 +65,14 @@ def query(
         if limit is not None and "limit" not in query.lower():
             query = f"{query} LIMIT {limit}"
 
-        logging.info(f"Executing query: {query}")
+        logger.info(f"Executing query: {query}")
         result = query_duckdb(database, query)
 
         if output:
+            output_path = Path(output)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             result.to_csv(output, index=False)
-            logging.info(f"Results saved to {output}")
+            logger.info(f"Results saved to {output}")
 
         # Always print a summary
         row_count = len(result)
@@ -102,11 +99,11 @@ def query(
                     click.echo(result)
 
     except Exception as e:
-        logging.error(f"Error executing query: {e}")
+        logger.error(f"Error executing query: {e}")
         sys.exit(1)
 
 
-@cli.command()
+@cli.command("list-tables")
 @click.option(
     "--database",
     "--db",
@@ -114,28 +111,24 @@ def query(
     type=click.Path(exists=True, dir_okay=False),
     help="Path to the DuckDB database file",
 )
-def list_tables(database: str) -> None:
+def list_tables_command(database: str) -> None:
     """List all tables in the database."""
     try:
-        tables = query_duckdb(
-            database, "SELECT name FROM sqlite_master WHERE type='table'"
-        )
+        tables = list_tables(database)
 
-        if tables.empty:
+        if not tables:
             click.echo("No tables found in the database")
         else:
             click.echo("Tables in the database:")
-            # Extract table names as strings to avoid linter errors
-            table_names = tables["name"].astype(str).tolist()
-            for table_name in table_names:
+            for table_name in tables:
                 click.echo(f"- {table_name}")
 
     except Exception as e:
-        logging.error(f"Error listing tables: {e}")
+        logger.error(f"Error listing tables: {e}")
         sys.exit(1)
 
 
-@cli.command()
+@cli.command("describe-table")
 @click.option(
     "--database",
     "--db",
@@ -143,28 +136,26 @@ def list_tables(database: str) -> None:
     type=click.Path(exists=True, dir_okay=False),
     help="Path to the DuckDB database file",
 )
-@click.option("--table", required=True, type=str, help="Name of the table to describe")
+@click.option(
+    "--table", "-t", required=True, type=str, help="Name of the table to describe"
+)
 @click.option(
     "--show-rows",
     type=int,
     default=5,
     help="Number of sample rows to display (0 for none)",
 )
-def describe_table(database: str, table: str, show_rows: int = 5) -> None:
+def describe_table_command(database: str, table: str, show_rows: int = 5) -> None:
     """Describe a table's structure."""
     try:
         # Check if table exists
-        tables = query_duckdb(
-            database,
-            f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table}'",
-        )
-
-        if tables.empty:
+        tables = list_tables(database)
+        if table not in tables:
             click.echo(f"Table '{table}' does not exist")
             sys.exit(1)
 
         # Get table info
-        columns = query_duckdb(database, f"PRAGMA table_info({table})")
+        columns = get_table_schema(database, table)
 
         if columns.empty:
             click.echo(f"No columns found in table '{table}'")
@@ -196,7 +187,7 @@ def describe_table(database: str, table: str, show_rows: int = 5) -> None:
                 click.echo(sample)
 
     except Exception as e:
-        logging.error(f"Error describing table: {e}")
+        logger.error(f"Error describing table: {e}")
         sys.exit(1)
 
 

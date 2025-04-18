@@ -13,9 +13,10 @@ from pydantic_ai.settings import ModelSettings
 from pydantic_evals import Case, Dataset
 from pydantic_evals.evaluators import Evaluator, EvaluatorContext
 
-from db_operations import query_duckdb
-from src.llm_sql import create_prompt, load_metadata
-from src.utils import setup_logger
+from research.config import get_config
+from research.db.operations import query_duckdb
+from research.llm.sql_generator import create_prompt, load_metadata
+from research.utils.logging import setup_logger
 
 dotenv.load_dotenv(override=True)
 
@@ -348,53 +349,61 @@ def filter_cases_by_range(
     "-e",
     help="Path to evaluation cases JSON file",
     type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+    default=lambda: get_config().eval.dataset_path,
 )
 @click.option(
     "--metadata-json",
     "-m",
-    default="src/survey_metadata_queries.json",
     help="Path to metadata JSON file",
     type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+    default=lambda: get_config().survey_metadata,
 )
 @click.option(
     "--template-path",
     "-t",
-    default="src/sql_query_prompt.jinja2",
     help="Path to prompt template file",
     type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+    default=lambda: get_config().sql_prompt_template,
 )
 @click.option(
-    "--model", "-m", default="google-gla:gemini-2.0-flash", help="LLM model to use"
+    "--model", "-M", help="LLM model to use", default=lambda: get_config().llm.model
 )
 @click.option(
     "--temperature",
     "-T",
-    default=0.2,
     help="Temperature setting for the model",
     type=float,
+    default=lambda: get_config().llm.temperature,
 )
 @click.option(
     "--database",
     "-d",
-    default="research.db",
     help="Path to the database file",
     type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+    default=lambda: get_config().db.default_path,
 )
 @click.option(
     "--log-level",
     "-l",
-    default="INFO",
     help="Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
     type=click.Choice(
-        ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], case_sensitive=False
+        [
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR",
+            "CRITICAL",
+        ],
+        case_sensitive=False,
     ),
+    default="INFO",
 )
 @click.option(
     "--rate-limit",
     "-r",
-    default=0,
     help="Rate limit for LLM API calls (requests per minute, 0 = no limit)",
     type=int,
+    default=lambda: get_config().eval.rate_limit,
 )
 @click.option(
     "--range",
@@ -405,9 +414,9 @@ def filter_cases_by_range(
 @click.option(
     "--max-concurrency",
     "-c",
-    default=0,
     help="Maximum number of concurrent evaluations (0 = unlimited)",
     type=int,
+    default=lambda: get_config().eval.max_concurrency,
 )
 def main(
     eval_cases: str,
