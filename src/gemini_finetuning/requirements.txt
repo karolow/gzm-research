@@ -1,0 +1,5 @@
+google-cloud-storage>=2.10.0
+google-cloud-aiplatform>=1.36.0
+google-genai>=0.3.0
+python-dotenv>=1.0.0
+click>=8.1.0 
