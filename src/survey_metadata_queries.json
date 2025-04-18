@@ -1583,63 +1583,81 @@
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: prasa drukowana.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_plakaty",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: plakaty/ogłoszenia/reklamy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_portale_lokalne",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: lokalne portale/strony.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_portale_ogolnopolskie",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: ogólnopolskie portale/strony.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_social_media_instytucje",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: profile instytucji w mediach społecznościowych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_social_media_tworcy",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: profile twórców w mediach społecznościowych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_social_media_inne",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: inne profile w mediach społecznościowych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_znajomi_rodzina",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: od znajomych/rodziny.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_radio",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: radio.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_telewizja",
@@ -1653,28 +1671,36 @@
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: strony internetowe instytucji kultury.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_strony_ogolne",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: ogólnotematyczne strony internetowe.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_inne_zrodla",
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: inne źródła.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_zadne_zrodla",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: żadne z powyższych źródeł informacji.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "preferowane_miejsce_dom",
@@ -2073,56 +2099,72 @@
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze w domu przez: oglądanie programów w TV.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_domowa_radio",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze w domu przez: słuchanie audycji w radiu.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_domowa_podcasty",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze w domu przez: słuchanie podcastów.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_domowa_internet",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze w domu przez: oglądanie/czytanie treści w Internecie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_domowa_prasa",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze w domu przez: czytanie prasy drukowanej.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_domowa_ksiazki",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze w domu przez: czytanie książek dla przyjemności.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_domowa_inne",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze w domu przez: inne aktywności.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_domowa_zadne",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: żadne z powyższych form uczestnictwa w kulturze w domu.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kontakt_z_artysta_lokalnym",

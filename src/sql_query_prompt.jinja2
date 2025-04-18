@@ -60,7 +60,258 @@ Provide only the generated DuckDB SQL query as a code block. Do not include expl
 
 Make sure to round results to 2 decimal places.
 
-7. Specific instructions:
+7. Handling multiple-answer questions:
+
+When handling multiple-answer survey questions where respondents can select multiple options simultaneously (like barriers represented by separate boolean columns), follow these guidelines:
+
+a. DO NOT use a simple CASE WHEN approach that would only count the first TRUE option per respondent.
+
+b. Instead, use a UNION ALL approach where each option is calculated separately.
+
+Example 1:
+
+User question: "Z jakich źródeł informacji o kulturze korzystają najczęściej osoby które jeżdżą na rowerze?"
+Generated query:
+
+```sql
+WITH total AS (
+    SELECT SUM(waga_proby) AS total_weight
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+)
+
+SELECT
+    source,
+    ROUND(SUM(CASE WHEN selected = TRUE THEN waga_proby ELSE 0 END) * 100.0 / 
+         (SELECT total_weight FROM total), 2) AS percentage
+FROM (
+    SELECT
+        'Prasa drukowana' AS source,
+        informacja_prasa_drukowana AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Plakaty/ogłoszenia/reklamy' AS source,
+        informacja_plakaty AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Lokalne portale/strony' AS source,
+        informacja_portale_lokalne AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Ogólnopolskie portale/strony' AS source,
+        informacja_portale_ogolnopolskie AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Profile instytucji w mediach społecznościowych' AS source,
+        informacja_social_media_instytucje AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Profile twórców w mediach społecznościowych' AS source,
+        informacja_social_media_tworcy AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Inne profile w mediach społecznościowych' AS source,
+        informacja_social_media_inne AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Od znajomych/rodziny' AS source,
+        informacja_znajomi_rodzina AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Radio' AS source,
+        informacja_radio AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Telewizja' AS source,
+        informacja_telewizja AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Strony internetowe instytucji kultury' AS source,
+        informacja_strony_instytucji AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Ogólnotematyczne strony internetowe' AS source,
+        informacja_strony_ogolne AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Inne źródła' AS source,
+        informacja_inne_zrodla AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+    
+    UNION ALL
+    
+    SELECT
+        'Żadne z powyższych źródeł informacji' AS source,
+        informacja_zadne_zrodla AS selected,
+        waga_proby
+    FROM participation_survey
+    WHERE transport_wlasny_rower = TRUE
+) subquery
+GROUP BY source
+ORDER BY percentage DESC;
+```
+This query:
+   - Counts each option independently
+   - Correctly calculates percentages based on total survey weights
+   - Properly handles exclusive options like "Brak barier" (no barriers)
+   - Returns results sorted by percentage
+   - Filters out options with zero counts
+   - Use (SELECT total_weight FROM total) in the percentage calculation instead of directly referencing total_weight
+   - Consistently name and alias all columns in the UNION ALL subqueries
+   - Keep filter conditions identical in all subqueries and the total CTE
+   - Use meaningful names for output columns
+   - Always GROUP BY the source column before calculating percentages
+   
+Example 2:
+
+User question: "Czy kobiety z katowickiej części metropolii częściej niż mężczyźni korzystają z kultury w domu?"
+Generated query:
+
+```sql
+WITH
+  KatowiceWomen AS (
+    SELECT
+      SUM(waga_proby) AS women_weight
+    FROM participation_survey
+    WHERE
+      subregion_metropolii_gzm = 'KATOWICE' AND plec = 'Kobieta'
+  ),
+  KatowiceMen AS (
+    SELECT
+      SUM(waga_proby) AS men_weight
+    FROM participation_survey
+    WHERE
+      subregion_metropolii_gzm = 'KATOWICE' AND plec = 'Mężczyzna'
+  ),
+  WomenActivities AS (
+    SELECT
+      respondent_id,
+      waga_proby,
+      CASE WHEN 
+        kultura_domowa_tv = TRUE OR
+        kultura_domowa_radio = TRUE OR
+        kultura_domowa_podcasty = TRUE OR
+        kultura_domowa_internet = TRUE OR
+        kultura_domowa_prasa = TRUE OR
+        kultura_domowa_ksiazki = TRUE OR
+        kultura_domowa_inne = TRUE
+      THEN TRUE ELSE FALSE END AS any_cultural_activity
+    FROM participation_survey
+    WHERE
+      subregion_metropolii_gzm = 'KATOWICE' AND plec = 'Kobieta'
+  ),
+  MenActivities AS (
+    SELECT
+      respondent_id,
+      waga_proby,
+      CASE WHEN 
+        kultura_domowa_tv = TRUE OR
+        kultura_domowa_radio = TRUE OR
+        kultura_domowa_podcasty = TRUE OR
+        kultura_domowa_internet = TRUE OR
+        kultura_domowa_prasa = TRUE OR
+        kultura_domowa_ksiazki = TRUE OR
+        kultura_domowa_inne = TRUE
+      THEN TRUE ELSE FALSE END AS any_cultural_activity
+    FROM participation_survey
+    WHERE
+      subregion_metropolii_gzm = 'KATOWICE' AND plec = 'Mężczyzna'
+  )
+SELECT
+  'Kobiety' AS grupa,
+  ROUND(
+    SUM(CASE WHEN any_cultural_activity = TRUE THEN waga_proby ELSE 0 END) * 100.0 / 
+    (SELECT women_weight FROM KatowiceWomen),
+    2
+  ) AS percentage
+FROM
+  WomenActivities
+  
+UNION ALL
+
+SELECT
+  'Mężczyźni' AS grupa,
+  ROUND(
+    SUM(CASE WHEN any_cultural_activity = TRUE THEN waga_proby ELSE 0 END) * 100.0 / 
+    (SELECT men_weight FROM KatowiceMen),
+    2
+  ) AS percentage
+FROM
+  MenActivities
+ORDER BY
+  percentage DESC;
+```
+This query:
+
+Properly counts each respondent only once (even if they participate in multiple cultural activities)
+Uses CTEs to organize the logic clearly
+Calculates the percentage of women and men who participate in at least one cultural activity at home
+References the CTEs properly for the denominator calculations
+Returns a simple comparison between genders
+
+8. Specific instructions:
 
 - If a question has a yes/no answer (e.g. Kto chętniej korzysta z instagrama, mieszkańcy Bytomia czy Gliwic?), attach the calculated values, don't just return the bare answer (e.g. "Bytom" or "Gliwice").
 - For questions with 1–7 score, use 5–7 as the threshold for "yes" or "positive" and 1–3 for "no" or "negative".

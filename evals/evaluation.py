@@ -7,6 +7,8 @@ import click
 import dotenv
 from pydantic import BaseModel
 from pydantic_ai import Agent
+from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.providers.openai import OpenAIProvider
 from pydantic_ai.settings import ModelSettings
 from pydantic_evals import Case, Dataset
 from pydantic_evals.evaluators import Evaluator, EvaluatorContext
@@ -224,20 +226,25 @@ async def generate_sql_query(
     metadata_content = load_metadata(metadata_json_path)
     system_prompt = create_prompt(metadata_content, template_path)
 
+    ollama_model = OpenAIModel(
+        model_name=model_name,
+        provider=OpenAIProvider(base_url="http://192.168.1.109:11434/v1"),
+    )
+
     model_settings = ModelSettings(
         temperature=temperature,
         max_tokens=max_tokens,
     )
 
     agent = Agent(
-        model_name,
-        result_type=str,
+        ollama_model,
+        output_type=str,
         system_prompt=system_prompt,
         model_settings=model_settings,
     )
 
     output = await agent.run(question)
-    response = output.data
+    response = output.output
 
     # Extract SQL query from markdown code block if present
     if response.startswith("```sql") and response.endswith("```"):

@@ -238,7 +238,7 @@
     },
     {
         "original_symbol": "S4",
-        "semantic_name": "miasto",
+        "semantic_name": "miasto_powiat",
         "original_question": "S4. W jakim mieście lub powiecie Pan(i) mieszka?",
         "data_type": "categorical",
         "value_mapping": {
@@ -267,7 +267,7 @@
     },
     {
         "original_symbol": "S5A",
-        "semantic_name": "gmina",
+        "semantic_name": "gmina_miejscowosc",
         "original_question": "S5A. W jakiej gminie Pan(i) mieszka?",
         "data_type": "categorical",
         "value_mapping": {
