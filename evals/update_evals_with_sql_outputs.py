@@ -1,17 +1,14 @@
-#!/usr/bin/env python3
 """
-Script to run all queries in eval_sql.json and update the expected_result field
-with the actual results from the database.
+Script to run all SQL queries in a JSON file and update the result field
+in eval dataset with the actual results from the database.
 """
 
 import json
 import sys
 import time
 from pathlib import Path
-from typing import List, cast
 
 import pandas as pd
-from pandas import Series
 
 from db_operations import query_duckdb
 
@@ -25,11 +22,10 @@ def format_result(df: pd.DataFrame) -> str:
     header = "|".join(str(col) for col in df.columns)
 
     # Format each row
-    rows: List[str] = []
+    rows: list[str] = []
     for _, row in df.iterrows():
         # Convert all values to strings and join with pipes
-        row_str = cast(Series, row)
-        row_values = [str(val) for val in row_str.values]
+        row_values = [str(val) for val in row.values]
         rows.append("|".join(row_values))
 
     # Join header and rows with newlines
@@ -37,15 +33,16 @@ def format_result(df: pd.DataFrame) -> str:
 
 
 def main():
-    # Check if database path is provided
-    if len(sys.argv) < 2:
-        print("Usage: python run_eval_queries.py <path_to_database>")
+    # Check if database path and JSON file path are provided
+    if len(sys.argv) < 3:
+        print(
+            "Usage: python run_eval_queries.py <path_to_database> <path_to_json_file>"
+        )
         sys.exit(1)
 
     db_path = sys.argv[1]
+    json_path = Path(sys.argv[2])
 
-    # Load the eval_sql.json file
-    json_path = Path(__file__).parent / "eval_sql.json"
     try:
         with open(json_path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -53,19 +50,21 @@ def main():
         print(f"Error loading JSON file: {e}")
         sys.exit(1)
 
-    print(f"Loaded {len(data)} queries from {json_path}")
+    cases = data.get("cases", [])
+    print(f"Loaded {len(cases)} cases from {json_path}")
 
     # Process each query
-    for i, entry in enumerate(data):
-        query_id = entry.get("id", i + 1)
-        sql = entry.get("expected_sql", "")
+    for i, case in enumerate(cases):
+        case_name = case.get("name", str(i + 1))
+        expected_output = case.get("expected_output", {})
+        sql = expected_output.get("sql_query", "")
 
         if not sql:
-            print(f"Skipping query {query_id}: No SQL found")
+            print(f"Skipping case {case_name}: No SQL found")
             continue
 
         try:
-            print(f"Running query {query_id}...")
+            print(f"Running case {case_name}...")
 
             # Execute the query
             result_df = query_duckdb(db_path, sql)
@@ -74,15 +73,15 @@ def main():
             formatted_result = format_result(result_df)
 
             # Update the entry
-            entry["expected_result"] = formatted_result
+            expected_output["result"] = formatted_result
 
-            print(f"Query {query_id} completed successfully")
+            print(f"Case {case_name} completed successfully")
 
             # Wait to be gentle on the server
             time.sleep(0.5)
 
         except Exception as e:
-            print(f"Error executing query {query_id}: {e}")
+            print(f"Error executing case {case_name}: {e}")
 
     # Save the updated JSON file
     try:
