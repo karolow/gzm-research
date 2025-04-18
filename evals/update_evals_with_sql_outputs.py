@@ -8,9 +8,11 @@ import sys
 import time
 from pathlib import Path
 
+import click
 import pandas as pd
 
-from db_operations import query_duckdb
+from research.config import get_config
+from research.db.operations import query_duckdb
 
 
 def format_result(df: pd.DataFrame) -> str:
@@ -32,16 +34,24 @@ def format_result(df: pd.DataFrame) -> str:
     return header + "\n" + "\n".join(rows)
 
 
-def main():
-    # Check if database path and JSON file path are provided
-    if len(sys.argv) < 3:
-        print(
-            "Usage: python run_eval_queries.py <path_to_database> <path_to_json_file>"
-        )
-        sys.exit(1)
-
-    db_path = sys.argv[1]
-    json_path = Path(sys.argv[2])
+@click.command()
+@click.option(
+    "--database",
+    "--db",
+    required=False,
+    default=lambda: get_config().db.default_path,
+    help="Path to DuckDB database",
+)
+@click.option(
+    "--json-file",
+    "-j",
+    required=True,
+    type=click.Path(exists=True),
+    help="Path to evaluation JSON file",
+)
+def main(database: str, json_file: str) -> None:
+    db_path = database
+    json_path = Path(json_file)
 
     try:
         with open(json_path, "r", encoding="utf-8") as f:

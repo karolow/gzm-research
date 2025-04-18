@@ -1,3 +1,7 @@
+"""
+Logging utilities for the GZM package.
+"""
+
 import logging
 import sys
 

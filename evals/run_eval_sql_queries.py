@@ -13,7 +13,8 @@ from typing import Any, Dict, List, Optional, TypedDict
 import click
 import pandas as pd
 
-from db_operations import query_duckdb
+from research.config import get_config
+from research.db.operations import query_duckdb
 
 
 class SuccessResult(TypedDict):
@@ -83,7 +84,7 @@ def cli(ctx: click.Context, verbose: bool) -> None:
     "--eval-file",
     "-e",
     type=click.Path(exists=True),
-    default="src/eval_sql.json",
+    default=lambda: get_config().eval.dataset_path,
     help="Path to evaluation data JSON file",
 )
 @click.option(

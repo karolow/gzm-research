@@ -3,26 +3,18 @@
 CLI tool for generating SQL queries using LLM and executing them against DuckDB.
 """
 
-import logging
 import sys
+from pathlib import Path
 from typing import Optional
 
 import click
 import pandas as pd
 
-from db_operations import query_duckdb
-from src.llm_sql import natural_language_to_sql
+from research.db.operations import query_duckdb
+from research.llm.sql_generator import natural_language_to_sql
+from research.utils.logging import setup_logger
 
-
-def setup_logging(verbose: bool = False) -> None:
-    """Set up logging configuration."""
-    level = logging.DEBUG if verbose else logging.INFO
-
-    logging.basicConfig(
-        level=level,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[logging.StreamHandler()],
-    )
+logger = setup_logger(__name__)
 
 
 @click.group()
@@ -30,7 +22,10 @@ def setup_logging(verbose: bool = False) -> None:
 @click.pass_context
 def cli(ctx: click.Context, verbose: bool) -> None:
     """CLI tool for generating SQL queries with LLM and executing them against DuckDB."""
-    setup_logging(verbose)
+    # Set up logging
+    if verbose:
+        logger.setLevel("DEBUG")
+
     ctx.ensure_object(dict)
     ctx.obj["verbose"] = verbose
 
@@ -50,14 +45,12 @@ def cli(ctx: click.Context, verbose: bool) -> None:
     "--metadata",
     "-m",
     type=click.Path(exists=True, dir_okay=False),
-    default="src/survey_metadata_queries.json",
     help="Path to survey metadata JSON file",
 )
 @click.option(
     "--template",
     "-t",
     type=click.Path(exists=True, dir_okay=False),
-    default="src/sql_query_prompt.jinja2",
     help="Path to prompt template file",
 )
 @click.option(
@@ -77,17 +70,19 @@ def cli(ctx: click.Context, verbose: bool) -> None:
     default=True,
     help="Execute the generated SQL query (default: True)",
 )
+@click.option("--temperature", type=float, help="Model temperature (0.0-1.0)")
 @click.pass_context
 def ask(
     ctx: click.Context,
     database: str,
     question: str,
-    metadata: str,
-    template: str,
+    metadata: Optional[str] = None,
+    template: Optional[str] = None,
     output: Optional[str] = None,
     show_rows: int = 20,
     show_sql: bool = True,
     execute: bool = True,
+    temperature: Optional[float] = None,
 ) -> None:
     """Ask a natural language question and convert it to SQL using LLM."""
     try:
@@ -96,8 +91,13 @@ def ask(
             question=question,
             metadata_path=metadata,
             template_path=template,
+            temperature=temperature,
             verbose=ctx.obj["verbose"],
         )
+
+        if not sql_query:
+            logger.error("Failed to generate SQL query")
+            sys.exit(1)
 
         if show_sql:
             click.echo("\nGenerated SQL query:")
@@ -107,12 +107,14 @@ def ask(
             return
 
         # Execute the query
-        logging.info("Executing generated SQL query")
+        logger.info("Executing generated SQL query")
         result = query_duckdb(database, sql_query)
 
         if output:
+            output_path = Path(output)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             result.to_csv(output, index=False)
-            logging.info(f"Results saved to {output}")
+            logger.info(f"Results saved to {output}")
 
         # Always print a summary
         row_count = len(result)
@@ -138,7 +140,7 @@ def ask(
                 click.echo(result)
 
     except Exception as e:
-        logging.error(f"Error: {e}")
+        logger.error(f"Error: {e}")
         sys.exit(1)
 
 
@@ -150,18 +152,23 @@ def ask(
     "--metadata",
     "-m",
     type=click.Path(exists=True, dir_okay=False),
-    default="src/survey_metadata_queries.json",
     help="Path to survey metadata JSON file",
 )
 @click.option(
     "--template",
     "-t",
     type=click.Path(exists=True, dir_okay=False),
-    default="src/sql_query_prompt.jinja2",
     help="Path to prompt template file",
 )
+@click.option("--temperature", type=float, help="Model temperature (0.0-1.0)")
 @click.pass_context
-def generate(ctx: click.Context, question: str, metadata: str, template: str) -> None:
+def generate(
+    ctx: click.Context,
+    question: str,
+    metadata: Optional[str] = None,
+    template: Optional[str] = None,
+    temperature: Optional[float] = None,
+) -> None:
     """Generate SQL from natural language without executing it."""
     try:
         # Generate SQL query
@@ -169,14 +176,19 @@ def generate(ctx: click.Context, question: str, metadata: str, template: str) ->
             question=question,
             metadata_path=metadata,
             template_path=template,
+            temperature=temperature,
             verbose=ctx.obj["verbose"],
         )
+
+        if not sql_query:
+            logger.error("Failed to generate SQL query")
+            sys.exit(1)
 
         click.echo("\nGenerated SQL query:")
         click.echo(sql_query)
 
     except Exception as e:
-        logging.error(f"Error: {e}")
+        logger.error(f"Error: {e}")
         sys.exit(1)
 
 
@@ -229,21 +241,23 @@ def execute(
         if file:
             with open(file, "r", encoding="utf-8") as f:
                 sql_query = f.read()
-            logging.info(f"Loaded SQL query from {file}")
+            logger.info(f"Loaded SQL query from {file}")
         else:
-            sql_query = query
+            sql_query = query or ""
 
-        # Ensure sql_query is not None before proceeding
-        if sql_query is None:
-            raise ValueError("SQL query is empty or not provided correctly")
+        # Ensure sql_query is not empty
+        if not sql_query:
+            raise ValueError("SQL query is empty")
 
         # Execute the query
-        logging.info("Executing SQL query")
+        logger.info("Executing SQL query")
         result = query_duckdb(database, sql_query)
 
         if output:
+            output_path = Path(output)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             result.to_csv(output, index=False)
-            logging.info(f"Results saved to {output}")
+            logger.info(f"Results saved to {output}")
 
         # Always print a summary
         row_count = len(result)
@@ -269,7 +283,7 @@ def execute(
                 click.echo(result)
 
     except Exception as e:
-        logging.error(f"Error executing query: {e}")
+        logger.error(f"Error executing query: {e}")
         sys.exit(1)
 
 

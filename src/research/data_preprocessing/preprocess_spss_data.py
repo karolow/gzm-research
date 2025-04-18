@@ -1,6 +1,5 @@
 import io
 import json
-import logging
 import re
 import sys
 from typing import Any
@@ -10,29 +9,11 @@ import pandas as pd
 import pyreadstat
 from pandas import DataFrame
 
-from db_operations import save_to_duckdb
+from research.db.operations import save_to_duckdb
+from research.utils.logging import setup_logger
 
-
-# --- Logging Setup ---
-def setup_logging(log_file: str = "src/data_preprocessing/preprocessing.log") -> None:
-    """Configures logging to console and file."""
-    log_formatter = logging.Formatter(
-        "%(asctime)s [%(levelname)-5.5s] %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
-    )
-    root_logger = logging.getLogger()
-    root_logger.setLevel(logging.INFO)
-
-    # File Handler
-    file_handler = logging.FileHandler(log_file, mode="w", encoding="utf-8")
-    file_handler.setFormatter(log_formatter)
-    root_logger.addHandler(file_handler)
-
-    # Console Handler
-    console_handler = logging.StreamHandler(sys.stdout)  # Use stdout for info
-    console_handler.setFormatter(log_formatter)
-    root_logger.addHandler(console_handler)
-
-    logging.info("Logging configured.")
+# Set up logger for this module
+logger = setup_logger(__name__)
 
 
 # --- Helper Functions ---
@@ -40,20 +21,20 @@ def setup_logging(log_file: str = "src/data_preprocessing/preprocessing.log") ->
 
 def load_sav(sav_file_path: str) -> tuple[DataFrame | None, Any | None]:
     """Loads data from an SPSS SAV file."""
-    logging.info(f"Attempting to load SAV file: {sav_file_path}")
+    logger.info(f"Attempting to load SAV file: {sav_file_path}")
     try:
         df, sav_meta = pyreadstat.read_sav(
             sav_file_path, apply_value_formats=False, user_missing=True
         )
-        logging.info(
+        logger.info(
             f"Successfully loaded {df.shape[0]} rows and {df.shape[1]} columns."
         )
         return df, sav_meta
     except FileNotFoundError:
-        logging.error(f"SAV file not found at {sav_file_path}")
+        logger.error(f"SAV file not found at {sav_file_path}")
         return None, None
     except Exception as e:
-        logging.error(f"Failed to load SAV file: {e}", exc_info=True)
+        logger.error(f"Failed to load SAV file: {e}", exc_info=True)
         return None, None
 
 
@@ -61,21 +42,21 @@ def load_metadata(
     metadata_path: str,
 ) -> tuple[list[dict[str, Any]] | None, dict[str, dict[str, Any]] | None]:
     """Loads JSON metadata file."""
-    logging.info(f"Attempting to load JSON metadata: {metadata_path}")
+    logger.info(f"Attempting to load JSON metadata: {metadata_path}")
     try:
         with open(metadata_path, "r", encoding="utf-8") as f:
             metadata_list = json.load(f)
         metadata_dict = {item["original_symbol"]: item for item in metadata_list}
-        logging.info("Metadata loaded successfully.")
+        logger.info("Metadata loaded successfully.")
         return metadata_list, metadata_dict
     except FileNotFoundError:
-        logging.error(f"Metadata file not found at {metadata_path}")
+        logger.error(f"Metadata file not found at {metadata_path}")
         return None, None
     except json.JSONDecodeError as e:
-        logging.error(f"Error decoding JSON metadata: {e}", exc_info=True)
+        logger.error(f"Error decoding JSON metadata: {e}", exc_info=True)
         return None, None
     except Exception as e:
-        logging.error(f"Error processing metadata file: {e}", exc_info=True)
+        logger.error(f"Error processing metadata file: {e}", exc_info=True)
         return None, None
 
 
@@ -83,7 +64,7 @@ def rename_columns(
     df: pd.DataFrame, metadata_list: list[dict[str, Any]]
 ) -> tuple[pd.DataFrame, dict[str, str]]:
     """Renames DataFrame columns based on metadata."""
-    logging.info("Renaming columns...")
+    logger.info("Renaming columns...")
     rename_map = {}
     final_name_map = {}  # Map original_symbol to its final name
     original_columns = df.columns.tolist()
@@ -117,7 +98,7 @@ def rename_columns(
 
         if original_symbol != final_name:
             if final_name in df.columns and final_name != original_symbol:
-                logging.warning(
+                logger.warning(
                     f"Target column name '{final_name}' already exists. Skipping rename for '{original_symbol}'."
                 )
                 final_name_map[original_symbol] = original_symbol  # Keep original name
@@ -129,7 +110,7 @@ def rename_columns(
             final_name_map[original_symbol] = original_symbol  # No rename needed
 
     df.rename(columns=rename_map, inplace=True)
-    logging.info(f"Renamed {rename_count} columns.")
+    logger.info(f"Renamed {rename_count} columns.")
     return df, final_name_map
 
 
@@ -139,7 +120,7 @@ def apply_value_labels(
     final_name_map: dict[str, str],
 ) -> pd.DataFrame:
     """Applies value labels from metadata to DataFrame columns."""
-    logging.info("Applying value labels...")
+    logger.info("Applying value labels...")
     mapped_count = 0
     processed_symbols = set()
 
@@ -156,7 +137,7 @@ def apply_value_labels(
 
         if value_mapping and isinstance(value_mapping, dict):
             if final_col_name not in df.columns:
-                logging.warning(
+                logger.warning(
                     f"Column '{final_col_name}' (from '{original_symbol}') not found. Skipping mapping."
                 )
                 continue
@@ -181,12 +162,12 @@ def apply_value_labels(
                 mapped_count += 1
 
             except Exception as e:
-                logging.error(
+                logger.error(
                     f"Error mapping column '{final_col_name}' (from '{original_symbol}'): {e}",
                     exc_info=True,
                 )
 
-    logging.info(f"Applied labels to {mapped_count} columns.")
+    logger.info(f"Applied labels to {mapped_count} columns.")
     return df
 
 
@@ -196,7 +177,7 @@ def convert_data_types(
     final_name_map: dict[str, str],
 ) -> pd.DataFrame:
     """Converts columns to specified data types."""
-    logging.info("Converting data types...")
+    logger.info("Converting data types...")
     converted_count = 0
     processed_symbols = set()
     tak_nie_conversion_count = 0
@@ -229,11 +210,11 @@ def convert_data_types(
                     if possible_values and isinstance(possible_values, list):
                         # Debug logging to see what's happening
                         if "Tak" in possible_values and "Nie" in possible_values:
-                            logging.info(
+                            logger.info(
                                 f"Found Tak/Nie column: {final_col_name}, possible_values: {possible_values}"
                             )
                             if "Trudno powiedzieć" not in possible_values:
-                                logging.info(f"Converting to boolean: {final_col_name}")
+                                logger.info(f"Converting to boolean: {final_col_name}")
                                 # First replace None values with pd.NA
                                 df[final_col_name] = df[final_col_name].fillna(pd.NA)
                                 # Create a mask for "Tak" and "Nie" values
@@ -249,7 +230,7 @@ def convert_data_types(
                                 target_type_str = "boolean (Tak/Nie conversion)"
                                 tak_nie_conversion_count += 1
                                 converted_count += 1
-                                logging.info(
+                                logger.info(
                                     f"Successfully converted '{final_col_name}' from Tak/Nie to boolean"
                                 )
 
@@ -264,7 +245,7 @@ def convert_data_types(
                             and "Nie" in values_set
                             and len(values_set) == 2
                         ):
-                            logging.info(
+                            logger.info(
                                 f"Found categorical Tak/Nie column: {final_col_name}, values: {values_set}"
                             )
 
@@ -284,7 +265,7 @@ def convert_data_types(
                             target_type_str = "boolean (categorical Tak/Nie conversion)"
                             tak_nie_conversion_count += 1
                             converted_count += 1
-                            logging.info(
+                            logger.info(
                                 f"Successfully converted '{final_col_name}' from categorical Tak/Nie to boolean"
                             )
 
@@ -318,17 +299,17 @@ def convert_data_types(
 
             # Optional: Log the conversion attempt
             if target_type_str:
-                logging.debug(
+                logger.debug(
                     f"Converted '{final_col_name}' from {current_type} to {target_type_str}"
                 )
 
         except Exception as e:
-            logging.error(
+            logger.error(
                 f"Error converting type for column '{final_col_name}' (target: {data_type}): {e}",
                 exc_info=True,
             )
 
-    logging.info(
+    logger.info(
         f"Attempted type conversions for {converted_count} columns (including {tak_nie_conversion_count} Tak/Nie to boolean conversions)."
     )
     return df
@@ -340,7 +321,7 @@ def clean_text_columns(
     final_name_map: dict[str, str],
 ) -> pd.DataFrame:
     """Cleans text columns (strip whitespace, handle empty strings)."""
-    logging.info("Cleaning text columns...")
+    logger.info("Cleaning text columns...")
     cleaned_count = 0
     processed_symbols = set()
 
@@ -367,12 +348,12 @@ def clean_text_columns(
                     )
                     cleaned_count += 1
                 except Exception as e:
-                    logging.error(
+                    logger.error(
                         f"Error cleaning text column '{final_col_name}': {e}",
                         exc_info=True,
                     )
 
-    logging.info(f"Cleaned {cleaned_count} text columns.")
+    logger.info(f"Cleaned {cleaned_count} text columns.")
     return df
 
 
@@ -380,7 +361,7 @@ def drop_redundant_columns(
     df: pd.DataFrame, final_name_map: dict[str, str]
 ) -> pd.DataFrame:
     """Drops specified redundant columns."""
-    logging.info("Dropping redundant columns...")
+    logger.info("Dropping redundant columns...")
     columns_to_drop = []
     # Example: Drop the column derived from GminaPlec
     gmina_plec_orig_symbol = "GminaPlec"
@@ -388,58 +369,58 @@ def drop_redundant_columns(
         gmina_plec_final_name = final_name_map[gmina_plec_orig_symbol]
         if gmina_plec_final_name in df.columns:
             columns_to_drop.append(gmina_plec_final_name)
-            logging.info(f"Marked '{gmina_plec_final_name}' for dropping.")
+            logger.info(f"Marked '{gmina_plec_final_name}' for dropping.")
         else:
-            logging.warning(
+            logger.warning(
                 f"Column '{gmina_plec_final_name}' (orig: '{gmina_plec_orig_symbol}') not found for dropping."
             )
     else:
-        logging.warning(
+        logger.warning(
             f"Original symbol '{gmina_plec_orig_symbol}' not in metadata map, cannot drop."
         )
 
     if columns_to_drop:
         df.drop(columns=columns_to_drop, inplace=True, errors="ignore")
-        logging.info(
+        logger.info(
             f"Dropped {len(columns_to_drop)} columns: {', '.join(columns_to_drop)}"
         )
     else:
-        logging.info("No columns marked for dropping.")
+        logger.info("No columns marked for dropping.")
     return df
 
 
 def log_final_overview(df: pd.DataFrame) -> None:
     """Logs summary information about the final DataFrame."""
-    logging.info("--- Final Data Overview ---")
+    logger.info("--- Final Data Overview ---")
     buffer = io.StringIO()
     df.info(buf=buffer, verbose=False, show_counts=True)  # Concise info
-    logging.info("DataFrame Info:\n" + buffer.getvalue())
+    logger.info("DataFrame Info:\n" + buffer.getvalue())
 
     missing_counts = df.isna().sum()
     missing_filtered = missing_counts[missing_counts > 0].sort_values(ascending=False)
     if not missing_filtered.empty:
-        logging.info(
+        logger.info(
             "Missing Values per Column (Top 20 with missing > 0):\n"
             + missing_filtered.head(20).to_string()
         )
     else:
-        logging.info("No missing values found in the final DataFrame.")
+        logger.info("No missing values found in the final DataFrame.")
 
 
 def save_output(df: pd.DataFrame, output_path: str | None) -> bool:
     """Saves the DataFrame to a CSV file."""
     if not output_path:
-        logging.info("No output file specified. Skipping save.")
+        logger.info("No output file specified. Skipping save.")
         return True  # Indicate success (no save attempted)
 
-    logging.info(f"Attempting to save cleaned data to {output_path}...")
+    logger.info(f"Attempting to save cleaned data to {output_path}...")
     try:
         # Use utf-8-sig for better Excel compatibility
         df.to_csv(output_path, index=False, encoding="utf-8-sig")
-        logging.info("Data saved successfully.")
+        logger.info("Data saved successfully.")
         return True
     except Exception as e:
-        logging.error(f"Error saving CSV file: {e}", exc_info=True)
+        logger.error(f"Error saving CSV file: {e}", exc_info=True)
         return False
 
 
@@ -453,7 +434,6 @@ def preprocess_survey_data_orchestrator(
     replace_table: bool = False,
 ) -> DataFrame | None:
     """Orchestrates the preprocessing steps."""
-    setup_logging()  # Configure logging first
 
     df, _ = load_sav(sav_file_path)
     if df is None:
@@ -473,20 +453,20 @@ def preprocess_survey_data_orchestrator(
 
     # Save to CSV if specified
     if not save_output(df, output_csv_path):
-        logging.warning("Failed to save to CSV. Continuing with other outputs.")
+        logger.warning("Failed to save to CSV. Continuing with other outputs.")
 
     # Save to DuckDB if specified
     if db_path and table_name:
-        logging.info(f"Saving data to DuckDB table '{table_name}'...")
+        logger.info(f"Saving data to DuckDB table '{table_name}'...")
         try:
             if save_to_duckdb(df, db_path, table_name, replace=replace_table):
-                logging.info(f"Data successfully saved to DuckDB table '{table_name}'")
+                logger.info(f"Data successfully saved to DuckDB table '{table_name}'")
             else:
-                logging.error("Failed to save to DuckDB")
+                logger.error("Failed to save to DuckDB")
         except Exception as e:
-            logging.error(f"Error saving to DuckDB: {e}", exc_info=True)
+            logger.error(f"Error saving to DuckDB: {e}", exc_info=True)
 
-    logging.info("--- Preprocessing finished ---")
+    logger.info("--- Preprocessing finished ---")
     return df
 
 

@@ -13,9 +13,10 @@ from pydantic_ai.settings import ModelSettings
 from pydantic_evals import Case, Dataset
 from pydantic_evals.evaluators import Evaluator, EvaluatorContext
 
-from db_operations import query_duckdb
-from src.llm_sql import create_prompt, load_metadata
-from src.utils import setup_logger
+from research.config import get_config
+from research.db.operations import query_duckdb
+from research.llm.sql_generator import create_prompt, load_metadata
+from research.utils.logging import setup_logger
 
 dotenv.load_dotenv(override=True)
 
@@ -191,78 +192,6 @@ class RateLimiter:
             await asyncio.sleep(wait_time)
 
 
-async def generate_sql_query(
-    question: str,
-    model_name: str,
-    temperature: float,
-    database_path: str,
-    metadata_json_path: str,
-    template_path: str,
-    rate_limiter: Optional[RateLimiter] = None,
-    max_tokens: int = 1024,
-) -> Result:
-    """
-    Generate an SQL query from a natural language question and execute it.
-
-    Args:
-        question: The natural language question
-        model_name: The LLM model to use
-        temperature: The temperature setting for the model
-        database_path: Path to the database file
-        metadata_json_path: Path to the metadata JSON file
-        template_path: Path to the prompt template
-        rate_limiter: Optional rate limiter to control API call frequency
-        max_tokens: Maximum tokens for model response
-
-    Returns:
-        A Result object containing the SQL query and the execution result
-    """
-    # Apply rate limiting if a limiter is provided
-    if rate_limiter:
-        await rate_limiter.acquire()
-        logger.debug("Rate limit token acquired, proceeding with API call")
-
-    # Load the metadata content
-    metadata_content = load_metadata(metadata_json_path)
-    system_prompt = create_prompt(metadata_content, template_path)
-
-    ollama_model = OpenAIModel(
-        model_name=model_name,
-        provider=OpenAIProvider(base_url="http://192.168.1.109:11434/v1"),
-    )
-
-    model_settings = ModelSettings(
-        temperature=temperature,
-        max_tokens=max_tokens,
-    )
-
-    agent = Agent(
-        ollama_model,
-        output_type=str,
-        system_prompt=system_prompt,
-        model_settings=model_settings,
-    )
-
-    output = await agent.run(question)
-    response = output.output
-
-    # Extract SQL query from markdown code block if present
-    if response.startswith("```sql") and response.endswith("```"):
-        sql_query = response[6:-3].strip()  # Remove ```sql and ```
-    else:
-        sql_query = response.strip()
-
-    logger.info(f"Generated SQL query: {sql_query}")
-
-    # Execute query against the database
-    result_df = query_duckdb(database_path, sql_query)
-
-    # Convert result to string format expected by the evaluator
-    result_str = result_df.to_csv(sep="|", index=False)
-    result = Result(sql_query=sql_query, result=result_str)
-    return result
-
-
 def parse_range(range_str: str) -> tuple[int, int]:
     """
     Parse a range string in format 'start-end' to a tuple of integers.
@@ -348,53 +277,61 @@ def filter_cases_by_range(
     "-e",
     help="Path to evaluation cases JSON file",
     type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+    default=lambda: get_config().eval.dataset_path,
 )
 @click.option(
     "--metadata-json",
     "-m",
-    default="src/survey_metadata_queries.json",
     help="Path to metadata JSON file",
     type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+    default=lambda: get_config().survey_metadata,
 )
 @click.option(
     "--template-path",
     "-t",
-    default="src/sql_query_prompt.jinja2",
     help="Path to prompt template file",
     type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+    default=lambda: get_config().sql_prompt_template,
 )
 @click.option(
-    "--model", "-m", default="google-gla:gemini-2.0-flash", help="LLM model to use"
+    "--model", "-M", help="LLM model to use", default=lambda: get_config().llm.model
 )
 @click.option(
     "--temperature",
     "-T",
-    default=0.2,
     help="Temperature setting for the model",
     type=float,
+    default=lambda: get_config().llm.temperature,
 )
 @click.option(
     "--database",
     "-d",
-    default="research.db",
     help="Path to the database file",
     type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
+    default=lambda: get_config().db.default_path,
 )
 @click.option(
     "--log-level",
     "-l",
-    default="INFO",
     help="Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
     type=click.Choice(
-        ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], case_sensitive=False
+        [
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR",
+            "CRITICAL",
+        ],
+        case_sensitive=False,
     ),
+    default="INFO",
 )
 @click.option(
     "--rate-limit",
     "-r",
-    default=0,
     help="Rate limit for LLM API calls (requests per minute, 0 = no limit)",
     type=int,
+    default=lambda: get_config().eval.rate_limit,
 )
 @click.option(
     "--range",
@@ -405,9 +342,19 @@ def filter_cases_by_range(
 @click.option(
     "--max-concurrency",
     "-c",
-    default=0,
     help="Maximum number of concurrent evaluations (0 = unlimited)",
     type=int,
+    default=lambda: get_config().eval.max_concurrency,
+)
+@click.option(
+    "--provider",
+    help="LLM provider: 'api' (default) or 'ollama' (local)",
+    default=lambda: get_config().llm.provider,
+)
+@click.option(
+    "--base-url",
+    help="Base URL for LLM provider (only needed for ollama or custom endpoints)",
+    default=lambda: get_config().llm.base_url,
 )
 def main(
     eval_cases: str,
@@ -420,6 +367,8 @@ def main(
     rate_limit: int,
     range: Optional[str],
     max_concurrency: int,
+    provider: str,
+    base_url: Optional[str],
 ) -> None:
     """
     Run model evaluation against SQL queries.
@@ -427,7 +376,6 @@ def main(
     This tool evaluates the model's ability to generate SQL queries
     from natural language questions and produce correct results.
     """
-    # Set the log level
     global logger
     logger = setup_logger("evaluation", log_level)
 
@@ -435,16 +383,7 @@ def main(
     logger.info(f"Using database at: {database}")
     logger.info(f"Loading evaluation cases from: {eval_cases}")
 
-    # Set up rate limiter if needed
-    rate_limiter = None
-    if rate_limit > 0:
-        logger.info(f"Setting rate limit to {rate_limit} requests per minute")
-        rate_limiter = RateLimiter(rate_limit_per_minute=rate_limit)
-
     try:
-        # --- Load directly using Dataset.from_file ---
-        # Specify the generic types: Input=str, Output=Result, Metadata=Any
-        # Register custom evaluators needed for deserialization
         full_dataset = Dataset[str, Result, Any].from_file(
             eval_cases,
             fmt="json",
@@ -452,14 +391,11 @@ def main(
         )
         logger.info(f"Loaded {len(full_dataset.cases)} cases for evaluation.")
 
-        # Filter cases by range if specified
         if range:
             filtered_cases = filter_cases_by_range(full_dataset.cases, range)
             if not filtered_cases:
                 logger.error("No cases to evaluate after applying range filter")
                 return
-
-            # Create a new dataset with the filtered cases
             dataset = Dataset[str, Result, Any](
                 cases=filtered_cases,
                 evaluators=full_dataset.evaluators,
@@ -477,38 +413,76 @@ def main(
     except json.JSONDecodeError as e:
         logger.error(f"JSON parsing error in {eval_cases}: {e}")
         return
-    except ValueError as e:  # Catches other validation errors
+    except ValueError as e:
         logger.error(f"Error loading dataset from {eval_cases}: {e}")
         return
     except Exception as e:
         logger.error(f"An unexpected error occurred while loading cases: {e}")
         return
 
-    # Create generator function for the evaluation
-    async def query_generator(question: str) -> Result:
-        return await generate_sql_query(
-            question=question,
-            model_name=model,
-            temperature=temperature,
-            database_path=database,
-            metadata_json_path=metadata_json,
-            template_path=template_path,
-            rate_limiter=rate_limiter,
+    # Initialize rate limiter if needed
+    rate_limiter = None
+    if rate_limit > 0:
+        rate_limiter = RateLimiter(rate_limit_per_minute=rate_limit)
+
+    async def query_generator(
+        question: str, rate_limiter: RateLimiter | None = None
+    ) -> Result:
+        # Use the rate limiter if provided
+        if rate_limiter is not None:
+            await rate_limiter.acquire()
+
+        # Dynamically create the model and agent for each question
+        if provider == "ollama":
+            model_instance = OpenAIModel(
+                model_name=model,
+                provider=OpenAIProvider(base_url=base_url),
+            )
+        else:
+            model_instance = model
+        agent = Agent(
+            model_instance,
+            output_type=str,
+            system_prompt=create_prompt(load_metadata(metadata_json), template_path),
+            model_settings=ModelSettings(
+                temperature=temperature,
+                max_tokens=get_config().llm.max_tokens,
+            ),
         )
+        output = await agent.run(question)
+        response = output.output
 
-    # Set concurrency if specified
-    concurrency_args = {}
-    if max_concurrency > 0:
-        logger.info(f"Setting maximum concurrency to {max_concurrency}")
-        concurrency_args["max_concurrency"] = max_concurrency
+        # Robustly strip code fencing (```sql ... ```, with or without whitespace)
+        import re
 
-    # Evaluate the model
+        sql_query = response.strip()
+        # Remove any markdown code blocks (handles both ```sql and just ```)
+        # First attempt to find and extract content from a full markdown code block
+        code_block_pattern = r"```(?:sql)?\s*([\s\S]*?)\s*```"
+        match = re.search(code_block_pattern, sql_query, re.IGNORECASE)
+        if match:
+            sql_query = match.group(1).strip()
+
+        # In case there are still backticks at the beginning or end, remove them
+        sql_query = re.sub(r"^```(?:sql)?", "", sql_query)
+        sql_query = re.sub(r"```$", "", sql_query)
+        sql_query = sql_query.strip()
+
+        logger.info(f"Generated SQL query: {sql_query}")
+        result_df = query_duckdb(database, sql_query)
+        result_str = result_df.to_csv(sep="|", index=False)
+        result = Result(sql_query=sql_query, result=result_str)
+        return result
+
+    # Wrap query_generator to inject rate_limiter
+    async def wrapped_query_generator(question: str) -> Result:
+        return await query_generator(question, rate_limiter=rate_limiter)
+
     report = dataset.evaluate_sync(
-        query_generator,
+        wrapped_query_generator,
         max_concurrency=max_concurrency if max_concurrency > 0 else None,
     )
 
-    # Print evaluation report
     logger.info("Evaluation completed. Report:")
     report.print(
         include_input=True,
