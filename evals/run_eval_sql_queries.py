@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Utility script to run SQL queries from eval_sql.json dataset.
+Utility script to run SQL queries from a dataset following eval_dataset_schema.json format.
 """
 
 import json
@@ -36,6 +36,16 @@ class ErrorResult(TypedDict):
 QueryResult = SuccessResult | ErrorResult
 
 
+class EvalCase(TypedDict):
+    """Type for a transformed evaluation case."""
+
+    id: int
+    question: str
+    expected_sql: Optional[str]
+    expected_result: str
+    metadata: Dict[str, Any]
+
+
 def setup_logging(verbose: bool = False) -> None:
     """Set up logging configuration."""
     level = logging.DEBUG if verbose else logging.INFO
@@ -47,11 +57,44 @@ def setup_logging(verbose: bool = False) -> None:
     )
 
 
-def load_eval_data(path: str) -> List[Dict[str, Any]]:
-    """Load evaluation data from JSON file."""
+def load_eval_data(path: str) -> List[EvalCase]:
+    """Load evaluation data from JSON file following eval_dataset_schema.json format."""
     try:
         with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
+            data = json.load(f)
+
+        # Extract cases from the dataset
+        cases = data.get("cases", [])
+
+        # Transform cases to match script expectations
+        transformed_cases: List[EvalCase] = []
+        for i, case in enumerate(cases):
+            case_id = i + 1
+            if "name" in case and case["name"]:
+                try:
+                    case_id = int(case["name"])
+                except ValueError:
+                    # Keep the auto-generated ID if name is not an integer
+                    pass
+
+            expected_sql = None
+            if (
+                case.get("expected_output")
+                and isinstance(case["expected_output"], dict)
+                and "sql_query" in case["expected_output"]
+            ):
+                expected_sql = case["expected_output"]["sql_query"]
+
+            transformed_case: EvalCase = {
+                "id": case_id,
+                "question": case.get("inputs", ""),
+                "expected_sql": expected_sql,
+                "expected_result": case.get("expected_output", {}).get("result", ""),
+                "metadata": case.get("metadata", {}),
+            }
+            transformed_cases.append(transformed_case)
+
+        return transformed_cases
     except Exception as e:
         logging.error(f"Failed to load evaluation data: {e}")
         sys.exit(1)
@@ -70,7 +113,7 @@ def run_sql_query(database: str, query: str) -> pd.DataFrame:
 @click.option("--verbose", is_flag=True, help="Enable verbose output")
 @click.pass_context
 def cli(ctx: click.Context, verbose: bool) -> None:
-    """Utility to run SQL queries from eval_sql.json dataset."""
+    """Utility to run SQL queries from dataset following eval_dataset_schema.json format."""
     setup_logging(verbose)
     ctx.ensure_object(dict)
     ctx.obj["verbose"] = verbose
@@ -102,6 +145,11 @@ def cli(ctx: click.Context, verbose: bool) -> None:
     type=click.Path(file_okay=False),
     help="Directory to save query files and results",
 )
+@click.option(
+    "--compare-expected/--no-compare-expected",
+    default=False,
+    help="Compare results with expected output",
+)
 @click.pass_context
 def run(
     ctx: click.Context,
@@ -110,6 +158,7 @@ def run(
     query_id: Optional[int] = None,
     range: Optional[str] = None,
     output_dir: Optional[str] = None,
+    compare_expected: bool = False,
 ) -> None:
     """Run SQL queries from evaluation dataset."""
     if query_id and range:
@@ -147,6 +196,10 @@ def run(
         question = query_item["question"]
         sql = query_item["expected_sql"]
 
+        if not sql:
+            logging.warning(f"Query ID {query_id} has no SQL query defined, skipping")
+            continue
+
         logging.info(f"Processing query ID {query_id}: {question}")
 
         # Save query to file if output directory is specified
@@ -170,6 +223,23 @@ def run(
             # Display result
             click.echo(f"\nResults for query ID {query_id}:")
             click.echo(result_df)
+
+            # Compare with expected result if requested
+            if (
+                compare_expected
+                and "expected_result" in query_item
+                and query_item["expected_result"]
+            ):
+                expected_result = query_item["expected_result"]
+                click.echo("\nExpected result:")
+                click.echo(expected_result)
+
+                # Convert result to string format for comparison
+                result_str = result_df.to_csv(sep="|", index=False).strip()
+
+                # Simple comparison (could be enhanced for more robust comparison)
+                matches = expected_result.strip() == result_str
+                click.echo(f"\nResults match expected output: {matches}")
 
             # Add success result
             success_result: SuccessResult = {

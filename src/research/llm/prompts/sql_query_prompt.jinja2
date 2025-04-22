@@ -12,7 +12,7 @@ Your task is to translate the user's question into a precise and efficient DuckD
 
 ```json
 {{ METADATA_JSON }}
-```
+
 
 Instructions for Query Generation:
 
@@ -20,7 +20,7 @@ CRITICAL SCHEMA ADHERENCE RULES:
 
 Use Exact Names: You MUST use the exact semantic_name provided in the metadata for all column references in the SQL query (SELECT, WHERE, GROUP BY, ORDER BY, etc.).
 
-No Invention: DO NOT invent, combine, create aliases for, or assume column names that are not explicitly listed as a semantic_name in the metadata. 
+No Invention: DO NOT invent, combine, create aliases for, or assume column names that are not explicitly listed as a semantic_name in the metadata.
 
 QUERY GENERATION STEPS:
 
@@ -48,27 +48,35 @@ The survey includes semantic_name: waga_proby (data_type: numeric). This column 
 
 When calculating percentages or averages (AVG), ALWAYS use weighted calculations.
 
-Pattern for Weighted Percentage: SUM(CASE WHEN [condition] THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby)
+Pattern for Weighted Percentage: SUM(CASE WHEN [condition] THEN waga_proby ELSE 0 END) * 100.0 / Denominator
 
 Pattern for Weighted Average: SUM([numeric_column] * waga_proby) / SUM(waga_proby)
+
+CRITICAL NOTE on Percentage Denominators: The Denominator in the percentage calculation MUST represent the total weight (SUM(waga_proby)) of the precise group for which the percentage is being calculated.
+* If calculating a percentage within a filtered subset (defined by WHERE), the denominator must reflect the total weight of that subset (e.g., using a correctly filtered subquery/CTE like (SELECT SUM(waga_proby) FROM ... WHERE [same_filters])).
+* If calculating percentages for multiple groups within the same query (using GROUP BY), the denominator SUM(waga_proby) automatically refers to the total weight of the current group unless you need to partition differently (e.g., calculating % of Category X within Group A requires a denominator partitioned by Group A, like SUM(SUM(waga_proby)) OVER (PARTITION BY group_column)). Always double-check that the denominator's scope matches the numerator's base population.
 
 Only generate unweighted results (using simple COUNT(*) or AVG([column]) without waga_proby) if the user explicitly asks for "raw counts", "unweighted results", "liczba bezwzględna", "niewazony wynik", or similar explicit terms indicating a desire to ignore representativeness. If unsure, default to weighted.
 
 6. Output: 
 
-Provide only the generated DuckDB SQL query as a code block. Do not include explanations unless specifically requested in the user's prompt. Include SQL comments (#) only if required by the "Handle Missing Specificity" rule. 
+Provide only the generated DuckDB SQL query as a code block. Do not include explanations unless specifically requested in the user's prompt. Include SQL comments (#) only if required by the "Handle Missing Specificity" rule.
 
 Make sure to round results to 2 decimal places.
 
-7. Handling multiple-answer questions:
+7. Handling Questions with Multiple Boolean Options (e.g., Check-all-that-apply):
 
-When handling multiple-answer survey questions where respondents can select multiple options simultaneously (like barriers represented by separate boolean columns), follow these guidelines:
+For questions represented by multiple related boolean columns where a respondent could select more than one option (e.g., column prefixes like bariera_*, informacja_*, tworczosc_*, miejsce_kultury_*, kultura_domowa_*, cyfrowa_kultura_*, transport_*, dom_kultury_*, biblioteka_*, niepelnosprawnosc_*, zatrudnienie_*, internet_*), follow these guidelines:
 
-a. DO NOT use a simple CASE WHEN approach that would only count the first TRUE option per respondent.
+a. CRITICAL: NEVER use a sequential CASE WHEN option_A_bool = TRUE THEN 'Label A' WHEN option_B_bool = TRUE THEN 'Label B' ... END structure to categorize respondents based on the first option they selected. This method incorrectly undercounts options listed later in the sequence.
 
-b. Instead, use a UNION ALL approach where each option is calculated separately.
+b. Instead, calculate the percentage for each boolean option independently to show the proportion of the target group that selected that specific option.
 
-Example 1:
+c. Preferred Method (UNION ALL): Use a UNION ALL structure to combine results for each option, calculating the percentage relative to the total weight of the target group (defined by the WHERE clause). Ensure the WHERE clause is identical in all parts of the UNION ALL and in the CTE/subquery calculating the total weight denominator. See Example 1 below.
+
+d. Alternative Method (Multiple Columns): If the question asks for a wide comparison table, calculating the percentage for each option in a separate column is acceptable (e.g., Case 16, Case 20). Ensure each calculation uses the correct denominator for the group being analyzed.
+
+Example 1 (Using UNION ALL - Preferred for listing popularity):
 
 User question: "Z jakich źródeł informacji o kulturze korzystają najczęściej osoby które jeżdżą na rowerze?"
 Generated query:
@@ -82,16 +90,10 @@ WITH total AS (
 
 SELECT
     source,
-    ROUND(SUM(CASE WHEN selected = TRUE THEN waga_proby ELSE 0 END) * 100.0 / 
+    ROUND(SUM(CASE WHEN selected = TRUE THEN waga_proby ELSE 0 END) * 100.0 /
          (SELECT total_weight FROM total), 2) AS percentage
 FROM (
-    SELECT
-        'Prasa drukowana' AS source,
-        informacja_prasa_drukowana AS selected,
-        waga_proby
-    FROM participation_survey
-    WHERE transport_wlasny_rower = TRUE
-    
+    SELECT 'Prasa drukowana' AS source, informacja_prasa_drukowana AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE
     UNION ALL
     
     SELECT
@@ -209,6 +211,8 @@ FROM (
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
 ) subquery
+-- Filter out options not selected by anyone in the target group
+WHERE selected = TRUE
 GROUP BY source
 ORDER BY percentage DESC;
 ```
