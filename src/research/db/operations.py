@@ -5,6 +5,7 @@ Core database operations for DuckDB.
 from pathlib import Path
 from typing import Any, Optional
 
+import duckdb
 import pandas as pd
 from duckdb import DuckDBPyConnection
 
@@ -12,6 +13,18 @@ from research.db.connection import init_db
 from research.utils.logging import setup_logger
 
 logger = setup_logger(__name__)
+
+
+class SQLParsingError(Exception):
+    """Raised when a SQL parsing error occurs in DuckDB."""
+
+    pass
+
+
+class SQLExecutionError(Exception):
+    """Raised when a general SQL execution error occurs in DuckDB (e.g., BinderException, runtime errors)."""
+
+    pass
 
 
 def table_exists(conn: DuckDBPyConnection, table_name: str) -> bool:
@@ -111,6 +124,15 @@ def query_duckdb(
 
         conn.close()
         return result
+    except duckdb.ParserException as e:
+        logger.error(f"SQL parsing failed: {e}\nQuery: {sql_query}", exc_info=True)
+        raise SQLParsingError(f"SQL parsing failed: {e}") from e
+    except duckdb.BinderException as e:
+        logger.error(f"SQL binding failed: {e}\nQuery: {sql_query}", exc_info=True)
+        raise SQLExecutionError(f"SQL binding failed: {e}") from e
+    except duckdb.Error as e:
+        logger.error(f"SQL execution failed: {e}\nQuery: {sql_query}", exc_info=True)
+        raise SQLExecutionError(f"SQL execution failed: {e}") from e
     except Exception as e:
         logger.error(f"Query failed: {e}", exc_info=True)
         raise RuntimeError(f"Database query failed: {e}") from e

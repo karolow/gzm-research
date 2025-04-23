@@ -1,10 +1,13 @@
 import asyncio
 import json
 from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
 from typing import Any, Optional, Sequence
 
 import click
 import dotenv
+import logfire
 from pydantic import BaseModel
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIModel
@@ -12,15 +15,19 @@ from pydantic_ai.providers.openai import OpenAIProvider
 from pydantic_ai.settings import ModelSettings
 from pydantic_evals import Case, Dataset
 from pydantic_evals.evaluators import Evaluator, EvaluatorContext
+from rich.console import Console
+from rich.table import Table
 
 from research.config import get_config
-from research.db.operations import query_duckdb
+from research.db.operations import SQLExecutionError, SQLParsingError, query_duckdb
 from research.llm.sql_generator import create_prompt, load_metadata
 from research.utils.logging import setup_logger
 
 dotenv.load_dotenv(override=True)
 
 logger = setup_logger("evaluation")
+
+logfire.configure()
 
 
 class Result(BaseModel):
@@ -271,6 +278,58 @@ def filter_cases_by_range(
         return list(cases)
 
 
+def export_report_to_markdown(
+    report: Any, table: Table, model_name: str, output_dir: Optional[str | Path] = None
+) -> Path:
+    """
+    Export evaluation report to a markdown file with timestamp and model name.
+
+    Args:
+        report: The evaluation report object
+        table: The rich table object representing the report
+        model_name: Name of the model used for evaluation
+        output_dir: Optional directory path for output file (defaults to current dir)
+
+    Returns:
+        Path object pointing to the saved file
+    """
+    from io import StringIO
+
+    # Create a string buffer and console to capture the table output
+    string_io = StringIO()
+    markdown_console = Console(file=string_io, width=120)
+    markdown_console.print(table)
+    table_output = string_io.getvalue()
+
+    # Generate timestamped filename with model name
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    # Sanitize model name for filename (remove special characters)
+    safe_model_name = "".join(c if c.isalnum() else "_" for c in model_name)
+    filename = f"eval_report_{safe_model_name}_{timestamp}.md"
+
+    # Create output path
+    if output_dir:
+        output_dir_path = Path(output_dir)
+        output_dir_path.mkdir(parents=True, exist_ok=True)
+        output_path = output_dir_path / filename
+    else:
+        output_path = Path(filename)
+
+    # Create markdown content with model name and proper formatting
+    markdown_content = f"""# Evaluation Report
+
+    ## Model: {model_name}
+    ## Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+    {table_output}
+    """
+
+    # Save to file
+    output_path.write_text(markdown_content, encoding="utf-8")
+
+    return output_path
+
+
 @click.command()
 @click.option(
     "--eval-cases",
@@ -282,7 +341,7 @@ def filter_cases_by_range(
 @click.option(
     "--metadata-json",
     "-m",
-    help="Path to metadata JSON file",
+    help="Path to metadata JSON file: used in system prompt",
     type=click.Path(exists=True, readable=True, file_okay=True, dir_okay=False),
     default=lambda: get_config().survey_metadata,
 )
@@ -469,9 +528,16 @@ def main(
         sql_query = sql_query.strip()
 
         logger.info(f"Generated SQL query: {sql_query}")
-        result_df = query_duckdb(database, sql_query)
-        result_str = result_df.to_csv(sep="|", index=False)
-        result = Result(sql_query=sql_query, result=result_str)
+        try:
+            result_df = query_duckdb(database, sql_query)
+            result_str = result_df.to_csv(sep="|", index=False)
+            result = Result(sql_query=sql_query, result=result_str)
+        except SQLParsingError as e:
+            logger.error(f"SQL parsing error during evaluation: {e}")
+            result = Result(sql_query=sql_query, result="SQL PARSING ERROR")
+        except SQLExecutionError as e:
+            logger.error(f"SQL execution error during evaluation: {e}")
+            result = Result(sql_query=sql_query, result="SQL EXECUTION ERROR")
         return result
 
     # Wrap query_generator to inject rate_limiter
@@ -484,13 +550,20 @@ def main(
     )
 
     logger.info("Evaluation completed. Report:")
-    report.print(
+    table = report.console_table(
         include_input=True,
         include_output=True,
         include_expected_output=True,
         include_durations=True,
         include_metadata=True,
     )
+
+    console = Console()
+    console.print(table)
+
+    # After creating and printing the table
+    output_path = export_report_to_markdown(report, table, model_name=model)
+    logger.info(f"Report saved to {output_path.resolve()}")
 
 
 if __name__ == "__main__":

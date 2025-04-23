@@ -26,7 +26,7 @@ This project uses a robust, config-driven pattern for all settings. All configur
 - `GZM_EVAL_DATASET` (default: `src/eval_dataset.json`)
 - `GZM_SQL_PROMPT_TEMPLATE` (default: `src/research/llm/prompts/sql_query_prompt.jinja2`)
 - `GZM_SPSS_SURVEY_METADATA` (default: `src/research/data_preprocessing/survey_metadata_spss.json`)
-- `GZM_SURVEY_METADATA` (default: `src/research/survey_metadata_queries.json`)
+- `GZM_SURVEY_METADATA` (default: `src/survey_metadata_queries.json`)
 - `GZM_DATA_DIR` (default: `data`)
 - `GZM_RATE_LIMIT` (default: `0`)
 - `GZM_MAX_CONCURRENCY` (default: `5`)
@@ -48,14 +48,14 @@ GEMINI_API_KEY=your_api_key_here
 GEMINI_MODEL=gemini-2.0-flash
 GZM_DATABASE=research.db
 LLM_TEMPERATURE=0.0
-LLM_MAX_TOKENS=1024
+LLM_MAX_TOKENS=2048
 GZM_EVAL_DATASET=src/eval_dataset.json
 GZM_RATE_LIMIT=0
 GZM_MAX_CONCURRENCY=5
 GZM_DATA_DIR=data
 GZM_SQL_PROMPT_TEMPLATE=src/research/llm/prompts/sql_query_prompt.jinja2
 GZM_SPSS_SURVEY_METADATA=src/research/data_preprocessing/survey_metadata_spss.json
-GZM_SURVEY_METADATA=src/research/survey_metadata_queries.json
+GZM_SURVEY_METADATA=src/survey_metadata_queries.json
 ```
 
 **Or using shell export:**

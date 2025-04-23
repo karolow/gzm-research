@@ -315,7 +315,48 @@ Calculates the percentage of women and men who participate in at least one cultu
 References the CTEs properly for the denominator calculations
 Returns a simple comparison between genders
 
-8. Specific instructions:
+8. GZM Administrative & Katowice Districts Summary:
+
+a.  **Województwo:** śląskie (GZM only).
+
+b.  **Subregiony GZM (subregion_metropolii_gzm):**
+    *   KATOWICE: Katowice city (uses dzielnice_katowic).
+    *   BYTOMSKI: Bytom city.
+    *   GLIWICKI: Gliwice city + pow. gliwicki.
+    *   KATOWICKI: Mysłowice, Ruda Śląska, Siemianowice Śląskie, Świętochłowice, Zabrze cities.
+    *   SOSNOWIECKI: Dąbrowa Górnicza, Sosnowiec cities + pow. będziński.
+    *   TYSKI: Tychy city + pow. bieruńsko-lędziński.
+    *   Inny: Outside GZM.
+
+c.  **Miasto/Powiat (miasto_powiat):**
+    *   Cities (county rights): Katowice (see Dzielnice), Bytom, Chorzów, Dąbrowa Górnicza, Gliwice, Mysłowice, Piekary Śląskie, Ruda Śląska, Siemianowice Śląskie, Sosnowiec, Świętochłowice, Tychy, Zabrze.
+    *   Counties (powiaty) & their Gminy (gmina_miejscowosc):
+        *   będziński: [Będzin, Bobrowniki, Czeladź, Mierzęcice, Psary, Siewierz, Sławków, Wojkowice]. (Będzin -> pow. będziński)
+        *   bieruńsko-lędziński: [Bieruń, Bojszowy, Chełm Śląski, Imielin, Lędziny].
+        *   gliwicki: [Gierałtowice, Knurów, Pilchowice, Pyskowice, Rudziniec, Sośnicowice].
+        *   mikołowski: [Łaziska Górne, Mikołów, Wyry]. (Mikołów -> pow. mikołowski)
+        *   pszczyński: [Kobiór]. (Pszczyna -> pow. pszczyński)
+        *   tarnogórski: [Ożarowice, Radzionków, Świerklaniec, Tarnowskie Góry, Zbrosławice]. (Tarnowskie Góry -> pow. tarnogórski)
+
+d.  **Dzielnice Katowic (dzielnica_katowic):**
+    *   List: Bogucice, Brynów Cz. Wsch.-Os. Zgrzebnioka, Dąb, Dąbrówka Mała, Giszowiec, Janów-Nikiszowiec, Kostuchna, Koszutka, Ligota-Panewniki, Murcki, Os. Paderewskiego-Muchowiec, Os. Tysiąclecia, Os. Witosa, Piotrowice-Ochojec, Podlesie, Śródmieście, Szopienice-Burowiec, Wełnowiec-Józefowiec, Załęska Hałda-Brynów Cz. Zach., Załęże, Zarzecze, Zawodzie.
+    *   Zespoły Dzielnic Katowic:
+        *   Śródmiejskie: Śródmieście, Os. Paderewskiego-Muchowiec, Koszutka, Bogucice.
+        *   Północne: Wełnowiec-Józefowiec, Dąb, Załęże, Os. Tysiąclecia, Os. Witosa.
+        *   Zachodnie: Załęska Hałda-Brynów, Ligota-Panewniki, Brynów-Os. Zgrzebnioka.
+        *   Wschodnie: Zawodzie, Dąbrówka Mała, Szopienice-Burowiec, Janów-Nikiszowiec, Giszowiec.
+        *   Południowe: Murcki, Piotrowice-Ochojec, Kostuchna, Zarzecze, Podlesie.
+
+e.  **User Term Mapping:**
+    *   (sub)region gzm/metropolii, rejon, część metropolii/gzm -> subregion_metropolii_gzm
+    *   miasta, ośrodki miejskie, powiaty metropolii/gzm -> miasto_powiat
+    *   miejscowości, małe miejscowości, gminy, wsie -> gmina_miejscowosc
+    *   Katowice differences/parts -> dzielnica_katowic (inc. zespoły)
+    *   Examples: "różnice Katowic" -> dzielnica_katowic; "mieszkańcy mniejszych miejscowości/wsi" -> gmina_miejscowosc; "uczestnicy wg miast", "mieszkańcy miast" -> miasto_powiat; "dzielnice śródmiejskie vs południowe" -> dzielnica_katowic (zespoły)
+
+f.  **Special:** Distinguish Subregions "KATOWICE" (city) and "KATOWICKI" (surrounding cities) if subregions are referenced.
+
+9. Specific instructions:
 
 - If a question has a yes/no answer (e.g. Kto chętniej korzysta z instagrama, mieszkańcy Bytomia czy Gliwic?), attach the calculated values, don't just return the bare answer (e.g. "Bytom" or "Gliwice").
 - For questions with 1–7 score, use 5–7 as the threshold for "yes" or "positive" and 1–3 for "no" or "negative".
