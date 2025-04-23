@@ -24,9 +24,9 @@ def load_json_file(file_path: str) -> Any:
         raise ValueError(f"Error loading JSON file {file_path}: {e}")
 
 
-def create_schema_representation(metadata: list[dict[str, Any]]) -> str:
-    """Create a compact SQL schema representation from metadata."""
-    schema_lines = ["CREATE TABLE SurveyResponses ("]
+def create_column_list(metadata: list[dict[str, Any]]) -> list[str]:
+    """Create a list of column names from metadata."""
+    columns: list[str] = []
 
     for item in metadata:
         # Skip items that don't have all required fields
@@ -35,62 +35,22 @@ def create_schema_representation(metadata: list[dict[str, Any]]) -> str:
         ):
             continue
 
-        name = item["semantic_name"]
-        data_type = item["data_type"]
-        description = item["description"]
+        name: str = item["semantic_name"]
+        columns.append(name)
 
-        # Map data types to SQL types
-        if data_type == "identifier":
-            sql_type = "BIGINT PRIMARY KEY"
-        elif data_type == "numeric" or data_type == "weight":
-            sql_type = "DOUBLE"
-        elif data_type == "boolean":
-            sql_type = "BOOLEAN"
-        else:  # text and other types
-            sql_type = "VARCHAR"
-
-        # Create compact comment with relevant metadata
-        comment_parts = [f"Type: {data_type}", f"Description: {description}"]
-
-        # Add possible values if available
-        if item.get("possible_values") and isinstance(item["possible_values"], list):
-            values = item["possible_values"]
-            possible_values = ", ".join(str(v) for v in values[:5])
-            if len(values) > 5:
-                possible_values += ", ..."
-            comment_parts.append(f"Possible Values: [{possible_values}]")
-
-        # Add hints if available
-        if (
-            item.get("hints")
-            and isinstance(item["hints"], list)
-            and len(item["hints"]) > 0
-        ):
-            hint_text = str(item["hints"][0])
-            comment_parts.append(f"Hints: {hint_text}")
-
-        comment = " ".join(comment_parts)
-
-        # Add the column definition
-        schema_lines.append(f"  {name} {sql_type}, -- {comment}")
-
-    # Remove trailing comma from the last column
-    if len(schema_lines) > 1:
-        schema_lines[-1] = schema_lines[-1].rstrip(",")
-
-    schema_lines.append(");")
-    return "\n".join(schema_lines)
+    return columns
 
 
 def create_fine_tuning_example(
-    question: str, schema: str, sql_query: str
+    question: str, columns: list[str], sql_query: str
 ) -> dict[str, str]:
     """Create a single fine-tuning example in the required format."""
+    column_list = ", ".join(columns)
+
     user_prompt = (
         "Translate the following natural language query to SQL based on the "
-        "provided database schema. Pay close attention to column comments for "
-        "descriptions, possible values, and hints.\n\n"
-        f"Schema:\n\n```sql\n{schema}\n```\n\n"
+        "provided column names.\n\n"
+        f"Available columns: {column_list}\n\n"
         f"Question: {question}\n\n"
         "Generate only the SQL query."
     )
@@ -159,19 +119,19 @@ def main() -> None:
         "--train-ratio",
         type=float,
         default=0.8,
-        help="Ratio of training data (default: 0.7)",
+        help="Ratio of training data (default: 0.8)",
     )
     parser.add_argument(
         "--val-ratio",
         type=float,
         default=0.1,
-        help="Ratio of validation data (default: 0.15)",
+        help="Ratio of validation data (default: 0.1)",
     )
     parser.add_argument(
         "--test-ratio",
         type=float,
         default=0.1,
-        help="Ratio of test data (default: 0.15)",
+        help="Ratio of test data (default: 0.1)",
     )
     parser.add_argument(
         "--seed",
@@ -189,8 +149,8 @@ def main() -> None:
     eval_dataset = load_json_file(args.eval_dataset)
     metadata = load_json_file(args.metadata)
 
-    # Create compact schema representation
-    schema = create_schema_representation(metadata)
+    # Create column list from metadata
+    columns = create_column_list(metadata)
 
     # Create fine-tuning examples
     examples: list[dict[str, str]] = []
@@ -202,7 +162,7 @@ def main() -> None:
         ):
             question = case["inputs"]
             sql_query = case["expected_output"]["sql_query"]
-            examples.append(create_fine_tuning_example(question, schema, sql_query))
+            examples.append(create_fine_tuning_example(question, columns, sql_query))
 
     # Split dataset
     train_set, val_set, test_set = split_dataset(
@@ -212,7 +172,7 @@ def main() -> None:
     # Save datasets
     output_dir = Path(args.output_dir)
     save_jsonl(train_set, str(output_dir / "train.jsonl"))
-    save_jsonl(val_set, str(output_dir / "validation.jsonl"))
+    save_jsonl(val_set, str(output_dir / "valid.jsonl"))
     save_jsonl(test_set, str(output_dir / "test.jsonl"))
 
     print("Generated datasets:")
