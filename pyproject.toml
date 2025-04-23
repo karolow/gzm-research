@@ -7,7 +7,6 @@ dependencies = [
     "duckdb>=1.2.2",
     "google-genai>=1.10.0",
     "jinja2>=3.1.6",
-    "openai>=1.75.0",
     "openpyxl>=3.1.5",
     "pandas>=2.2.3",
     "pydantic-ai-slim[groq,openai]>=0.1.2",
