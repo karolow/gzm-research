@@ -141,7 +141,7 @@
             "inputs": "Z jakich źródeł informacji o kulturze korzystają najczęściej osoby które jeżdżą na rowerze?",
             "expected_output": {
                 "sql_query": "WITH total AS (SELECT SUM(waga_proby) AS total_weight FROM participation_survey WHERE transport_wlasny_rower = TRUE) SELECT source, ROUND(SUM(CASE WHEN selected = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total_weight FROM total), 2) AS percentage FROM ( SELECT 'Prasa drukowana' AS source, informacja_prasa_drukowana AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Plakaty/ogłoszenia/reklamy' AS source, informacja_plakaty AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Lokalne portale/strony' AS source, informacja_portale_lokalne AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Ogólnopolskie portale/strony' AS source, informacja_portale_ogolnopolskie AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Profile instytucji w mediach społecznościowych' AS source, informacja_social_media_instytucje AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Profile twórców w mediach społecznościowych' AS source, informacja_social_media_tworcy AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Inne profile w mediach społecznościowych' AS source, informacja_social_media_inne AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Od znajomych/rodziny' AS source, informacja_znajomi_rodzina AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Radio' AS source, informacja_radio AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Telewizja' AS source, informacja_telewizja AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Strony internetowe instytucji kultury' AS source, informacja_strony_instytucji AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Ogólnotematyczne strony internetowe' AS source, informacja_strony_ogolne AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Inne źródła' AS source, informacja_inne_zrodla AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE UNION ALL SELECT 'Żadne z powyższych źródeł informacji' AS source, informacja_zadne_zrodla AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE ) subquery GROUP BY source ORDER BY percentage DESC;",
-                "result": "source|percentage\nOd znajomych/rodziny|47.34\nPlakaty/ogłoszenia/reklamy|39.74\nLokalne portale/strony|30.91\nTelewizja|24.63\nOgólnopolskie portale/strony|20.36\nProfile instytucji w mediach społecznościowych|20.26\nRadio|20.26\nŻadne z powyższych źródeł informacji|19.59\nProfile twórców w mediach społecznościowych|16.85\nStrony internetowe instytucji kultury|16.22\nInne profile w mediach społecznościowych|15.72\nPrasa drukowana|15.31\nOgólnotematyczne strony internetowe|10.27\nInne źródła|0.21"
+                "result": "source|percentage\nOd znajomych/rodziny|47.34\nPlakaty/ogłoszenia/reklamy|39.74\nLokalne portale/strony|30.91\nTelewizja|24.63\nOgólnopolskie portale/strony|20.36\nRadio|20.26\nProfile instytucji w mediach społecznościowych|20.26\nŻadne z powyższych źródeł informacji|19.59\nProfile twórców w mediach społecznościowych|16.85\nStrony internetowe instytucji kultury|16.22\nInne profile w mediach społecznościowych|15.72\nPrasa drukowana|15.31\nOgólnotematyczne strony internetowe|10.27\nInne źródła|0.21"
             },
             "metadata": {
                 "complexity": "high",
@@ -171,7 +171,7 @@
             "inputs": "Ile kobiet bez wykształcenia wyższego deklaruje że kultura jest dla wszystkich?",
             "expected_output": {
                 "sql_query": "SELECT plec, wyksztalcenie, ROUND(SUM(CASE WHEN opinia_kultura_dla_wszystkich IN ('5', '6', '7 w pełni sie zgadzam') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_kobiety_kultura_dla_wszystkich FROM participation_survey WHERE plec = 'Kobieta' AND wyksztalcenie != 'wyższe' GROUP BY plec, wyksztalcenie;",
-                "result": "plec|wyksztalcenie|procent_kobiety_kultura_dla_wszystkich\nKobieta|niższe niż średnie|58.02\nKobieta|średnie|69.34"
+                "result": "plec|wyksztalcenie|procent_kobiety_kultura_dla_wszystkich\nKobieta|średnie|69.34\nKobieta|niższe niż średnie|58.02"
             },
             "metadata": {
                 "complexity": "medium",
@@ -261,7 +261,7 @@
             "inputs": "Czy osoby pracujące w sektorze kultury częściej umniejszają rolę kultury w życiu społecznym i prywatnym?",
             "expected_output": {
                 "sql_query": "SELECT praca_w_sektorze_kultury, ROUND(SUM(CASE WHEN opinia_wazniejsze_rzeczy_niz_kultura IN ('5', '6', '7 w pełni sie zgadzam') OR opinia_kultura_dla_wszystkich IN ('1', '2', '3', '4') OR opinia_kultura_bycie_na_biezaco IN ('1', '2', '3', '4') OR opinia_kultura_relacje_miedzyludzkie IN ('1', '2', '3', '4') OR opinia_kultura_przezycia IN ('1', '2', '3', '4') OR opinia_kultura_nowe_miejsca IN ('1', '2', '3', '4') OR opinia_kultura_atrakcyjnosc_regionu IN ('1', '2', '3', '4') OR opinia_kultura_przynaleznosc IN ('1', '2', '3', '4') OR opinia_kultura_samorealizacja IN ('1', '2', '3', '4') OR opinia_kultura_sens_zycia IN ('1', '2', '3', '4') OR opinia_kultura_prestiz IN ('1', '2', '3', '4') OR opinia_kultura_przyjemnosc IN ('1', '2', '3', '4') OR opinia_kultura_ubozsze_zycie IN ('1', '2', '3', '4') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_negatywnych_opinii FROM participation_survey GROUP BY praca_w_sektorze_kultury;",
-                "result": "praca_w_sektorze_kultury|procent_negatywnych_opinii\nFalse|91.32\nTrue|81.54\n<NA>|91.16"
+                "result": "praca_w_sektorze_kultury|procent_negatywnych_opinii\nFalse|91.32\n<NA>|91.16\nTrue|81.54"
             },
             "metadata": {
                 "complexity": "medium",
@@ -366,7 +366,7 @@
             "inputs": "Czy osoby czerpiące informacje o kulturze z mediów społecznościowych (profile instytucji, twórców lub inne) wydają miesięcznie więcej na kulturę niż osoby niekorzystające z tych źródeł? Porównaj średnie wydatki (kwota).",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN informacja_social_media_instytucje = TRUE OR informacja_social_media_tworcy = TRUE OR informacja_social_media_inne = TRUE THEN 'Użytkownik Social Media (info kult.)' ELSE 'Nie używa Social Media do info kult.' END AS grupa_uzytkownikow, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki_na_kulture FROM participation_survey WHERE wydatki_na_kulture_kwota IS NOT NULL GROUP BY grupa_uzytkownikow;",
-                "result": "grupa_uzytkownikow|srednie_wydatki_na_kulture\nNie używa Social Media do info kult.|105.9\nUżytkownik Social Media (info kult.)|127.26"
+                "result": "grupa_uzytkownikow|srednie_wydatki_na_kulture\nUżytkownik Social Media (info kult.)|127.26\nNie używa Social Media do info kult.|105.9"
             },
             "metadata": {
                 "complexity": "high",
@@ -381,7 +381,7 @@
             "inputs": "Jakie bariery uczestnictwa w kulturze (procent wskazań dla każdej) są najczęściej wymieniane przez najmłodszą ('Mniej niż 30') i najstarszą ('60 i więcej') grupę wiekową?",
             "expected_output": {
                 "sql_query": "SELECT grupa_wiekowa, ROUND(SUM(CASE WHEN bariera_wysokie_ceny = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_ceny, ROUND(SUM(CASE WHEN bariera_dojazd = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_dojazd, ROUND(SUM(CASE WHEN bariera_nieatrakcyjna_oferta = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_oferta, ROUND(SUM(CASE WHEN bariera_brak_informacji = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_info, ROUND(SUM(CASE WHEN bariera_brak_czasu = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_czas, ROUND(SUM(CASE WHEN bariera_dostep_fizyczny = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_dostep_fizyczny, ROUND(SUM(CASE WHEN bariera_nieznajomosc_oferty = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_nieznajomosc FROM participation_survey WHERE grupa_wiekowa IN ('Mniej niż 30', '60 i więcej') GROUP BY grupa_wiekowa;",
-                "result": "grupa_wiekowa|procent_bariera_ceny|procent_bariera_dojazd|procent_bariera_oferta|procent_bariera_info|procent_bariera_czas|procent_bariera_dostep_fizyczny|procent_bariera_nieznajomosc\n60 i więcej|49.36|16.99|13.85|16.58|26.21|5.94|9.46\nMniej niż 30|41.56|16.78|17.65|14.96|45.08|3.4|5.34"
+                "result": "grupa_wiekowa|procent_bariera_ceny|procent_bariera_dojazd|procent_bariera_oferta|procent_bariera_info|procent_bariera_czas|procent_bariera_dostep_fizyczny|procent_bariera_nieznajomosc\nMniej niż 30|41.56|16.78|17.65|14.96|45.08|3.4|5.34\n60 i więcej|49.36|16.99|13.85|16.58|26.21|5.94|9.46"
             },
             "metadata": {
                 "complexity": "high",
@@ -426,7 +426,7 @@
             "inputs": "Jaki procent segmentów 'Zdobywcy Wiedzy' i 'Aspirujący Mainstream' zgadza się (ocena 5-7) ze stwierdzeniem 'Działalność kulturalna i artystyczna podnosi atrakcyjność mojego regionu'?",
             "expected_output": {
                 "sql_query": "SELECT segment_uczestnika, ROUND(SUM(CASE WHEN opinia_kultura_atrakcyjnosc_regionu IN ('5', '6', '7 w pełni sie zgadzam') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zgadzajacych_sie FROM participation_survey WHERE segment_uczestnika IN ('Zdobywcy Wiedzy', 'Aspirujący Mainstream') GROUP BY segment_uczestnika;",
-                "result": "segment_uczestnika|procent_zgadzajacych_sie\nAspirujący Mainstream|77.78\nZdobywcy Wiedzy|78.38"
+                "result": "segment_uczestnika|procent_zgadzajacych_sie\nZdobywcy Wiedzy|78.38\nAspirujący Mainstream|77.78"
             },
             "metadata": {
                 "complexity": "medium",
@@ -516,7 +516,7 @@
             "inputs": "Jaki odsetek osób pracujących wyłącznie zdalnie ('wyłącznie w domu | zdalnie') uczestniczy w kulturze wyłącznie w miejscu zamieszkania, w porównaniu do osób pracujących wyłącznie poza domem ('wyłącznie w miejscu pracy | poza domem')?",
             "expected_output": {
                 "sql_query": "SELECT miejsce_wykonywania_pracy, ROUND(SUM(CASE WHEN uczestnictwo_miejsce_zamieszkania = TRUE AND uczestnictwo_miejsce_pracy = FALSE AND uczestnictwo_inne_miejsce_gzm = FALSE AND uczestnictwo_poza_gzm = FALSE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_tylko_w_miejscu_zamieszkania FROM participation_survey WHERE miejsce_wykonywania_pracy IN ('wyłącznie w domu | zdalnie', 'wyłącznie w miejscu pracy | poza domem') GROUP BY miejsce_wykonywania_pracy;",
-                "result": "miejsce_wykonywania_pracy|procent_tylko_w_miejscu_zamieszkania\nwyłącznie w domu | zdalnie|28.32\nwyłącznie w miejscu pracy | poza domem|40.35"
+                "result": "miejsce_wykonywania_pracy|procent_tylko_w_miejscu_zamieszkania\nwyłącznie w miejscu pracy | poza domem|40.35\nwyłącznie w domu | zdalnie|28.32"
             },
             "metadata": {
                 "complexity": "high",
@@ -531,7 +531,7 @@
             "inputs": "Jaka jest średnia ocena dostępu do kultury w GZM (skala 1-7) wśród osób oceniających swoją wiedzę o ofercie kulturalnej jako niską (1-3) w porównaniu do osób oceniających ją jako wysoką (5-7)?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN wiedza_o_ofercie_kulturalnej_gzm IN ('1 bardzo niska', '2', '3') THEN 'Niska wiedza (1-3)' WHEN wiedza_o_ofercie_kulturalnej_gzm IN ('5', '6', '7 bardzo wysoka') THEN 'Wysoka wiedza (5-7)' ELSE 'Średnia/brak oceny' END AS poziom_wiedzy, ROUND(SUM(CASE WHEN ocena_dostepu_do_kultury_gzm = '1 całkowicie niewystarczający' THEN 1 WHEN ocena_dostepu_do_kultury_gzm = '2' THEN 2 WHEN ocena_dostepu_do_kultury_gzm = '3' THEN 3 WHEN ocena_dostepu_do_kultury_gzm = '4' THEN 4 WHEN ocena_dostepu_do_kultury_gzm = '5' THEN 5 WHEN ocena_dostepu_do_kultury_gzm = '6' THEN 6 WHEN ocena_dostepu_do_kultury_gzm = '7 w pełni wystarczający' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_dostepu FROM participation_survey WHERE wiedza_o_ofercie_kulturalnej_gzm IS NOT NULL AND ocena_dostepu_do_kultury_gzm IS NOT NULL GROUP BY poziom_wiedzy HAVING poziom_wiedzy IN ('Niska wiedza (1-3)', 'Wysoka wiedza (5-7)');",
-                "result": "poziom_wiedzy|srednia_ocena_dostepu\nWysoka wiedza (5-7)|5.37\nNiska wiedza (1-3)|4.04"
+                "result": "poziom_wiedzy|srednia_ocena_dostepu\nNiska wiedza (1-3)|4.04\nWysoka wiedza (5-7)|5.37"
             },
             "metadata": {
                 "complexity": "high",
@@ -606,7 +606,7 @@
             "inputs": "Czy osoby, które uważają, że kultura jest dla wszystkich, częściej odwiedzają teatry niż osoby, które się z tym nie zgadzają?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN opinia_kultura_dla_wszystkich IN ('5', '6', '7 w pełni sie zgadzam') THEN 'Zgadza się (Kultura dla wszystkich)' WHEN opinia_kultura_dla_wszystkich IN ('1 zupełnie się nie zgadzam', '2', '3') THEN 'Nie zgadza się (Kultura dla wszystkich)' ELSE 'Neutralny/Brak opinii' END AS opinia_status, ROUND(SUM(CASE WHEN czestotliwosc_teatr = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_odwiedzajacych_teatr_rocznie FROM participation_survey WHERE opinia_kultura_dla_wszystkich IS NOT NULL AND czestotliwosc_teatr IS NOT NULL GROUP BY opinia_status HAVING opinia_status != 'Neutralny/Brak opinii';",
-                "result": "opinia_status|procent_odwiedzajacych_teatr_rocznie\nNie zgadza się (Kultura dla wszystkich)|7.76\nZgadza się (Kultura dla wszystkich)|17.06"
+                "result": "opinia_status|procent_odwiedzajacych_teatr_rocznie\nZgadza się (Kultura dla wszystkich)|17.06\nNie zgadza się (Kultura dla wszystkich)|7.76"
             },
             "metadata": {
                 "complexity": "medium",
@@ -666,7 +666,7 @@
             "inputs": "Wśród osób z wykształceniem wyższym, jaki procent tych, którzy pracują w miejscu zamieszkania, odwiedziło muzeum w ciągu ostatnich 12 miesięcy, w porównaniu do tych, którzy pracują poza miejscem zamieszkania?",
             "expected_output": {
                 "sql_query": "SELECT praca_w_miejscu_zamieszkania, ROUND(SUM(CASE WHEN czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_odwiedzajacych_muzeum_rocznie FROM participation_survey WHERE wyksztalcenie = 'wyższe' AND praca_w_miejscu_zamieszkania IS NOT NULL AND czestotliwosc_muzeum IS NOT NULL GROUP BY praca_w_miejscu_zamieszkania;",
-                "result": "praca_w_miejscu_zamieszkania|procent_odwiedzajacych_muzeum_rocznie\npoza miejscowością zamieszkania|41.9\nw miejscowości zamieszkania|35.78"
+                "result": "praca_w_miejscu_zamieszkania|procent_odwiedzajacych_muzeum_rocznie\nw miejscowości zamieszkania|35.78\npoza miejscowością zamieszkania|41.9"
             },
             "metadata": {
                 "complexity": "medium",
@@ -741,7 +741,7 @@
             "inputs": "Czy osoby, które w ciągu ostatnich 6 miesięcy były w filharmonii lub operze, częściej zgadzają się ze stwierdzeniem, że uczestnictwo w kulturze daje poczucie prestiżu (ocena 5-7)?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN ostatnio_filharmonia = TRUE THEN 'Był(a) w filharmonii/operze (ost. 6 msc)' ELSE 'Nie był(a) w filharmonii/operze (ost. 6 msc)' END AS status_wizyty, ROUND(SUM(CASE WHEN opinia_kultura_prestiz IN ('5', '6', '7 w pełni sie zgadzam') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zgody_prestiz FROM participation_survey WHERE ostatnio_filharmonia IS NOT NULL AND opinia_kultura_prestiz IS NOT NULL GROUP BY status_wizyty;",
-                "result": "status_wizyty|procent_zgody_prestiz\nNie był(a) w filharmonii/operze (ost. 6 msc)|43.43\nBył(a) w filharmonii/operze (ost. 6 msc)|65.82"
+                "result": "status_wizyty|procent_zgody_prestiz\nBył(a) w filharmonii/operze (ost. 6 msc)|65.82\nNie był(a) w filharmonii/operze (ost. 6 msc)|43.43"
             },
             "metadata": {
                 "complexity": "medium",
@@ -1056,7 +1056,7 @@
             "inputs": "Porównaj odsetek osób, które w ciągu ostatnich 6 miesięcy odwiedziły park rozrywki, między mieszkańcami subregionu tyskiego a katowickiego.",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN subregion_metropolii_gzm IN ('KATOWICE', 'KATOWICKI') THEN 'Katowicki (łącznie z Katowicami)' WHEN subregion_metropolii_gzm = 'TYSKI' THEN 'Tyski' ELSE subregion_metropolii_gzm END AS subregion_grupa, ROUND(SUM(CASE WHEN ostatnio_park_rozrywki = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_odwiedzajacych_park_rozrywki FROM participation_survey WHERE subregion_metropolii_gzm IN ('TYSKI', 'KATOWICE', 'KATOWICKI') GROUP BY subregion_grupa;",
-                "result": "subregion_grupa|procent_odwiedzajacych_park_rozrywki\nKatowicki (łącznie z Katowicami)|33.68\nTyski|33.14"
+                "result": "subregion_grupa|procent_odwiedzajacych_park_rozrywki\nTyski|33.14\nKatowicki (łącznie z Katowicami)|33.68"
             },
             "metadata": {
                 "complexity": "medium",
@@ -1236,7 +1236,7 @@
             "inputs": "Jakie wydarzenia kulturalne najchętniej odwiedzają mieszkańcy dzielnic o charakterze poprzemysłowym w Katowicach (w tym Murcki) w porównaniu do pozostałych dzielnic?",
             "expected_output": {
                 "sql_query": "WITH KatowiceDzielnice AS ( SELECT id_uczestnika, waga_proby, dzielnica_katowic, ostatnio_teatr, ostatnio_koncert, ostatnio_muzeum, ostatnio_piknik, ostatnio_kino, CASE WHEN dzielnica_katowic IN ('Szopienice-Burowiec', 'Wełnowiec-Józefowiec', 'Załęże', 'Dąb', 'Janów - Nikiszowiec', 'Dąbrówka Mała', 'Bogucice', 'Zawodzie', 'Załęska Hałda - Brynów Część Zachodnia', 'Murcki') THEN 'Poprzemysłowe' WHEN dzielnica_katowic IN ('Osiedle Tysiąclecia', 'Osiedle Witosa', 'Kostuchna', 'Ligota-Panewniki', 'Piotrowice - Ochojec', 'Podlesie', 'Giszowiec', 'Koszutka', 'Śródmieście', 'Brynów Część Wschodnia - Os. Zgrzebnioka', 'Os. Paderewskiego - Muchowiec', 'Zarzecze') THEN 'Pozostałe' ELSE NULL END AS typ_dzielnicy FROM participation_survey WHERE dzielnica_katowic IS NOT NULL ) SELECT typ_dzielnicy, ROUND(SUM(CASE WHEN ostatnio_teatr = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS teatr, ROUND(SUM(CASE WHEN ostatnio_koncert = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS koncerty, ROUND(SUM(CASE WHEN ostatnio_muzeum = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS muzea, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS pikniki, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS kino FROM KatowiceDzielnice WHERE typ_dzielnicy IN ('Poprzemysłowe', 'Pozostałe') GROUP BY typ_dzielnicy;",
-                "result": "typ_dzielnicy|teatr|koncerty|muzea|pikniki|kino\nPozostałe|14.55|17.75|12.78|55.9|66.43\nPoprzemysłowe|6.15|11.04|6.01|45.1|56.68"
+                "result": "typ_dzielnicy|teatr|koncerty|muzea|pikniki|kino\nPoprzemysłowe|6.15|11.04|6.01|45.1|56.68\nPozostałe|14.55|17.75|12.78|55.9|66.43"
             },
             "metadata": {
                 "complexity": "high",
@@ -1296,7 +1296,7 @@
             "inputs": "Czy mieszkańcy Sosnowca inaczej definiują kulturę niż mieszkańcy Bytomia?",
             "expected_output": {
                 "sql_query": "SELECT miasto_powiat, definicja_kultury_kategoria, ROUND(SUM(waga_proby) * 100.0 / SUM(SUM(waga_proby)) OVER (PARTITION BY miasto_powiat), 2) AS procent_w_miescie FROM participation_survey WHERE miasto_powiat IN ('Sosnowiec', 'Bytom') AND definicja_kultury_kategoria IS NOT NULL AND definicja_kultury_kategoria NOT IN ('Nie wiem, trudno powiedzieć') GROUP BY miasto_powiat, definicja_kultury_kategoria ORDER BY miasto_powiat, procent_w_miescie DESC;",
-                "result": "miasto_powiat|definicja_kultury_kategoria|procent_w_miescie\nBytom|Wszystkim/całość/wiele znaczeń|19.67\nBytom|Kultura osobista/zachowanie ludzi/zachowanie w stosunku do innych ludzi/tolerancja|16.8\nBytom|Sztuka/artyzm/wyrażanie siebie|15.54\nBytom|Dziedzictwo/historia/narodowość/regionalność/tożsamość|6.42\nBytom|Muzyka|5.13\nBytom|Aktywność/udział w kulturze/spotkania/wolny czas|5.07\nBytom|Wydarzenia/występy/wystawy/koncerty|4.44\nBytom|Inne|4.05\nBytom|Rozrywka/relaksem|3.18\nBytom|Sposób bycia|3.02\nBytom|Obyczaje/tradycja/zwyczaje|2.96\nBytom|Społeczność/cechy społeczne/otoczenie/więzi|2.33\nBytom|Czymś wpływającym/pozytywnym/potrzebnym/ubogacającym|1.72\nBytom|Duchowość/religia/wartości niematerialne|1.7\nBytom|Dobra materialne|1.67\nBytom|Poznawanie/zwiedzanie/edukacja/wiedza|1.26\nBytom|Zasady/wartości/moralność|1.26\nBytom|Literatura|1.05\nBytom|Kino/film/TV|0.85\nBytom|Język|0.63\nBytom|Teatr/opera/muzeum|0.63\nBytom|Ubiór/wygląd|0.42\nBytom|Obrazy/rzeźby|0.2\nSosnowiec|Kultura osobista/zachowanie ludzi/zachowanie w stosunku do innych ludzi/tolerancja|31.27\nSosnowiec|Wszystkim/całość/wiele znaczeń|14.21\nSosnowiec|Sztuka/artyzm/wyrażanie siebie|11.45\nSosnowiec|Kino/film/TV|6.6\nSosnowiec|Dziedzictwo/historia/narodowość/regionalność/tożsamość|6.0\nSosnowiec|Wydarzenia/występy/wystawy/koncerty|4.02\nSosnowiec|Teatr/opera/muzeum|3.56\nSosnowiec|Czymś wpływającym/pozytywnym/potrzebnym/ubogacającym|3.48\nSosnowiec|Aktywność/udział w kulturze/spotkania/wolny czas|2.77\nSosnowiec|Inne|2.49\nSosnowiec|Poznawanie/zwiedzanie/edukacja/wiedza|2.11\nSosnowiec|Duchowość/religia/wartości niematerialne|1.89\nSosnowiec|Rozrywka/relaksem|1.62\nSosnowiec|Obyczaje/tradycja/zwyczaje|1.62\nSosnowiec|Zasady/wartości/moralność|1.62\nSosnowiec|Dobra materialne|1.56\nSosnowiec|Sposób bycia|1.18\nSosnowiec|Społeczność/cechy społeczne/otoczenie/więzi|0.93\nSosnowiec|Muzyka|0.71\nSosnowiec|Literatura|0.68\nSosnowiec|Ubiór/wygląd|0.25"
+                "result": "miasto_powiat|definicja_kultury_kategoria|procent_w_miescie\nBytom|Wszystkim/całość/wiele znaczeń|19.67\nBytom|Kultura osobista/zachowanie ludzi/zachowanie w stosunku do innych ludzi/tolerancja|16.8\nBytom|Sztuka/artyzm/wyrażanie siebie|15.54\nBytom|Dziedzictwo/historia/narodowość/regionalność/tożsamość|6.42\nBytom|Muzyka|5.13\nBytom|Aktywność/udział w kulturze/spotkania/wolny czas|5.07\nBytom|Wydarzenia/występy/wystawy/koncerty|4.44\nBytom|Inne|4.05\nBytom|Rozrywka/relaksem|3.18\nBytom|Sposób bycia|3.02\nBytom|Obyczaje/tradycja/zwyczaje|2.96\nBytom|Społeczność/cechy społeczne/otoczenie/więzi|2.33\nBytom|Czymś wpływającym/pozytywnym/potrzebnym/ubogacającym|1.72\nBytom|Duchowość/religia/wartości niematerialne|1.7\nBytom|Dobra materialne|1.67\nBytom|Zasady/wartości/moralność|1.26\nBytom|Poznawanie/zwiedzanie/edukacja/wiedza|1.26\nBytom|Literatura|1.05\nBytom|Kino/film/TV|0.85\nBytom|Teatr/opera/muzeum|0.63\nBytom|Język|0.63\nBytom|Ubiór/wygląd|0.42\nBytom|Obrazy/rzeźby|0.2\nSosnowiec|Kultura osobista/zachowanie ludzi/zachowanie w stosunku do innych ludzi/tolerancja|31.27\nSosnowiec|Wszystkim/całość/wiele znaczeń|14.21\nSosnowiec|Sztuka/artyzm/wyrażanie siebie|11.45\nSosnowiec|Kino/film/TV|6.6\nSosnowiec|Dziedzictwo/historia/narodowość/regionalność/tożsamość|6.0\nSosnowiec|Wydarzenia/występy/wystawy/koncerty|4.02\nSosnowiec|Teatr/opera/muzeum|3.56\nSosnowiec|Czymś wpływającym/pozytywnym/potrzebnym/ubogacającym|3.48\nSosnowiec|Aktywność/udział w kulturze/spotkania/wolny czas|2.77\nSosnowiec|Inne|2.49\nSosnowiec|Poznawanie/zwiedzanie/edukacja/wiedza|2.11\nSosnowiec|Duchowość/religia/wartości niematerialne|1.89\nSosnowiec|Obyczaje/tradycja/zwyczaje|1.62\nSosnowiec|Rozrywka/relaksem|1.62\nSosnowiec|Zasady/wartości/moralność|1.62\nSosnowiec|Dobra materialne|1.56\nSosnowiec|Sposób bycia|1.18\nSosnowiec|Społeczność/cechy społeczne/otoczenie/więzi|0.93\nSosnowiec|Muzyka|0.71\nSosnowiec|Literatura|0.68\nSosnowiec|Ubiór/wygląd|0.25"
             },
             "metadata": {
                 "complexity": "high",
@@ -1401,7 +1401,7 @@
             "inputs": "Czy rodziny z dziećmi mieszkające na peryferiach GZM częściej napotykają bariery w dostępie do kultury związane z dojazdem niż rodziny z centrum?",
             "expected_output": {
                 "sql_query": "WITH LocationCategories AS (SELECT id_uczestnika, waga_proby, bariera_dojazd, CASE WHEN miasto_powiat IN ('Katowice', 'Bytom', 'Chorzów', 'Siemianowice Śląskie', 'Świętochłowice', 'Ruda Śląska', 'Zabrze', 'Gliwice', 'Sosnowiec') THEN 'Centrum GZM' ELSE 'Peryferia GZM' END AS lokalizacja FROM participation_survey WHERE opieka_nad_dzieckiem = TRUE) SELECT lokalizacja, ROUND(SUM(CASE WHEN bariera_dojazd = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_dojazdu FROM LocationCategories GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_bariera_dojazdu\nCentrum GZM|15.84\nPeryferia GZM|10.3"
+                "result": "lokalizacja|procent_bariera_dojazdu\nPeryferia GZM|10.3\nCentrum GZM|15.84"
             },
             "metadata": {
                 "complexity": "high",
@@ -1416,7 +1416,7 @@
             "inputs": "Czy seniorzy z Katowic mają inne preferencje dotyczące aktywności kulturalnych niż seniorzy z Gliwic?",
             "expected_output": {
                 "sql_query": "SELECT miasto_powiat, ROUND(SUM(CASE WHEN ostatnio_teatr = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS teatr, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS kino, ROUND(SUM(CASE WHEN ostatnio_muzeum = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS muzeum, ROUND(SUM(CASE WHEN ostatnio_koncert = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS koncert, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS piknik FROM participation_survey WHERE miasto_powiat IN ('Katowice', 'Gliwice') AND grupa_wiekowa = '60 i więcej' GROUP BY miasto_powiat;",
-                "result": "miasto_powiat|teatr|kino|muzeum|koncert|piknik\nKatowice|10.19|40.33|8.27|13.52|50.88\nGliwice|11.4|28.25|3.84|12.89|40.15"
+                "result": "miasto_powiat|teatr|kino|muzeum|koncert|piknik\nGliwice|11.4|28.25|3.84|12.89|40.15\nKatowice|10.19|40.33|8.27|13.52|50.88"
             },
             "metadata": {
                 "complexity": "medium",
@@ -1536,7 +1536,7 @@
             "inputs": "Czy istnieje różnica między mieszkańcami Katowic i Gliwic w tym, jak postrzegają wpływ kultury na relacje międzyludzkie?",
             "expected_output": {
                 "sql_query": "SELECT miasto_powiat, ROUND(SUM(CASE WHEN opinia_kultura_relacje_miedzyludzkie IN ('5', '6', '7 w pełni sie zgadzam') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_pozytywne_relacje FROM participation_survey WHERE miasto_powiat IN ('Katowice', 'Gliwice') GROUP BY miasto_powiat;",
-                "result": "miasto_powiat|procent_pozytywne_relacje\nKatowice|61.5\nGliwice|68.02"
+                "result": "miasto_powiat|procent_pozytywne_relacje\nGliwice|68.02\nKatowice|61.5"
             },
             "metadata": {
                 "complexity": "medium",
@@ -1596,7 +1596,7 @@
             "inputs": "Czy w Rudzie Śląskiej i Świętochłowicach istnieją różnice pokoleniowe w sposobach korzystania z kultury?",
             "expected_output": {
                 "sql_query": "SELECT miasto_powiat, CASE WHEN grupa_wiekowa IN ('Mniej niż 30', '30-39') THEN 'Młodsze pokolenia' WHEN grupa_wiekowa IN ('50-59', '60 i więcej') THEN 'Starsze pokolenia' ELSE 'Średnie pokolenie' END AS grupa_pokoleniowa, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS kino, ROUND(SUM(CASE WHEN kultura_domowa_internet = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS internet, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS piknik, ROUND(SUM(CASE WHEN kultura_domowa_ksiazki = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS ksiazki FROM participation_survey WHERE miasto_powiat IN ('Ruda Śląska', 'Świętochłowice') AND grupa_wiekowa IS NOT NULL GROUP BY miasto_powiat, grupa_pokoleniowa HAVING grupa_pokoleniowa IN ('Młodsze pokolenia', 'Starsze pokolenia');",
-                "result": "miasto_powiat|grupa_pokoleniowa|kino|internet|piknik|ksiazki\nRuda Śląska|Młodsze pokolenia|65.5|20.32|27.33|37.97\nŚwiętochłowice|Młodsze pokolenia|48.31|19.07|38.71|31.71\nŚwiętochłowice|Starsze pokolenia|27.36|10.38|16.98|17.22\nRuda Śląska|Starsze pokolenia|31.51|21.81|31.65|31.39"
+                "result": "miasto_powiat|grupa_pokoleniowa|kino|internet|piknik|ksiazki\nRuda Śląska|Młodsze pokolenia|65.5|20.32|27.33|37.97\nRuda Śląska|Starsze pokolenia|31.51|21.81|31.65|31.39\nŚwiętochłowice|Młodsze pokolenia|48.31|19.07|38.71|31.71\nŚwiętochłowice|Starsze pokolenia|27.36|10.38|16.98|17.22"
             },
             "metadata": {
                 "complexity": "high",
@@ -1611,7 +1611,7 @@
             "inputs": "Czy mieszkańcy miast na prawach powiatu częściej uczestniczą w kulturze niż mieszkańcy pozostałych obszarów GZM?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat IN ('Bytom', 'Chorzów', 'Dąbrowa Górnicza', 'Gliwice', 'Katowice', 'Mysłowice', 'Piekary Śląskie', 'Ruda Śląska', 'Siemianowice Śląskie', 'Sosnowiec', 'Świętochłowice', 'Tychy', 'Zabrze') THEN 'Miasta na prawach powiatu' ELSE 'Pozostałe obszary GZM' END AS typ_jednostki, ROUND(SUM(CASE WHEN (ostatnio_teatr = TRUE OR ostatnio_koncert = TRUE OR ostatnio_muzeum = TRUE OR ostatnio_kino = TRUE OR ostatnio_piknik = TRUE OR ostatnio_dom_kultury = TRUE) THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_uczestnictwa FROM participation_survey GROUP BY typ_jednostki;",
-                "result": "typ_jednostki|procent_uczestnictwa\nPozostałe obszary GZM|67.41\nMiasta na prawach powiatu|73.81"
+                "result": "typ_jednostki|procent_uczestnictwa\nMiasta na prawach powiatu|73.81\nPozostałe obszary GZM|67.41"
             },
             "metadata": {
                 "complexity": "medium",
@@ -1671,7 +1671,7 @@
             "inputs": "Czy wykształcenie ma większy wpływ na uczestnictwo w kulturze wysokiej w Katowicach czy w Gliwicach? (Porównaj różnicę w % uczestnictwa między osobami z wykształceniem wyższym a niższym niż średnie)",
             "expected_output": {
                 "sql_query": "WITH CultureByEducation AS ( SELECT miasto_powiat, wyksztalcenie, SUM(CASE WHEN czestotliwosc_filharmonia = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' OR czestotliwosc_galeria_sztuki = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' OR czestotliwosc_teatr = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby) AS procent_kultura_wysoka FROM participation_survey WHERE miasto_powiat IN ('Katowice', 'Gliwice') AND wyksztalcenie IN ('wyższe', 'niższe niż średnie') GROUP BY miasto_powiat, wyksztalcenie ) SELECT miasto_powiat, ROUND(MAX(CASE WHEN wyksztalcenie = 'wyższe' THEN procent_kultura_wysoka ELSE NULL END) - MAX(CASE WHEN wyksztalcenie = 'niższe niż średnie' THEN procent_kultura_wysoka ELSE NULL END), 2) AS roznica_wplywu_wyksztalcenia FROM CultureByEducation GROUP BY miasto_powiat;",
-                "result": "miasto_powiat|roznica_wplywu_wyksztalcenia\nGliwice|29.07\nKatowice|38.82"
+                "result": "miasto_powiat|roznica_wplywu_wyksztalcenia\nKatowice|38.82\nGliwice|29.07"
             },
             "metadata": {
                 "complexity": "high",
@@ -1701,7 +1701,7 @@
             "inputs": "Czy mieszkańcy Chorzowa częściej odwiedzają zoo i parki rozrywki niż mieszkańcy innych miast metropolii?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Chorzów' THEN 'Chorzów' ELSE 'Inne miasta' END AS miasto, ROUND(SUM(CASE WHEN ostatnio_zoo = TRUE OR czestotliwosc_zoo = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' OR ostatnio_park_rozrywki = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zoo_parki FROM participation_survey GROUP BY miasto;",
-                "result": "miasto|procent_zoo_parki\nChorzów|77.18\nInne miasta|46.52"
+                "result": "miasto|procent_zoo_parki\nInne miasta|46.52\nChorzów|77.18"
             },
             "metadata": {
                 "complexity": "medium",
@@ -1881,7 +1881,7 @@
             "inputs": "Czy osoby pracujące w sektorze kultury w Mysłowicach częściej uważają, że ich praca jest częścią kultury, niż osoby z sektora kultury w Siemianowicach Śląskich?",
             "expected_output": {
                 "sql_query": "SELECT miasto_powiat, ROUND(SUM(CASE WHEN praca_w_sektorze_kultury = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_praca_w_kulturze FROM participation_survey WHERE miasto_powiat IN ('Mysłowice', 'Siemianowice Śląskie') AND praca_w_sektorze_kultury IS NOT NULL GROUP BY miasto_powiat;",
-                "result": "miasto_powiat|procent_praca_w_kulturze\nMysłowice|0.89\nSiemianowice Śląskie|2.4"
+                "result": "miasto_powiat|procent_praca_w_kulturze\nSiemianowice Śląskie|2.4\nMysłowice|0.89"
             },
             "metadata": {
                 "complexity": "medium",
@@ -2391,7 +2391,7 @@
             "inputs": "Czy mieszkańcy gminy Gierałtowice częściej niż mieszkańcy gminy Pilchowice odwiedzają miejsca kultury w Gliwicach?",
             "expected_output": {
                 "sql_query": "SELECT gmina_miejscowosc, ROUND(SUM(CASE WHEN miejsce_kultury_gliwice = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_odwiedza_gliwice FROM participation_survey WHERE miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc IN ('Gierałtowice', 'Pilchowice') GROUP BY gmina_miejscowosc;",
-                "result": "gmina_miejscowosc|procent_odwiedza_gliwice\nGierałtowice|73.88\nPilchowice|40.14"
+                "result": "gmina_miejscowosc|procent_odwiedza_gliwice\nPilchowice|40.14\nGierałtowice|73.88"
             },
             "metadata": {
                 "complexity": "medium",
@@ -2421,7 +2421,7 @@
             "inputs": "Jak różni się średnia ocena (1-7) 'kultura jest dla wszystkich' między mężczyznami i kobietami w Chorzowie?",
             "expected_output": {
                 "sql_query": "SELECT plec, ROUND(SUM(CASE WHEN opinia_kultura_dla_wszystkich = '1 zupełnie się nie zgadzam' THEN 1 WHEN opinia_kultura_dla_wszystkich = '2' THEN 2 WHEN opinia_kultura_dla_wszystkich = '3' THEN 3 WHEN opinia_kultura_dla_wszystkich = '4' THEN 4 WHEN opinia_kultura_dla_wszystkich = '5' THEN 5 WHEN opinia_kultura_dla_wszystkich = '6' THEN 6 WHEN opinia_kultura_dla_wszystkich = '7 w pełni sie zgadzam' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_dla_wszystkich FROM participation_survey WHERE miasto_powiat = 'Chorzów' AND plec IN ('Kobieta', 'Mężczyzna') AND opinia_kultura_dla_wszystkich IS NOT NULL GROUP BY plec;",
-                "result": "plec|srednia_ocena_dla_wszystkich\nKobieta|5.01\nMężczyzna|4.6"
+                "result": "plec|srednia_ocena_dla_wszystkich\nMężczyzna|4.6\nKobieta|5.01"
             },
             "metadata": {
                 "complexity": "medium",
@@ -2481,7 +2481,7 @@
             "inputs": "Czy osoby z segmentu 'Wycofani' częściej niż osoby z segmentu 'Przymusowi Domatorzy' uważają, że w kulturze poruszane są mało istotne dla nich tematy (ocena 5-7)?",
             "expected_output": {
                 "sql_query": "SELECT segment_uczestnika, ROUND(SUM(CASE WHEN opinia_kultura_nieistotne_tematy IN ('5', '6', '7 w pełni sie zgadzam') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zgody_nieistotne FROM participation_survey WHERE segment_uczestnika IN ('Wycofani', 'Przymusowi Domatorzy') GROUP BY segment_uczestnika;",
-                "result": "segment_uczestnika|procent_zgody_nieistotne\nWycofani|29.98\nPrzymusowi Domatorzy|31.1"
+                "result": "segment_uczestnika|procent_zgody_nieistotne\nPrzymusowi Domatorzy|31.1\nWycofani|29.98"
             },
             "metadata": {
                 "complexity": "medium",
@@ -2526,7 +2526,7 @@
             "inputs": "Jaki procent mieszkańców Katowic i Gliwic uważa, że patriotyzm to część kultury?",
             "expected_output": {
                 "sql_query": "SELECT miasto_powiat, ROUND(SUM(CASE WHEN kultura_patriotyzm = 'Tak' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_patriotyzm_kultura FROM participation_survey WHERE miasto_powiat IN ('Katowice', 'Gliwice') GROUP BY miasto_powiat;",
-                "result": "miasto_powiat|procent_patriotyzm_kultura\nKatowice|69.0\nGliwice|79.32"
+                "result": "miasto_powiat|procent_patriotyzm_kultura\nGliwice|79.32\nKatowice|69.0"
             },
             "metadata": {
                 "complexity": "medium",
@@ -2541,7 +2541,7 @@
             "inputs": "Czy osoby, które aktywnie tworzą (np. malują, grają muzykę), częściej deklarują 'brak czasu' jako barierę niż osoby nietworzące?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN tworczosc_gra_na_instrumencie = TRUE OR tworczosc_pisanie_tekstow = TRUE OR tworczosc_fotografia = TRUE OR tworczosc_rysowanie_malowanie = TRUE OR tworczosc_szycie_haftowanie = TRUE OR tworczosc_spiew = TRUE OR tworczosc_komponowanie = TRUE OR tworczosc_inna = TRUE THEN 'Aktywny twórczo' ELSE 'Nieaktywny twórczo' END AS status_tworczosci, ROUND(SUM(CASE WHEN bariera_brak_czasu = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_czas FROM participation_survey GROUP BY status_tworczosci;",
-                "result": "status_tworczosci|procent_bariera_czas\nAktywny twórczo|37.6\nNieaktywny twórczo|40.62"
+                "result": "status_tworczosci|procent_bariera_czas\nNieaktywny twórczo|40.62\nAktywny twórczo|37.6"
             },
             "metadata": {
                 "complexity": "medium",
@@ -2571,7 +2571,7 @@
             "inputs": "Czy mieszkańcy gminy Siewierz częściej niż mieszkańcy gminy Czeladź odwiedzili ostatnio (6 msc) bibliotekę?",
             "expected_output": {
                 "sql_query": "SELECT gmina_miejscowosc, ROUND(SUM(CASE WHEN ostatnio_biblioteka = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_biblioteka_6msc FROM participation_survey WHERE miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc IN ('Siewierz', 'Czeladź') GROUP BY gmina_miejscowosc;",
-                "result": "gmina_miejscowosc|procent_biblioteka_6msc\nSiewierz|3.96\nCzeladź|20.93"
+                "result": "gmina_miejscowosc|procent_biblioteka_6msc\nCzeladź|20.93\nSiewierz|3.96"
             },
             "metadata": {
                 "complexity": "medium",
@@ -2916,7 +2916,7 @@
             "inputs": "Porównaj odsetek osób w wieku poniżej 30 lat i 60+ lat, które uważają, że 'to, jak traktujemy inne narody' jest częścią kultury.",
             "expected_output": {
                 "sql_query": "SELECT grupa_wiekowa, ROUND(SUM(CASE WHEN kultura_traktowanie_narodow = 'Tak' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_traktowanie_kultura FROM participation_survey WHERE grupa_wiekowa IN ('Mniej niż 30', '60 i więcej') GROUP BY grupa_wiekowa;",
-                "result": "grupa_wiekowa|procent_traktowanie_kultura\n60 i więcej|84.58\nMniej niż 30|85.21"
+                "result": "grupa_wiekowa|procent_traktowanie_kultura\nMniej niż 30|85.21\n60 i więcej|84.58"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3006,7 +3006,7 @@
             "inputs": "Czy osoby, które uważają, że kultura daje poczucie przynależności (ocena 6-7), częściej uczestniczą w wydarzeniach regionalnych?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN opinia_kultura_przynaleznosc IN ('6', '7 w pełni sie zgadzam') THEN 'Zgadza się (Przynależność)' ELSE 'Nie zgadza się / Mniej (1-5)' END AS opinia_przynaleznosc, ROUND(SUM(CASE WHEN wydarzenie_regionalne = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_wyd_regionalne FROM participation_survey WHERE opinia_kultura_przynaleznosc IS NOT NULL GROUP BY opinia_przynaleznosc;",
-                "result": "opinia_przynaleznosc|procent_wyd_regionalne\nNie zgadza się / Mniej (1-5)|23.09\nZgadza się (Przynależność)|32.05"
+                "result": "opinia_przynaleznosc|procent_wyd_regionalne\nZgadza się (Przynależność)|32.05\nNie zgadza się / Mniej (1-5)|23.09"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3081,7 +3081,7 @@
             "inputs": "Porównaj odsetek osób, które jako pierwsze skojarzenie z miejscami GZM podają 'Teatr', między mieszkańcami subregionu tyskiego i gliwickiego.",
             "expected_output": {
                 "sql_query": "SELECT subregion_metropolii_gzm, ROUND(SUM(CASE WHEN skojarzenia_miejsca_gzm_1_kategoria = 'teatr' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_skojarzenie_teatr FROM participation_survey WHERE subregion_metropolii_gzm IN ('TYSKI', 'GLIWICKI') GROUP BY subregion_metropolii_gzm;",
-                "result": "subregion_metropolii_gzm|procent_skojarzenie_teatr\nGLIWICKI|3.66\nTYSKI|3.15"
+                "result": "subregion_metropolii_gzm|procent_skojarzenie_teatr\nTYSKI|3.15\nGLIWICKI|3.66"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3186,7 +3186,7 @@
             "inputs": "Porównaj odsetek osób, które odwiedziły ostatnio (6 msc) zoo, między mieszkańcami zespołu dzielnic północnych i południowych Katowic.",
             "expected_output": {
                 "sql_query": "WITH KatowiceZones AS ( SELECT ostatnio_zoo, waga_proby, CASE WHEN dzielnica_katowic IN ('Załęże', 'Osiedle Witosa', 'Osiedle Tysiąclecia', 'Dąb', 'Wełnowiec-Józefowiec') THEN 'Zespół dzielnic północnych' WHEN dzielnica_katowic IN ('Murcki', 'Piotrowice - Ochojec', 'Zarzecze', 'Kostuchna', 'Podlesie') THEN 'Zespół dzielnic południowych' ELSE 'Inne Zespoły' END AS zona_dzielnic FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic IS NOT NULL ) SELECT zona_dzielnic, ROUND(SUM(CASE WHEN ostatnio_zoo = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zoo_6msc FROM KatowiceZones WHERE zona_dzielnic IN ('Zespół dzielnic północnych', 'Zespół dzielnic południowych') GROUP BY zona_dzielnic;",
-                "result": "zona_dzielnic|procent_zoo_6msc\nZespół dzielnic północnych|34.12\nZespół dzielnic południowych|26.81"
+                "result": "zona_dzielnic|procent_zoo_6msc\nZespół dzielnic południowych|26.81\nZespół dzielnic północnych|34.12"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3201,7 +3201,7 @@
             "inputs": "Czy mieszkańcy gminy Mierzęcice częściej niż mieszkańcy gminy Psary odwiedzają kina?",
             "expected_output": {
                 "sql_query": "SELECT gmina_miejscowosc, ROUND(SUM(CASE WHEN czestotliwosc_kino = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_kino_rocznie FROM participation_survey WHERE miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc IN ('Mierzęcice', 'Psary') GROUP BY gmina_miejscowosc;",
-                "result": "gmina_miejscowosc|procent_kino_rocznie\nMierzęcice|78.39\nPsary|39.12"
+                "result": "gmina_miejscowosc|procent_kino_rocznie\nPsary|39.12\nMierzęcice|78.39"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3471,7 +3471,7 @@
             "inputs": "Porównaj średnie miesięczne wydatki na kulturę między mężczyznami i kobietami w subregionie bytomskim.",
             "expected_output": {
                 "sql_query": "SELECT plec, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE subregion_metropolii_gzm = 'BYTOMSKI' AND plec IN ('Kobieta', 'Mężczyzna') AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY plec;",
-                "result": "plec|srednie_wydatki\nKobieta|111.91\nMężczyzna|107.73"
+                "result": "plec|srednie_wydatki\nMężczyzna|107.73\nKobieta|111.91"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3486,7 +3486,7 @@
             "inputs": "Czy osoby, które często odwiedzają rekonstrukcje historyczne (rocznie), częściej uważają patriotyzm za część kultury?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN czestotliwosc_rekonstrukcja_historyczna = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN 'Uczestnik rekonstrukcji (rocznie)' ELSE 'Nieuczestniczący (rocznie)' END AS status_rekonstrukcji, ROUND(SUM(CASE WHEN kultura_patriotyzm = 'Tak' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_patriotyzm_kultura FROM participation_survey WHERE czestotliwosc_rekonstrukcja_historyczna IS NOT NULL GROUP BY status_rekonstrukcji;",
-                "result": "status_rekonstrukcji|procent_patriotyzm_kultura\nNieuczestniczący (rocznie)|73.99\nUczestnik rekonstrukcji (rocznie)|76.87"
+                "result": "status_rekonstrukcji|procent_patriotyzm_kultura\nUczestnik rekonstrukcji (rocznie)|76.87\nNieuczestniczący (rocznie)|73.99"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3561,7 +3561,7 @@
             "inputs": "Czy osoby, które deklarują, że najlepszy czas wolny pozwala im stworzyć coś własnymi rękoma ('zdecydowanie tak'), częściej odwiedzają domy kultury (rocznie)?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN wolny_czas_definicja_rekodzielo = 'zdecydowanie tak' THEN 'Zdecydowanie rękodzieło' ELSE 'Mniej niż zdecydowanie' END AS priorytet_rekodzielo, ROUND(SUM(CASE WHEN czestotliwosc_dom_kultury = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_dom_kultury_rocznie FROM participation_survey WHERE wolny_czas_definicja_rekodzielo IS NOT NULL GROUP BY priorytet_rekodzielo;",
-                "result": "priorytet_rekodzielo|procent_dom_kultury_rocznie\nMniej niż zdecydowanie|19.84\nZdecydowanie rękodzieło|26.44"
+                "result": "priorytet_rekodzielo|procent_dom_kultury_rocznie\nZdecydowanie rękodzieło|26.44\nMniej niż zdecydowanie|19.84"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3711,7 +3711,7 @@
             "inputs": "Czy osoby w wieku 60+ częściej korzystają z wydarzeń kulturalnych online niż osoby w wieku 18-29 lat?",
             "expected_output": {
                 "sql_query": "SELECT grupa_wiekowa, ROUND(SUM(CASE WHEN cyfrowa_kultura_wydarzenia_online = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_wydarzenia_online FROM participation_survey WHERE grupa_wiekowa IN ('Mniej niż 30', '60 i więcej') GROUP BY grupa_wiekowa;",
-                "result": "grupa_wiekowa|procent_wydarzenia_online\n60 i więcej|11.45\nMniej niż 30|13.34"
+                "result": "grupa_wiekowa|procent_wydarzenia_online\nMniej niż 30|13.34\n60 i więcej|11.45"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3756,7 +3756,7 @@
             "inputs": "Czy średnie miesięczne wydatki na kulturę są wyższe w zespole dzielnic śródmiejskich Katowic niż w zespole dzielnic południowych?",
             "expected_output": {
                 "sql_query": "WITH KatowiceZones AS ( SELECT wydatki_na_kulture_kwota, waga_proby, CASE WHEN dzielnica_katowic IN ('Śródmieście', 'Os. Paderewskiego - Muchowiec', 'Koszutka', 'Bogucice') THEN 'Zespół dzielnic śródmiejskich' WHEN dzielnica_katowic IN ('Murcki', 'Piotrowice - Ochojec', 'Zarzecze', 'Kostuchna', 'Podlesie') THEN 'Zespół dzielnic południowych' ELSE 'Inne Zespoły' END AS zona_dzielnic FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic IS NOT NULL AND wydatki_na_kulture_kwota IS NOT NULL ) SELECT zona_dzielnic, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_miesieczne_wydatki FROM KatowiceZones WHERE zona_dzielnic IN ('Zespół dzielnic śródmiejskich', 'Zespół dzielnic południowych') GROUP BY zona_dzielnic;",
-                "result": "zona_dzielnic|srednie_miesieczne_wydatki\nZespół dzielnic południowych|115.11\nZespół dzielnic śródmiejskich|126.73"
+                "result": "zona_dzielnic|srednie_miesieczne_wydatki\nZespół dzielnic śródmiejskich|126.73\nZespół dzielnic południowych|115.11"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3801,7 +3801,7 @@
             "inputs": "Jaki procent mieszkańców subregionu gliwickiego i tyskiego był ostatnio w kinie?",
             "expected_output": {
                 "sql_query": "SELECT subregion_metropolii_gzm, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_kino FROM participation_survey WHERE subregion_metropolii_gzm IN ('GLIWICKI', 'TYSKI') GROUP BY subregion_metropolii_gzm;",
-                "result": "subregion_metropolii_gzm|procent_ostatnio_kino\nTYSKI|56.39\nGLIWICKI|49.68"
+                "result": "subregion_metropolii_gzm|procent_ostatnio_kino\nGLIWICKI|49.68\nTYSKI|56.39"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3831,7 +3831,7 @@
             "inputs": "Jaki procent mieszkańców Chorzowa i Zabrza był ostatnio w teatrze?",
             "expected_output": {
                 "sql_query": "SELECT miasto_powiat, ROUND(SUM(CASE WHEN ostatnio_teatr = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_teatr FROM participation_survey WHERE miasto_powiat IN ('Chorzów', 'Zabrze') GROUP BY miasto_powiat;",
-                "result": "miasto_powiat|procent_ostatnio_teatr\nChorzów|9.82\nZabrze|8.41"
+                "result": "miasto_powiat|procent_ostatnio_teatr\nZabrze|8.41\nChorzów|9.82"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3876,7 +3876,7 @@
             "inputs": "Porównaj odsetek osób, które ostatnio były na koncercie, między mieszkańcami Giszowca i Osiedla Tysiąclecia w Katowicach.",
             "expected_output": {
                 "sql_query": "SELECT dzielnica_katowic, ROUND(SUM(CASE WHEN ostatnio_koncert = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_koncert FROM participation_survey WHERE dzielnica_katowic IN ('Giszowiec', 'Osiedle Tysiąclecia') GROUP BY dzielnica_katowic;",
-                "result": "dzielnica_katowic|procent_ostatnio_koncert\nOsiedle Tysiąclecia|11.9\nGiszowiec|15.0"
+                "result": "dzielnica_katowic|procent_ostatnio_koncert\nGiszowiec|15.0\nOsiedle Tysiąclecia|11.9"
             },
             "metadata": {
                 "complexity": "medium",
@@ -3951,7 +3951,7 @@
             "inputs": "Jaki procent mieszkańców Śródmieścia Katowic i reszty Katowic był ostatnio w teatrze?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN dzielnica_katowic = 'Śródmieście' THEN 'Śródmieście' ELSE 'Reszta Katowic' END AS obszar, ROUND(SUM(CASE WHEN ostatnio_teatr = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_teatr FROM participation_survey WHERE miasto_powiat = 'Katowice' GROUP BY obszar;",
-                "result": "obszar|procent_ostatnio_teatr\nReszta Katowic|10.97\nŚródmieście|16.83"
+                "result": "obszar|procent_ostatnio_teatr\nŚródmieście|16.83\nReszta Katowic|10.97"
             },
             "metadata": {
                 "complexity": "medium",
@@ -4071,7 +4071,7 @@
             "inputs": "Jaki procent mieszkańców Koszutki i Wełnowca-Józefowca (Katowice) zgadza się (ocena 5-7), że działalność kulturalna podnosi atrakcyjność regionu?",
             "expected_output": {
                 "sql_query": "SELECT dzielnica_katowic, ROUND(SUM(CASE WHEN opinia_kultura_atrakcyjnosc_regionu IN ('5', '6', '7 w pełni sie zgadzam') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zgody_atrakcyjnosc_regionu FROM participation_survey WHERE dzielnica_katowic IN ('Koszutka', 'Wełnowiec-Józefowiec') GROUP BY dzielnica_katowic;",
-                "result": "dzielnica_katowic|procent_zgody_atrakcyjnosc_regionu\nKoszutka|51.23\nWełnowiec-Józefowiec|70.83"
+                "result": "dzielnica_katowic|procent_zgody_atrakcyjnosc_regionu\nWełnowiec-Józefowiec|70.83\nKoszutka|51.23"
             },
             "metadata": {
                 "complexity": "medium",
@@ -4086,7 +4086,7 @@
             "inputs": "Porównaj odsetek osób zgadzających się (ocena 5-7), że dzięki kulturze można nawiązywać relacje, między zespołem dzielnic śródmiejskich i północnych Katowic.",
             "expected_output": {
                 "sql_query": "WITH KatowiceZones AS ( SELECT opinia_kultura_relacje_miedzyludzkie, waga_proby, CASE WHEN dzielnica_katowic IN ('Śródmieście', 'Os. Paderewskiego - Muchowiec', 'Koszutka', 'Bogucice') THEN 'Zespół dzielnic śródmiejskich' WHEN dzielnica_katowic IN ('Wełnowiec-Józefowiec', 'Dąb', 'Załęże', 'Osiedle Tysiąclecia', 'Osiedle Witosa') THEN 'Zespół dzielnic północnych' ELSE 'Inne Zespoły' END AS zona_dzielnic FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic IS NOT NULL ) SELECT zona_dzielnic, ROUND(SUM(CASE WHEN opinia_kultura_relacje_miedzyludzkie IN ('5', '6', '7 w pełni sie zgadzam') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zgody_kultura_relacje FROM KatowiceZones WHERE zona_dzielnic IN ('Zespół dzielnic śródmiejskich', 'Zespół dzielnic północnych') GROUP BY zona_dzielnic;",
-                "result": "zona_dzielnic|procent_zgody_kultura_relacje\nZespół dzielnic północnych|61.16\nZespół dzielnic śródmiejskich|61.78"
+                "result": "zona_dzielnic|procent_zgody_kultura_relacje\nZespół dzielnic śródmiejskich|61.78\nZespół dzielnic północnych|61.16"
             },
             "metadata": {
                 "complexity": "high",
@@ -4116,7 +4116,7 @@
             "inputs": "Porównaj odsetek osób, które ostatnio były w kinie, między mieszkańcami katowickiej dzielnicy Piotrowice-Ochojec a mieszkańcami Mikołowa.",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN dzielnica_katowic = 'Piotrowice - Ochojec' THEN 'Piotrowice-Ochojec (Dzielnica KTW)' WHEN miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Mikołów' THEN 'Mikołów (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_kino FROM participation_survey WHERE (dzielnica_katowic = 'Piotrowice - Ochojec') OR (miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Mikołów') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_ostatnio_kino\nMikołów (Gmina)|65.94\nPiotrowice-Ochojec (Dzielnica KTW)|59.45"
+                "result": "lokalizacja|procent_ostatnio_kino\nPiotrowice-Ochojec (Dzielnica KTW)|59.45\nMikołów (Gmina)|65.94"
             },
             "metadata": {
                 "complexity": "high",
@@ -4536,7 +4536,7 @@
             "inputs": "Porównaj odsetek osób, które jako źródło informacji o kulturze wskazują plakaty, między mieszkańcami mniejszych miejscowości Ożarowice i Zbrosławice.",
             "expected_output": {
                 "sql_query": "SELECT gmina_miejscowosc, ROUND(SUM(CASE WHEN informacja_plakaty = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_info_plakaty FROM participation_survey WHERE miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc IN ('Ożarowice', 'Zbrosławice') GROUP BY gmina_miejscowosc;",
-                "result": "gmina_miejscowosc|procent_info_plakaty\nOżarowice|85.95\nZbrosławice|28.84"
+                "result": "gmina_miejscowosc|procent_info_plakaty\nZbrosławice|28.84\nOżarowice|85.95"
             },
             "metadata": {
                 "complexity": "medium",
@@ -4551,7 +4551,7 @@
             "inputs": "Jaki procent mieszkańców gminy Chełm Śląski i gminy Bojszowy uważa, że gry komputerowe to kultura?",
             "expected_output": {
                 "sql_query": "SELECT gmina_miejscowosc, ROUND(SUM(CASE WHEN kultura_gry_komputerowe = 'Tak' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_gry_kultura FROM participation_survey WHERE miasto_powiat = 'Powiat bieruńsko-lędziński' AND gmina_miejscowosc IN ('Chełm Śląski', 'Bojszowy') GROUP BY gmina_miejscowosc;",
-                "result": "gmina_miejscowosc|procent_gry_kultura\nBojszowy|58.24\nChełm Śląski|73.59"
+                "result": "gmina_miejscowosc|procent_gry_kultura\nChełm Śląski|73.59\nBojszowy|58.24"
             },
             "metadata": {
                 "complexity": "medium",
@@ -4566,7 +4566,7 @@
             "inputs": "Porównaj średnie miesięczne wydatki na kulturę między mieszkańcami Bytomia a mieszkańcami mniejszych miejscowości o charakterze wiejskim z GZM.",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Bytom' THEN 'Bytom (Miasto)' WHEN gmina_miejscowosc IN ('Bobrowniki', 'Mierzęcice', 'Psary', 'Chełm Śląski', 'Gierałtowice', 'Pilchowice', 'Rudziniec', 'Wyry', 'Kobiór', 'Ożarowice', 'Zbrosławice') THEN 'Miejscowości i wsie' END AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE (miasto_powiat = 'Bytom') OR (gmina_miejscowosc IN ('Bobrowniki', 'Mierzęcice', 'Psary', 'Chełm Śląski', 'Gierałtowice', 'Pilchowice', 'Rudziniec', 'Wyry', 'Kobiór', 'Ożarowice', 'Zbrosławice')) AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY lokalizacja;",
-                "result": "lokalizacja|srednie_wydatki\nBytom (Miasto)|118.96\nMiejscowości i wsie|96.1"
+                "result": "lokalizacja|srednie_wydatki\nMiejscowości i wsie|96.1\nBytom (Miasto)|118.96"
             },
             "metadata": {
                 "complexity": "high",
@@ -4611,7 +4611,7 @@
             "inputs": "Jaki procent mieszkańców gminy Pilchowice i gminy Zbrosławice wskazuje 'problemy z dojazdem' jako barierę?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Pilchowice' THEN 'Pilchowice (Gmina)' WHEN miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Zbrosławice' THEN 'Zbrosławice (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN bariera_dojazd = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_dojazd FROM participation_survey WHERE (miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Pilchowice') OR (miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Zbrosławice') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_bariera_dojazd\nPilchowice (Gmina)|0.0\nZbrosławice (Gmina)|2.15"
+                "result": "lokalizacja|procent_bariera_dojazd\nZbrosławice (Gmina)|2.15\nPilchowice (Gmina)|0.0"
             },
             "metadata": {
                 "complexity": "high",
@@ -4716,7 +4716,7 @@
             "inputs": "Porównaj odsetek osób, które odwiedzają kino przynajmniej raz na 3 lata, między mieszkańcami gminy Pilchowice a mieszkańcami gminy Wyry (pow. mikołowski).",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Pilchowice' THEN 'Pilchowice (Gmina)' WHEN miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry' THEN 'Wyry (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN czestotliwosc_kino IN ('Przynajmniej raz w ciągu ostatnich 12 miesięcy', 'Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_kino_3lata FROM participation_survey WHERE (miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Pilchowice') OR (miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_kino_3lata\nPilchowice (Gmina)|64.49\nWyry (Gmina)|48.1"
+                "result": "lokalizacja|procent_kino_3lata\nWyry (Gmina)|48.1\nPilchowice (Gmina)|64.49"
             },
             "metadata": {
                 "complexity": "high",
@@ -4761,7 +4761,7 @@
             "inputs": "Jaki procent mieszkańców gminy Psary i gminy Kobiór wskazuje 'brak czasu' jako barierę?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Psary' THEN 'Psary (Gmina)' WHEN miasto_powiat = 'Powiat pszczyński' AND gmina_miejscowosc = 'Kobiór' THEN 'Kobiór (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN bariera_brak_czasu = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_czas FROM participation_survey WHERE (miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Psary') OR (miasto_powiat = 'Powiat pszczyński' AND gmina_miejscowosc = 'Kobiór') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_bariera_czas\nPsary (Gmina)|65.22\nKobiór (Gmina)|28.07"
+                "result": "lokalizacja|procent_bariera_czas\nKobiór (Gmina)|28.07\nPsary (Gmina)|65.22"
             },
             "metadata": {
                 "complexity": "high",
@@ -4806,7 +4806,7 @@
             "inputs": "Porównaj średnią ocenę (1-7) stwierdzenia 'Działalność kulturalna jest dla wszystkich' między mieszkańcami gminy Wyry a mieszkańcami gminy Gierałtowice.",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry' THEN 'Wyry (Gmina)' WHEN miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Gierałtowice' THEN 'Gierałtowice (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN opinia_kultura_dla_wszystkich = '1 zupełnie się nie zgadzam' THEN 1 WHEN opinia_kultura_dla_wszystkich = '2' THEN 2 WHEN opinia_kultura_dla_wszystkich = '3' THEN 3 WHEN opinia_kultura_dla_wszystkich = '4' THEN 4 WHEN opinia_kultura_dla_wszystkich = '5' THEN 5 WHEN opinia_kultura_dla_wszystkich = '6' THEN 6 WHEN opinia_kultura_dla_wszystkich = '7 w pełni sie zgadzam' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_dla_wszystkich FROM participation_survey WHERE ((miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry') OR (miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Gierałtowice')) AND opinia_kultura_dla_wszystkich IS NOT NULL GROUP BY lokalizacja;",
-                "result": "lokalizacja|srednia_ocena_dla_wszystkich\nGierałtowice (Gmina)|5.73\nWyry (Gmina)|5.87"
+                "result": "lokalizacja|srednia_ocena_dla_wszystkich\nWyry (Gmina)|5.87\nGierałtowice (Gmina)|5.73"
             },
             "metadata": {
                 "complexity": "high",
@@ -4866,7 +4866,7 @@
             "inputs": "Porównaj średnie miesięczne wydatki na kulturę między mieszkańcami gminy Rudziniec a mieszkańcami gminy Ożarowice (pow. tarnogórski).",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Rudziniec' THEN 'Rudziniec (Gmina)' WHEN miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Ożarowice' THEN 'Ożarowice (Gmina)' END AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE ((miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Rudziniec') OR (miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Ożarowice')) AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY lokalizacja;",
-                "result": "lokalizacja|srednie_wydatki\nOżarowice (Gmina)|48.92\nRudziniec (Gmina)|99.01"
+                "result": "lokalizacja|srednie_wydatki\nRudziniec (Gmina)|99.01\nOżarowice (Gmina)|48.92"
             },
             "metadata": {
                 "complexity": "high",
@@ -4881,7 +4881,7 @@
             "inputs": "Jaki procent mieszkańców gminy Wyry i gminy Zbrosławice wskazuje 'brak oferty lokalnej' jako barierę?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry' THEN 'Wyry (Gmina)' WHEN miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Zbrosławice' THEN 'Zbrosławice (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN bariera_brak_oferty_lokalnej = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_lokalna FROM participation_survey WHERE (miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry') OR (miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Zbrosławice') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_bariera_lokalna\nWyry (Gmina)|0.0\nZbrosławice (Gmina)|8.9"
+                "result": "lokalizacja|procent_bariera_lokalna\nZbrosławice (Gmina)|8.9\nWyry (Gmina)|0.0"
             },
             "metadata": {
                 "complexity": "high",
@@ -4941,7 +4941,7 @@
             "inputs": "Jaki procent mieszkańców Psar i Ożarowic wskazuje 'mało atrakcyjną ofertę' jako barierę?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Psary' THEN 'Psary (Gmina)' WHEN miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Ożarowice' THEN 'Ożarowice (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN bariera_nieatrakcyjna_oferta = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_oferta FROM participation_survey WHERE (miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Psary') OR (miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Ożarowice') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_bariera_oferta\nOżarowice (Gmina)|20.78\nPsary (Gmina)|26.08"
+                "result": "lokalizacja|procent_bariera_oferta\nPsary (Gmina)|26.08\nOżarowice (Gmina)|20.78"
             },
             "metadata": {
                 "complexity": "high",
@@ -4956,7 +4956,7 @@
             "inputs": "Porównaj odsetek osób, które odwiedzają teatry przynajmniej raz na 3 lata, między mieszkańcami gminy Chełm Śląski a mieszkańcami gminy Rudziniec (pow. gliwicki).",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat bieruńsko-lędziński' AND gmina_miejscowosc = 'Chełm Śląski' THEN 'Chełm Śląski (Gmina)' WHEN miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Rudziniec' THEN 'Rudziniec (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN czestotliwosc_teatr IN ('Przynajmniej raz w ciągu ostatnich 12 miesięcy', 'Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat') THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_teatr_3lata FROM participation_survey WHERE (miasto_powiat = 'Powiat bieruńsko-lędziński' AND gmina_miejscowosc = 'Chełm Śląski') OR (miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Rudziniec') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_teatr_3lata\nChełm Śląski (Gmina)|26.26\nRudziniec (Gmina)|16.04"
+                "result": "lokalizacja|procent_teatr_3lata\nRudziniec (Gmina)|16.04\nChełm Śląski (Gmina)|26.26"
             },
             "metadata": {
                 "complexity": "high",
@@ -5001,7 +5001,7 @@
             "inputs": "Jaki procent mieszkańców gminy Rudziniec i gminy Wyry jako źródło informacji o kulturze wskazuje radio?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Rudziniec' THEN 'Rudziniec (Gmina)' WHEN miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry' THEN 'Wyry (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN informacja_radio = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_info_radio FROM participation_survey WHERE (miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Rudziniec') OR (miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_info_radio\nWyry (Gmina)|20.89\nRudziniec (Gmina)|8.47"
+                "result": "lokalizacja|procent_info_radio\nRudziniec (Gmina)|8.47\nWyry (Gmina)|20.89"
             },
             "metadata": {
                 "complexity": "high",
@@ -5061,7 +5061,7 @@
             "inputs": "Jaki procent mieszkańców gminy Wyry i gminy Psary wskazuje 'niewystarczającą ilość informacji' jako barierę?",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry' THEN 'Wyry (Gmina)' WHEN miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Psary' THEN 'Psary (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN bariera_brak_informacji = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_bariera_info FROM participation_survey WHERE (miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Wyry') OR (miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Psary') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_bariera_info\nWyry (Gmina)|17.73\nPsary (Gmina)|13.04"
+                "result": "lokalizacja|procent_bariera_info\nPsary (Gmina)|13.04\nWyry (Gmina)|17.73"
             },
             "metadata": {
                 "complexity": "high",
@@ -5076,7 +5076,7 @@
             "inputs": "Porównaj odsetek osób, które oglądają nagrania sztuk teatralnych przynajmniej raz w roku, między mieszkańcami gminy Gierałtowice a mieszkańcami gminy Chełm Śląski (pow. bieruńsko-lędziński).",
             "expected_output": {
                 "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Gierałtowice' THEN 'Gierałtowice (Gmina)' WHEN miasto_powiat = 'Powiat bieruńsko-lędziński' AND gmina_miejscowosc = 'Chełm Śląski' THEN 'Chełm Śląski (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN czestotliwosc_nagrania_teatralne = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_nagrania_rocznie FROM participation_survey WHERE (miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Gierałtowice') OR (miasto_powiat = 'Powiat bieruńsko-lędziński' AND gmina_miejscowosc = 'Chełm Śląski') GROUP BY lokalizacja;",
-                "result": "lokalizacja|procent_nagrania_rocznie\nGierałtowice (Gmina)|24.63\nChełm Śląski (Gmina)|5.34"
+                "result": "lokalizacja|procent_nagrania_rocznie\nChełm Śląski (Gmina)|5.34\nGierałtowice (Gmina)|24.63"
             },
             "metadata": {
                 "complexity": "high",
@@ -5181,7 +5181,7 @@
             "inputs": "W jakich aktywnościach w domach kultury najczęściej uczestniczą mieszkańcy Sosnowca (którzy odwiedzili dom kultury)?",
             "expected_output": {
                 "sql_query": "WITH total_weight_target AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Sosnowiec' AND ostatnio_dom_kultury = TRUE) SELECT activity, ROUND(SUM(CASE WHEN selected = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM total_weight_target), 2) AS percentage FROM ( SELECT 'Spotkanie z artystą' AS activity, dom_kultury_spotkanie_z_artysta AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Sosnowiec' AND ostatnio_dom_kultury = TRUE UNION ALL SELECT 'Odczyt / prelekcja' AS activity, dom_kultury_prelekcja AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Sosnowiec' AND ostatnio_dom_kultury = TRUE UNION ALL SELECT 'Pokaz filmu' AS activity, dom_kultury_film AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Sosnowiec' AND ostatnio_dom_kultury = TRUE UNION ALL SELECT 'Przedstawienie teatralne' AS activity, dom_kultury_teatr AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Sosnowiec' AND ostatnio_dom_kultury = TRUE UNION ALL SELECT 'Koncert' AS activity, dom_kultury_koncert AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Sosnowiec' AND ostatnio_dom_kultury = TRUE UNION ALL SELECT 'Wystawa' AS activity, dom_kultury_wystawa AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Sosnowiec' AND ostatnio_dom_kultury = TRUE UNION ALL SELECT 'Inne' AS activity, dom_kultury_inne AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Sosnowiec' AND ostatnio_dom_kultury = TRUE ) subquery WHERE selected = TRUE GROUP BY activity ORDER BY percentage DESC;",
-                "result": "activity|percentage\nKoncert|23.36\nPrzedstawienie teatralne|15.88\nWystawa|14.96\nSpotkanie z artystą|7.48\nInne|7.48\nPokaz filmu|7.48"
+                "result": "activity|percentage\nKoncert|23.36\nPrzedstawienie teatralne|15.88\nWystawa|14.96\nInne|7.48\nSpotkanie z artystą|7.48\nPokaz filmu|7.48"
             },
             "metadata": {
                 "complexity": "high",
@@ -5246,6 +5246,756 @@
             "metadata": {
                 "complexity": "high",
                 "ambiguity_note": "Uses UNION ALL for creative activities (`tworczosc_*` columns) for frequent concert attendees. Calculates percentage based on the total weight of that specific group."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "351",
+            "inputs": "Jaki procent segmentu 'Konsumenci Kultury Instytucjonalnej' odwiedził zarówno teatr, jak i muzeum w ciągu ostatniego roku?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN czestotliwosc_teatr = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' AND czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_teatr_i_muzeum_rocznie FROM participation_survey WHERE segment_uczestnika = 'Konsumenci Kultury Instytucjonalnej';",
+                "result": "procent_teatr_i_muzeum_rocznie\n65.18"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Calculates the percentage of the specific segment meeting BOTH conditions annually, using correct weighting."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "352",
+            "inputs": "Jak różnią się średnie wydatki na kulturę między respondentami z wykształceniem wyższym a tymi z wykształceniem średnim?",
+            "expected_output": {
+                "sql_query": "SELECT wyksztalcenie, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE wyksztalcenie IN ('wyższe', 'średnie') AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY wyksztalcenie;",
+                "result": "wyksztalcenie|srednie_wydatki\nśrednie|114.76\nwyższe|133.5"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Compares weighted average spending between two education levels."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "353",
+            "inputs": "Jakie platformy cyfrowe (YouTube, FB, Instagram) są najczęściej używane do celów kulturalnych przez osoby w wieku 30-39 lat?",
+            "expected_output": {
+                "sql_query": "WITH total_weight_target AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE grupa_wiekowa = '30-39') SELECT platform, ROUND(SUM(CASE WHEN selected = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM total_weight_target), 2) AS percentage FROM ( SELECT 'YouTube' AS platform, kultura_online_youtube AS selected, waga_proby FROM participation_survey WHERE grupa_wiekowa = '30-39' UNION ALL SELECT 'Facebook' AS platform, kultura_online_facebook AS selected, waga_proby FROM participation_survey WHERE grupa_wiekowa = '30-39' UNION ALL SELECT 'Instagram' AS platform, kultura_online_instagram AS selected, waga_proby FROM participation_survey WHERE grupa_wiekowa = '30-39' ) subquery WHERE selected = TRUE GROUP BY platform ORDER BY percentage DESC;",
+                "result": "platform|percentage\nFacebook|26.9\nYouTube|25.63\nInstagram|12.22"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Rewritten using UNION ALL to show independent usage percentage for each specified platform within the 30-39 age group."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "354",
+            "inputs": "Który subregion GZM ma najwyższy odsetek osób odwiedzających muzea (rocznie)?",
+            "expected_output": {
+                "sql_query": "SELECT subregion_metropolii_gzm, ROUND(SUM(CASE WHEN czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_muzea_rocznie FROM participation_survey WHERE subregion_metropolii_gzm != 'Inny' AND czestotliwosc_muzeum IS NOT NULL GROUP BY subregion_metropolii_gzm ORDER BY procent_muzea_rocznie DESC LIMIT 1;",
+                "result": "subregion_metropolii_gzm|procent_muzea_rocznie\nKATOWICE|28.22"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Calculates weighted percentage of annual museum visitors per subregion and finds the maximum. Excludes 'Inny' subregion."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "355",
+            "inputs": "Jaka jest zależność między postrzeganą istotnością kultury a średnimi wydatkami na kulturę?",
+            "expected_output": {
+                "sql_query": "SELECT istotnosc_uczestnictwa_w_kulturze, ROUND(SUM(CASE WHEN istotnosc_uczestnictwa_w_kulturze = '1 zupełnie nieistotne' THEN 1 WHEN istotnosc_uczestnictwa_w_kulturze = '2' THEN 2 WHEN istotnosc_uczestnictwa_w_kulturze = '3' THEN 3 WHEN istotnosc_uczestnictwa_w_kulturze = '4' THEN 4 WHEN istotnosc_uczestnictwa_w_kulturze = '5' THEN 5 WHEN istotnosc_uczestnictwa_w_kulturze = '6' THEN 6 WHEN istotnosc_uczestnictwa_w_kulturze = '7 bardzo istotne' THEN 7 END), 0) AS poziom_istotnosci_num, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE istotnosc_uczestnictwa_w_kulturze IS NOT NULL AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY istotnosc_uczestnictwa_w_kulturze ORDER BY poziom_istotnosci_num;",
+                "result": "istotnosc_uczestnictwa_w_kulturze|poziom_istotnosci_num|srednie_wydatki\n1 zupełnie nieistotne|96.0|76.93\n2|332.0|60.04\n3|1500.0|78.77\n6|3984.0|129.61\n4|4516.0|95.74\n7 bardzo istotne|5019.0|167.85\n5|6465.0|114.59"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Shows weighted average spending for each level of perceived cultural importance. Handles Likert scale conversion correctly."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "356",
+            "inputs": "Ilu respondentów (ważona liczba) napotykających bariery transportowe mimo to regularnie uczestniczy w wydarzeniach kulturalnych (muzeum lub teatr przynajmniej raz w roku)?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN bariera_dojazd = TRUE AND (czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' OR czestotliwosc_teatr = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy') THEN waga_proby ELSE 0 END)) AS liczba_wazona_aktywnych_mimo_barier FROM participation_survey;",
+                "result": "liczba_wazona_aktywnych_mimo_barier\n250.0"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Calculates the weighted sum of respondents meeting both barrier and participation criteria."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "357",
+            "inputs": "Jaki jest przybliżony średni wiek respondentów uczestniczących w jakiejkolwiek formie kultury cyfrowej w porównaniu do tych, którzy nie uczestniczą?",
+            "expected_output": {
+                "sql_query": "WITH AgeMapping AS ( SELECT id_uczestnika, CASE grupa_wiekowa WHEN 'Mniej niż 30' THEN 25 WHEN '30-39' THEN 34.5 WHEN '40-49' THEN 44.5 WHEN '50-59' THEN 54.5 WHEN '60 i więcej' THEN 65 END AS mid_age, waga_proby FROM participation_survey ), DigitalParticipation AS ( SELECT id_uczestnika, ( cyfrowa_kultura_wydarzenia_online = TRUE OR cyfrowa_kultura_wystawy_interaktywne = TRUE OR cyfrowa_kultura_nowe_media = TRUE OR cyfrowa_kultura_podcasty = TRUE OR cyfrowa_kultura_social_media = TRUE OR cyfrowa_kultura_wsparcie_artystow = TRUE OR cyfrowa_kultura_instalacje_dzwiekowe = TRUE OR cyfrowa_kultura_gry = TRUE OR cyfrowa_kultura_vr = TRUE OR cyfrowa_kultura_inne = TRUE ) AS uczestniczy_cyfrowo FROM participation_survey ) SELECT dp.uczestniczy_cyfrowo, ROUND(SUM(am.mid_age * am.waga_proby) / SUM(am.waga_proby), 1) AS sredni_wiek FROM AgeMapping am JOIN DigitalParticipation dp ON am.id_uczestnika = dp.id_uczestnika GROUP BY dp.uczestniczy_cyfrowo;",
+                "result": "uczestniczy_cyfrowo|sredni_wiek\nFalse|48.5\nTrue|40.6"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Compares weighted average age (using mid-point approximation) between those engaging in ANY digital culture form vs. those engaging in none."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "358",
+            "inputs": "Wśród respondentów z problemami ruchowymi, jak różnią się ogólne opinie o kulturze (np. średnia ocena jej wpływu na atrakcyjność regionu) między osobami, które ostatnio odwiedziły teatr, a tymi, które odwiedziły muzeum?",
+            "expected_output": {
+                "sql_query": "WITH MobilityGroup AS ( SELECT ostatnio_teatr, ostatnio_muzeum, opinia_kultura_atrakcyjnosc_regionu, waga_proby FROM participation_survey WHERE niepelnosprawnosc_ruch = TRUE AND opinia_kultura_atrakcyjnosc_regionu IS NOT NULL ) SELECT 'Odwiedzający Teatr (z probl. ruch.)' AS grupa, ROUND(SUM(CASE WHEN opinia_kultura_atrakcyjnosc_regionu = '1 zupełnie się nie zgadzam' THEN 1 WHEN opinia_kultura_atrakcyjnosc_regionu = '2' THEN 2 WHEN opinia_kultura_atrakcyjnosc_regionu = '3' THEN 3 WHEN opinia_kultura_atrakcyjnosc_regionu = '4' THEN 4 WHEN opinia_kultura_atrakcyjnosc_regionu = '5' THEN 5 WHEN opinia_kultura_atrakcyjnosc_regionu = '6' THEN 6 WHEN opinia_kultura_atrakcyjnosc_regionu = '7 w pełni sie zgadzam' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_atrakcyjnosci FROM MobilityGroup WHERE ostatnio_teatr = TRUE UNION ALL SELECT 'Odwiedzający Muzeum (z probl. ruch.)' AS grupa, ROUND(SUM(CASE WHEN opinia_kultura_atrakcyjnosc_regionu = '1 zupełnie się nie zgadzam' THEN 1 WHEN opinia_kultura_atrakcyjnosc_regionu = '2' THEN 2 WHEN opinia_kultura_atrakcyjnosc_regionu = '3' THEN 3 WHEN opinia_kultura_atrakcyjnosc_regionu = '4' THEN 4 WHEN opinia_kultura_atrakcyjnosc_regionu = '5' THEN 5 WHEN opinia_kultura_atrakcyjnosc_regionu = '6' THEN 6 WHEN opinia_kultura_atrakcyjnosc_regionu = '7 w pełni sie zgadzam' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_atrakcyjnosci FROM MobilityGroup WHERE ostatnio_muzeum = TRUE;",
+                "result": "grupa|srednia_ocena_atrakcyjnosci\nOdwiedzający Teatr (z probl. ruch.)|5.53\nOdwiedzający Muzeum (z probl. ruch.)|5.82"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Rewritten to compare a proxy opinion (attractiveness of region) between groups defined by recent visits to different institution types (theatre vs museum) within the mobility-impaired subset. Handles Likert scale."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "359",
+            "inputs": "Jak rozkłada się preferencja skali wydarzeń kulturalnych (procentowo) w różnych grupach wiekowych?",
+            "expected_output": {
+                "sql_query": "WITH total_weight_target AS (SELECT grupa_wiekowa, SUM(waga_proby) AS total FROM participation_survey WHERE grupa_wiekowa IS NOT NULL GROUP BY grupa_wiekowa) SELECT p.grupa_wiekowa, sub.preference_type, ROUND(SUM(CASE WHEN sub.selected = TRUE THEN p.waga_proby ELSE 0 END) * 100.0 / MAX(twt.total), 2) AS percentage FROM participation_survey p JOIN ( SELECT id_uczestnika, 'Dzielnicowe' AS preference_type, wydarzenie_dzielnicowe AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Miejskie' AS preference_type, wydarzenie_miejskie AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Regionalne' AS preference_type, wydarzenie_regionalne AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Ogólnopolskie' AS preference_type, wydarzenie_ogolnopolskie AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Międzynarodowe' AS preference_type, wydarzenie_miedzynarodowe AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Niezależne od podziałów admin.' AS preference_type, wydarzenie_niezalezne AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Trudno powiedzieć' AS preference_type, wydarzenie_brak_opinii AS selected FROM participation_survey ) sub ON p.id_uczestnika = sub.id_uczestnika JOIN total_weight_target twt ON p.grupa_wiekowa = twt.grupa_wiekowa WHERE sub.selected = TRUE AND p.grupa_wiekowa IS NOT NULL GROUP BY p.grupa_wiekowa, sub.preference_type ORDER BY p.grupa_wiekowa, percentage DESC;",
+                "result": "grupa_wiekowa|preference_type|percentage\n30-39|Miejskie|57.48\n30-39|Regionalne|27.11\n30-39|Dzielnicowe|19.63\n30-39|Trudno powiedzieć|16.21\n30-39|Niezależne od podziałów admin.|15.8\n30-39|Ogólnopolskie|13.36\n30-39|Międzynarodowe|3.04\n40-49|Miejskie|55.88\n40-49|Regionalne|26.31\n40-49|Dzielnicowe|20.96\n40-49|Trudno powiedzieć|19.93\n40-49|Niezależne od podziałów admin.|14.42\n40-49|Ogólnopolskie|11.04\n40-49|Międzynarodowe|3.73\n50-59|Miejskie|62.04\n50-59|Regionalne|24.81\n50-59|Dzielnicowe|21.25\n50-59|Trudno powiedzieć|17.79\n50-59|Niezależne od podziałów admin.|13.67\n50-59|Ogólnopolskie|10.83\n50-59|Międzynarodowe|2.46\n60 i więcej|Miejskie|59.67\n60 i więcej|Dzielnicowe|22.17\n60 i więcej|Trudno powiedzieć|19.26\n60 i więcej|Regionalne|17.16\n60 i więcej|Niezależne od podziałów admin.|12.04\n60 i więcej|Ogólnopolskie|6.46\n60 i więcej|Międzynarodowe|2.16\nMniej niż 30|Miejskie|62.34\nMniej niż 30|Regionalne|30.55\nMniej niż 30|Dzielnicowe|25.26\nMniej niż 30|Niezależne od podziałów admin.|15.97\nMniej niż 30|Ogólnopolskie|15.71\nMniej niż 30|Trudno powiedzieć|11.86\nMniej niż 30|Międzynarodowe|4.69"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Rewritten using UNION ALL to calculate the percentage preferring each event scale type independently within each age group. Denominator correctly calculated per age group."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "360",
+            "inputs": "Jak częstotliwość uczestnictwa w kulturze (np. muzea, teatr) koreluje z posiadaniem dostępu do internetu w domu?",
+            "expected_output": {
+                "sql_query": "SELECT internet_w_domu, ROUND(SUM(CASE WHEN czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_muzea_rocznie, ROUND(SUM(CASE WHEN czestotliwosc_teatr = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_teatr_rocznie FROM participation_survey WHERE internet_w_domu IS NOT NULL GROUP BY internet_w_domu;",
+                "result": "internet_w_domu|procent_muzea_rocznie|procent_teatr_rocznie\nFalse|3.55|3.05\nTrue|21.94|15.3"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Calculates weighted percentages for annual museum and theatre attendance, grouped by home internet access."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "361",
+            "inputs": "Jaki procent respondentów o wysokich dochodach (powyżej 9000 zł) wspiera finansowo artystów z GZM (poprzez platformy cyfrowe)?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN cyfrowa_kultura_wsparcie_artystow = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_wspierajacych_artystow FROM participation_survey WHERE przedzial_wynagrodzenia = 'powyżej 9000 zł';",
+                "result": "procent_wspierajacych_artystow\n10.7"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Calculates weighted percentage for a specific digital behavior within a specific income group."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "362",
+            "inputs": "Jak różnią się używane środki transportu (procentowo) między osobami często (rocznie) i rzadziej odwiedzającymi muzea?",
+            "expected_output": {
+                "sql_query": "WITH ParticipationGroup AS ( SELECT id_uczestnika, CASE WHEN czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN 'Często (Muzeum rocznie)' ELSE 'Rzadziej (Muzeum < 1/rok)' END AS participation_freq FROM participation_survey WHERE czestotliwosc_muzeum IS NOT NULL ), total_weight_target AS ( SELECT pg.participation_freq, SUM(p.waga_proby) AS total FROM participation_survey p JOIN ParticipationGroup pg ON p.id_uczestnika = pg.id_uczestnika GROUP BY pg.participation_freq ) SELECT pg.participation_freq, sub.transport_type, ROUND(SUM(CASE WHEN sub.selected = TRUE THEN p.waga_proby ELSE 0 END) * 100.0 / MAX(twt.total), 2) AS percentage FROM participation_survey p JOIN ( SELECT id_uczestnika, 'Komunikacja miejska' AS transport_type, transport_komunikacja_miejska AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Własny samochód' AS transport_type, transport_wlasny_samochod AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Pieszo' AS transport_type, transport_pieszo AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Komunikacja regionalna' AS transport_type, transport_komunikacja_regionalna AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Własny rower' AS transport_type, transport_wlasny_rower AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Transport współdzielony' AS transport_type, transport_wspoldzielony AS selected FROM participation_survey UNION ALL SELECT id_uczestnika, 'Inny' AS transport_type, transport_inny AS selected FROM participation_survey ) sub ON p.id_uczestnika = sub.id_uczestnika JOIN ParticipationGroup pg ON p.id_uczestnika = pg.id_uczestnika JOIN total_weight_target twt ON pg.participation_freq = twt.participation_freq WHERE sub.selected = TRUE GROUP BY pg.participation_freq, sub.transport_type ORDER BY pg.participation_freq, percentage DESC;",
+                "result": "participation_freq|transport_type|percentage\nCzęsto (Muzeum rocznie)|Własny samochód|65.42\nCzęsto (Muzeum rocznie)|Komunikacja miejska|50.31\nCzęsto (Muzeum rocznie)|Pieszo|46.12\nCzęsto (Muzeum rocznie)|Własny rower|24.18\nCzęsto (Muzeum rocznie)|Komunikacja regionalna|11.88\nCzęsto (Muzeum rocznie)|Transport współdzielony|5.75\nCzęsto (Muzeum rocznie)|Inny|0.72\nRzadziej (Muzeum < 1/rok)|Własny samochód|53.49\nRzadziej (Muzeum < 1/rok)|Komunikacja miejska|50.68\nRzadziej (Muzeum < 1/rok)|Pieszo|45.93\nRzadziej (Muzeum < 1/rok)|Własny rower|16.62\nRzadziej (Muzeum < 1/rok)|Komunikacja regionalna|8.46\nRzadziej (Muzeum < 1/rok)|Transport współdzielony|2.6\nRzadziej (Muzeum < 1/rok)|Inny|1.07"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Rewritten using UNION ALL to show percentage using each transport mode within frequent vs occasional museum-goer groups. Defines frequency based on annual visits."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "363",
+            "inputs": "Jaka jest średnia liczba różnych aktywności kulturalnych (mierzona roczną frekwencją), w których uczestniczy każda grupa segmentu?",
+            "expected_output": {
+                "sql_query": "WITH AnnualParticipation AS ( SELECT id_uczestnika, waga_proby, segment_uczestnika, ( (czestotliwosc_galeria_sztuki = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_teatr = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_prasa_kulturalna = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_nagrania_teatralne = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_programy_kulturalne = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_wyklady = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_wydarzenia_literackie = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_archiwa = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_czytanie_ksiazek = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_zoo = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_piknik = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_festyn = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_koncert = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_kino = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_dom_kultury = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_rekonstrukcja_historyczna = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int + (czestotliwosc_filharmonia = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy')::int ) AS num_annual_activities FROM participation_survey WHERE segment_uczestnika IS NOT NULL ) SELECT segment_uczestnika, ROUND(SUM(num_annual_activities * waga_proby) / SUM(waga_proby), 2) AS srednia_liczba_aktywnosci_rocznie FROM AnnualParticipation GROUP BY segment_uczestnika ORDER BY srednia_liczba_aktywnosci_rocznie DESC;",
+                "result": "segment_uczestnika|srednia_liczba_aktywnosci_rocznie\nKonsumenci Kultury Instytucjonalnej|13.11\nZdobywcy Wiedzy|9.89\nAspirujący Mainstream|8.18\nSensualni|5.66\nMłodzi Uciekinierzy|5.39\nPoprawni Konformiści|4.89\nPrzymusowi Domatorzy|4.61\nLudowi Tradycjonaliści|2.72\nWycofani|2.0"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Calculates weighted average number of distinct activities participated in annually (based on all `czestotliwosc_*` columns) per segment. Uses boolean-to-integer casting sum."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "364",
+            "inputs": "Które grupy demograficzne (wiek, wykształcenie) najczęściej występują wśród osób o wysokich wydatkach na kulturę (250 zł i więcej miesięcznie)?",
+            "expected_output": {
+                "sql_query": "WITH HighSpenders AS ( SELECT grupa_wiekowa, wyksztalcenie, waga_proby FROM participation_survey WHERE wydatki_na_kulture_kategoria = '250 i więcej' ), TotalHighSpendersWeight AS ( SELECT SUM(waga_proby) AS total FROM HighSpenders ) SELECT grupa_wiekowa, wyksztalcenie, ROUND(SUM(waga_proby) * 100.0 / (SELECT total FROM TotalHighSpendersWeight), 2) AS procent_wsrod_wydajacych_duzo FROM HighSpenders GROUP BY grupa_wiekowa, wyksztalcenie ORDER BY procent_wsrod_wydajacych_duzo DESC;",
+                "result": "grupa_wiekowa|wyksztalcenie|procent_wsrod_wydajacych_duzo\n40-49|średnie|14.46\n40-49|wyższe|12.02\nMniej niż 30|średnie|10.62\n30-39|wyższe|9.82\n30-39|średnie|9.72\n50-59|wyższe|7.35\nMniej niż 30|niższe niż średnie|7.09\n50-59|średnie|5.13\nMniej niż 30|wyższe|4.25\n40-49|niższe niż średnie|4.18\n60 i więcej|średnie|4.12\n50-59|niższe niż średnie|3.89\n30-39|niższe niż średnie|3.86\n60 i więcej|wyższe|3.33\n60 i więcej|niższe niż średnie|0.14"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Identifies high spenders based on the highest category '250 i więcej'. Calculates the weighted percentage distribution of age and education groups *within* this high-spending group."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "365",
+            "inputs": "Jak uczestnictwo w kulturze i jej postrzeganie (np. średnia ocena przyjemności, odsetek odwiedzających muzea rocznie) różni się między rodzicami małych dzieci a pozostałymi osobami?",
+            "expected_output": {
+                "sql_query": "SELECT opieka_nad_dzieckiem AS ma_dzieci_ponizej_13, ROUND(SUM(CASE WHEN opinia_kultura_przyjemnosc = '1 zupełnie się nie zgadzam' THEN 1 WHEN opinia_kultura_przyjemnosc = '2' THEN 2 WHEN opinia_kultura_przyjemnosc = '3' THEN 3 WHEN opinia_kultura_przyjemnosc = '4' THEN 4 WHEN opinia_kultura_przyjemnosc = '5' THEN 5 WHEN opinia_kultura_przyjemnosc = '6' THEN 6 WHEN opinia_kultura_przyjemnosc = '7 w pełni sie zgadzam' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_przyjemnosci, ROUND(SUM(CASE WHEN czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_muzea_rocznie FROM participation_survey WHERE opieka_nad_dzieckiem IS NOT NULL GROUP BY opieka_nad_dzieckiem;",
+                "result": "ma_dzieci_ponizej_13|srednia_ocena_przyjemnosci|procent_muzea_rocznie\nFalse|4.75|19.86\nTrue|4.96|22.38"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Compares weighted average enjoyment rating and weighted percentage of annual museum attendance between parents of young children and others. Handles Likert scale."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "366",
+            "inputs": "Jaki procent mieszkańców GZM słyszało o określeniu Górnośląsko-Zagłębiowska Metropolia?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN znajomosc_metropolii_gzm = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_znajacych_termin FROM participation_survey;",
+                "result": "procent_znajacych_termin\n70.14"
+            },
+            "metadata": {
+                "complexity": "low",
+                "ambiguity_note": "Uses the rarely touched 'znajomosc_metropolii_gzm' field."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "367",
+            "inputs": "Jak ogólne opinie o kulturze (np. średnia ocena przyjemności, poczucia uboższego życia bez kultury) różnią się w zależności od grupy dochodowej?",
+            "expected_output": {
+                "sql_query": "SELECT przedzial_wynagrodzenia, ROUND(SUM(CASE WHEN opinia_kultura_przyjemnosc = '1 zupełnie się nie zgadzam' THEN 1 WHEN opinia_kultura_przyjemnosc = '2' THEN 2 WHEN opinia_kultura_przyjemnosc = '3' THEN 3 WHEN opinia_kultura_przyjemnosc = '4' THEN 4 WHEN opinia_kultura_przyjemnosc = '5' THEN 5 WHEN opinia_kultura_przyjemnosc = '6' THEN 6 WHEN opinia_kultura_przyjemnosc = '7 w pełni sie zgadzam' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_przyjemnosci, ROUND(SUM(CASE WHEN opinia_kultura_ubozsze_zycie = '1 zupełnie się nie zgadzam' THEN 1 WHEN opinia_kultura_ubozsze_zycie = '2' THEN 2 WHEN opinia_kultura_ubozsze_zycie = '3' THEN 3 WHEN opinia_kultura_ubozsze_zycie = '4' THEN 4 WHEN opinia_kultura_ubozsze_zycie = '5' THEN 5 WHEN opinia_kultura_ubozsze_zycie = '6' THEN 6 WHEN opinia_kultura_ubozsze_zycie = '7 w pełni sie zgadzam' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_ubozsze_zycie FROM participation_survey WHERE przedzial_wynagrodzenia NOT IN ('nie wiem, trudno powiedzieć', 'odmowa odpowiedzi') AND przedzial_wynagrodzenia IS NOT NULL GROUP BY przedzial_wynagrodzenia ORDER BY CASE przedzial_wynagrodzenia WHEN 'do 3500 zł' THEN 1 WHEN '3501 - 4000 zł' THEN 2 WHEN '4001 - 4500 zł' THEN 3 WHEN '4501 - 5000 zł' THEN 4 WHEN '5001 - 6000 zł' THEN 5 WHEN '6001 - 7000 zł' THEN 6 WHEN '7001 - 8000 zł' THEN 7 WHEN '8001 - 9000 zł' THEN 8 WHEN 'powyżej 9000 zł' THEN 9 ELSE 10 END;",
+                "result": "przedzial_wynagrodzenia|srednia_ocena_przyjemnosci|srednia_ocena_ubozsze_zycie\ndo 3500 zł|4.73|4.39\n3501 - 4000 zł|4.86|4.62\n4001 - 4500 zł|4.95|4.55\n4501 - 5000 zł|5.13|4.65\n5001 - 6000 zł|5.02|4.72\n6001 - 7000 zł|5.33|4.86\n7001 - 8000 zł|5.25|4.78\n8001 - 9000 zł|5.19|5.26\npowyżej 9000 zł|5.43|5.2"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Calculates weighted average ratings for two opinion scales across income brackets. Handles Likert scales and orders income brackets logically."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "368",
+            "inputs": "Jak konsumpcja kultury cyfrowej (średnia częstotliwość online, odsetek używających VR) różni się między mieszkańcami miast i wsi?",
+            "expected_output": {
+                "sql_query": "SELECT wielkosc_miejscowosci, ROUND(SUM(CASE WHEN czestotliwosc_kultura_online = '1 bardzo rzadko lub wcale' THEN 1 WHEN czestotliwosc_kultura_online = '2' THEN 2 WHEN czestotliwosc_kultura_online = '3' THEN 3 WHEN czestotliwosc_kultura_online = '4' THEN 4 WHEN czestotliwosc_kultura_online = '5' THEN 5 WHEN czestotliwosc_kultura_online = '6' THEN 6 WHEN czestotliwosc_kultura_online = '7 bardzo często' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_czestotliwosc_online, ROUND(SUM(CASE WHEN cyfrowa_kultura_vr = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_uzywa_vr FROM participation_survey WHERE wielkosc_miejscowosci IS NOT NULL GROUP BY wielkosc_miejscowosci ORDER BY wielkosc_miejscowosci;",
+                "result": "wielkosc_miejscowosci|srednia_czestotliwosc_online|procent_uzywa_vr\nmiasto  poniżej 20 tys. mieszkańców|3.56|1.99\nmiasto 100 - 199 tys. mieszkańców|3.47|2.48\nmiasto 20 - 99 tys. mieszkańców|3.0|2.63\nmiasto powyżej 200 tys. mieszkańców|3.88|4.02\nwieś|3.13|2.82"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Compares weighted average online frequency and weighted percentage of VR users across different locality sizes. Handles Likert scale."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "369",
+            "inputs": "Jaki jest związek między uczestnictwem w kulturze (mierzonym roczną aktywnością w muzeach) a postrzeganą jakością życia (średnia ocena poczucia sensu, przyjemności)?",
+            "expected_output": {
+                "sql_query": "SELECT CASE WHEN czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN 'Aktywny w muzeach (rocznie)' ELSE 'Nieaktywny w muzeach (rocznie)' END AS uczestnictwo_muzea, ROUND(SUM(CASE WHEN opinia_kultura_sens_zycia = '1 zupełnie się nie zgadzam' THEN 1 WHEN opinia_kultura_sens_zycia = '2' THEN 2 WHEN opinia_kultura_sens_zycia = '3' THEN 3 WHEN opinia_kultura_sens_zycia = '4' THEN 4 WHEN opinia_kultura_sens_zycia = '5' THEN 5 WHEN opinia_kultura_sens_zycia = '6' THEN 6 WHEN opinia_kultura_sens_zycia = '7 w pełni sie zgadzam' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_sens_zycia, ROUND(SUM(CASE WHEN opinia_kultura_przyjemnosc = '1 zupełnie się nie zgadzam' THEN 1 WHEN opinia_kultura_przyjemnosc = '2' THEN 2 WHEN opinia_kultura_przyjemnosc = '3' THEN 3 WHEN opinia_kultura_przyjemnosc = '4' THEN 4 WHEN opinia_kultura_przyjemnosc = '5' THEN 5 WHEN opinia_kultura_przyjemnosc = '6' THEN 6 WHEN opinia_kultura_przyjemnosc = '7 w pełni sie zgadzam' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_ocena_przyjemnosci FROM participation_survey WHERE czestotliwosc_muzeum IS NOT NULL AND opinia_kultura_sens_zycia IS NOT NULL AND opinia_kultura_przyjemnosc IS NOT NULL GROUP BY uczestnictwo_muzea;",
+                "result": "uczestnictwo_muzea|srednia_ocena_sens_zycia|srednia_ocena_przyjemnosci\nNieaktywny w muzeach (rocznie)|4.32|4.61\nAktywny w muzeach (rocznie)|5.13|5.57"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Compares weighted average ratings for life meaning and enjoyment proxies between active and inactive museum-goers. Handles Likert scales."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "370",
+            "inputs": "Jaka kombinacja aktywności kulturalnych (roczna frekwencja: muzeum, teatr, koncert) jest najczęstsza (procentowo) wśród młodych profesjonalistów (30-39 lat, wyższe wykształcenie)?",
+            "expected_output": {
+                "sql_query": "WITH TargetGroup AS ( SELECT id_uczestnika, waga_proby, (czestotliwosc_muzeum = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy') AS museum_yr, (czestotliwosc_teatr = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy') AS theater_yr, (czestotliwosc_koncert = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy') AS concert_yr FROM participation_survey WHERE grupa_wiekowa = '30-39' AND wyksztalcenie = 'wyższe' ), TotalWeight AS ( SELECT SUM(waga_proby) AS total FROM TargetGroup ) SELECT museum_yr, theater_yr, concert_yr, ROUND(SUM(waga_proby) * 100.0 / (SELECT total FROM TotalWeight), 2) AS procent_kombinacji FROM TargetGroup GROUP BY museum_yr, theater_yr, concert_yr ORDER BY procent_kombinacji DESC;",
+                "result": "museum_yr|theater_yr|concert_yr|procent_kombinacji\nFalse|False|False|31.62\nFalse|False|True|19.42\nTrue|True|True|16.02\nTrue|False|True|13.68\nTrue|False|False|8.69\nFalse|True|True|5.07\nFalse|True|False|2.82\nTrue|True|False|2.68"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Identifies combinations of annual participation in three specific activities for the target demographic and calculates the weighted percentage for each combination."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "371",
+            "inputs": "Jakie jest prawdopodobieństwo (w procentach), że osoba odwiedzająca teatr (przynajmniej raz na 3 lata) odwiedza również muzea (przynajmniej raz na 3 lata)?",
+            "expected_output": {
+                "sql_query": "WITH WeightedTheaterAttendeesTotal AS ( SELECT SUM(waga_proby) AS total_theater_weight FROM participation_survey WHERE czestotliwosc_teatr IN ( 'Przynajmniej raz w ciągu ostatnich 12 miesięcy', 'Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat' ) ) SELECT ROUND( SUM(CASE WHEN czestotliwosc_muzeum IN ( 'Przynajmniej raz w ciągu ostatnich 12 miesięcy', 'Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat' ) THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total_theater_weight FROM WeightedTheaterAttendeesTotal), 2) AS prawdopodobienstwo_procentowe FROM participation_survey WHERE czestotliwosc_teatr IN ( 'Przynajmniej raz w ciągu ostatnich 12 miesięcy', 'Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat' );",
+                "result": "prawdopodobienstwo_procentowe\n75.32"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Calculates the weighted conditional probability P(Museum | Theater) based on 3-year attendance frequencies."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "372",
+            "inputs": "Jaki jest rozkład województw zamieszkania respondentów?",
+            "expected_output": {
+                "sql_query": "SELECT wojewodztwo, ROUND(SUM(waga_proby) * 100.0 / (SELECT SUM(waga_proby) FROM participation_survey WHERE wojewodztwo IS NOT NULL), 2) AS procent FROM participation_survey WHERE wojewodztwo IS NOT NULL GROUP BY wojewodztwo ORDER BY procent DESC;",
+                "result": "wojewodztwo|procent\nśląskie|100.0"
+            },
+            "metadata": {
+                "complexity": "low",
+                "ambiguity_note": "Uses the rarely touched 'wojewodztwo' field to test basic distribution."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "373",
+            "inputs": "Jaki procent osób z segmentu 'Sensualni' nigdy nie był w teatrze, ale chciałby pójść w przyszłości?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN czestotliwosc_teatr = 'Nigdy, ale chciał(a)bym w przyszłości' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_chcialby_isc FROM participation_survey WHERE segment_uczestnika = 'Sensualni' AND czestotliwosc_teatr IS NOT NULL;",
+                "result": "procent_chcialby_isc\n34.38"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Targets a less common segment and a specific non-participation category ('Nigdy, ale...')."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "374",
+            "inputs": "Ilu dokładnie respondentów (liczba rekordów) z Gliwic należy do grupy wiekowej 40-49 lat?",
+            "expected_output": {
+                "sql_query": "SELECT COUNT(id_uczestnika) AS liczba_rekordow FROM participation_survey WHERE miasto_powiat = 'Gliwice' AND grupa_wiekowa = '40-49';",
+                "result": "liczba_rekordow\n102"
+            },
+            "metadata": {
+                "complexity": "low",
+                "ambiguity_note": "Explicitly asks for raw count (liczba rekordów), testing the instruction to ignore weights in this specific case."
+            },
+            "evaluators": [
+               
+            ]
+        },
+        {
+            "name": "375",
+            "inputs": "Jaki procent mieszkańców GZM wymienia 'Spodek' jako którekolwiek ze swoich pierwszych trzech skojarzeń z miejscami kultury?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN skojarzenia_miejsca_gzm_1_kategoria = 'Spodek' OR skojarzenia_miejsca_gzm_2_kategoria = 'Spodek' OR skojarzenia_miejsca_gzm_3_kategoria = 'Spodek' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_skojarzenie_spodek_top3 FROM participation_survey;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Tests combining multiple association fields (*_1, *_2, *_3) with OR."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "376",
+            "inputs": "Jaki procent 'Innych' barier uczestnictwa (odpowiedź tekstowa) wspomina o 'pandemii' lub 'covid'?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN LOWER(bariera_inne_tekst) LIKE '%pandemi%' OR LOWER(bariera_inne_tekst) LIKE '%covid%' THEN waga_proby ELSE 0 END) * 100.0 / SUM(CASE WHEN bariera_inne = TRUE THEN waga_proby ELSE 0 END), 2) AS procent_wspomnien_pandemii FROM participation_survey WHERE bariera_inne = TRUE AND bariera_inne_tekst IS NOT NULL;",
+                "result": "procent_wspomnien_pandemii\n0.0"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Tests using LIKE on a text field (`bariera_inne_tekst`), calculating percentage within the subgroup that selected 'bariera_inne'."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "377",
+            "inputs": "Jaka jest średnia miesięczna kwota wydatków na kulturę w Będzinie?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki_bedzin FROM participation_survey WHERE miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Będzin' AND wydatki_na_kulture_kwota IS NOT NULL;",
+                "result": "srednie_wydatki_bedzin\n100.92"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Tests the MAP hint: User asks for 'Będzin' (city), query correctly uses 'Powiat będziński' (`miasto_powiat`) AND 'Będzin' (`gmina_miejscowosc`)."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "378",
+            "inputs": "Jaki procent osób korzystających z komunikacji miejskiej, ale NIE z komunikacji regionalnej (kolei), odwiedza miejsca kultury w innych miastach GZM?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN uczestnictwo_inne_miejsce_gzm = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_kultura_inne_miasta FROM participation_survey WHERE transport_komunikacja_miejska = TRUE AND transport_komunikacja_regionalna = FALSE;",
+                "result": "procent_kultura_inne_miasta\n19.77"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Tests combination filter (A=TRUE AND B=FALSE)."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "379",
+            "inputs": "Jaki jest rozkład kategorii dla 'Innych problemów' jako barier uczestnictwa (pokaż top 3)?",
+            "expected_output": {
+                "sql_query": "SELECT bariera_inne_kategoria, ROUND(SUM(waga_proby) * 100.0 / (SELECT SUM(waga_proby) FROM participation_survey WHERE bariera_inne = TRUE), 2) AS procent FROM participation_survey WHERE bariera_inne = TRUE AND bariera_inne_kategoria IS NOT NULL AND bariera_inne_kategoria NOT IN ('Inne', 'Nie wiem, trudno powiedzieć') GROUP BY bariera_inne_kategoria ORDER BY procent DESC LIMIT 3;",
+                "result": "bariera_inne_kategoria|procent\nZdrowotne|36.8\nBrak chęci/zainteresowania|26.9\nWiek|7.8"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Uses the 'bariera_inne_kategoria' field, calculating percentages within the group that selected 'bariera_inne'."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "380",
+            "inputs": "Jaki jest rozkład kategorii dla 'Innej twórczości' (pokaż top 3)?",
+            "expected_output": {
+                "sql_query": "SELECT tworczosc_inna_kategoria, ROUND(SUM(waga_proby) * 100.0 / (SELECT SUM(waga_proby) FROM participation_survey WHERE tworczosc_inna = TRUE), 2) AS procent FROM participation_survey WHERE tworczosc_inna = TRUE AND tworczosc_inna_kategoria IS NOT NULL AND tworczosc_inna_kategoria NOT IN ('Inne', 'Nie wiem, trudno powiedzieć') GROUP BY tworczosc_inna_kategoria ORDER BY procent DESC LIMIT 3;",
+                "result": "tworczosc_inna_kategoria|procent\nSzydełkowanie|10.68\nCzytanie|5.65\nPiszę wiersze|5.34"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Uses the 'tworczosc_inna_kategoria' field, calculating percentages within the group that selected 'tworczosc_inna'."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "381",
+            "inputs": "Jaki procent osób w GZM ma dostęp do internetu jednocześnie w domu, pracy i telefonie?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN internet_w_domu = TRUE AND internet_w_pracy = TRUE AND internet_w_telefonie = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_internet_wszedzie FROM participation_survey;",
+                "result": "procent_internet_wszedzie\n61.93"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Checks the intersection of multiple boolean flags related to internet access."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "382",
+            "inputs": "Porównaj średnie miesięczne wydatki na kulturę między osobami z niepełnosprawnością słuchu LUB wzroku a osobami bez tych niepełnosprawności.",
+            "expected_output": {
+                "sql_query": "SELECT CASE WHEN niepelnosprawnosc_sluch = TRUE OR niepelnosprawnosc_wzrok = TRUE THEN 'Słuch LUB Wzrok' ELSE 'Bez tych niepełnosprawności' END AS grupa_niepelnosprawnosci, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE wydatki_na_kulture_kwota IS NOT NULL GROUP BY grupa_niepelnosprawnosci;",
+                "result": "grupa_niepelnosprawnosci|srednie_wydatki\nSłuch LUB Wzrok|132.66\nBez tych niepełnosprawności|112.2"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Uses OR logic for grouping based on disability types and compares weighted average spending."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "383",
+            "inputs": "Jaki procent mieszkańców Gliwic odwiedzających muzea w ciągu ostatnich 6 miesięcy odwiedziło Muzeum w Gliwicach?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN kategoria_odwiedzonego_muzeum = 'Muzeum w Gliwicach' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_odwiedzil_mgliwice_wsrod_odwiedzajacych FROM participation_survey WHERE miasto_powiat = 'Gliwice' AND ostatnio_muzeum = TRUE;",
+                "result": "procent_odwiedzil_mgliwice_wsrod_odwiedzajacych\n28.47"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Calculates percentage within a subgroup defined by recent museum visit AND location. Denominator correctly represents the total weight of recent museum visitors in Gliwice."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "384",
+            "inputs": "Jaki procent osób 'zupełnie niezgadzających się' (ocena 1), że kultura jest dla wszystkich, występuje w grupie z wykształceniem podstawowym vs wyższym?",
+            "expected_output": {
+                "sql_query": "SELECT wyksztalcenie, ROUND(SUM(CASE WHEN opinia_kultura_dla_wszystkich = '1 zupełnie się nie zgadzam' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zupelnie_sie_nie_zgadza FROM participation_survey WHERE wyksztalcenie IN ('niższe niż średnie', 'wyższe') AND opinia_kultura_dla_wszystkich IS NOT NULL GROUP BY wyksztalcenie;",
+                "result": "wyksztalcenie|procent_zupelnie_sie_nie_zgadza\nniższe niż średnie|3.9\nwyższe|1.29"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Filters for a specific Likert scale level (1) and compares its prevalence across education groups."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "385",
+            "inputs": "Jaki jest pełny rozkład ocen (1-7) dla stwierdzenia 'Lubię poznawać nowe miejsca związane z kulturą' w subregionie tyskim?",
+            "expected_output": {
+                "sql_query": "SELECT opinia_kultura_nowe_miejsca, ROUND(SUM(waga_proby) * 100.0 / (SELECT SUM(waga_proby) FROM participation_survey WHERE subregion_metropolii_gzm = 'TYSKI' AND opinia_kultura_nowe_miejsca IS NOT NULL), 2) AS procent FROM participation_survey WHERE subregion_metropolii_gzm = 'TYSKI' AND opinia_kultura_nowe_miejsca IS NOT NULL GROUP BY opinia_kultura_nowe_miejsca ORDER BY CASE opinia_kultura_nowe_miejsca WHEN '1 zupełnie się nie zgadzam' THEN 1 WHEN '2' THEN 2 WHEN '3' THEN 3 WHEN '4' THEN 4 WHEN '5' THEN 5 WHEN '6' THEN 6 WHEN '7 w pełni sie zgadzam' THEN 7 ELSE 8 END;",
+                "result": "opinia_kultura_nowe_miejsca|procent\n1 zupełnie się nie zgadzam|1.83\n2|2.47\n3|6.8\n4|20.22\n5|24.44\n6|18.39\n7 w pełni sie zgadzam|25.87"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Shows the weighted percentage distribution for all levels of a Likert scale within a specific subregion."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "386",
+            "inputs": "Porównaj średnie miesięczne wydatki na kulturę między miastem Gliwice a wszystkimi gminami wiejskimi powiatu gliwickiego łącznie.",
+            "expected_output": {
+                "sql_query": "SELECT CASE WHEN miasto_powiat = 'Gliwice' THEN 'Gliwice (Miasto)' WHEN miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc IN ('Gierałtowice', 'Pilchowice', 'Rudziniec', 'Sośnicowice') THEN 'Gminy Wiejskie Pow. Gliwicki' END AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE (miasto_powiat = 'Gliwice' OR (miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc IN ('Gierałtowice', 'Pilchowice', 'Rudziniec', 'Sośnicowice'))) AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY lokalizacja HAVING lokalizacja IS NOT NULL;",
+                "result": "lokalizacja|srednie_wydatki\nGminy Wiejskie Pow. Gliwicki|118.63\nGliwice (Miasto)|93.45"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Compares a city to an aggregation of specific rural municipalities within its associated county (excluding towns like Knurów/Pyskowice). Filters out NULL locations generated by CASE."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "387",
+            "inputs": "Jaki procent mieszkańców zespołu dzielnic północnych Katowic oraz jaki procent mieszkańców powiatu mikołowskiego był ostatnio na pikniku/festynie?",
+            "expected_output": {
+                "sql_query": "WITH KatowiceZoneN AS ( SELECT ostatnio_piknik, waga_proby FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic IN ('Wełnowiec-Józefowiec', 'Dąb', 'Załęże', 'Osiedle Tysiąclecia', 'Osiedle Witosa') ) SELECT 'Zespół dzielnic północnych KTW' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_piknik FROM KatowiceZoneN UNION ALL SELECT 'Powiat Mikołowski' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_piknik FROM participation_survey WHERE miasto_powiat = 'Powiat mikołowski';",
+                "result": "lokalizacja|procent_ostatnio_piknik\nZespół dzielnic północnych KTW|53.77\nPowiat Mikołowski|50.13"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Compares a grouped Katowice zone with a separate county using UNION ALL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "388",
+            "inputs": "Jaki procent osób w wieku 40-49 lat z wykształceniem wyższym w Katowicach korzysta z profili instytucji w mediach społecznościowych do informacji o kulturze?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN informacja_social_media_instytucje = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_sm_instytucje FROM participation_survey WHERE grupa_wiekowa = '40-49' AND wyksztalcenie = 'wyższe' AND miasto_powiat = 'Katowice';",
+                "result": "procent_sm_instytucje\n23.28"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Calculates percentage for a specific behavior based on multiple combined demographic filters."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "389",
+            "inputs": "Jaka jest średnia ocena istotności kultury (1-7) dla osób bez zadeklarowanych niepełnosprawności, pracujących na etacie i mieszkających na wsi?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN istotnosc_uczestnictwa_w_kulturze = '1 zupełnie nieistotne' THEN 1 WHEN istotnosc_uczestnictwa_w_kulturze = '2' THEN 2 WHEN istotnosc_uczestnictwa_w_kulturze = '3' THEN 3 WHEN istotnosc_uczestnictwa_w_kulturze = '4' THEN 4 WHEN istotnosc_uczestnictwa_w_kulturze = '5' THEN 5 WHEN istotnosc_uczestnictwa_w_kulturze = '6' THEN 6 WHEN istotnosc_uczestnictwa_w_kulturze = '7 bardzo istotne' THEN 7 ELSE 0 END * waga_proby) / SUM(waga_proby), 2) AS srednia_istotnosc FROM participation_survey WHERE niepelnosprawnosc_zadna = TRUE AND zatrudnienie_pracujacy = TRUE AND wielkosc_miejscowosci = 'wieś' AND istotnosc_uczestnictwa_w_kulturze IS NOT NULL;",
+                "result": "srednia_istotnosc\n3.9"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Calculates average rating for a highly specific subgroup defined by multiple conditions. Handles Likert scale."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "390",
+            "inputs": "Jakie aktywności kulturalne (ostatnio_*) były najczęściej podejmowane przez mieszkańców Zabrza w ostatnich 6 miesiącach (top 5)?",
+            "expected_output": {
+                "sql_query": "WITH total_weight_target AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Zabrze') SELECT activity_type, ROUND(SUM(CASE WHEN selected = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM total_weight_target), 2) AS percentage FROM ( SELECT 'Wizyta w kinie' AS activity_type, ostatnio_kino AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Wizyta w teatrze' AS activity_type, ostatnio_teatr AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Uczestnictwo w koncercie' AS activity_type, ostatnio_koncert AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Wizyta w muzeum / galerii sztuki' AS activity_type, ostatnio_muzeum AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Wizyta w parku rozrywki' AS activity_type, ostatnio_park_rozrywki AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Wizyta w domu kultury / centrum kultury' AS activity_type, ostatnio_dom_kultury AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Wizyta w bibliotece' AS activity_type, ostatnio_biblioteka AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Wizyta w zoo' AS activity_type, ostatnio_zoo AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Wizyta w filharmonii lub operze' AS activity_type, ostatnio_filharmonia AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Uczestnictwo w spotkaniu z artystą' AS activity_type, ostatnio_spotkanie_z_artysta AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Udział w pikniku / festynie' AS activity_type, ostatnio_piknik AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Inna aktywność' AS activity_type, ostatnio_inna_aktywnosc AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' UNION ALL SELECT 'Żadna z powyższych' AS activity_type, ostatnio_zadne AS selected, waga_proby FROM participation_survey WHERE miasto_powiat = 'Zabrze' ) subquery WHERE selected = TRUE GROUP BY activity_type ORDER BY percentage DESC LIMIT 5;",
+                "result": "activity_type|percentage\nWizyta w kinie|53.45\nUdział w pikniku / festynie|34.64\nŻadna z powyższych|23.95\nWizyta w zoo|22.94\nWizyta w bibliotece|21.12"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Uses UNION ALL for recent activities (`ostatnio_*` columns) in a specific city. Calculates percentage based on the total weight of residents in that city and shows top 5."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "391",
+            "inputs": "Wśród osób poniżej 30 lat, czy większy procent korzysta z gier komputerowych czy z podcastów jako formy kultury cyfrowej?",
+            "expected_output": {
+                "sql_query": "WITH total_weight_target AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE grupa_wiekowa = 'Mniej niż 30') SELECT 'Gry komputerowe i gaming' AS digital_form, ROUND(SUM(CASE WHEN cyfrowa_kultura_gry = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM total_weight_target), 2) AS percentage FROM participation_survey WHERE grupa_wiekowa = 'Mniej niż 30' UNION ALL SELECT 'Podcasty' AS digital_form, ROUND(SUM(CASE WHEN cyfrowa_kultura_podcasty = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM total_weight_target), 2) AS percentage FROM participation_survey WHERE grupa_wiekowa = 'Mniej niż 30';",
+                "result": "digital_form|percentage\nGry komputerowe i gaming|32.19\nPodcasty|23.73"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Compares the percentage usage of two specific digital culture forms within the youngest age group."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "392",
+            "inputs": "Jak różni się postrzeganie 'gotowania' i 'mody' jako części kultury między kobietami a mężczyznami?",
+            "expected_output": {
+                "sql_query": "SELECT plec, ROUND(SUM(CASE WHEN kultura_gotowanie = 'Tak' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_gotowanie_kultura, ROUND(SUM(CASE WHEN kultura_moda = 'Tak' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_moda_kultura FROM participation_survey WHERE plec IN ('Kobieta', 'Mężczyzna') GROUP BY plec;",
+                "result": "plec|procent_gotowanie_kultura|procent_moda_kultura\nMężczyzna|59.92|68.33\nKobieta|60.72|72.79"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Compares the weighted percentage of men vs women who consider cooking and fashion as culture, calculating each independently per gender."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "393",
+            "inputs": "Czy osoby ceniące 'praktyczność' w wolnym czasie (ocena 5-7) rzadziej cenią 'nowość' (ocena 1-3)?",
+            "expected_output": {
+                "sql_query": "WITH PracticalGroup AS ( SELECT id_uczestnika, waga_proby FROM participation_survey WHERE wolny_czas_definicja_praktycznosc IN ('5', '6', '7 w pełni sie zgadzam') ), TotalPracticalWeight AS ( SELECT SUM(waga_proby) AS total FROM PracticalGroup ) SELECT ROUND(SUM(CASE WHEN ps.wolny_czas_definicja_nowosc IN ('1 zupełnie się nie zgadzam', '2', '3') THEN pg.waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM TotalPracticalWeight), 2) AS procent_nie_ceniacych_nowosci FROM PracticalGroup pg JOIN participation_survey ps ON pg.id_uczestnika = ps.id_uczestnika WHERE ps.wolny_czas_definicja_nowosc IS NOT NULL;",
+                "result": "procent_nie_ceniacych_nowosci\nnan"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Calculates the percentage of respondents who value practicality (5-7) that also devalue novelty (1-3). Uses CTEs for clarity and correct denominator."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "394",
+            "inputs": "Jaki procent mieszkańców Tychów odwiedza Chorzów w celach kulturalnych, a jaki procent mieszkańców Chorzowa odwiedza Tychy?",
+            "expected_output": {
+                "sql_query": "SELECT 'Mieszkańcy Tychów odwiedzający Chorzów' AS grupa, ROUND(SUM(CASE WHEN miejsce_kultury_chorzow = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent FROM participation_survey WHERE miasto_powiat = 'Tychy' UNION ALL SELECT 'Mieszkańcy Chorzowa odwiedzający Tychy' AS grupa, ROUND(SUM(CASE WHEN miejsce_kultury_tychy = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent FROM participation_survey WHERE miasto_powiat = 'Chorzów';",
+                "result": "grupa|procent\nMieszkańcy Tychów odwiedzający Chorzów|11.07\nMieszkańcy Chorzowa odwiedzający Tychy|0.0"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Compares cross-visitation percentages between two specific cities using UNION ALL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "395",
+            "inputs": "Jaki jest rozkład preferencji miejsc uczestnictwa w kulturze (dom, instytucja, przestrzeń publiczna etc.) wśród osób samozatrudnionych?",
+            "expected_output": {
+                "sql_query": "WITH total_weight_target AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE zatrudnienie_samozatrudniony = TRUE) SELECT preference_location, ROUND(SUM(CASE WHEN selected = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM total_weight_target), 2) AS percentage FROM ( SELECT 'W domu' AS preference_location, preferowane_miejsce_dom AS selected, waga_proby FROM participation_survey WHERE zatrudnienie_samozatrudniony = TRUE UNION ALL SELECT 'W siedzibie instytucji kultury' AS preference_location, preferowane_miejsce_instytucja_kultury AS selected, waga_proby FROM participation_survey WHERE zatrudnienie_samozatrudniony = TRUE UNION ALL SELECT 'W przestrzeni publicznej' AS preference_location, preferowane_miejsce_przestrzen_publiczna AS selected, waga_proby FROM participation_survey WHERE zatrudnienie_samozatrudniony = TRUE UNION ALL SELECT 'W tymczasowo zaaranżowanej przestrzeni' AS preference_location, preferowane_miejsce_przestrzen_tymczasowa AS selected, waga_proby FROM participation_survey WHERE zatrudnienie_samozatrudniony = TRUE UNION ALL SELECT 'Na stadionie' AS preference_location, preferowane_miejsce_stadion AS selected, waga_proby FROM participation_survey WHERE zatrudnienie_samozatrudniony = TRUE UNION ALL SELECT 'W pubie/klubie/restauracji' AS preference_location, preferowane_miejsce_pub_klub AS selected, waga_proby FROM participation_survey WHERE zatrudnienie_samozatrudniony = TRUE UNION ALL SELECT 'Inne miejsce' AS preference_location, preferowane_miejsce_inne AS selected, waga_proby FROM participation_survey WHERE zatrudnienie_samozatrudniony = TRUE UNION ALL SELECT 'Żadne z powyższych' AS preference_location, preferowane_miejsce_zadne AS selected, waga_proby FROM participation_survey WHERE zatrudnienie_samozatrudniony = TRUE ) subquery WHERE selected = TRUE GROUP BY preference_location ORDER BY percentage DESC;",
+                "result": "preference_location|percentage\nW przestrzeni publicznej|57.11\nW domu|48.7\nW siedzibie instytucji kultury|42.82\nW pubie/klubie/restauracji|35.04\nNa stadionie|26.64\nW tymczasowo zaaranżowanej przestrzeni|22.56\nŻadne z powyższych|6.45\nInne miejsce|1.12"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Uses UNION ALL for preferred locations (`preferowane_miejsce_*` columns) among self-employed individuals. Calculates percentage based on the total weight of that specific group."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "396",
+            "inputs": "Jaki procent właścicieli firm z sektora MŚP w GZM jest zainteresowany sponsorowaniem kultury?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN zainteresowanie_sponsorowaniem_kultury = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_zainteresowanych_sponsorowaniem FROM participation_survey WHERE wlasciciel_firmy_msp = TRUE;",
+                "result": "procent_zainteresowanych_sponsorowaniem\n18.39"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Uses the business-related fields `wlasciciel_firmy_msp` and `zainteresowanie_sponsorowaniem_kultury`."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "397",
+            "inputs": "Czy firmy MŚP, które już sponsorowały kulturę, częściej mają siedzibę w Katowicach niż w innych miastach GZM?",
+            "expected_output": {
+                "sql_query": "SELECT CASE WHEN miasto_powiat = 'Katowice' THEN 'Katowice' ELSE 'Inne miasta GZM' END AS lokalizacja_firmy, ROUND(SUM(waga_proby) * 100.0 / (SELECT SUM(waga_proby) FROM participation_survey WHERE wlasciciel_firmy_msp = TRUE AND sponsorowanie_kultury = TRUE), 2) AS procent_firm_sponsorujacych FROM participation_survey WHERE wlasciciel_firmy_msp = TRUE AND sponsorowanie_kultury = TRUE GROUP BY lokalizacja_firmy;",
+                "result": "lokalizacja_firmy|procent_firm_sponsorujacych\nKatowice|15.81\nInne miasta GZM|84.19"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Filters for SMEs that have sponsored culture (`wlasciciel_firmy_msp`=TRUE AND `sponsorowanie_kultury`=TRUE) and compares their location distribution (Katowice vs. Rest of GZM)."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "398",
+            "inputs": "Wśród osób z Katowic, które NIGDY nie były w filharmonii/operze i NIE SĄ tym zainteresowane, jaki jest średni wiek?",
+            "expected_output": {
+                "sql_query": "WITH AgeMapping AS ( SELECT id_uczestnika, CASE grupa_wiekowa WHEN 'Mniej niż 30' THEN 25 WHEN '30-39' THEN 34.5 WHEN '40-49' THEN 44.5 WHEN '50-59' THEN 54.5 WHEN '60 i więcej' THEN 65 END AS mid_age, waga_proby FROM participation_survey ) SELECT ROUND(SUM(am.mid_age * am.waga_proby) / SUM(am.waga_proby), 1) AS sredni_wiek_niezainteresowanych FROM AgeMapping am JOIN participation_survey ps ON am.id_uczestnika = ps.id_uczestnika WHERE ps.miasto_powiat = 'Katowice' AND ps.czestotliwosc_filharmonia = 'Nigdy i nie jestem tym zainteresowany(a)';",
+                "result": "sredni_wiek_niezainteresowanych\n49.6"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Targets a very specific subgroup based on location and a specific non-participation category ('Nigdy i nie jestem tym zainteresowany(a)') and calculates their weighted average age."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "399",
+            "inputs": "Jakie kombinacje barier (np. cena+brak czasu, dojazd+brak informacji) są najczęstsze wśród osób z niepełnosprawnością ruchową?",
+            "expected_output": {
+                "sql_query": "WITH TargetGroup AS ( SELECT id_uczestnika, waga_proby, bariera_wysokie_ceny, bariera_brak_czasu, bariera_dojazd, bariera_brak_informacji FROM participation_survey WHERE niepelnosprawnosc_ruch = TRUE ), TotalWeight AS ( SELECT SUM(waga_proby) AS total FROM TargetGroup ) SELECT bariera_wysokie_ceny, bariera_brak_czasu, bariera_dojazd, bariera_brak_informacji, ROUND(SUM(waga_proby) * 100.0 / (SELECT total FROM TotalWeight), 2) AS procent_kombinacji FROM TargetGroup GROUP BY bariera_wysokie_ceny, bariera_brak_czasu, bariera_dojazd, bariera_brak_informacji ORDER BY procent_kombinacji DESC LIMIT 5;",
+                "result": "bariera_wysokie_ceny|bariera_brak_czasu|bariera_dojazd|bariera_brak_informacji|procent_kombinacji\nFalse|False|False|False|29.14\nTrue|False|False|False|15.67\nTrue|False|True|False|9.19\nFalse|True|False|False|9.03\nTrue|True|False|False|8.37"
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Identifies combinations of selected barriers (using boolean flags) for the target group and calculates the weighted percentage for each combination, showing the top 5."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "400",
+            "inputs": "Jaki procent osób w GZM, które często korzystają z kultury online (ocena 6-7), również często odwiedza kino (przynajmniej raz w roku)?",
+            "expected_output": {
+                "sql_query": "SELECT ROUND(SUM(CASE WHEN czestotliwosc_kino = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_kino_rocznie_wsrod_czestych_online FROM participation_survey WHERE czestotliwosc_kultura_online IN ('6', '7 bardzo często');",
+                "result": "procent_kino_rocznie_wsrod_czestych_online\n69.99"
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Calculates the percentage of frequent online users who also attend cinema annually. Denominator correctly reflects the weight of frequent online users."
             },
             "evaluators": [
                 "ResultWeighted"

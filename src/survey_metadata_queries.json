@@ -212,7 +212,9 @@
             "raczej nie",
             "zdecydowanie nie"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wolny_czas_definicja_duma",
@@ -224,7 +226,9 @@
             "raczej nie",
             "zdecydowanie nie"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wolny_czas_definicja_rekodzielo",
@@ -236,7 +240,9 @@
             "raczej nie",
             "zdecydowanie nie"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wolny_czas_definicja_radosc",
@@ -260,7 +266,9 @@
             "raczej nie",
             "zdecydowanie nie"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wolny_czas_definicja_potrzeby_bliskich",
@@ -272,7 +280,9 @@
             "raczej nie",
             "zdecydowanie nie"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wolny_czas_definicja_zakupy",
@@ -284,7 +294,9 @@
             "raczej nie",
             "zdecydowanie nie"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wolny_czas_definicja_nowosc",
@@ -308,7 +320,9 @@
             "raczej nie",
             "zdecydowanie nie"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_galeria_sztuki",
@@ -321,7 +335,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_teatr",
@@ -334,7 +350,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_prasa_kulturalna",
@@ -347,7 +365,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_nagrania_teatralne",
@@ -360,7 +380,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_programy_kulturalne",
@@ -373,7 +395,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_wyklady",
@@ -386,7 +410,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_wydarzenia_literackie",
@@ -399,7 +425,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_archiwa",
@@ -412,7 +440,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_czytanie_ksiazek",
@@ -425,7 +455,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_muzeum",
@@ -438,7 +470,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_zoo",
@@ -451,7 +485,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_piknik",
@@ -464,7 +500,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_festyn",
@@ -477,7 +515,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_koncert",
@@ -490,7 +530,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_kino",
@@ -503,7 +545,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_dom_kultury",
@@ -529,7 +573,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "czestotliwosc_filharmonia",
@@ -542,7 +588,9 @@
             "Nigdy, ale chciał(a)bym w przyszłości",
             "Nigdy i nie jestem tym zainteresowany(a)"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "znajomosc_metropolii_gzm",
@@ -599,7 +647,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_gotowanie",
@@ -610,7 +660,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_gry_komputerowe",
@@ -621,7 +673,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_moda",
@@ -632,7 +686,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_moralnosc",
@@ -643,7 +699,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_muzyka_rozrywkowa",
@@ -654,7 +712,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_patriotyzm",
@@ -665,7 +725,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_pornografia",
@@ -676,7 +738,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_telewizja",
@@ -687,7 +751,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_religia",
@@ -698,7 +764,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_taniec",
@@ -709,7 +777,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_sposob_zwracania_sie",
@@ -720,7 +790,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_traktowanie_narodow",
@@ -731,7 +803,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_urzadzanie_mieszkania",
@@ -742,7 +816,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_tradycja",
@@ -753,7 +829,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_umiejetnosc_rozmowy",
@@ -764,7 +842,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_ogrodnictwo",
@@ -775,7 +855,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_malarstwo",
@@ -786,7 +868,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_muzyka_powazna",
@@ -797,7 +881,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_kino",
@@ -808,7 +894,9 @@
             "Nie",
             "Trudno powiedzieć"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "istotnosc_uczestnictwa_w_kulturze",
@@ -845,63 +933,81 @@
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: wysokie ceny / koszty korzystania.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_dojazd",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: problemy z dojazdem / komunikacją.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_nieatrakcyjna_oferta",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: mało atrakcyjna oferta tematyczna.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_brak_informacji",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: niewystarczająca ilość informacji o ofercie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_dostep_fizyczny",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: trudności z fizycznym dostępem / bariery architektoniczne.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_godziny_otwarcia",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: mało dogodne godziny otwarcia instytucji.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_brak_czasu",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: brak czasu / za dużo innych spraw na głowie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_opieka",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: opieka nad inną osobą/ osobą zależną.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_niska_jakosc",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: mało atrakcyjna jakościowa oferta.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_dostepnosc_biletow",
@@ -915,21 +1021,27 @@
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: moja miejscowość nie ma żadnej oferty kulturalnej.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_nieznajomosc_oferty",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: nie znam oferty kulturalnej w mojej okolicy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_inne",
         "data_type": "boolean",
         "description": "Czy respondent wskazał barierę: inne problemy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "bariera_zadne",
@@ -983,91 +1095,117 @@
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: wizyta w kinie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_teatr",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: wizyta w teatrze.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_koncert",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: uczestnictwo w koncercie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_muzeum",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: wizyta w muzeum / galerii sztuki.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_park_rozrywki",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: wizyta w parku rozrywki.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_dom_kultury",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: wizyta w domu kultury / centrum kultury.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_biblioteka",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: wizyta w bibliotece.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_zoo",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: wizyta w zoo.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_filharmonia",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: wizyta w filharmonii lub operze.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_spotkanie_z_artysta",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: uczestnictwo w spotkaniu z artystą.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_piknik",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: udział w pikniku / festynie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_inna_aktywnosc",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczył ostatnio w: inna aktywność.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "ostatnio_zadne",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: żadna z ostatnio odwiedzonych aktywności.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "nazwa_odwiedzonego_teatru",
@@ -1242,91 +1380,117 @@
         "data_type": "boolean",
         "description": "Czy respondent korzysta z biblioteki w celu: wypożyczania książek.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "biblioteka_wypozyczanie_innych_rzeczy",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z biblioteki w celu: wypożyczania innych rzeczy (np. filmów, gier).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "biblioteka_spotkanie_z_artysta",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z biblioteki w celu: uczestnictwa w spotkaniu z artystą.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "biblioteka_prelekcja",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z biblioteki w celu: uczestnictwa w odczycie / prelekcji.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "biblioteka_wystawa",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z biblioteki w celu: obejrzenia wystawy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "biblioteka_inne",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z biblioteki w innym celu.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "dom_kultury_spotkanie_z_artysta",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z domu kultury w celu: uczestnictwa w spotkaniu z artystą.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "dom_kultury_prelekcja",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z domu kultury w celu: uczestnictwa w odczycie / prelekcji.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "dom_kultury_film",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z domu kultury w celu: obejrzenia pokazu filmu.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "dom_kultury_teatr",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z domu kultury w celu: obejrzenia przedstawienia teatralnego.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "dom_kultury_koncert",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z domu kultury w celu: uczestnictwa w koncercie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "dom_kultury_wystawa",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z domu kultury w celu: obejrzenia wystawy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "dom_kultury_inne",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z domu kultury w innym celu.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "powod_braku_uczestnictwa_tekst",
@@ -1359,112 +1523,144 @@
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: wydarzenia kulturalne transmitowane online.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_wystawy_interaktywne",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: interaktywne wystawy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_nowe_media",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: wydarzenia związane ze sztuką nowych mediów.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_podcasty",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: opowieści dźwiękowe i podcasty.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_social_media",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: oglądanie lub tworzenie treści na Youtube/TikToku.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_wsparcie_artystow",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: wsparcie finansowe artystów z GZM.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_instalacje_dzwiekowe",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: interaktywne instalacje dźwiękowe.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_gry",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: gry komputerowe i kultura gamingowa.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_vr",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: immersyjne doświadczenia w wirtualnej rzeczywistości.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_inne",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z cyfrowej kultury: inne formy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "cyfrowa_kultura_zadne",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: żadna z wymienionych form kultury cyfrowej.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "uczestnictwo_miejsce_zamieszkania",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze: w mieście/wsi gdzie mieszka.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "uczestnictwo_miejsce_pracy",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze: w mieście/wsi, w którym pracuje.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "uczestnictwo_inne_miejsce_gzm",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze: w innym mieście/wsi na terenie GZM.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "uczestnictwo_poza_gzm",
         "data_type": "boolean",
         "description": "Czy respondent uczestniczy w kulturze: poza terenem GZM.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "uczestnictwo_zadne_miejsca",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: żadne z powyższych miejsc uczestnictwa w kulturze.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "skojarzenia_wydarzenia_gzm_1_tekst",
@@ -1664,7 +1860,9 @@
         "data_type": "boolean",
         "description": "Czy respondent czerpie informacje o kulturze z: telewizja.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "informacja_strony_instytucji",
@@ -1707,168 +1905,216 @@
         "data_type": "boolean",
         "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w domu.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "preferowane_miejsce_instytucja_kultury",
         "data_type": "boolean",
         "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w siedzibie instytucji kultury.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "preferowane_miejsce_przestrzen_publiczna",
         "data_type": "boolean",
         "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w przestrzeni publicznej.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "preferowane_miejsce_przestrzen_tymczasowa",
         "data_type": "boolean",
         "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w tymczasowo zaaranżowanej przestrzeni.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "preferowane_miejsce_stadion",
         "data_type": "boolean",
         "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: na stadionie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "preferowane_miejsce_pub_klub",
         "data_type": "boolean",
         "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w pubie/klubie/restauracji.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "preferowane_miejsce_inne",
         "data_type": "boolean",
         "description": "Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: inne miejsce.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "preferowane_miejsce_zadne",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: żadne z powyższych preferowanych miejsc.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_bytom",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Bytom.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_chorzow",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Chorzów.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_dabrowa_gornicza",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Dąbrowa Górnicza.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_gliwice",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Gliwice.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_katowice",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Katowice.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_myslowice",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Mysłowice.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_piekary_slaskie",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Piekary Śląskie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_ruda_slaska",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Ruda Śląska.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_siemianowice_slaskie",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Siemianowice Śląskie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_sosnowiec",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Sosnowiec.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_swietochlowice",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Świętochłowice.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_tychy",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Tychy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_zabrze",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Zabrze.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_inne",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza miejsca kultury w: Innym mieście/gminie GZM.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_nie_pamietam",
         "data_type": "boolean",
         "description": "Czy respondent odpowiedział: Nie pamiętam (dot. miejsc kultury).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_zadne",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: Żadne z powyższych miast/gmin GZM.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_kultury_inne_tekst",
@@ -1923,56 +2169,72 @@
             "Inne",
             "Nie wiem, trudno powiedzić"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wydarzenie_dzielnicowe",
         "data_type": "boolean",
         "description": "Czy respondent preferuje wydarzenia o zasięgu: dzielnicowym.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wydarzenie_miejskie",
         "data_type": "boolean",
         "description": "Czy respondent preferuje wydarzenia o zasięgu: miejskim.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wydarzenie_regionalne",
         "data_type": "boolean",
         "description": "Czy respondent preferuje wydarzenia o zasięgu: regionalnym.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wydarzenie_ogolnopolskie",
         "data_type": "boolean",
         "description": "Czy respondent preferuje wydarzenia o zasięgu: ogólnopolskim.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wydarzenie_miedzynarodowe",
         "data_type": "boolean",
         "description": "Czy respondent preferuje wydarzenia o zasięgu: międzynarodowym.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wydarzenie_niezalezne",
         "data_type": "boolean",
         "description": "Czy respondent preferuje wydarzenia o zasięgu: niezależnym od podziałów administracyjnych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wydarzenie_brak_opinii",
         "data_type": "boolean",
         "description": "Czy respondent odpowiedział: trudno powiedzieć (dot. preferowanego zasięgu wydarzeń).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wydatki_na_kulture_kwota",
@@ -2001,14 +2263,18 @@
         "data_type": "boolean",
         "description": "Czy respondent korzystał z oferty kulturalnej poza GZM w ciągu ostatnich 12 miesięcy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_poza_gzm_tekst",
         "data_type": "text",
         "description": "Otwarta odpowiedź tekstowa: Lokalizacja poza GZM, gdzie respondent korzystał z kultury.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "miejsce_poza_gzm_kategoria",
@@ -2065,7 +2331,9 @@
             "Inne",
             "Nie wiem, trudno powiedzić"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "aktywnosc_poza_gzm_tekst",
@@ -2319,182 +2587,234 @@
         "data_type": "boolean",
         "description": "Czy respondent korzysta z kultury online przez: YouTube.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_online_facebook",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z kultury online przez: Facebook.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_online_instagram",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z kultury online przez: Instagram.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_online_twitter",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z kultury online przez: Twitter/X.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_online_strony_www",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z kultury online przez: strony internetowe.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "kultura_online_inne_zrodla",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z kultury online przez: inne źródła.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "youtube_profile_instytucji",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na YouTube: Profile instytucji kultury.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "youtube_profile_tworcow",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na YouTube: Profile twórców.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "youtube_profile_instytucji_miejskich",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na YouTube: Profile instytucji miejskich/regionalnych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "youtube_zadne_profile",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na YouTube).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "facebook_profile_instytucji",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na Facebooku: Profile instytucji kultury.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "facebook_profile_tworcow",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na Facebooku: Profile twórców.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "facebook_profile_instytucji_miejskich",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na Facebooku: Profile instytucji miejskich/regionalnych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "facebook_zadne_profile",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na Facebooku).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "instagram_profile_instytucji",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na Instagramie: Profile instytucji kultury.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "instagram_profile_tworcow",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na Instagramie: Profile twórców.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "instagram_profile_instytucji_miejskich",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na Instagramie: Profile instytucji miejskich/regionalnych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "instagram_zadne_profile",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na Instagramie).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "twitter_profile_instytucji",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na Twitter/X: Profile instytucji kultury.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "twitter_profile_tworcow",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na Twitter/X: Profile twórców.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "twitter_profile_instytucji_miejskich",
         "data_type": "boolean",
         "description": "Czy respondent śledzi na Twitter/X: Profile instytucji miejskich/regionalnych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "twitter_zadne_profile",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na Twitter/X).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "strony_www_profile_instytucji",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza na stronach WWW: Profile instytucji kultury.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "strony_www_profile_tworcow",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza na stronach WWW: Profile twórców.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "strony_www_profile_instytucji_miejskich",
         "data_type": "boolean",
         "description": "Czy respondent odwiedza na stronach WWW: Profile instytucji miejskich/regionalnych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "strony_www_zadne_profile",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: Żadne z powyższych (dot. profili na stronach WWW).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "znajomosc_tworcy_cyfrowego_1",
@@ -2578,63 +2898,81 @@
         "data_type": "boolean",
         "description": "Czy respondent podejmuje aktywność twórczą: granie na instrumencie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "tworczosc_pisanie_tekstow",
         "data_type": "boolean",
         "description": "Czy respondent podejmuje aktywność twórczą: pisanie tekstów.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "tworczosc_fotografia",
         "data_type": "boolean",
         "description": "Czy respondent podejmuje aktywność twórczą: robienie zdjęć.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "tworczosc_rysowanie_malowanie",
         "data_type": "boolean",
         "description": "Czy respondent podejmuje aktywność twórczą: rysowanie lub malowanie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "tworczosc_szycie_haftowanie",
         "data_type": "boolean",
         "description": "Czy respondent podejmuje aktywność twórczą: szycie/haftowanie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "tworczosc_spiew",
         "data_type": "boolean",
         "description": "Czy respondent podejmuje aktywność twórczą: śpiewanie.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "tworczosc_komponowanie",
         "data_type": "boolean",
         "description": "Czy respondent podejmuje aktywność twórczą: komponowanie muzyki.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "tworczosc_inna",
         "data_type": "boolean",
         "description": "Czy respondent podejmuje aktywność twórczą: inna twórczość.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "tworczosc_zadna",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: żadne z powyższych aktywności twórczych.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "tworczosc_inna_tekst",
@@ -2682,7 +3020,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_bycie_na_biezaco",
@@ -2697,7 +3037,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_relacje_miedzyludzkie",
@@ -2712,7 +3054,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_przezycia",
@@ -2727,7 +3071,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_nowe_miejsca",
@@ -2742,7 +3088,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_atrakcyjnosc_regionu",
@@ -2757,7 +3105,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_przynaleznosc",
@@ -2772,7 +3122,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_samorealizacja",
@@ -2787,7 +3139,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_sens_zycia",
@@ -2802,7 +3156,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_prestiz",
@@ -2817,7 +3173,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_przyjemnosc",
@@ -2832,7 +3190,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_ubozsze_zycie",
@@ -2847,7 +3207,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_wazniejsze_rzeczy_niz_kultura",
@@ -2862,7 +3224,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_wydatki_publiczne_na_kulture",
@@ -2877,7 +3241,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "opinia_kultura_nieistotne_tematy",
@@ -2892,7 +3258,9 @@
             "6",
             "7 w pełni sie zgadzam"
         ],
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "wielkosc_miejscowosci",
@@ -3047,104 +3415,134 @@
         "data_type": "boolean",
         "description": "Czy respondent ma niepełnosprawność: wzrokową.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "niepelnosprawnosc_sluch",
         "data_type": "boolean",
         "description": "Czy respondent ma niepełnosprawność: słuchową.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "niepelnosprawnosc_ruch",
         "data_type": "boolean",
         "description": "Czy respondent ma niepełnosprawność: ruchową.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "niepelnosprawnosc_inna",
         "data_type": "boolean",
         "description": "Czy respondent ma niepełnosprawność: inny typ.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "niepelnosprawnosc_zadna",
         "data_type": "boolean",
         "description": "Czy respondent wskazał: żadna z powyższych niepełnosprawności.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "transport_komunikacja_miejska",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z transportu: komunikacja miejska (autobus, tramwaj).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "transport_komunikacja_regionalna",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z transportu: komunikacja regionalna (kolej).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "transport_wlasny_samochod",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z transportu: własny samochód.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "transport_wlasny_rower",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z transportu: własny rower.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "transport_wspoldzielony",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z transportu: pojazd na minuty (rower, hulajnoga).",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "transport_pieszo",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z transportu: pieszo.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "transport_inny",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z transportu: inaczej.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "internet_w_domu",
         "data_type": "boolean",
         "description": "Czy respondent ma dostęp do internetu: w domu.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "internet_w_pracy",
         "data_type": "boolean",
         "description": "Czy respondent ma dostęp do internetu: w pracy.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     },
     {
         "semantic_name": "internet_w_telefonie",
         "data_type": "boolean",
         "description": "Czy respondent ma dostęp do internetu: w telefonie komórkowym.",
         "possible_values": null,
-        "hints": []
+        "hints": [
+            "Multiple-answer question"
+        ]
     }
 ]
