@@ -48,9 +48,7 @@ def create_fine_tuning_example(
     column_list = ", ".join(columns)
 
     user_prompt = (
-        "Translate the following natural language query to SQL based on the "
-        "provided column names.\n\n"
-        f"Available columns: {column_list}\n\n"
+        "Translate the following natural language query to SQL "
         f"Question: {question}\n\n"
         "Generate only the SQL query."
     )
