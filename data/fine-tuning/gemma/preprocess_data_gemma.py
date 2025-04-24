@@ -45,7 +45,7 @@ def create_fine_tuning_example(
     question: str, columns: list[str], sql_query: str
 ) -> dict[str, str]:
     """Create a single fine-tuning example in the required format."""
-    column_list = ", ".join(columns)
+    # column_list = ", ".join(columns)
 
     user_prompt = (
         "Translate the following natural language query to SQL "
@@ -56,6 +56,14 @@ def create_fine_tuning_example(
     return {
         "text": f"<start_of_turn>user\n{user_prompt}\n<end_of_turn>\n<start_of_turn>model\n{sql_query}<end_of_turn>\n"
     }
+
+
+def sample_examples(examples: list[T], max_examples: int | None = None) -> list[T]:
+    """Randomly sample a subset of examples if max_examples is specified."""
+    if max_examples is None or max_examples >= len(examples):
+        return examples
+
+    return random.sample(examples, max_examples)
 
 
 def split_dataset(
@@ -137,6 +145,12 @@ def main() -> None:
         default=42,
         help="Random seed for dataset splitting (default: 42)",
     )
+    parser.add_argument(
+        "--max-examples",
+        type=int,
+        default=None,
+        help="Maximum number of examples to randomly select (default: use all available examples)",
+    )
 
     args = parser.parse_args()
 
@@ -161,6 +175,14 @@ def main() -> None:
             question = case["inputs"]
             sql_query = case["expected_output"]["sql_query"]
             examples.append(create_fine_tuning_example(question, columns, sql_query))
+
+    # Sample examples if max_examples is specified
+    if args.max_examples:
+        original_count = len(examples)
+        examples = sample_examples(examples, args.max_examples)
+        print(
+            f"Randomly selected {len(examples)} examples from {original_count} total examples"
+        )
 
     # Split dataset
     train_set, val_set, test_set = split_dataset(
