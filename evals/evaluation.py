@@ -20,6 +20,7 @@ from rich.table import Table
 
 from research.config import get_config
 from research.db.operations import SQLExecutionError, SQLParsingError, query_duckdb
+from research.llm.reranker import find_similar_examples, prepare_examples_for_prompt
 from research.llm.sql_generator import create_prompt, load_metadata
 from research.utils.logging import setup_logger
 
@@ -415,6 +416,18 @@ def export_report_to_markdown(
     help="Base URL for LLM provider (only needed for ollama or custom endpoints)",
     default=lambda: get_config().llm.base_url,
 )
+@click.option(
+    "--use-reranker",
+    is_flag=True,
+    help="Use Jina AI reranker to find similar examples for the prompt",
+    default=False,
+)
+@click.option(
+    "--reranker-examples",
+    type=int,
+    help="Number of examples to include when using the reranker",
+    default=10,
+)
 def main(
     eval_cases: str,
     metadata_json: str,
@@ -428,6 +441,8 @@ def main(
     max_concurrency: int,
     provider: str,
     base_url: Optional[str],
+    use_reranker: bool,
+    reranker_examples: int,
 ) -> None:
     """
     Run model evaluation against SQL queries.
@@ -441,6 +456,11 @@ def main(
     logger.info(f"Starting evaluation with model: {model}")
     logger.info(f"Using database at: {database}")
     logger.info(f"Loading evaluation cases from: {eval_cases}")
+
+    if use_reranker:
+        logger.info(
+            f"Jina AI reranker enabled, using {reranker_examples} examples per query"
+        )
 
     try:
         full_dataset = Dataset[str, Result, Any].from_file(
@@ -491,6 +511,33 @@ def main(
         if rate_limiter is not None:
             await rate_limiter.acquire()
 
+        # If reranker is enabled, find similar examples from the dataset
+        examples_text = ""
+        if use_reranker:
+            try:
+                # Find similar examples
+                similar_cases = find_similar_examples(
+                    query=question,
+                    eval_dataset_path=eval_cases,
+                    top_n=reranker_examples,
+                    exclude_range=range,
+                )
+
+                # Prepare examples for the prompt
+                if similar_cases:
+                    examples_text = prepare_examples_for_prompt(similar_cases)
+                    logger.debug(
+                        f"Added {len(similar_cases)} similar examples to the prompt"
+                    )
+            except Exception as e:
+                logger.error(f"Error using reranker: {e}")
+
+        # Create the prompt with or without examples
+        system_prompt = create_prompt(
+            load_metadata(metadata_json), template_path, examples=examples_text
+        )
+        print(system_prompt)
+
         # Dynamically create the model and agent for each question
         if provider == "ollama":
             model_instance = OpenAIModel(
@@ -499,10 +546,11 @@ def main(
             )
         else:
             model_instance = model
+
         agent = Agent(
             model_instance,
             output_type=str,
-            system_prompt=create_prompt(load_metadata(metadata_json), template_path),
+            system_prompt=system_prompt,
             model_settings=ModelSettings(
                 temperature=temperature,
                 max_tokens=get_config().llm.max_tokens,

@@ -46,13 +46,14 @@ def load_metadata(metadata_path: str) -> str:
         raise
 
 
-def create_prompt(metadata_json: str, template_path: str) -> str:
+def create_prompt(metadata_json: str, template_path: str, examples: str = "") -> str:
     """
     Create system instruction using the template and metadata.
 
     Args:
         metadata_json: JSON string containing survey metadata
         template_path: Path to Jinja2 template file
+        examples: Optional string containing example SQL queries to include in the prompt
 
     Returns:
         System instruction string
@@ -73,8 +74,10 @@ def create_prompt(metadata_json: str, template_path: str) -> str:
 
         template = env.get_template(template_file)
 
-        # Render the system prompt with metadata
-        system_instruction = template.render(METADATA_JSON=metadata_json)
+        # Render the system prompt with metadata and examples
+        system_instruction = template.render(
+            METADATA_JSON=metadata_json, examples=examples
+        )
         logger.debug(f"System instruction generated from template: {template_path}")
         return system_instruction
 
