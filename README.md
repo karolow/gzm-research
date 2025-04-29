@@ -134,32 +134,12 @@ The project includes semantic search functionality that lets you find similar ex
 
 Before using semantic search, you need to build a FAISS index from your examples:
 
-1. Prepare a JSON file with your examples. The script supports multiple formats:
-   
-   - List of dictionaries with text fields (it will automatically detect common fields like "inputs", "question", "query", etc.):
+1. Prepare a JSON file with your examples. 
      ```json
      [
        {"inputs": "How many people participated in cultural events?"},
        {"inputs": "What's the age distribution of museum visitors?"}
      ]
-     ```
-
-   - Simple list of strings:
-     ```json
-     [
-       "How many people participated in cultural events?",
-       "What's the age distribution of museum visitors?"
-     ]
-     ```
-
-   - Dictionary with nested lists:
-     ```json
-     {
-       "examples": [
-         "How many people participated in cultural events?",
-         "What's the age distribution of museum visitors?"
-       ]
-     }
      ```
 
 2. Build the index:
@@ -170,6 +150,11 @@ Before using semantic search, you need to build a FAISS index from your examples
    This will create two files:
    - `src/research/llm/faiss.index`: The FAISS index for fast similarity search
    - `src/research/llm/examples.joblib`: The serialized examples data
+
+3. Update the index with new cases using `--update`:
+   ```bash 
+   uv run src/research/llm/build_faiss_index.py --examples path/to/new_examples.json --update
+   ```
 
 ### Using Semantic Search
 

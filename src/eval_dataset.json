@@ -1385,8 +1385,8 @@
             "name": "93",
             "inputs": "Czy mieszkańcy Katowic częściej wybierają kulturę wysoką (opera, filharmonia, galerie) niż mieszkańcy miast satelickich jak Mikołów czy Mysłowice?",
             "expected_output": {
-                "sql_query": "SELECT CASE WHEN miasto_powiat = 'Katowice' THEN 'Katowice' WHEN miasto_powiat IN ('Mysłowice', 'Powiat mikołowski') THEN 'Miasta satelickie' END AS typ_miasta, ROUND(SUM(CASE WHEN czestotliwosc_filharmonia = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' OR czestotliwosc_galeria_sztuki = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' OR ostatnio_filharmonia = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_kultura_wysoka FROM participation_survey WHERE miasto_powiat IN ('Katowice', 'Mysłowice', 'Powiat mikołowski') GROUP BY typ_miasta;",
-                "result": "typ_miasta|procent_kultura_wysoka\nMiasta satelickie|31.41\nKatowice|34.38"
+                "sql_query": "WITH KatowiceTotal AS ( SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Katowice' ), SatelliteTotal AS ( SELECT SUM(waga_proby) AS total FROM participation_survey WHERE (miasto_powiat = 'Mysłowice') OR (miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Mikołów') ), HighCultureCondition AS ( SELECT id_uczestnika, waga_proby, ( czestotliwosc_filharmonia = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' OR czestotliwosc_galeria_sztuki = 'Przynajmniej raz w ciągu ostatnich 12 miesięcy' OR ostatnio_filharmonia = TRUE ) AS is_high_culture_participant FROM participation_survey ) SELECT 'Katowice (Miasto)' AS lokalizacja, ROUND(SUM(CASE WHEN hcc.is_high_culture_participant THEN ps.waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM KatowiceTotal), 2) AS procent_kultura_wysoka FROM participation_survey ps JOIN HighCultureCondition hcc ON ps.id_uczestnika = hcc.id_uczestnika WHERE ps.miasto_powiat = 'Katowice' GROUP BY lokalizacja UNION ALL SELECT 'Mysłowice / Mikołów (Gmina)' AS lokalizacja, ROUND(SUM(CASE WHEN hcc.is_high_culture_participant THEN ps.waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM SatelliteTotal), 2) AS procent_kultura_wysoka FROM participation_survey ps JOIN HighCultureCondition hcc ON ps.id_uczestnika = hcc.id_uczestnika WHERE (ps.miasto_powiat = 'Mysłowice') OR (ps.miasto_powiat = 'Powiat mikołowski' AND ps.gmina_miejscowosc = 'Mikołów') GROUP BY lokalizacja;",
+                "result": "typ_miasta|procent_kultura_wysoka\nMiasta satelickie|37.02\nKatowice|34.38"
             },
             "metadata": {
                 "complexity": "medium",
@@ -5791,14 +5791,14 @@
         },
         {
             "name": "387",
-            "inputs": "Jaki procent mieszkańców zespołu dzielnic północnych Katowic oraz jaki procent mieszkańców powiatu mikołowskiego był ostatnio na pikniku/festynie?",
+            "inputs": "Jaki procent mieszkańców zespołu dzielnic północnych Katowic oraz jaki procent mieszkańców gminy Mikołów był ostatnio na pikniku/festynie?",
             "expected_output": {
-                "sql_query": "WITH KatowiceZoneN AS ( SELECT ostatnio_piknik, waga_proby FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic IN ('Wełnowiec-Józefowiec', 'Dąb', 'Załęże', 'Osiedle Tysiąclecia', 'Osiedle Witosa') ) SELECT 'Zespół dzielnic północnych KTW' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_piknik FROM KatowiceZoneN UNION ALL SELECT 'Powiat Mikołowski' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_piknik FROM participation_survey WHERE miasto_powiat = 'Powiat mikołowski';",
-                "result": "lokalizacja|procent_ostatnio_piknik\nZespół dzielnic północnych KTW|53.77\nPowiat Mikołowski|50.13"
+                "sql_query": "WITH KatowiceZoneNTotal AS ( SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic IN ('Wełnowiec-Józefowiec', 'Dąb', 'Załęże', 'Osiedle Tysiąclecia', 'Osiedle Witosa') ), GminaMikolowTotal AS ( SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Mikołów' ) SELECT 'Zespół dzielnic północnych KTW' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM KatowiceZoneNTotal), 2) AS procent_ostatnio_piknik FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic IN ('Wełnowiec-Józefowiec', 'Dąb', 'Załęże', 'Osiedle Tysiąclecia', 'Osiedle Witosa') UNION ALL SELECT 'Mikołów (Gmina)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM GminaMikolowTotal), 2) AS procent_ostatnio_piknik FROM participation_survey WHERE miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Mikołów';",
+                "result": "lokalizacja|procent_ostatnio_piknik\nZespół dzielnic północnych KTW|53.77\nMikołów|54.74"
             },
             "metadata": {
                 "complexity": "high",
-                "ambiguity_note": "Compares a grouped Katowice zone with a separate county using UNION ALL."
+                "ambiguity_note": "Compares a grouped Katowice zone with a specific Gmina using UNION ALL and separate denominator calculations."
             },
             "evaluators": [
                 "ResultWeighted"
@@ -5994,6 +5994,306 @@
             "metadata": {
                 "complexity": "medium",
                 "ambiguity_note": "Calculates the percentage of frequent online users who also attend cinema annually. Denominator correctly reflects the weight of frequent online users."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "401",
+            "inputs": "Porównaj średnie wydatki na kulturę w subregionie gliwickim i mieście Zabrze.",
+            "expected_output": {
+                "sql_query": "SELECT 'Subregion GLIWICKI' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE subregion_metropolii_gzm = 'GLIWICKI' AND wydatki_na_kulture_kwota IS NOT NULL UNION ALL SELECT 'Zabrze (Miasto)' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE miasto_powiat = 'Zabrze' AND wydatki_na_kulture_kwota IS NOT NULL;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Porównuje Subregion (`subregion_metropolii_gzm`) z Miastem na prawach powiatu (`miasto_powiat`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "402",
+            "inputs": "Jaki procent mieszkańców subregionu tyski i gminy Łaziska Górne był ostatnio na koncercie?",
+            "expected_output": {
+                "sql_query": "WITH SubregionTyskiTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE subregion_metropolii_gzm = 'TYSKI'), GminaLaziskaTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Łaziska Górne') SELECT 'Subregion TYSKI' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_koncert = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM SubregionTyskiTotal), 2) AS procent_ostatnio_koncert FROM participation_survey WHERE subregion_metropolii_gzm = 'TYSKI' UNION ALL SELECT 'Łaziska Górne (Gmina)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_koncert = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM GminaLaziskaTotal), 2) AS procent_ostatnio_koncert FROM participation_survey WHERE miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Łaziska Górne';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Subregion (`subregion_metropolii_gzm`) z Gminą (`gmina_miejscowosc` w ramach `miasto_powiat`). Odsetek, wymaga osobnych mianowników dla grup."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "403",
+            "inputs": "Porównaj średnie wydatki na kulturę w subregionie sosnowieckim i katowickiej dzielnicy Giszowiec.",
+            "expected_output": {
+                "sql_query": "SELECT 'Subregion SOSNOWIECKI' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE subregion_metropolii_gzm = 'SOSNOWIECKI' AND wydatki_na_kulture_kwota IS NOT NULL UNION ALL SELECT 'Giszowiec KTW (Dzielnica)' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Giszowiec' AND wydatki_na_kulture_kwota IS NOT NULL;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Subregion (`subregion_metropolii_gzm`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "404",
+            "inputs": "Jaki procent mieszkańców miasta Bytom i gminy Zbrosławice był ostatnio w kinie?",
+            "expected_output": {
+                "sql_query": "WITH BytomTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Bytom'), ZbroslawiceTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Zbrosławice') SELECT 'Bytom (Miasto)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM BytomTotal), 2) AS procent_ostatnio_kino FROM participation_survey WHERE miasto_powiat = 'Bytom' UNION ALL SELECT 'Zbrosławice (Gmina)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM ZbroslawiceTotal), 2) AS procent_ostatnio_kino FROM participation_survey WHERE miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Zbrosławice';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Miasto na prawach powiatu (`miasto_powiat`) z Gminą (`gmina_miejscowosc` w ramach innego `miasto_powiat`). Odsetek, wymaga osobnych mianowników dla grup."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "405",
+            "inputs": "Porównaj średnie wydatki na kulturę w mieście Tychy i katowickiej dzielnicy Osiedle Tysiąclecia.",
+            "expected_output": {
+                "sql_query": "SELECT 'Tychy (Miasto)' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE miasto_powiat = 'Tychy' AND wydatki_na_kulture_kwota IS NOT NULL UNION ALL SELECT 'Osiedle Tysiąclecia KTW (Dzielnica)' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Osiedle Tysiąclecia' AND wydatki_na_kulture_kwota IS NOT NULL;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Miasto na prawach powiatu (`miasto_powiat`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "406",
+            "inputs": "Jaki procent mieszkańców gminy Tarnowskie Góry i katowickiej dzielnicy Załęże był ostatnio w muzeum?",
+            "expected_output": {
+                "sql_query": "WITH TarnowskieGoryTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Tarnowskie Góry'), ZalezeTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Załęże') SELECT 'Tarnowskie Góry (Gmina)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_muzeum = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM TarnowskieGoryTotal), 2) AS procent_ostatnio_muzeum FROM participation_survey WHERE miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Tarnowskie Góry' UNION ALL SELECT 'Załęże KTW (Dzielnica)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_muzeum = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM ZalezeTotal), 2) AS procent_ostatnio_muzeum FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Załęże';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Gminę (`gmina_miejscowosc` w ramach `miasto_powiat`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Odsetek, wymaga osobnych mianowników dla grup."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "407",
+            "inputs": "Porównaj średnie wydatki na kulturę w Powiecie będzińskim i subregionie Tyskim.",
+            "expected_output": {
+                "sql_query": "SELECT 'Powiat Będziński' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE miasto_powiat = 'Powiat będziński' AND wydatki_na_kulture_kwota IS NOT NULL UNION ALL SELECT 'Subregion TYSKI' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE subregion_metropolii_gzm = 'TYSKI' AND wydatki_na_kulture_kwota IS NOT NULL;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "medium",
+                "ambiguity_note": "Porównuje Powiat (`miasto_powiat`) z Subregionem (`subregion_metropolii_gzm`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "408",
+            "inputs": "Jaki procent mieszkańców Powiatu mikołowskiego i subregionu katowickiego był ostatnio w teatrze?",
+            "expected_output": {
+                "sql_query": "WITH PowiatMikolowskiTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Powiat mikołowski'), SubregionKatowickiTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE subregion_metropolii_gzm = 'KATOWICKI') SELECT 'Powiat Mikołowski' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_teatr = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM PowiatMikolowskiTotal), 2) AS procent_ostatnio_teatr FROM participation_survey WHERE miasto_powiat = 'Powiat mikołowski' UNION ALL SELECT 'Subregion KATOWICKI' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_teatr = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM SubregionKatowickiTotal), 2) AS procent_ostatnio_teatr FROM participation_survey WHERE subregion_metropolii_gzm = 'KATOWICKI';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Powiat (`miasto_powiat`) z Subregionem (`subregion_metropolii_gzm`). Odsetek, wymaga osobnych mianowników dla grup."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "409",
+            "inputs": "Porównaj średnie wydatki na kulturę w gminie Kobiór i subregionie GLIWICKIM.",
+            "expected_output": {
+                "sql_query": "SELECT 'Kobiór (Gmina)' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE miasto_powiat = 'Powiat pszczyński' AND gmina_miejscowosc = 'Kobiór' AND wydatki_na_kulture_kwota IS NOT NULL UNION ALL SELECT 'Subregion GLIWICKI' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE subregion_metropolii_gzm = 'GLIWICKI' AND wydatki_na_kulture_kwota IS NOT NULL;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Gminę (`gmina_miejscowosc` w ramach `miasto_powiat`) z Subregionem (`subregion_metropolii_gzm`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "410",
+            "inputs": "Jaki procent mieszkańców katowickiej dzielnicy Ligota-Panewniki i subregionu BYTOMSKIEGO był ostatnio na pikniku/festynie?",
+            "expected_output": {
+                "sql_query": "WITH LigotaTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Ligota-Panewniki'), SubregionBytomskiTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE subregion_metropolii_gzm = 'BYTOMSKI') SELECT 'Ligota-Panewniki KTW (Dzielnica)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM LigotaTotal), 2) AS procent_ostatnio_piknik FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Ligota-Panewniki' UNION ALL SELECT 'Subregion BYTOMSKI' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_piknik = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM SubregionBytomskiTotal), 2) AS procent_ostatnio_piknik FROM participation_survey WHERE subregion_metropolii_gzm = 'BYTOMSKI';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Dzielnicę Katowic (`dzielnica_katowic` w ramach `miasto_powiat`) z Subregionem (`subregion_metropolii_gzm`). Odsetek, wymaga osobnych mianowników dla grup."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "411",
+            "inputs": "Porównaj średnie wydatki na kulturę w mieście Piekary Śląskie i gminie Radzionków.",
+            "expected_output": {
+                "sql_query": "SELECT CASE WHEN miasto_powiat = 'Piekary Śląskie' THEN 'Piekary Śląskie (Miasto)' WHEN miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Radzionków' THEN 'Radzionków (Gmina)' END AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE (miasto_powiat = 'Piekary Śląskie' OR (miasto_powiat = 'Powiat tarnogórski' AND gmina_miejscowosc = 'Radzionków')) AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY lokalizacja;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Miasto na prawach powiatu (`miasto_powiat`) z Gminą (`gmina_miejscowosc` w ramach innego `miasto_powiat`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "412",
+            "inputs": "Jaki procent mieszkańców Świętochłowic i katowickiej dzielnicy Brynów Cz. Wsch.-Os. Zgrzebnioka był ostatnio w bibliotece?",
+            "expected_output": {
+                "sql_query": "WITH SwietochlowiceTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Świętochłowice'), BrynowTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Brynów Część Wschodnia - Os. Zgrzebnioka') SELECT 'Świętochłowice (Miasto)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_biblioteka = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM SwietochlowiceTotal), 2) AS procent_ostatnio_biblioteka FROM participation_survey WHERE miasto_powiat = 'Świętochłowice' UNION ALL SELECT 'Brynów KTW (Dzielnica)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_biblioteka = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM BrynowTotal), 2) AS procent_ostatnio_biblioteka FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Brynów Część Wschodnia - Os. Zgrzebnioka';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Miasto na prawach powiatu (`miasto_powiat`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Odsetek, wymaga osobnych mianowników dla grup."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "413",
+            "inputs": "Porównaj średnie wydatki na kulturę w gminie Siewierz i katowickiej dzielnicy Bogucice.",
+            "expected_output": {
+                "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Siewierz' THEN 'Siewierz (Gmina)' WHEN miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Bogucice' THEN 'Bogucice KTW (Dzielnica)' END AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE ((miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Siewierz') OR (miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Bogucice')) AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY lokalizacja;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Gminę (`gmina_miejscowosc` w ramach `miasto_powiat`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "414",
+            "inputs": "Jaki procent mieszkańców gminy Imielin i katowickiej dzielnicy Kostuchna był ostatnio na koncercie?",
+            "expected_output": {
+                "sql_query": "WITH ImielinTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Powiat bieruńsko-lędziński' AND gmina_miejscowosc = 'Imielin'), KostuchnaTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Kostuchna') SELECT 'Imielin (Gmina)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_koncert = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM ImielinTotal), 2) AS procent_ostatnio_koncert FROM participation_survey WHERE miasto_powiat = 'Powiat bieruńsko-lędziński' AND gmina_miejscowosc = 'Imielin' UNION ALL SELECT 'Kostuchna KTW (Dzielnica)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_koncert = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM KostuchnaTotal), 2) AS procent_ostatnio_koncert FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Kostuchna';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Gminę (`gmina_miejscowosc` w ramach `miasto_powiat`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Odsetek, wymaga osobnych mianowników dla grup."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "415",
+            "inputs": "Porównaj średnie wydatki na kulturę w Powiecie tarnogórskim i katowickiej dzielnicy Wełnowiec-Józefowiec.",
+            "expected_output": {
+                "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat tarnogórski' THEN 'Powiat Tarnogórski' WHEN miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Wełnowiec-Józefowiec' THEN 'Wełnowiec KTW (Dzielnica)' END AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE (miasto_powiat = 'Powiat tarnogórski' OR (miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Wełnowiec-Józefowiec')) AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY lokalizacja;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Powiat (`miasto_powiat`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "416",
+            "inputs": "Jaki procent mieszkańców Powiatu bieruńsko-lędzińskiego i katowickiej dzielnicy Podlesie był ostatnio w domu kultury?",
+            "expected_output": {
+                "sql_query": "WITH PowiatBLTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Powiat bieruńsko-lędziński'), PodlesieTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Podlesie') SELECT 'Powiat Bieruńsko-Lędziński' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_dom_kultury = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM PowiatBLTotal), 2) AS procent_ostatnio_dom_kultury FROM participation_survey WHERE miasto_powiat = 'Powiat bieruńsko-lędziński' UNION ALL SELECT 'Podlesie KTW (Dzielnica)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_dom_kultury = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM PodlesieTotal), 2) AS procent_ostatnio_dom_kultury FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Podlesie';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Powiat (`miasto_powiat`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Odsetek, wymaga osobnych mianowników dla grup."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "417",
+            "inputs": "Porównaj średnie wydatki na kulturę w subregionie KATOWICKIM (bez Katowic) i gminie Będzin.",
+            "expected_output": {
+                "sql_query": "SELECT 'Subregion KATOWICKI' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE subregion_metropolii_gzm = 'KATOWICKI' AND wydatki_na_kulture_kwota IS NOT NULL UNION ALL SELECT 'Będzin (Gmina)' AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Będzin' AND wydatki_na_kulture_kwota IS NOT NULL;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Subregion (`subregion_metropolii_gzm`) z Gminą (`gmina_miejscowosc` w ramach `miasto_powiat`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "418",
+            "inputs": "Jaki procent mieszkańców subregionu BYTOMSKIEGO i katowickiej dzielnicy Murcki był ostatnio w kinie?",
+            "expected_output": {
+                "sql_query": "WITH SubregionBytomskiTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE subregion_metropolii_gzm = 'BYTOMSKI'), MurckiTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Murcki') SELECT 'Subregion BYTOMSKI' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM SubregionBytomskiTotal), 2) AS procent_ostatnio_kino FROM participation_survey WHERE subregion_metropolii_gzm = 'BYTOMSKI' UNION ALL SELECT 'Murcki KTW (Dzielnica)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM MurckiTotal), 2) AS procent_ostatnio_kino FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Murcki';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Subregion (`subregion_metropolii_gzm`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Odsetek, wymaga osobnych mianowników dla grup."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "419",
+            "inputs": "Porównaj średnie wydatki na kulturę w gminie Sośnicowice i katowickiej dzielnicy Załęska Hałda-Brynów Cz. Zach.",
+            "expected_output": {
+                "sql_query": "SELECT CASE WHEN miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Sośnicowice' THEN 'Sośnicowice (Gmina)' WHEN miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Załęska Hałda - Brynów Część Zachodnia' THEN 'Załęska Hałda KTW (Dzielnica)' END AS lokalizacja, ROUND(SUM(wydatki_na_kulture_kwota * waga_proby) / SUM(waga_proby), 2) AS srednie_wydatki FROM participation_survey WHERE ((miasto_powiat = 'Powiat gliwicki' AND gmina_miejscowosc = 'Sośnicowice') OR (miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Załęska Hałda - Brynów Część Zachodnia')) AND wydatki_na_kulture_kwota IS NOT NULL GROUP BY lokalizacja;",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Gminę (`gmina_miejscowosc` w ramach `miasto_powiat`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Średnie wydatki, wymaga filtra IS NOT NULL."
+            },
+            "evaluators": [
+                "ResultWeighted"
+            ]
+        },
+        {
+            "name": "420",
+            "inputs": "Jaki procent mieszkańców gminy Sławków i katowickiej dzielnicy Zarzecze był ostatnio w teatrze?",
+            "expected_output": {
+                "sql_query": "WITH SlawkowTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Sławków'), ZarzeczeTotal AS (SELECT SUM(waga_proby) AS total FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Zarzecze') SELECT 'Sławków (Gmina)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_teatr = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM SlawkowTotal), 2) AS procent_ostatnio_teatr FROM participation_survey WHERE miasto_powiat = 'Powiat będziński' AND gmina_miejscowosc = 'Sławków' UNION ALL SELECT 'Zarzecze KTW (Dzielnica)' AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_teatr = TRUE THEN waga_proby ELSE 0 END) * 100.0 / (SELECT total FROM ZarzeczeTotal), 2) AS procent_ostatnio_teatr FROM participation_survey WHERE miasto_powiat = 'Katowice' AND dzielnica_katowic = 'Zarzecze';",
+                "result": ""
+            },
+            "metadata": {
+                "complexity": "high",
+                "ambiguity_note": "Porównuje Gminę (`gmina_miejscowosc` w ramach `miasto_powiat`) z Dzielnicą Katowic (`dzielnica_katowic` w ramach `miasto_powiat`). Odsetek, wymaga osobnych mianowników dla grup."
             },
             "evaluators": [
                 "ResultWeighted"
