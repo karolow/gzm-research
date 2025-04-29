@@ -4115,7 +4115,7 @@
             "name": "275",
             "inputs": "Porównaj odsetek osób, które ostatnio były w kinie, między mieszkańcami katowickiej dzielnicy Piotrowice-Ochojec a mieszkańcami Mikołowa.",
             "expected_output": {
-                "sql_query": "SELECT CASE WHEN dzielnica_katowic = 'Piotrowice - Ochojec' THEN 'Piotrowice-Ochojec (Dzielnica KTW)' WHEN miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Mikołów' THEN 'Mikołów (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_kino FROM participation_survey WHERE (dzielnica_katowic = 'Piotrowice - Ochojec') OR (miasto_powiat = 'Powiat mikołowski' AND gmina_miejscowosc = 'Mikołów') GROUP BY lokalizacja;",
+                "sql_query": "SELECT CASE WHEN dzielnica_katowic = 'Piotrowice - Ochojec' THEN 'Piotrowice-Ochojec (Dzielnica KTW)' WHEN gmina_miejscowosc = 'Mikołów' THEN 'Mikołów (Gmina)' END AS lokalizacja, ROUND(SUM(CASE WHEN ostatnio_kino = TRUE THEN waga_proby ELSE 0 END) * 100.0 / SUM(waga_proby), 2) AS procent_ostatnio_kino FROM participation_survey WHERE (dzielnica_katowic = 'Piotrowice - Ochojec') OR (gmina_miejscowosc = 'Mikołów') GROUP BY lokalizacja;",
                 "result": "lokalizacja|procent_ostatnio_kino\nPiotrowice-Ochojec (Dzielnica KTW)|59.45\nMikołów (Gmina)|65.94"
             },
             "metadata": {
@@ -5607,9 +5607,7 @@
                 "complexity": "low",
                 "ambiguity_note": "Explicitly asks for raw count (liczba rekordów), testing the instruction to ignore weights in this specific case."
             },
-            "evaluators": [
-               
-            ]
+            "evaluators": []
         },
         {
             "name": "375",

@@ -8,7 +8,7 @@ from typing import Optional
 from google import genai
 from google.genai import types as genai_types
 
-from research.utils.logging import setup_logger
+from research.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 

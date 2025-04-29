@@ -105,7 +105,8 @@ class Config(BaseModel):
     )
     survey_metadata: str = Field(
         default_factory=lambda: os.getenv(
-            "GZM_SURVEY_METADATA", "src/survey_metadata_queries.json"
+            "GZM_SURVEY_METADATA",
+            "src/survey_metadata_queries_simple.md",
         )
     )
     project_name: str = "gzm"

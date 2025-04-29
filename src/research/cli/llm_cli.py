@@ -12,7 +12,7 @@ import pandas as pd
 
 from research.db.operations import query_duckdb
 from research.llm.sql_generator import natural_language_to_sql
-from research.utils.logging import setup_logger
+from research.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 

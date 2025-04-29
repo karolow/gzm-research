@@ -12,7 +12,7 @@ import click
 import pandas as pd
 
 from research.db.operations import get_table_schema, list_tables, query_duckdb
-from research.utils.logging import setup_logger
+from research.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 

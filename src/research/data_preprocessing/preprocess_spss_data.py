@@ -10,7 +10,7 @@ import pyreadstat
 from pandas import DataFrame
 
 from research.db.operations import save_to_duckdb
-from research.utils.logging import setup_logger
+from research.utils.logger import setup_logger
 
 # Set up logger for this module
 logger = setup_logger(__name__)

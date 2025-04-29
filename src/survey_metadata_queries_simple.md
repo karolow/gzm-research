@@ -1,0 +1,312 @@
+TABLE_NAME (participant_survey)
+- id_uczestnika: ID (PK), Unikalny identyfikator uczestnika badania.
+- waga_proby: NUM, Waga statystyczna przypisana uczestnikowi do celów reprezentatywności. *Używaj zawsze, chyba że użytkownik prosi o sumy rekordów (counts)
+- subregion_metropolii_gzm: TEXT(KATOWICE|BYTOMSKI|GLIWICKI|KATOWICKI|SOSNOWIECKI|TYSKI|Inny), Subregion GZM lub Katowice, w którym przeprowadzono badanie. *Metropolia GZM podzielona jest na subregiony: używaj tej wartości w odniesieniu do lokalizacji wyłącznie na dosłowne żądanie dotyczące subregionów GZM/Metropolii
+- segment_uczestnika: TEXT(Ludowi Tradycjonaliści|Zdobywcy Wiedzy|Aspirujący Mainstream|Wycofani|Młodzi Uciekinierzy|Konsumenci Kultury Instytucjonalnej|Przymusowi Domatorzy|Sensualni|Poprawni Konformiści), Przypisany segment uczestnictwa w kulturze.
+- plec: TEXT(Kobieta|Mężczyzna|Osoba niebinarna|Wolę nie odpowiadać|Inna (jaka?)), Płeć respondenta, z którą się identyfikuje.
+- grupa_wiekowa: TEXT(Mniej niż 30|30-39|40-49|50-59|60 i więcej), Przedział wiekowy respondenta.
+- wojewodztwo: TEXT(dolnośląskie|kujawsko-pomorskie|lubelskie|lubuskie|łódzkie|małopolskie|mazowieckie|opolskie|podkarpackie|podlaskie|pomorskie|śląskie|świętokrzyskie|warmińsko-mazurskie|wielkopolskie|zachodniopomorske), Województwo zamieszkania respondenta.
+- miasto_powiat: TEXT(Bytom|Chorzów|Dąbrowa Górnicza|Gliwice|Katowice|Mysłowice|Piekary Śląskie|Ruda Śląska|Siemianowice Śląskie|Sosnowiec|Świętochłowice|Tychy|Zabrze|Powiat będziński|Powiat bieruńsko-lędziński|Powiat gliwicki|Powiat mikołowski|Powiat pszczyński|Powiat tarnogórski|inne miasto| powiat), Miasto na prawach powiatu lub powiat zamieszkania respondenta w GZM.
+- gmina_miejscowosc: TEXT(Będzin|Bobrowniki|Czeladź|Mierzęcice|Psary|Siewierz|Sławków|Wojkowice|Bieruń|Bojszowy|Chełm Śląski|Imielin|Lędziny|Gierałtowice|Knurów|Pilchowice|Pyskowice|Rudziniec|Sośnicowice|Łaziska Górne|Mikołów|Wyry|Kobiór|Ożarowice|Radzionków|Świerklaniec|Tarnowskie Góry|Zbrosławice|inna gmina), Gmina zamieszkania respondenta (dla powiatów). *Użyj gdy zarówno gdy użytkownik pyta o gminę jak i miejscowość
+- dzielnica_katowic: TEXT(Bogucice|Brynów Część Wschodnia - Os. Zgrzebnioka|Dąb|Dąbrówka Mała|Giszowiec|Janów - Nikiszowiec|Kostuchna|Koszutka|Ligota-Panewniki|Murcki|Os. Paderewskiego - Muchowiec|Osiedle Tysiąclecia|Osiedle Witosa|Piotrowice - Ochojec|Podlesie|Śródmieście|Szopienice-Burowiec|Wełnowiec-Józefowiec|Załęska Hałda - Brynów Część Zachodnia|Załęże|Zarzecze|Zawodzie), Dzielnica Katowic zamieszkania respondenta.
+- wolny_czas_definicja_praktycznosc: TEXT(zdecydowanie tak|raczej tak|raczej nie|zdecydowanie nie), Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu jest użyteczny/praktyczny. Część pytania wielokrotnego wyboru: wolny_czas_definicja_.
+- wolny_czas_definicja_duma: TEXT(zdecydowanie tak|raczej tak|raczej nie|zdecydowanie nie), Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu pozwala poczuć się dumnym z tego, kim jestem. Część pytania wielokrotnego wyboru: wolny_czas_definicja_.
+- wolny_czas_definicja_rekodzielo: TEXT(zdecydowanie tak|raczej tak|raczej nie|zdecydowanie nie), Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu daje możliwość stworzenia czegoś własnymi rękoma. Część pytania wielokrotnego wyboru: wolny_czas_definicja_.
+- wolny_czas_definicja_radosc: TEXT(zdecydowanie tak|raczej tak|raczej nie|zdecydowanie nie), Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu daje dużo radości.
+- wolny_czas_definicja_rodzina: TEXT(zdecydowanie tak|raczej tak|raczej nie|zdecydowanie nie), Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu pozwala mi spędzić czas z rodziną. Część pytania wielokrotnego wyboru: wolny_czas_definicja_.
+- wolny_czas_definicja_potrzeby_bliskich: TEXT(zdecydowanie tak|raczej tak|raczej nie|zdecydowanie nie), Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu przede wszystkim zaspokaja potrzeby moich bliskich. Część pytania wielokrotnego wyboru: wolny_czas_definicja_.
+- wolny_czas_definicja_zakupy: TEXT(zdecydowanie tak|raczej tak|raczej nie|zdecydowanie nie), Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu dodatkowo umożliwia zrobienie zakupów. Część pytania wielokrotnego wyboru: wolny_czas_definicja_.
+- wolny_czas_definicja_nowosc: TEXT(zdecydowanie tak|raczej tak|raczej nie|zdecydowanie nie), Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu jest zupełną nowością.
+- wolny_czas_definicja_samopoznanie: TEXT(zdecydowanie tak|raczej tak|raczej nie|zdecydowanie nie), Ocena stwierdzenia: Najlepszy sposób spędzania wolnego czasu pozwala mi lepiej zrozumieć kim jestem. Część pytania wielokrotnego wyboru: wolny_czas_definicja_.
+- czestotliwosc_galeria_sztuki: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość wizyt w galerii sztuki / na wystawie sztuki. Część pytania wielokrotnego wyboru: czestotliwosc_galeria_sztuki. (NOTE: pattern applied as per instruction - up to last underscore)
+- czestotliwosc_teatr: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość wizyt w teatrze / na przedstawieniu teatralnym / operowym. Część pytania wielokrotnego wyboru: czestotliwosc_teatr.
+- czestotliwosc_prasa_kulturalna: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość czytania prasy / czasopism poświęconych kulturze. Część pytania wielokrotnego wyboru: czestotliwosc_prasa_kulturalna.
+- czestotliwosc_nagrania_teatralne: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość oglądania nagrań sztuk teatralnych, oper, baletów. Część pytania wielokrotnego wyboru: czestotliwosc_nagrania_teatralne.
+- czestotliwosc_programy_kulturalne: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość oglądania programów / kanałów kulturalnych. Część pytania wielokrotnego wyboru: czestotliwosc_programy_kulturalne.
+- czestotliwosc_wyklady: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość udziału w wykładzie, odczycie, dyskusji. Część pytania wielokrotnego wyboru: czestotliwosc_wyklady.
+- czestotliwosc_wydarzenia_literackie: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość udziału w wydarzeniu literackim. Część pytania wielokrotnego wyboru: czestotliwosc_wydarzenia_literackie.
+- czestotliwosc_archiwa: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość korzystania z archiwum instytucji kulturalnej. Część pytania wielokrotnego wyboru: czestotliwosc_archiwa.
+- czestotliwosc_czytanie_ksiazek: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość czytania książek dla przyjemności. Część pytania wielokrotnego wyboru: czestotliwosc_czytanie_ksiazek.
+- czestotliwosc_muzeum: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość wizyt w muzeum. Część pytania wielokrotnego wyboru: czestotliwosc_muzeum.
+- czestotliwosc_zoo: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość wizyt w ogrodzie zoologicznym / botanicznym. Część pytania wielokrotnego wyboru: czestotliwosc_zoo.
+- czestotliwosc_piknik: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość udziału w pikniku / imprezie plenerowej. Część pytania wielokrotnego wyboru: czestotliwosc_piknik.
+- czestotliwosc_festyn: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość wizyt na festynie, jarmarku, imprezie folklorystycznej. Część pytania wielokrotnego wyboru: czestotliwosc_festyn.
+- czestotliwosc_koncert: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość wizyt na koncercie / festiwalu muzycznym. Część pytania wielokrotnego wyboru: czestotliwosc_koncert.
+- czestotliwosc_kino: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość wizyt w kinie / na festiwalu filmowym. Część pytania wielokrotnego wyboru: czestotliwosc_kino.
+- czestotliwosc_dom_kultury: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość wizyt w centrum kultury, domu kultury.
+- czestotliwosc_rekonstrukcja_historyczna: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość uczestnictwa w rekonstrukcji historycznej. Część pytania wielokrotnego wyboru: czestotliwosc_rekonstrukcja_historyczna.
+- czestotliwosc_filharmonia: TEXT(Przynajmniej raz w ciągu ostatnich 12 miesięcy|Dawniej niż w ciągu ostatnich 12 miesięcy, ale w ciągu ostatnich 3 lat|Dawniej niż w ciągu ostatnich 3 lat|Nigdy, ale chciał(a)bym w przyszłości|Nigdy i nie jestem tym zainteresowany(a)), Częstotliwość wizyt w filharmonii / sali koncertowej. Część pytania wielokrotnego wyboru: czestotliwosc_filharmonia.
+- znajomosc_metropolii_gzm: BOOL, Czy respondent spotkał się z określeniem Górnośląsko-Zagłębiowska Metropolia.
+- definicja_kultury_tekst: TEXT, Otwarta odpowiedź respondenta na pytanie, co rozumie przez pojęcie kultury.
+- definicja_kultury_kategoria: TEXT(Kultura osobista/zachowanie ludzi/zachowanie w stosunku do innych ludzi/tolerancja|Dobra materialne|Duchowość/religia/wartości niematerialne|Sztuka/artyzm/wyrażanie siebie|Dziedzictwo/historia/narodowość/regionalność/tożsamość|Czymś wpływającym/pozytywnym/potrzebnym/ubogacającym|Zasady/wartości/moralność|Społeczność/cechy społeczne/otoczenie/więzi|Literatura|Wszystkim/całość/wiele znaczeń|Obyczaje/tradycja/zwyczaje|Muzyka|Kino/film/TV|Język|Poznawanie/zwiedzanie/edukacja/wiedza|Obrazy/rzeźby|Ubiór/wygląd|Aktywność/udział w kulturze/spotkania/wolny czas|Rozrywka/relaksem|Teatr/opera/muzeum|Wydarzenia/występy/wystawy/koncerty|Sposób bycia|Inne|Nie wiem, trudno powiedzieć), Skategoryzowana odpowiedź tekstowa na pytanie o definicję kultury.
+- kultura_fotografia: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Fotografia. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_gotowanie: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Gotowanie. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_gry_komputerowe: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Gry komputerowe. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_moda: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Moda. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_moralnosc: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Moralność. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_muzyka_rozrywkowa: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Muzyka rozrywkowa. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_patriotyzm: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Patriotyzm. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_pornografia: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Pornografia. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_telewizja: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Programy telewizyjne. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_religia: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Religia. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_taniec: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Taniec. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_sposob_zwracania_sie: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: To, jak się do siebie zwracamy. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_traktowanie_narodow: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: To, jak traktujemy inne narody. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_urzadzanie_mieszkania: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: To, jak urządzamy mieszkanie. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_tradycja: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Tradycja. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_umiejetnosc_rozmowy: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Umiejętność rozmawiania z innymi. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_ogrodnictwo: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Uprawianie ogrodu. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_malarstwo: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Malarstwo. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_muzyka_powazna: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Muzyka poważna. Część pytania wielokrotnego wyboru: kultura_.
+- kultura_kino: TEXT(Tak|Nie|Trudno powiedzieć), Czy respondent zaliczyłby do kultury: Kino. Część pytania wielokrotnego wyboru: kultura_.
+- istotnosc_uczestnictwa_w_kulturze: TEXT(1 zupełnie nieistotne|2|3|4|5|6|7 bardzo istotne), Ocena respondenta na skali 1-7, na ile istotne jest dla niego uczestnictwo w kulturze.
+- ocena_dostepu_do_kultury_gzm: TEXT(1 całkowicie niewystarczający|2|3|4|5|6|7 w pełni wystarczający), Ocena respondenta na skali 1-7 dotycząca dostępu do kultury na terenie Metropolii GZM.
+- bariera_wysokie_ceny: BOOL, Czy respondent wskazał barierę: wysokie ceny / koszty korzystania. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_dojazd: BOOL, Czy respondent wskazał barierę: problemy z dojazdem / komunikacją. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_nieatrakcyjna_oferta: BOOL, Czy respondent wskazał barierę: mało atrakcyjna oferta tematyczna. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_brak_informacji: BOOL, Czy respondent wskazał barierę: niewystarczająca ilość informacji o ofercie. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_dostep_fizyczny: BOOL, Czy respondent wskazał barierę: trudności z fizycznym dostępem / bariery architektoniczne. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_godziny_otwarcia: BOOL, Czy respondent wskazał barierę: mało dogodne godziny otwarcia instytucji. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_brak_czasu: BOOL, Czy respondent wskazał barierę: brak czasu / za dużo innych spraw na głowie. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_opieka: BOOL, Czy respondent wskazał barierę: opieka nad inną osobą/ osobą zależną. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_niska_jakosc: BOOL, Czy respondent wskazał barierę: mało atrakcyjna jakościowa oferta. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_dostepnosc_biletow: BOOL, Czy respondent wskazał barierę: niska dostępność biletów/są szybko wykupywane.
+- bariera_brak_oferty_lokalnej: BOOL, Czy respondent wskazał barierę: moja miejscowość nie ma żadnej oferty kulturalnej. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_nieznajomosc_oferty: BOOL, Czy respondent wskazał barierę: nie znam oferty kulturalnej w mojej okolicy. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_inne: BOOL, Czy respondent wskazał barierę: inne problemy. Część pytania wielokrotnego wyboru: bariera_.
+- bariera_zadne: BOOL, Czy respondent wskazał: żadne z powyższych barier.
+- bariera_inne_tekst: TEXT, Otwarta odpowiedź tekstowa dla bariery: inne problemy.
+- bariera_inne_kategoria: TEXT(Cena/koszta|Mało atrakcyjna ofreta|Mało informacji|Brak czasu|Opieka nad inną osobą / osobą zależną / obowiązki z tym związane|Zdrowotne|Brak chęci/zainteresowania|Wiek|Inne|Nie wiem, trudno powiedzieć), Skategoryzowana odpowiedź tekstowa dla bariery: inne problemy.
+- wiedza_o_ofercie_kulturalnej_gzm: TEXT(1 bardzo niska|2|3|4|5|6|7 bardzo wysoka), Ocena respondenta na skali 1-7 dotycząca poziomu wiedzy o ofercie kulturalnej GZM.
+- ostatnio_kino: BOOL, Czy respondent uczestniczył ostatnio w: wizyta w kinie. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_teatr: BOOL, Czy respondent uczestniczył ostatnio w: wizyta w teatrze. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_koncert: BOOL, Czy respondent uczestniczył ostatnio w: uczestnictwo w koncercie. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_muzeum: BOOL, Czy respondent uczestniczył ostatnio w: wizyta w muzeum / galerii sztuki. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_park_rozrywki: BOOL, Czy respondent uczestniczył ostatnio w: wizyta w parku rozrywki. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_dom_kultury: BOOL, Czy respondent uczestniczył ostatnio w: wizyta w domu kultury / centrum kultury. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_biblioteka: BOOL, Czy respondent uczestniczył ostatnio w: wizyta w bibliotece. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_zoo: BOOL, Czy respondent uczestniczył ostatnio w: wizyta w zoo. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_filharmonia: BOOL, Czy respondent uczestniczył ostatnio w: wizyta w filharmonii lub operze. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_spotkanie_z_artysta: BOOL, Czy respondent uczestniczył ostatnio w: uczestnictwo w spotkaniu z artystą. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_piknik: BOOL, Czy respondent uczestniczył ostatnio w: udział w pikniku / festynie. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_inna_aktywnosc: BOOL, Czy respondent uczestniczył ostatnio w: inna aktywność. Część pytania wielokrotnego wyboru: ostatnio_.
+- ostatnio_zadne: BOOL, Czy respondent wskazał: żadna z ostatnio odwiedzonych aktywności. Część pytania wielokrotnego wyboru: ostatnio_.
+- nazwa_odwiedzonego_teatru: TEXT, Otwarta odpowiedź tekstowa: Nazwa ostatnio odwiedzonego teatru.
+- kategoria_odwiedzonego_teatru: TEXT(Teatr Ateneum w Katowicach|Teatr Miejski w Gliwicach|Teatr Korez w Katowicach|Teatr w Katowicach (ogólnie)|Teatr Rozrywki w Chorzowie|Teatr Śląski im. Stanisława Wyspiańskiego w Katowicach|Teatr Żelazny w Katowicach|Teatr Nowy w Zabrzu|Teatr Zagłębia w Sosnowcu|inne|nie wiem/trudno powiedzieć), Skategoryzowana nazwa ostatnio odwiedzonego teatru.
+- nazwa_artysty_koncertowego: TEXT, Otwarta odpowiedź tekstowa: Nazwa artysty/zespołu z ostatniego koncertu.
+- kategoria_artysty_koncertowego: TEXT(Agnieszka Chylińska|Andrea Boccelli|Bajm|Dawid Podsiadło|Rammstein|sanah|Smolasty|Mrozu|Dżem|Dni miasta / Festiwal|muzyka rozrywkowa|Kult|inne|nie wiem/trudno powiedzieć), Skategoryzowana nazwa artysty/zespołu z ostatniego koncertu.
+- nazwa_odwiedzonego_muzeum: TEXT, Otwarta odpowiedź tekstowa: Nazwa ostatnio odwiedzonego muzeum/galerii.
+- kategoria_odwiedzonego_muzeum: TEXT(Muzeum w Gliwicach|Muzeum Śląskie w Katowicach|Muzeum Górnośląskie w Bytomiu|Muzuem Powstań Śląskich w Świętochłowicach|inne|nie wiem/trudno powiedzieć), Skategoryzowana nazwa ostatnio odwiedzonego muzeum/galerii.
+- nazwa_odwiedzonego_domu_kultury: TEXT(Bytomskie Centrum Kultury|Centrum Kultury \"Karolinka\" w Radzionce|Chorzowskie Centrum Kultury|Pałac Kultury Zagłębia|Młodzieżowy Dom Kultury w Tychach|Młodzieżowy Dom Kultury w Mysłowicach|Tarnogórskie Centrum Kultury|MDK|inne|nie wiem/trudno powiedzieć), Skategoryzowana nazwa ostatnio odwiedzonego domu/centrum kultury.
+- kategoria_odwiedzonego_domu_kultury: TEXT(Bytomskie Centrum Kultury|Centrum Kultury \"Karolinka\" w Radzionce|Chorzowskie Centrum Kultury|Pałac Kultury Zagłębia|Młodzieżowy Dom Kultury w Tychach|Młodzieżowy Dom Kultury w Mysłowicach|Tarnogórskie Centrum Kultury|MDK|inne|nie wiem/trudno powiedzieć), Skategoryzowana nazwa ostatnio odwiedzonego domu/centrum kultury.
+- nazwa_odwiedzonej_filharmonii: TEXT, Otwarta odpowiedź tekstowa: Nazwa ostatnio odwiedzonej filharmonii/opery.
+- kategoria_odwiedzonej_filharmonii: TEXT(Filharmonia Śląska w Katowicach|Opera Śląska w Bytomiu|NOSPR|Katowice|Śląska (Filharmonia/Opera)|inne|nie wiem/trudno powiedzieć), Skategoryzowana nazwa ostatnio odwiedzonej filharmonii/opery.
+- nazwa_artysty_ze_spotkania: TEXT, Otwarta odpowiedź tekstowa: Nazwisko artysty z ostatniego spotkania autorskiego.
+- kategoria_artysty_ze_spotkania: TEXT(Andrzej Poniedzielski|Filip Springer|Artur Rojek|Zbigniew Rokita|Sylwia Chutnik|inne|nie wiem/trudno powiedzieć), Skategoryzowane nazwisko artysty z ostatniego spotkania autorskiego.
+- inna_aktywnosc_tekst: TEXT, Otwarta odpowiedź tekstowa: Opis innej ostatnio podejmowanej aktywności kulturalnej.
+- inna_aktywnosc_kategoria: TEXT(wystawy|czytanie książek|spacery|jazda na rowerze|zwiedzanie turystyczne|mecz sportowy|inne|nie wiem/trudno powiedzieć), Skategoryzowana inna ostatnio podejmowana aktywność kulturalna.
+- biblioteka_wypozyczanie_ksiazek: BOOL, Czy respondent korzysta z biblioteki w celu: wypożyczania książek. Część pytania wielokrotnego wyboru: biblioteka_.
+- biblioteka_wypozyczanie_innych_rzeczy: BOOL, Czy respondent korzysta z biblioteki w celu: wypożyczania innych rzeczy (np. filmów, gier). Część pytania wielokrotnego wyboru: biblioteka_.
+- biblioteka_spotkanie_z_artysta: BOOL, Czy respondent korzysta z biblioteki w celu: uczestnictwa w spotkaniu z artystą. Część pytania wielokrotnego wyboru: biblioteka_.
+- biblioteka_prelekcja: BOOL, Czy respondent korzysta z biblioteki w celu: uczestnictwa w odczycie / prelekcji. Część pytania wielokrotnego wyboru: biblioteka_.
+- biblioteka_wystawa: BOOL, Czy respondent korzysta z biblioteki w celu: obejrzenia wystawy. Część pytania wielokrotnego wyboru: biblioteka_.
+- biblioteka_inne: BOOL, Czy respondent korzysta z biblioteki w innym celu. Część pytania wielokrotnego wyboru: biblioteka_.
+- dom_kultury_spotkanie_z_artysta: BOOL, Czy respondent korzysta z domu kultury w celu: uczestnictwa w spotkaniu z artystą. Część pytania wielokrotnego wyboru: dom_kultury_.
+- dom_kultury_prelekcja: BOOL, Czy respondent korzysta z domu kultury w celu: uczestnictwa w odczycie / prelekcji. Część pytania wielokrotnego wyboru: dom_kultury_.
+- dom_kultury_film: BOOL, Czy respondent korzysta z domu kultury w celu: obejrzenia pokazu filmu. Część pytania wielokrotnego wyboru: dom_kultury_.
+- dom_kultury_teatr: BOOL, Czy respondent korzysta z domu kultury w celu: obejrzenia przedstawienia teatralnego. Część pytania wielokrotnego wyboru: dom_kultury_.
+- dom_kultury_koncert: BOOL, Czy respondent korzysta z domu kultury w celu: uczestnictwa w koncercie. Część pytania wielokrotnego wyboru: dom_kultury_.
+- dom_kultury_wystawa: BOOL, Czy respondent korzysta z domu kultury w celu: obejrzenia wystawy. Część pytania wielokrotnego wyboru: dom_kultury_.
+- dom_kultury_inne: BOOL, Czy respondent korzysta z domu kultury w innym celu. Część pytania wielokrotnego wyboru: dom_kultury_.
+- powod_braku_uczestnictwa_tekst: TEXT, Otwarta odpowiedź tekstowa: Powód braku uczestnictwa w wydarzeniach kulturalnych (jeśli nie uczestniczył).
+- powod_braku_uczestnictwa_kategoria: TEXT(Wysoka cena biletów|Brak czasu/inne obowiązki zapełniają mi plan dnia|Brak ochoty/nie interesuje mnie to|Nie było nic ciekawego|Interesują mnie inne typy wydarzeń/inne formy spędzania czasu|Niedostępne informacje o wydarzeniach|Mój stan zdrowia mi nie pozwala/wiek/zmęczenie|Brak towarzystwa|Dojazd|Inne|Nie wiem, trudno powiedzić), Skategoryzowany powód braku uczestnictwa w wydarzeniach kulturalnych.
+- cyfrowa_kultura_wydarzenia_online: BOOL, Czy respondent korzysta z cyfrowej kultury: wydarzenia kulturalne transmitowane online. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_wystawy_interaktywne: BOOL, Czy respondent korzysta z cyfrowej kultury: interaktywne wystawy. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_nowe_media: BOOL, Czy respondent korzysta z cyfrowej kultury: wydarzenia związane ze sztuką nowych mediów. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_podcasty: BOOL, Czy respondent korzysta z cyfrowej kultury: opowieści dźwiękowe i podcasty. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_social_media: BOOL, Czy respondent korzysta z cyfrowej kultury: oglądanie lub tworzenie treści na Youtube/TikToku. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_wsparcie_artystow: BOOL, Czy respondent korzysta z cyfrowej kultury: wsparcie finansowe artystów z GZM. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_instalacje_dzwiekowe: BOOL, Czy respondent korzysta z cyfrowej kultury: interaktywne instalacje dźwiękowe. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_gry: BOOL, Czy respondent korzysta z cyfrowej kultury: gry komputerowe i kultura gamingowa. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_vr: BOOL, Czy respondent korzysta z cyfrowej kultury: immersyjne doświadczenia w wirtualnej rzeczywistości. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_inne: BOOL, Czy respondent korzysta z cyfrowej kultury: inne formy. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- cyfrowa_kultura_zadne: BOOL, Czy respondent wskazał: żadna z wymienionych form kultury cyfrowej. Część pytania wielokrotnego wyboru: cyfrowa_kultura_.
+- uczestnictwo_miejsce_zamieszkania: BOOL, Czy respondent uczestniczy w kulturze: w mieście/wsi gdzie mieszka. Część pytania wielokrotnego wyboru: uczestnictwo_miejsce_.
+- uczestnictwo_miejsce_pracy: BOOL, Czy respondent uczestniczy w kulturze: w mieście/wsi, w którym pracuje. Część pytania wielokrotnego wyboru: uczestnictwo_miejsce_.
+- uczestnictwo_inne_miejsce_gzm: BOOL, Czy respondent uczestniczy w kulturze: w innym mieście/wsi na terenie GZM. Część pytania wielokrotnego wyboru: uczestnictwo_miejsce_.
+- uczestnictwo_poza_gzm: BOOL, Czy respondent uczestniczy w kulturze: poza terenem GZM. Część pytania wielokrotnego wyboru: uczestnictwo_.
+- uczestnictwo_zadne_miejsca: BOOL, Czy respondent wskazał: żadne z powyższych miejsc uczestnictwa w kulturze. Część pytania wielokrotnego wyboru: uczestnictwo_.
+- skojarzenia_wydarzenia_gzm_1_tekst: TEXT, Otwarta odpowiedź tekstowa: Pierwsze skojarzenie respondenta z wydarzeniami kulturalnymi GZM.
+- skojarzenia_wydarzenia_gzm_2_tekst: TEXT, Otwarta odpowiedź tekstowa: Drugie skojarzenie respondenta z wydarzeniami kulturalnymi GZM.
+- skojarzenia_wydarzenia_gzm_3_tekst: TEXT, Otwarta odpowiedź tekstowa: Trzecie skojarzenie respondenta z wydarzeniami kulturalnymi GZM.
+- skojarzenia_wydarzenia_gzm_4_tekst: TEXT, Otwarta odpowiedź tekstowa: Czwarte skojarzenie respondenta z wydarzeniami kulturalnymi GZM.
+- skojarzenia_wydarzenia_gzm_5_tekst: TEXT, Otwarta odpowiedź tekstowa: Piąte skojarzenie respondenta z wydarzeniami kulturalnymi GZM.
+- skojarzenia_wydarzenia_gzm_1_kategoria: TEXT(brak|dni miasta|festiwale muzyczne|festyny/jarmarki/pikniki|koncerty / imprezy muzyczne|muzea/zabytki|mecze / wydarzenia sportowe|kino / imprezy filmowe|teatr|wystawy artystyczne|inne|nie wiem/trudno powiedzieć), Skategoryzowane pierwsze skojarzenie z wydarzeniami kulturalnymi GZM.
+- skojarzenia_miejsca_gzm_1_tekst: TEXT, Otwarta odpowiedź tekstowa: Pierwsze skojarzenie respondenta z instytucjami/miejscami kultury GZM.
+- skojarzenia_miejsca_gzm_2_tekst: TEXT, Otwarta odpowiedź tekstowa: Drugie skojarzenie respondenta z instytucjami/miejscami kultury GZM.
+- skojarzenia_miejsca_gzm_3_tekst: TEXT, Otwarta odpowiedź tekstowa: Trzecie skojarzenie respondenta z instytucjami/miejscami kultury GZM.
+- skojarzenia_miejsca_gzm_4_tekst: TEXT, Otwarta odpowiedź tekstowa: Czwarte skojarzenie respondenta z instytucjami/miejscami kultury GZM.
+- skojarzenia_miejsca_gzm_5_tekst: TEXT, Otwarta odpowiedź tekstowa: Piąte skojarzenie respondenta z instytucjami/miejscami kultury GZM.
+- skojarzenia_miejsca_gzm_1_kategoria: TEXT(brak|centrum/dom kultury|NOSPR|kino|filharmonia/opera|stadion / obiekt sportowy|Spodek|park|muzeum|teatr|rynek|ZOO|inne|nie wiem/trudno powiedzieć), Skategoryzowane pierwsze skojarzenie z instytucjami/miejscami kultury GZM.
+- informacja_prasa_drukowana: BOOL, Czy respondent czerpie informacje o kulturze z: prasa drukowana. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_plakaty: BOOL, Czy respondent czerpie informacje o kulturze z: plakaty/ogłoszenia/reklamy. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_portale_lokalne: BOOL, Czy respondent czerpie informacje o kulturze z: lokalne portale/strony. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_portale_ogolnopolskie: BOOL, Czy respondent czerpie informacje o kulturze z: ogólnopolskie portale/strony. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_social_media_instytucje: BOOL, Czy respondent czerpie informacje o kulturze z: profile instytucji w mediach społecznościowych. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_social_media_tworcy: BOOL, Czy respondent czerpie informacje o kulturze z: profile twórców w mediach społecznościowych. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_social_media_inne: BOOL, Czy respondent czerpie informacje o kulturze z: inne profile w mediach społecznościowych. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_znajomi_rodzina: BOOL, Czy respondent czerpie informacje o kulturze z: od znajomych/rodziny. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_radio: BOOL, Czy respondent czerpie informacje o kulturze z: radio. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_telewizja: BOOL, Czy respondent czerpie informacje o kulturze z: telewizja. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_strony_instytucji: BOOL, Czy respondent czerpie informacje o kulturze z: strony internetowe instytucji kultury. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_strony_ogolne: BOOL, Czy respondent czerpie informacje o kulturze z: ogólnotematyczne strony internetowe. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_inne_zrodla: BOOL, Czy respondent czerpie informacje o kulturze z: inne źródła. Część pytania wielokrotnego wyboru: informacja_.
+- informacja_zadne_zrodla: BOOL, Czy respondent wskazał: żadne z powyższych źródeł informacji. Część pytania wielokrotnego wyboru: informacja_.
+- preferowane_miejsce_dom: BOOL, Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w domu. Część pytania wielokrotnego wyboru: preferowane_miejsce_.
+- preferowane_miejsce_instytucja_kultury: BOOL, Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w siedzibie instytucji kultury. Część pytania wielokrotnego wyboru: preferowane_miejsce_.
+- preferowane_miejsce_przestrzen_publiczna: BOOL, Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w przestrzeni publicznej. Część pytania wielokrotnego wyboru: preferowane_miejsce_.
+- preferowane_miejsce_przestrzen_tymczasowa: BOOL, Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w tymczasowo zaaranżowanej przestrzeni. Część pytania wielokrotnego wyboru: preferowane_miejsce_.
+- preferowane_miejsce_stadion: BOOL, Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: na stadionie. Część pytania wielokrotnego wyboru: preferowane_miejsce_.
+- preferowane_miejsce_pub_klub: BOOL, Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: w pubie/klubie/restauracji. Część pytania wielokrotnego wyboru: preferowane_miejsce_.
+- preferowane_miejsce_inne: BOOL, Czy respondent preferuje uczestnictwo w wydarzeniach kulturalnych: inne miejsce. Część pytania wielokrotnego wyboru: preferowane_miejsce_.
+- preferowane_miejsce_zadne: BOOL, Czy respondent wskazał: żadne z powyższych preferowanych miejsc. Część pytania wielokrotnego wyboru: preferowane_miejsce_.
+- miejsce_kultury_bytom: BOOL, Czy respondent odwiedza miejsca kultury w: Bytom. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_chorzow: BOOL, Czy respondent odwiedza miejsca kultury w: Chorzów. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_dabrowa_gornicza: BOOL, Czy respondent odwiedza miejsca kultury w: Dąbrowa Górnicza. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_gliwice: BOOL, Czy respondent odwiedza miejsca kultury w: Gliwice. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_katowice: BOOL, Czy respondent odwiedza miejsca kultury w: Katowice. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_myslowice: BOOL, Czy respondent odwiedza miejsca kultury w: Mysłowice. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_piekary_slaskie: BOOL, Czy respondent odwiedza miejsca kultury w: Piekary Śląskie. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_ruda_slaska: BOOL, Czy respondent odwiedza miejsca kultury w: Ruda Śląska. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_siemianowice_slaskie: BOOL, Czy respondent odwiedza miejsca kultury w: Siemianowice Śląskie. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_sosnowiec: BOOL, Czy respondent odwiedza miejsca kultury w: Sosnowiec. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_swietochlowice: BOOL, Czy respondent odwiedza miejsca kultury w: Świętochłowice. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_tychy: BOOL, Czy respondent odwiedza miejsca kultury w: Tychy. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_zabrze: BOOL, Czy respondent odwiedza miejsca kultury w: Zabrze. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_inne: BOOL, Czy respondent odwiedza miejsca kultury w: Innym mieście/gminie GZM. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_nie_pamietam: BOOL, Czy respondent odpowiedział: Nie pamiętam (dot. miejsc kultury). Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_zadne: BOOL, Czy respondent wskazał: Żadne z powyższych miast/gmin GZM. Część pytania wielokrotnego wyboru: miejsce_kultury_.
+- miejsce_kultury_inne_tekst: TEXT, Otwarta odpowiedź tekstowa: Nazwa innego miasta/gminy GZM, gdzie respondent odwiedza miejsca kultury.
+- miejsce_kultury_inne_kategoria: TEXT(Bytom|Chorzów|Dąbrowa Górnicza|Gliwice|Katowice|Mysłowice|Piekary Śląskie|Ruda Śląska|Siemianowice Śląskie|Sosnowiec|Świętochłowice|Tychy|Zabrze|Będzin|Łaziska Górne|Bielsko Biała|Bobrowniki|Bieruń|Dobieszowice|Rogoźnik|Czeladź|Jaworzno|Knurów|Mikołów|Ogrodzieniec|Opole|Warszawa|Kraków|Ożarowice|Psary|Pyskowice|Radzionków|Tarnowskie Góry|Rudziniec|Sosnicowice|Świerklaniec|Zbrosławice|Żory|Inne|Nie wiem, trudno powiedzieć), Skategoryzowana nazwa innego miasta/gminy GZM, gdzie respondent odwiedza miejsca kultury. Część pytania wielokrotnego wyboru: miejsce_kultury_inne_.
+- wydarzenie_dzielnicowe: BOOL, Czy respondent preferuje wydarzenia o zasięgu: dzielnicowym. Część pytania wielokrotnego wyboru: wydarzenie_.
+- wydarzenie_miejskie: BOOL, Czy respondent preferuje wydarzenia o zasięgu: miejskim. Część pytania wielokrotnego wyboru: wydarzenie_.
+- wydarzenie_regionalne: BOOL, Czy respondent preferuje wydarzenia o zasięgu: regionalnym. Część pytania wielokrotnego wyboru: wydarzenie_.
+- wydarzenie_ogolnopolskie: BOOL, Czy respondent preferuje wydarzenia o zasięgu: ogólnopolskim. Część pytania wielokrotnego wyboru: wydarzenie_.
+- wydarzenie_miedzynarodowe: BOOL, Czy respondent preferuje wydarzenia o zasięgu: międzynarodowym. Część pytania wielokrotnego wyboru: wydarzenie_.
+- wydarzenie_niezalezne: BOOL, Czy respondent preferuje wydarzenia o zasięgu: niezależnym od podziałów administracyjnych. Część pytania wielokrotnego wyboru: wydarzenie_.
+- wydarzenie_brak_opinii: BOOL, Czy respondent odpowiedział: trudno powiedzieć (dot. preferowanego zasięgu wydarzeń). Część pytania wielokrotnego wyboru: wydarzenie_.
+- wydatki_na_kulture_kwota: NUM, Miesięczne wydatki respondenta na kulturę w PLN (wartość numeryczna).
+- wydatki_na_kulture_kategoria: TEXT(Mniej niż 50|50-99|100-149|150-199|200-249|250 i więcej|Zero / Nie wiem, trudno powiedzieć), Przedział miesięcznych wydatków respondenta na kulturę.
+- uczestnictwo_poza_gzm_czas: BOOL, Czy respondent korzystał z oferty kulturalnej poza GZM w ciągu ostatnich 12 miesięcy. Część pytania wielokrotnego wyboru: uczestnictwo_poza_gzm_.
+- miejsce_poza_gzm_tekst: TEXT, Otwarta odpowiedź tekstowa: Lokalizacja poza GZM, gdzie respondent korzystał z kultury. Część pytania wielokrotnego wyboru: miejsce_poza_gzm_.
+- miejsce_poza_gzm_kategoria: TEXT(Bielsko-biała|Bieszczady|Brenna|Warszawa|Bytom|Chorwacja|Chorzów|Ciechocinek|Czaplinek|Czechy|Częstochowa|Energylandia|Francja|Gdańsk|Gdynia|Irlandia|Katowice|Kołobrzeg|Kraków|Łódź|Berlin|Międzyzdroje|Nad morzem|Ogrodzieniec|Poznań|Opole|Oświęcim|Pomorze|Praga|Rybnik|Sanok|Sopot|Słowacja|Toruń|Tychy|Ustroń|Wiedeń|Wisła|Wrocław|Zabrze|Za granicą|Zakopane|Zator|Żywiec|Niemcy|Londyn|Wałbrzych|Inne|Nie wiem, trudno powiedzieć), Skategoryzowana lokalizacja poza GZM, gdzie respondent korzystał z kultury. Część pytania wielokrotnego wyboru: miejsce_poza_gzm_.
+- aktywnosc_poza_gzm_tekst: TEXT, Otwarta odpowiedź tekstowa: Rodzaj aktywności kulturalnej podejmowanej poza GZM.
+- aktywnosc_poza_gzm_kategoria: TEXT(dni miasta|ZOO|zwiedzanie miasta|dożynki/festym|koncert/festiwal muzyczny|muzeum/zabytki|wydarzenie sportowe|kino / festiwal filmowy|teatr|wystawa artystyczna|inne|nie wiem/trudno powiedzieć), Skategoryzowany rodzaj aktywności kulturalnej podejmowanej poza GZM.
+- kultura_domowa_tv: BOOL, Czy respondent uczestniczy w kulturze w domu przez: oglądanie programów w TV. Część pytania wielokrotnego wyboru: kultura_domowa_.
+- kultura_domowa_radio: BOOL, Czy respondent uczestniczy w kulturze w domu przez: słuchanie audycji w radiu. Część pytania wielokrotnego wyboru: kultura_domowa_.
+- kultura_domowa_podcasty: BOOL, Czy respondent uczestniczy w kulturze w domu przez: słuchanie podcastów. Część pytania wielokrotnego wyboru: kultura_domowa_.
+- kultura_domowa_internet: BOOL, Czy respondent uczestniczy w kulturze w domu przez: oglądanie/czytanie treści w Internecie. Część pytania wielokrotnego wyboru: kultura_domowa_.
+- kultura_domowa_prasa: BOOL, Czy respondent uczestniczy w kulturze w domu przez: czytanie prasy drukowanej. Część pytania wielokrotnego wyboru: kultura_domowa_.
+- kultura_domowa_ksiazki: BOOL, Czy respondent uczestniczy w kulturze w domu przez: czytanie książek dla przyjemności. Część pytania wielokrotnego wyboru: kultura_domowa_.
+- kultura_domowa_inne: BOOL, Czy respondent uczestniczy w kulturze w domu przez: inne aktywności. Część pytania wielokrotnego wyboru: kultura_domowa_.
+- kultura_domowa_zadne: BOOL, Czy respondent wskazał: żadne z powyższych form uczestnictwa w kulturze w domu. Część pytania wielokrotnego wyboru: kultura_domowa_.
+- kontakt_z_artysta_lokalnym: TEXT(tak, wielokrotnie|tak, raz czy dwa|nie zetknąłe(a)m się), Częstotliwość zetknięcia się respondenta z twórczością lokalnego artysty z GZM.
+- nazwa_artysty_lokalnego: TEXT, Otwarta odpowiedź tekstowa: Nazwisko/nazwa znanego lokalnego artysty z GZM.
+- kategoria_artysty_lokalnego: TEXT(Andrea Bocelli|C-Bool|Ewa Uryga|Kabaret|Lokalny/uliczny artysta|Malarz|Rawa Blues|Rojek|Styrna|Weronika Maksimowicz|Bajm|OSTR|Piotr Klima|Myslovitz|Dawid Koczur|Piosenkarz|Muzyk|Pisarz|Fotograf|Marek Motyka|Inne|Nie wiem, trudno powiedzić), Skategoryzowane nazwisko/nazwa znanego lokalnego artysty z GZM.
+- osoba_wplywajaca_na_wybory_kulturalne_1_tekst: TEXT, Otwarta odpowiedź tekstowa: Pierwsza osoba/instytucja wpływająca na wybory kulturalne respondenta.
+- osoba_wplywajaca_na_wybory_kulturalne_2_tekst: TEXT, Otwarta odpowiedź tekstowa: Druga osoba/instytucja wpływająca na wybory kulturalne respondenta.
+- osoba_wplywajaca_na_wybory_kulturalne_3_tekst: TEXT, Otwarta odpowiedź tekstowa: Trzecia osoba/instytucja wpływająca na wybory kulturalne respondenta.
+- osoba_wplywajaca_na_wybory_kulturalne_4_tekst: TEXT, Otwarta odpowiedź tekstowa: Czwarta osoba/instytucja wpływająca na wybory kulturalne respondenta.
+- osoba_wplywajaca_na_wybory_kulturalne_5_tekst: TEXT, Otwarta odpowiedź tekstowa: Piąta osoba/instytucja wpływająca na wybory kulturalne respondenta.
+- kategoria_osoby_wplywajacej_1_kategoria: TEXT(Aktorzy|Arkadiusz Chęciński|Arena Gliwice|Artur Rojek|Artyści|Dawid Podsiadło|Kościół|Becek|Biblioteka|Burmistrz|C-Bool|Celebryci|Centrum Kultury|Doda|Dom Kultury|Dom muzyki i tańca|Dziennikarze|Filharmonia|Jurek Owsiak|Kabarety|Kina|Muzycy|Nospr|Koncerty|Lewandowski|Opera|Muzeum|Pałac Kultury|Paprocany|Piosenkarze|Prezydent|Rada Osiedla|Sanah|Socha|Spodek|Sportowcy|Stadion|Teatr|Urząd gminy/miasta|Park|Inne|Nie wiem, trudno powiedzieć), Skategoryzowana pierwsza osoba/instytucja wpływająca na wybory kulturalne.
+- czestotliwosc_kultura_online: TEXT(1 bardzo rzadko lub wcale|2|3|4|5|6|7 bardzo często), Ocena respondenta na skali 1-7 dotycząca częstotliwości korzystania z kultury przez internet.
+- kultura_online_youtube: BOOL, Czy respondent korzysta z kultury online przez: YouTube. Część pytania wielokrotnego wyboru: kultura_online_.
+- kultura_online_facebook: BOOL, Czy respondent korzysta z kultury online przez: Facebook. Część pytania wielokrotnego wyboru: kultura_online_.
+- kultura_online_instagram: BOOL, Czy respondent korzysta z kultury online przez: Instagram. Część pytania wielokrotnego wyboru: kultura_online_.
+- kultura_online_twitter: BOOL, Czy respondent korzysta z kultury online przez: Twitter/X. Część pytania wielokrotnego wyboru: kultura_online_.
+- kultura_online_strony_www: BOOL, Czy respondent korzysta z kultury online przez: strony internetowe. Część pytania wielokrotnego wyboru: kultura_online_.
+- kultura_online_inne_zrodla: BOOL, Czy respondent korzysta z kultury online przez: inne źródła. Część pytania wielokrotnego wyboru: kultura_online_.
+- youtube_profile_instytucji: BOOL, Czy respondent śledzi na YouTube: Profile instytucji kultury. Część pytania wielokrotnego wyboru: youtube_profile_.
+- youtube_profile_tworcow: BOOL, Czy respondent śledzi na YouTube: Profile twórców. Część pytania wielokrotnego wyboru: youtube_profile_.
+- youtube_profile_instytucji_miejskich: BOOL, Czy respondent śledzi na YouTube: Profile instytucji miejskich/regionalnych. Część pytania wielokrotnego wyboru: youtube_profile_.
+- youtube_zadne_profile: BOOL, Czy respondent wskazał: Żadne z powyższych (dot. profili na YouTube). Część pytania wielokrotnego wyboru: youtube_profile_.
+- facebook_profile_instytucji: BOOL, Czy respondent śledzi na Facebooku: Profile instytucji kultury. Część pytania wielokrotnego wyboru: facebook_profile_.
+- facebook_profile_tworcow: BOOL, Czy respondent śledzi na Facebooku: Profile twórców. Część pytania wielokrotnego wyboru: facebook_profile_.
+- facebook_profile_instytucji_miejskich: BOOL, Czy respondent śledzi na Facebooku: Profile instytucji miejskich/regionalnych. Część pytania wielokrotnego wyboru: facebook_profile_.
+- facebook_zadne_profile: BOOL, Czy respondent wskazał: Żadne z powyższych (dot. profili na Facebooku). Część pytania wielokrotnego wyboru: facebook_profile_.
+- instagram_profile_instytucji: BOOL, Czy respondent śledzi na Instagramie: Profile instytucji kultury. Część pytania wielokrotnego wyboru: instagram_profile_.
+- instagram_profile_tworcow: BOOL, Czy respondent śledzi na Instagramie: Profile twórców. Część pytania wielokrotnego wyboru: instagram_profile_.
+- instagram_profile_instytucji_miejskich: BOOL, Czy respondent śledzi na Instagramie: Profile instytucji miejskich/regionalnych. Część pytania wielokrotnego wyboru: instagram_profile_.
+- instagram_zadne_profile: BOOL, Czy respondent wskazał: Żadne z powyższych (dot. profili na Instagramie). Część pytania wielokrotnego wyboru: instagram_profile_.
+- twitter_profile_instytucji: BOOL, Czy respondent śledzi na Twitter/X: Profile instytucji kultury. Część pytania wielokrotnego wyboru: twitter_profile_.
+- twitter_profile_tworcow: BOOL, Czy respondent śledzi na Twitter/X: Profile twórców. Część pytania wielokrotnego wyboru: twitter_profile_.
+- twitter_profile_instytucji_miejskich: BOOL, Czy respondent śledzi na Twitter/X: Profile instytucji miejskich/regionalnych. Część pytania wielokrotnego wyboru: twitter_profile_.
+- twitter_zadne_profile: BOOL, Czy respondent wskazał: Żadne z powyższych (dot. profili na Twitter/X). Część pytania wielokrotnego wyboru: twitter_profile_.
+- strony_www_profile_instytucji: BOOL, Czy respondent odwiedza na stronach WWW: Profile instytucji kultury. Część pytania wielokrotnego wyboru: strony_www_profile_.
+- strony_www_profile_tworcow: BOOL, Czy respondent odwiedza na stronach WWW: Profile twórców. Część pytania wielokrotnego wyboru: strony_www_profile_.
+- strony_www_profile_instytucji_miejskich: BOOL, Czy respondent odwiedza na stronach WWW: Profile instytucji miejskich/regionalnych. Część pytania wielokrotnego wyboru: strony_www_profile_.
+- strony_www_zadne_profile: BOOL, Czy respondent wskazał: Żadne z powyższych (dot. profili na stronach WWW). Część pytania wielokrotnego wyboru: strony_www_profile_.
+- znajomosc_tworcy_cyfrowego_1_tekst: TEXT, Otwarta odpowiedź tekstowa: Pierwszy znany respondentowi twórca kultury cyfrowej.
+- znajomosc_tworcy_cyfrowego_2_tekst: TEXT, Otwarta odpowiedź tekstowa: Drugi znany respondentowi twórca kultury cyfrowej.
+- znajomosc_tworcy_cyfrowego_3_tekst: TEXT, Otwarta odpowiedź tekstowa: Trzeci znany respondentowi twórca kultury cyfrowej.
+- znajomosc_tworcy_cyfrowego_4_tekst: TEXT, Otwarta odpowiedź tekstowa: Czwarty znany respondentowi twórca kultury cyfrowej.
+- znajomosc_tworcy_cyfrowego_5_tekst: TEXT, Otwarta odpowiedź tekstowa: Piąty znany respondentowi twórca kultury cyfrowej.
+- kategoria_tworcy_cyfrowego_1_kategoria: TEXT(Muzeum|Biblioteka|Arkadiusz Chęciński|Artur Rojek|Cbool|Ennzi|Frele|Frizz|Kabarety|Kazimierz Kutz|Łukasz Folda|Mama na obrotach|Marlena Sojek|Mediateka|Dom Kultury|MiKlaus|Miuosh|Mirosław Szołtysek|Myslovitz|Niklaus|Opera|Piotr Jakowenko|Polsat|Sanah|Socha|Sosnowiec Łączy|Spodek|Teatr|Telewizja|Tvp|Youtube|Bonkol|Inne|Nie wiem, trudno powiedzieć), Skategoryzowany pierwszy znany twórca kultury cyfrowej.
+- tworczosc_gra_na_instrumencie: BOOL, Czy respondent podejmuje aktywność twórczą: granie na instrumencie. Część pytania wielokrotnego wyboru: tworczosc_gra_na_.
+- tworczosc_pisanie_tekstow: BOOL, Czy respondent podejmuje aktywność twórczą: pisanie tekstów. Część pytania wielokrotnego wyboru: tworczosc_.
+- tworczosc_fotografia: BOOL, Czy respondent podejmuje aktywność twórczą: robienie zdjęć. Część pytania wielokrotnego wyboru: tworczosc_.
+- tworczosc_rysowanie_malowanie: BOOL, Czy respondent podejmuje aktywność twórczą: rysowanie lub malowanie. Część pytania wielokrotnego wyboru: tworczosc_.
+- tworczosc_szycie_haftowanie: BOOL, Czy respondent podejmuje aktywność twórczą: szycie/haftowanie. Część pytania wielokrotnego wyboru: tworczosc_.
+- tworczosc_spiew: BOOL, Czy respondent podejmuje aktywność twórczą: śpiewanie. Część pytania wielokrotnego wyboru: tworczosc_.
+- tworczosc_komponowanie: BOOL, Czy respondent podejmuje aktywność twórczą: komponowanie muzyki. Część pytania wielokrotnego wyboru: tworczosc_.
+- tworczosc_inna: BOOL, Czy respondent podejmuje aktywność twórczą: inna twórczość. Część pytania wielokrotnego wyboru: tworczosc_.
+- tworczosc_zadna: BOOL, Czy respondent wskazał: żadne z powyższych aktywności twórczych. Część pytania wielokrotnego wyboru: tworczosc_.
+- tworczosc_inna_tekst: TEXT, Otwarta odpowiedź tekstowa: Opis innej aktywności twórczej respondenta.
+- tworczosc_inna_kategoria: TEXT(Gram na instrumencie|Piszę teksty|Robię zdjęcia|Rysuję lub maluję|Szyję / haftuję|Śpiewam|Komponuję muzykę|Inna twórczość|Żadne z powyższych|Ogrodnictwo|Taniec|Stolrstwo, rzeźbienie w drewnie|Szydełkowanie|Piszę wiersze|Czytanie|Rower|Inne|Nie wiem, trudno powiedzieć), Skategoryzowana inna aktywność twórcza respondenta. Część pytania wielokrotnego wyboru: tworczosc_inna_.
+- opinia_kultura_dla_wszystkich: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Działalność kulturalna jest dla wszystkich. Część pytania wielokrotnego wyboru: opinia_kultura_dla_.
+- opinia_kultura_bycie_na_biezaco: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Wypada być na bieżąco z kulturą. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_kultura_relacje_miedzyludzkie: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Dzięki kulturze mogę nawiązywać relacje. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_kultura_przezycia: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Udział w wydarzeniach kulturalnych zapewnia przeżycia. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_kultura_nowe_miejsca: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Lubię poznawać nowe miejsca związane z kulturą. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_kultura_atrakcyjnosc_regionu: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Działalność kulturalna podnosi atrakcyjność regionu. Część pytania wielokrotnego wyboru: opinia_kultura_atrakcyjnosc_regionu.
+- opinia_kultura_przynaleznosc: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Uczestnictwo w kulturze daje poczucie przynależności. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_kultura_samorealizacja: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Uczestnictwo w kulturze pozwala realizować się. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_kultura_sens_zycia: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Dzięki kulturze życie ma sens. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_kultura_prestiz: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Uczestnictwo w kulturze daje poczucie prestiżu. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_kultura_przyjemnosc: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Konsumpcja kultury sprawia przyjemność. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_kultura_ubozsze_zycie: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Bez dostępu do kultury życie byłoby uboższe. Część pytania wielokrotnego wyboru: opinia_kultura_.
+- opinia_wazniejsze_rzeczy_niz_kultura: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Jest wiele ważniejszych rzeczy niż kultura. Część pytania wielokrotnego wyboru: opinia_wazniejsze_rzeczy_niz_kultura.
+- opinia_wydatki_publiczne_na_kulture: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: Nakłady publiczne na kulturę powinny być mniejsze. Część pytania wielokrotnego wyboru: opinia_wydatki_publiczne_na_kulture.
+- opinia_kultura_nieistotne_tematy: TEXT(1 zupełnie się nie zgadzam|2|3|4|5|6|7 w pełni sie zgadzam), Ocena stwierdzenia na skali 1-7: W kulturze poruszane są mało istotne dla mnie tematy. Część pytania wielokrotnego wyboru: opinia_kultura_nieistotne_tematy.
+- wielkosc_miejscowosci: TEXT(wieś|miasto poniżej 20 tys. mieszkańców|miasto 20 - 99 tys. mieszkańców|miasto 100 - 199 tys. mieszkańców|miasto powyżej 200 tys. mieszkańców), Wielkość miejscowości zamieszkania respondenta.
+- wyksztalcenie: TEXT(niższe niż średnie|średnie|wyższe), Poziom wykształcenia respondenta.
+- zatrudnienie_bezrobotny: BOOL, Czy respondent ma status: bezrobotny/nie pracuję/zajmuję się domem.
+- zatrudnienie_pracujacy: BOOL, Czy respondent ma status: jestem zatrudniony/-a.
+- zatrudnienie_samozatrudniony: BOOL, Czy respondent ma status: jestem samozatrudniony/-a.
+- zatrudnienie_student: BOOL, Czy respondent ma status: uczę się/studiuję.
+- zatrudnienie_rencista: BOOL, Czy respondent ma status: rencist(k)a.
+- zatrudnienie_emeryt: BOOL, Czy respondent ma status: emeryt(ka).
+- wlasciciel_firmy_msp: BOOL, Czy respondent prowadzi firmę sektora małych i średnich przedsiębiorstw.
+- praca_w_sektorze_kultury: BOOL, Czy respondent pracuje w sektorze kultury.
+- miejsce_wykonywania_pracy: TEXT(wyłącznie w miejscu pracy | poza domem|częściowo w miejscu pracy, częściowo w domu lub zdalnie|wyłącznie w domu | zdalnie), Miejsce wykonywania pracy przez respondenta.
+- praca_w_miejscu_zamieszkania: TEXT(w miejscowości zamieszkania|poza miejscowością zamieszkania), Czy miejsce pracy respondenta znajduje się w miejscowości zamieszkania.
+- sponsorowanie_kultury: BOOL, Czy firma respondenta sponsorowała działalność artystyczną na terenie GZM.
+- zainteresowanie_sponsorowaniem_kultury: BOOL, Czy firma respondenta byłaby zainteresowana sponsorowaniem działalności artystycznej.
+- przedzial_wynagrodzenia: TEXT(do 3500 zł|3501 - 4000 zł|4001 - 4500 zł|4501 - 5000 zł|5001 - 6000 zł|6001 - 7000 zł|7001 - 8000 zł|8001 - 9000 zł|powyżej 9000 zł|nie wiem, trudno powiedzieć|odmowa odpowiedzi), Przedział wynagrodzenia miesięcznego netto respondenta.
+- opieka_nad_dzieckiem: BOOL, Czy respondent opiekuje się dzieckiem/dziećmi poniżej 13 roku życia.
+- opieka_nad_osoba_zalezna: BOOL, Czy respondent opiekuje się osobą wymagającą stałej opieki (chorą, niepełnosprawną).
+- niepelnosprawnosc_wzrok: BOOL, Czy respondent ma niepełnosprawność: wzrokową. Część pytania wielokrotnego wyboru: niepelnosprawnosc_.
+- niepelnosprawnosc_sluch: BOOL, Czy respondent ma niepełnosprawność: słuchową. Część pytania wielokrotnego wyboru: niepelnosprawnosc_.
+- niepelnosprawnosc_ruch: BOOL, Czy respondent ma niepełnosprawność: ruchową. Część pytania wielokrotnego wyboru: niepelnosprawnosc_.
+- niepelnosprawnosc_inna: BOOL, Czy respondent ma niepełnosprawność: inny typ. Część pytania wielokrotnego wyboru: niepelnosprawnosc_.
+- niepelnosprawnosc_zadna: BOOL, Czy respondent wskazał: żadna z powyższych niepełnosprawności. Część pytania wielokrotnego wyboru: niepelnosprawnosc_.
+- transport_komunikacja_miejska: BOOL, Czy respondent korzysta z transportu: komunikacja miejska (autobus, tramwaj). Część pytania wielokrotnego wyboru: transport_.
+- transport_komunikacja_regionalna: BOOL, Czy respondent korzysta z transportu: komunikacja regionalna (kolej). Część pytania wielokrotnego wyboru: transport_.
+- transport_wlasny_samochod: BOOL, Czy respondent korzysta z transportu: własny samochód. Część pytania wielokrotnego wyboru: transport_.
+- transport_wlasny_rower: BOOL, Czy respondent korzysta z transportu: własny rower. Część pytania wielokrotnego wyboru: transport_.
+- transport_wspoldzielony: BOOL, Czy respondent korzysta z transportu: pojazd na minuty (rower, hulajnoga). Część pytania wielokrotnego wyboru: transport_.
+- transport_pieszo: BOOL, Czy respondent korzysta z transportu: pieszo. Część pytania wielokrotnego wyboru: transport_.
+- transport_inny: BOOL, Czy respondent korzysta z transportu: inaczej. Część pytania wielokrotnego wyboru: transport_.
+- internet_w_domu: BOOL, Czy respondent ma dostęp do internetu: w domu. Część pytania wielokrotnego wyboru: internet_w_.
+- internet_w_pracy: BOOL, Czy respondent ma dostęp do internetu: w pracy. Część pytania wielokrotnego wyboru: internet_w_.
+- internet_w_telefonie: BOOL, Czy respondent ma dostęp do internetu: w telefonie komórkowym. Część pytania wielokrotnego wyboru: internet_w_.

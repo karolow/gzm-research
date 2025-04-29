@@ -7,7 +7,7 @@ from pathlib import Path
 import duckdb
 from duckdb import DuckDBPyConnection
 
-from research.utils.logging import setup_logger
+from research.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 

@@ -2,7 +2,6 @@
 Module for generating SQL queries using LLM (Google's Gemini).
 """
 
-import json
 import re
 from pathlib import Path
 from typing import Optional
@@ -11,47 +10,47 @@ import jinja2
 
 from research.config import get_config
 from research.llm.gemini import GeminiClient
-from research.utils.logging import setup_logger
+from research.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 
 
 def load_metadata(metadata_path: str) -> str:
     """
-    Load the survey metadata as a JSON string.
+    Load the survey metadata from a markdown file.
 
     Args:
-        metadata_path: Path to metadata JSON file
+        metadata_path: Path to metadata markdown file
 
     Returns:
-        JSON string representation of the metadata
+        String containing the markdown metadata content
 
     Raises:
         FileNotFoundError: If the metadata file doesn't exist
-        json.JSONDecodeError: If the metadata file contains invalid JSON
     """
     try:
         with open(metadata_path, "r", encoding="utf-8") as f:
-            metadata = json.load(f)
+            md_content = f.read()
 
-        return json.dumps(metadata, ensure_ascii=False, indent=2)
+        logger.debug(f"Loaded metadata from {metadata_path}")
+        return md_content
+
     except FileNotFoundError:
         logger.error(f"Metadata file not found: {metadata_path}")
-        raise
-    except json.JSONDecodeError as e:
-        logger.error(f"Invalid JSON in metadata file: {e}")
         raise
     except Exception as e:
         logger.error(f"Error loading metadata: {e}")
         raise
 
 
-def create_prompt(metadata_json: str, template_path: str, examples: str = "") -> str:
+def create_system_prompt(
+    metadata_content: str, template_path: str, examples: str = ""
+) -> str:
     """
     Create system instruction using the template and metadata.
 
     Args:
-        metadata_json: JSON string containing survey metadata
+        metadata_content: String containing the metadata (markdown format)
         template_path: Path to Jinja2 template file
         examples: Optional string containing example SQL queries to include in the prompt
 
@@ -76,7 +75,7 @@ def create_prompt(metadata_json: str, template_path: str, examples: str = "") ->
 
         # Render the system prompt with metadata and examples
         system_instruction = template.render(
-            METADATA_JSON=metadata_json, examples=examples
+            METADATA_CONTENT=metadata_content, examples=examples
         )
         logger.debug(f"System instruction generated from template: {template_path}")
         return system_instruction
@@ -157,7 +156,7 @@ def natural_language_to_sql(
 
     Args:
         question: Natural language question
-        metadata_path: Path to the survey metadata JSON file
+        metadata_path: Path to the survey metadata markdown file
         template_path: Path to the prompt template
         temperature: Model temperature setting
         max_tokens: Maximum tokens for model response
@@ -179,11 +178,11 @@ def natural_language_to_sql(
     max_tokens = max_tokens if max_tokens is not None else config.llm.max_tokens
 
     # Load metadata
-    metadata_json = load_metadata(metadata_path)
+    metadata_content = load_metadata(metadata_path)
     logger.debug(f"Loaded metadata from {metadata_path}")
 
     # Create the system instruction
-    system_instruction = create_prompt(metadata_json, template_path)
+    system_instruction = create_system_prompt(metadata_content, template_path)
 
     # Initialize Gemini client
     client = GeminiClient(

@@ -18,7 +18,7 @@
     {
         "semantic_name": "subregion_metropolii_gzm",
         "data_type": "text",
-        "description": "Subregion GZM lub Katowice, w którym przeprowadzono badanie.",
+        "description": "Subregion GZM, w którym przeprowadzono badanie.",
         "possible_values": [
             "KATOWICE",
             "BYTOMSKI",
@@ -29,7 +29,8 @@
             "Inny"
         ],
         "hints": [
-            "Metropolia GZM podzielona jest na subregiony: używaj tej wartości w odniesieniu do lokalizacji wyłącznie na dosłowne żądanie dotyczące subregionów GZM/Metropolii"
+            "Metropolia GZM podzielona jest na subregiony: używaj tej wartości w odniesieniu do lokalizacji wyłącznie na dosłowne żądanie dotyczące subregionów GZM/Metropolii",
+            "Odpowiedzi dla Katowic zapisano osobno, więc dla pytań o region katowicki powinny być połączone z 'KATOWICKI'"
         ]
     },
     {
@@ -124,19 +125,12 @@
             "Powiat pszczyński",
             "Powiat tarnogórski",
             "inne miasto| powiat"
-        ],
-        "hints": [
-            "Użyj gdy zarówno gdy użytkownik pyta o miasto jak i powiat",
-            "MAP: Będzin -> Powiat będziński [W danych dla tego obszaru używana jest nazwa powiatu.]",
-            "MAP: Mikołów -> Powiat mikołowski [W danych dla tego obszaru używana jest nazwa powiatu.]",
-            "MAP: Pszczyna -> Powiat pszczyński [W danych dla tego obszaru używana jest nazwa powiatu.]",
-            "MAP: Tarnowskie Góry -> Powiat tarnogórski [W danych dla tego obszaru używana jest nazwa powiatu.]"
         ]
     },
     {
         "semantic_name": "gmina_miejscowosc",
         "data_type": "text",
-        "description": "Gmina zamieszkania respondenta (dla powiatów).",
+        "description": "Gmina/miejscowość zamieszkania respondenta",
         "possible_values": [
             "Będzin",
             "Bobrowniki",
