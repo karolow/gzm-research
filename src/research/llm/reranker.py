@@ -6,13 +6,13 @@ from typing import Any, Dict, List, Tuple
 
 import requests
 from dotenv import load_dotenv
+from .semantic_search import semantic_rerank
 
 # Load environment variables
 load_dotenv(override=True)
 
 # Set up logging
 logger = logging.getLogger(__name__)
-
 
 class JinaReranker:
     """
@@ -152,26 +152,10 @@ def find_similar_examples(
         logger.warning(f"No cases found in dataset at {eval_dataset_path}")
         return []
 
-    # Parse exclude_range if provided
-    excluded_indices = set()
-    if exclude_range:
-        try:
-            start, end = parse_range(exclude_range)
-            excluded_indices = set(range(start, end))
-            logger.info(
-                f"Excluding cases in range {start + 1}-{end} from reranking examples"
-            )
-        except ValueError as e:
-            logger.warning(f"Invalid exclude range format: {e}. Using all cases.")
-
     # Extract inputs for reranking
     documents = []
     cases_map = {}
     for idx, case in enumerate(cases):
-        # Skip cases that are in the excluded range
-        if idx in excluded_indices:
-            continue
-
         input_text = case.get("inputs", "")
         if input_text:
             documents.append(input_text)
@@ -185,33 +169,43 @@ def find_similar_examples(
         logger.warning("No valid documents found in dataset for reranking")
         return []
 
-    # Perform reranking
+    # Delegate to semantic_search module
     try:
-        reranker = JinaReranker(api_key)
-        ranked_results = reranker.rerank(query, documents, top_n=top_n)
-
-        if not ranked_results:
-            logger.warning("Reranker returned no results")
-            return []
-
-        # Log the top results
-        logger.info(f"Top {len(ranked_results)} similar cases to query: {query}")
-        for i, (doc, score) in enumerate(ranked_results):
-            logger.info(f"{i + 1}. Score: {score:.4f} | Query: {doc}")
-
-        # Return the top examples
-        similar_cases = []
-        for doc, _ in ranked_results:
-            if doc in cases_map:
-                similar_cases.append(cases_map[doc])
-            else:
-                logger.warning(f"Document not found in cases map: {doc[:50]}...")
-
-        return similar_cases
-
+        return semantic_rerank(query, top_n, None if not exclude_range else [*range(*parse_range(exclude_range))])
     except Exception as e:
-        logger.error(f"Reranking failed: {e}", exc_info=True)
+        logger.error(f"Semantic reranking failed: {e}", exc_info=True)
         return []
+
+
+def prepare_examples_for_prompt(similar_cases: List[Dict[str, Any]]) -> str:
+    """
+    Prepare examples for the SQL query prompt.
+
+    Args:
+        similar_cases: List of similar cases from the dataset
+
+    Returns:
+        Formatted string with example queries and SQL responses
+    """
+    if not similar_cases:
+        logger.warning("No similar cases provided to prepare examples")
+        return ""
+
+    examples = []
+
+    for case in similar_cases:
+        input_text = case.get("inputs", "")
+        expected_output = case.get("expected_output", {})
+        sql_query = expected_output.get("sql_query", "")
+
+        if input_text and sql_query:
+            example = f'User question: "{input_text}"\n'
+            example += "Generated query:\n\n```sql\n"
+            example += f"{sql_query}\n"
+            example += "```\n"
+            examples.append(example)
+
+    return "\n".join(examples)
 
 
 def parse_range(range_str: str) -> tuple[int, int]:
@@ -255,34 +249,3 @@ def parse_range(range_str: str) -> tuple[int, int]:
         if "invalid literal for int" in str(e):
             raise ValueError(f"Range values must be integers: {range_str}")
         raise
-
-
-def prepare_examples_for_prompt(similar_cases: List[Dict[str, Any]]) -> str:
-    """
-    Prepare examples for the SQL query prompt.
-
-    Args:
-        similar_cases: List of similar cases from the dataset
-
-    Returns:
-        Formatted string with example queries and SQL responses
-    """
-    if not similar_cases:
-        logger.warning("No similar cases provided to prepare examples")
-        return ""
-
-    examples = []
-
-    for case in similar_cases:
-        input_text = case.get("inputs", "")
-        expected_output = case.get("expected_output", {})
-        sql_query = expected_output.get("sql_query", "")
-
-        if input_text and sql_query:
-            example = f'User question: "{input_text}"\n'
-            example += "Generated query:\n\n```sql\n"
-            example += f"{sql_query}\n"
-            example += "```\n"
-            examples.append(example)
-
-    return "\n".join(examples)

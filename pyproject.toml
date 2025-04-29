@@ -5,8 +5,10 @@ requires-python = ">=3.13"
 dependencies = [
     "click>=8.1.8",
     "duckdb>=1.2.2",
+    "faiss-cpu>=1.11.0",
     "google-genai>=1.10.0",
     "jinja2>=3.1.6",
+    "joblib>=1.4.2",
     "openpyxl>=3.1.5",
     "pandas>=2.2.3",
     "pydantic-ai-slim[groq,openai]>=0.1.2",
@@ -31,7 +33,7 @@ allow-direct-references = true
 [project.scripts]
 db = "research.cli.db_cli:cli"
 llm-query = "research.cli.llm_cli:cli"
-evaluate = "evals.evaluation:main"
+evals = "evals.evaluation:cli"
 db-load = "research.data_preprocessing.preprocess_spss_data:cli"
 
 [tool.logfire]

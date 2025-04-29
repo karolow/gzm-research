@@ -7,6 +7,7 @@ This project provides tools for analyzing survey data of GZM and Katowice reside
 - **Database Operations**: DuckDB operations for storing and querying survey data
 - **Natural Language Queries**: Convert natural language to SQL using Google's Gemini AI
 - **Evaluation Framework**: Comprehensive evaluation of SQL query generation performance
+- **Semantic Search**: Find semantically similar examples using FAISS and text embeddings
 
 ## Requirements
 
@@ -21,6 +22,7 @@ This project uses a robust, config-driven pattern for all settings. All configur
 - `GEMINI_API_KEY`: Your Google Gemini API key
 - `GEMINI_MODEL`: The Gemini model to use (e.g., `gemini-2.0-flash`)
 - `GZM_DATABASE`: Path to your DuckDB database file
+- `OPENAI_API_KEY`: Your OpenAI API key (required for semantic search embeddings)
 
 ### Optional Environment Variables (with defaults):
 - `GZM_EVAL_DATASET` (default: `src/eval_dataset.json`)
@@ -32,6 +34,10 @@ This project uses a robust, config-driven pattern for all settings. All configur
 - `GZM_MAX_CONCURRENCY` (default: `5`)
 - `LLM_TEMPERATURE` (default: `0.0`)
 - `LLM_MAX_TOKENS` (default: `1024`)
+- `JINA_API_KEY`: API key for Jina AI (optional, for enhanced reranking)
+- `EMBEDDING_MODEL` (default: `text-embedding-3-large`)
+- `GZM_FAISS_INDEX_PATH` (default: `src/research/llm/faiss.index`)
+- `GZM_EXAMPLES_PATH` (default: `src/research/llm/examples.joblib`)
 
 ### How it works
 - All scripts and package modules use `get_config()` from `src/research/config.py` to load settings.
@@ -63,6 +69,7 @@ GZM_SURVEY_METADATA=src/survey_metadata_queries.json
 export GEMINI_API_KEY=your_api_key_here
 export GEMINI_MODEL=gemini-2.0-flash
 export GZM_DATABASE=research.db
+export OPENAI_API_KEY=your_openai_api_key_here
 ```
 
 ### Usage
@@ -74,7 +81,7 @@ export GZM_DATABASE=research.db
   cp .env.example .env  # and edit as needed
   llm-query --database my.db --model gemini-2.0-flash
   db --help
-  evaluate --help
+  evals --help
   ```
 
 ### Notes
@@ -110,6 +117,83 @@ llm-query generate --question "Show me the distribution of age groups"
 
 ```bash
 # Run evaluation on a set of test cases
-evaluate --eval-cases src/eval_dataset.json --database research.db
+evals evaluate --eval-cases src/eval_dataset.json --database research.db --model gemini-2.0-flash
+
+# Configure the evaluation settings
+evals config show
+
+# Ask a single SQL question without evaluation
+evals ask "How many men and women participated in the survey?" --database research.db
 ```
 
+## Semantic Search
+
+The project includes semantic search functionality that lets you find similar examples using vector similarity. This is useful for finding similar queries, identifying patterns in survey data, or implementing RAG (Retrieval-Augmented Generation) approaches.
+
+### Building the FAISS Index
+
+Before using semantic search, you need to build a FAISS index from your examples:
+
+1. Prepare a JSON file with your examples. The script supports multiple formats:
+   
+   - List of dictionaries with text fields (it will automatically detect common fields like "inputs", "question", "query", etc.):
+     ```json
+     [
+       {"inputs": "How many people participated in cultural events?"},
+       {"inputs": "What's the age distribution of museum visitors?"}
+     ]
+     ```
+
+   - Simple list of strings:
+     ```json
+     [
+       "How many people participated in cultural events?",
+       "What's the age distribution of museum visitors?"
+     ]
+     ```
+
+   - Dictionary with nested lists:
+     ```json
+     {
+       "examples": [
+         "How many people participated in cultural events?",
+         "What's the age distribution of museum visitors?"
+       ]
+     }
+     ```
+
+2. Build the index:
+   ```bash
+   uv run src/research/llm/build_faiss_index.py --examples src/eval_dataset.json
+   ```
+
+   This will create two files:
+   - `src/research/llm/faiss.index`: The FAISS index for fast similarity search
+   - `src/research/llm/examples.joblib`: The serialized examples data
+
+### Using Semantic Search
+
+Once the index is built, you can use the semantic search functionality in your code:
+
+```python
+from research.llm.semantic_search import semantic_search, semantic_rerank
+
+# Simple search - returns indices of similar examples
+indices = semantic_search("How many women visited museums?", top_k=5)
+
+# Reranked search - returns the actual example dictionaries, reranked for better relevance
+similar_cases = semantic_rerank("How many women visited museums?", top_n=5)
+
+# Print the similar cases
+for case in similar_cases:
+    if isinstance(case, dict):
+        print(f"Query: {case.get('inputs', str(case))}")
+    else:
+        print(f"Query: {case}")
+    print("-" * 50)
+```
+
+### Customizing the Search
+
+- You can specify `exclude_indices` to exclude certain examples from search results
+- The `JinaReranker` class provides reranking capabilities to improve result relevance

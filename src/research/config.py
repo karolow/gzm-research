@@ -39,6 +39,15 @@ class LLMConfig(BaseModel):
     base_url: Optional[str] = Field(default_factory=lambda: os.getenv("LLM_BASE_URL"))
 
 
+class EmbeddingConfig(BaseModel):
+    """Embedding model configuration settings."""
+
+    model: str = Field(
+        default_factory=lambda: os.getenv("EMBEDDING_MODEL", "text-embedding-3-large")
+    )
+    api_key: str = Field(default_factory=lambda: os.getenv("OPENAI_API_KEY", ""))
+
+
 class DatabaseConfig(BaseModel):
     """Database configuration settings."""
 
@@ -77,9 +86,11 @@ class Config(BaseModel):
       - GZM_MAX_CONCURRENCY
       - LLM_TEMPERATURE
       - LLM_MAX_TOKENS
+      - EMBEDDING_MODEL
     """
 
     llm: LLMConfig = Field(default_factory=LLMConfig)
+    embedding: EmbeddingConfig = Field(default_factory=EmbeddingConfig)
     db: DatabaseConfig = Field(default_factory=DatabaseConfig)
     eval: EvalConfig = Field(default_factory=EvalConfig)
 
@@ -107,6 +118,17 @@ class Config(BaseModel):
         default_factory=lambda: os.getenv(
             "GZM_SURVEY_METADATA",
             "src/survey_metadata_queries_simple.md",
+        )
+    )
+    # Semantic search paths
+    faiss_index_path: str = Field(
+        default_factory=lambda: os.getenv(
+            "GZM_FAISS_INDEX_PATH", "src/research/llm/faiss.index"
+        )
+    )
+    examples_path: str = Field(
+        default_factory=lambda: os.getenv(
+            "GZM_EXAMPLES_PATH", "src/research/llm/examples.joblib"
         )
     )
     project_name: str = "gzm"
