@@ -36,11 +36,11 @@ venv.bak/
 *.swp
 *.swo
 
-# Logs and databases
+# Logs and data
 *.log
 *.sqlite
-*.duckdb
-*.duckdb.wal
+*.db
+*.sav
 
 # Testing
 .coverage
@@ -49,3 +49,7 @@ htmlcov/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# Project specific
+trash/
+eval_reports/
