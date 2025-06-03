@@ -1,4 +1,4 @@
-{# 
+{#
     File: sql_query_prompt.jinja2
     Note: This prompt is an initial version under active development.
 #}
@@ -62,7 +62,7 @@ CRITICAL NOTE on Percentage Denominators: The Denominator MUST be the total weig
 
 Only generate unweighted results (using simple COUNT(*) or AVG([column]) without waga_proby) if the user explicitly asks for "raw counts", "unweighted results", "liczba bezwzględna", "niewazony wynik", or similar explicit terms indicating a desire to ignore representativeness. If unsure, default to weighted.
 
-6. Output: 
+6. Output:
 
 Provide only the generated DuckDB SQL query as a code block. Do not include explanations unless specifically requested in the user's prompt. Include SQL comments (#) only if required by the "Handle Missing Specificity" rule.
 
@@ -99,115 +99,115 @@ SELECT
 FROM (
     SELECT 'Prasa drukowana' AS source, informacja_prasa_drukowana AS selected, waga_proby FROM participation_survey WHERE transport_wlasny_rower = TRUE
     UNION ALL
-    
+
     SELECT
         'Plakaty/ogłoszenia/reklamy' AS source,
         informacja_plakaty AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Lokalne portale/strony' AS source,
         informacja_portale_lokalne AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Ogólnopolskie portale/strony' AS source,
         informacja_portale_ogolnopolskie AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Profile instytucji w mediach społecznościowych' AS source,
         informacja_social_media_instytucje AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Profile twórców w mediach społecznościowych' AS source,
         informacja_social_media_tworcy AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Inne profile w mediach społecznościowych' AS source,
         informacja_social_media_inne AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Od znajomych/rodziny' AS source,
         informacja_znajomi_rodzina AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Radio' AS source,
         informacja_radio AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Telewizja' AS source,
         informacja_telewizja AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Strony internetowe instytucji kultury' AS source,
         informacja_strony_instytucji AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Ogólnotematyczne strony internetowe' AS source,
         informacja_strony_ogolne AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Inne źródła' AS source,
         informacja_inne_zrodla AS selected,
         waga_proby
     FROM participation_survey
     WHERE transport_wlasny_rower = TRUE
-    
+
     UNION ALL
-    
+
     SELECT
         'Żadne z powyższych źródeł informacji' AS source,
         informacja_zadne_zrodla AS selected,
@@ -231,7 +231,7 @@ This query:
    - Keep filter conditions identical in all subqueries and the total CTE
    - Use meaningful names for output columns
    - Always GROUP BY the source column before calculating percentages
-   
+
 Example 2:
 
 User question: "Czy kobiety z katowickiej części metropolii częściej niż mężczyźni korzystają z kultury w domu?"
@@ -257,7 +257,7 @@ WITH
     SELECT
       respondent_id,
       waga_proby,
-      CASE WHEN 
+      CASE WHEN
         kultura_domowa_tv = TRUE OR
         kultura_domowa_radio = TRUE OR
         kultura_domowa_podcasty = TRUE OR
@@ -274,7 +274,7 @@ WITH
     SELECT
       respondent_id,
       waga_proby,
-      CASE WHEN 
+      CASE WHEN
         kultura_domowa_tv = TRUE OR
         kultura_domowa_radio = TRUE OR
         kultura_domowa_podcasty = TRUE OR
@@ -290,19 +290,19 @@ WITH
 SELECT
   'Kobiety' AS grupa,
   ROUND(
-    SUM(CASE WHEN any_cultural_activity = TRUE THEN waga_proby ELSE 0 END) * 100.0 / 
+    SUM(CASE WHEN any_cultural_activity = TRUE THEN waga_proby ELSE 0 END) * 100.0 /
     (SELECT women_weight FROM KatowiceWomen),
     2
   ) AS percentage
 FROM
   WomenActivities
-  
+
 UNION ALL
 
 SELECT
   'Mężczyźni' AS grupa,
   ROUND(
-    SUM(CASE WHEN any_cultural_activity = TRUE THEN waga_proby ELSE 0 END) * 100.0 / 
+    SUM(CASE WHEN any_cultural_activity = TRUE THEN waga_proby ELSE 0 END) * 100.0 /
     (SELECT men_weight FROM KatowiceMen),
     2
   ) AS percentage
@@ -346,28 +346,75 @@ c.  **Miasto/Powiat (miasto_powiat):**
         *   gliwicki: [Gierałtowice, Knurów, Pilchowice, Pyskowice, Rudziniec, Sośnicowice].
         *   mikołowski: [Łaziska Górne, Mikołów, Wyry].
         *   pszczyński: [Kobiór].
-        *   tarnogórski: [Ożarowice, Radzionków, Świerklaniec, Tarnowskie Góry, Zbrosławice]. 
-    *   Gminy i miejscowości (gmina_miejscowosc): 
+        *   tarnogórski: [Ożarowice, Radzionków, Świerklaniec, Tarnowskie Góry, Zbrosławice].
+    *   Gminy i miejscowości (gmina_miejscowosc):
         *   Będzin, Bobrowniki, Czeladź, Mierzęcice, Psary, Siewierz, Sławków, Wojkowice, Bieruń, Bojszowy, Chełm Śląski, Imielin, Lędziny, Gierałtowice, Knurów, Pilchowice, Pyskowice, Rudziniec, Sośnicowice, Łaziska Górne, Mikołów, Wyry, Kobiór, Ożarowice, Radzionków, Świerklaniec, Tarnowskie Góry, Zbrosławice, inna gmina. *Użyj gdy użytkownik pyta o gminę lub miejscowość.
 
-d.  **Dzielnice Katowic (dzielnica_katowic):**
-    *   List: Bogucice, Brynów Cz. Wsch.-Os. Zgrzebnioka, Dąb, Dąbrówka Mała, Giszowiec, Janów-Nikiszowiec, Kostuchna, Koszutka, Ligota-Panewniki, Murcki, Os. Paderewskiego-Muchowiec, Os. Tysiąclecia, Os. Witosa, Piotrowice-Ochojec, Podlesie, Śródmieście, Szopienice-Burowiec, Wełnowiec-Józefowiec, Załęska Hałda-Brynów Cz. Zach., Załęże, Zarzecze, Zawodzie.
-    *   Zespoły Dzielnic Katowic:
-        *   Śródmiejskie: Śródmieście, Os. Paderewskiego-Muchowiec, Koszutka, Bogucice.
-        *   Północne: Wełnowiec-Józefowiec, Dąb, Załęże, Os. Tysiąclecia, Os. Witosa.
-        *   Zachodnie: Załęska Hałda-Brynów, Ligota-Panewniki, Brynów-Os. Zgrzebnioka.
-        *   Wschodnie: Zawodzie, Dąbrówka Mała, Szopienice-Burowiec, Janów-Nikiszowiec, Giszowiec.
-        *   Południowe: Murcki, Piotrowice-Ochojec, Kostuchna, Zarzecze, Podlesie.
+d.  **Graniczące gminy/miasta w GZM (bez sąsiadów spoza GZM):**
+    *   Będzin: Czeladź, Dąbrowa Górnicza, Psary, Siemianowice Śl., Sosnowiec, Wojkowice.
+    *   Bieruń: Bojszowy, Chełm Śląski, Kobiór, Lędziny, Tychy.
+    *   Bobrowniki: Będzin, Mierzęcice, Ożarowice, Piekary Śląskie, Psary, Siewierz, Świerklaniec, Wojkowice.
+    *   Bojszowy: Bieruń, Lędziny, Tychy.
+    *   Bytom: Chorzów, Piekary Śląskie, Radzionków, Ruda Śląska, Świętochłowice, Tarnowskie Góry, Zabrze, Zbrosławice.
+    *   Chełm Śląski: Bieruń, Imielin, Lędziny.
+    *   Chorzów: Bytom, Katowice, Piekary Śląskie, Ruda Śląska, Siemianowice Śl., Świętochłowice.
+    *   Czeladź: Będzin, Siemianowice Śl., Sosnowiec, Wojkowice.
+    *   Dąbrowa Górnicza: Będzin, Psary, Siewierz, Sławków, Sosnowiec.
+    *   Gierałtowice: Gliwice, Knurów, Mikołów, Ruda Śląska, Zabrze.
+    *   Gliwice: Gierałtowice, Knurów, Pilchowice, Pyskowice, Rudziniec, Sośnicowice, Zabrze, Zbrosławice.
+    *   Imielin: Chełm Śląski, Lędziny, Mysłowice.
+    *   Katowice: Chorzów, Mikołów, Mysłowice, Ruda Śląska, Siemianowice Śl., Sosnowiec, Tychy.
+    *   Knurów: Gierałtowice, Gliwice, Pilchowice.
+    *   Kobiór: Bieruń, Tychy, Wyry.
+    *   Lędziny: Bieruń, Bojszowy, Chełm Śląski, Imielin, Tychy.
+    *   Łaziska Górne: Mikołów, Tychy, Wyry.
+    *   Mierzęcice: Bobrowniki, Ożarowice, Psary, Siewierz.
+    *   Mikołów: Gierałtowice, Katowice, Łaziska Górne, Ruda Śląska, Tychy, Wyry.
+    *   Mysłowice: Imielin, Katowice, Sosnowiec.
+    *   Ożarowice: Bobrowniki, Mierzęcice, Siewierz, Świerklaniec, Tarnowskie Góry.
+    *   Piekary Śląskie: Bobrowniki, Bytom, Chorzów, Radzionków, Siemianowice Śl., Świerklaniec, Tarnowskie Góry, Wojkowice.
+    *   Pilchowice: Gliwice, Knurów, Sośnicowice.
+    *   Psary: Będzin, Bobrowniki, Dąbrowa Górnicza, Mierzęcice, Siewierz, Wojkowice.
+    *   Pyskowice: Gliwice, Rudziniec, Zbrosławice.
+    *   Radzionków: Bytom, Piekary Śląskie, Świerklaniec, Tarnowskie Góry.
+    *   Ruda Śląska: Bytom, Chorzów, Gierałtowice, Katowice, Mikołów, Świętochłowice, Zabrze.
+    *   Rudziniec: Gliwice, Pyskowice, Sośnicowice, Zbrosławice.
+    *   Siemianowice Śl.: Będzin, Chorzów, Czeladź, Katowice, Piekary Śląskie, Wojkowice.
+    *   Siewierz: Będzin, Bobrowniki, Dąbrowa Górnicza, Mierzęcice, Ożarowice, Psary, Wojkowice.
+    *   Sławków: Dąbrowa Górnicza, Sosnowiec.
+    *   Sosnowiec: Będzin, Czeladź, Dąbrowa Górnicza, Katowice, Mysłowice, Sławków.
+    *   Sośnicowice: Gliwice, Pilchowice, Rudziniec.
+    *   Świerklaniec: Bobrowniki, Ożarowice, Piekary Śląskie, Radzionków, Tarnowskie Góry.
+    *   Świętochłowice: Bytom, Chorzów, Ruda Śląska.
+    *   Tarnowskie Góry: Bytom, Ożarowice, Piekary Śląskie, Radzionków, Świerklaniec, Zbrosławice.
+    *   Tychy: Bieruń, Bojszowy, Katowice, Kobiór, Lędziny, Łaziska Górne, Mikołów, Wyry.
+    *   Wojkowice: Będzin, Bobrowniki, Piekary Śląskie, Psary, Siemianowice Śl., Siewierz.
+    *   Wyry: Kobiór, Łaziska Górne, Mikołów, Tychy.
+    *   Zabrze: Bytom, Gierałtowice, Gliwice, Pyskowice, Ruda Śląska, Zbrosławice.
+    *   Zbrosławice: Bytom, Gliwice, Pyskowice, Rudziniec, Tarnowskie Góry, Zabrze.
 
-e.  **User Term Mapping:**
+e.  **Dzielnice Katowic (dzielnica_katowic):**
+    *   List: Bogucice, Brynów Część Wschodnia - Os. Zgrzebnioka, Dąb, Dąbrówka Mała, Giszowiec, Janów - Nikiszowiec, Kostuchna, Koszutka, Ligota-Panewniki, Murcki, Os. Paderewskiego - Muchowiec, Osiedle Tysiąclecia, Osiedle Witosa, Piotrowice - Ochojec, Podlesie, Śródmieście, Szopienice-Burowiec, Wełnowiec-Józefowiec, Załęska Hałda - Brynów Część Zachodnia, Załęże, Zarzecze, Zawodzie.
+    *   Zespoły Dzielnic Katowic:
+        *   Śródmiejskie: Śródmieście, Os. Paderewskiego - Muchowiec, Koszutka, Bogucice.
+        *   Północne: Wełnowiec-Józefowiec, Dąb, Załęże, Osiedle Tysiąclecia, Osiedle Witosa.
+        *   Zachodnie: Załęska Hałda - Brynów Część Zachodnia, Ligota-Panewniki, Brynów Część Wschodnia - Os. Zgrzebnioka.
+        *   Wschodnie: Zawodzie, Dąbrówka Mała, Szopienice-Burowiec, Janów - Nikiszowiec, Giszowiec.
+        *   Południowe: Murcki, Piotrowice - Ochojec, Kostuchna, Zarzecze, Podlesie.
+
+f.  **Górny Śląsk vs. Zagłębie:**
+    *   Górny Śląsk: subregion_metropolii_gzm IN ('BYTOMSKI', 'GLIWICKI', 'KATOWICKI', 'TYSKI', 'KATOWICE')
+    *   Zagłębie: subregion_metropolii_gzm = 'SOSNOWIECKI'
+
+g.  **User Term Mapping:**
     *   (sub)region gzm/metropolii, rejon, część metropolii/gzm -> subregion_metropolii_gzm
-    *   miasta, ośrodki miejskie, powiaty metropolii/gzm -> miasto_powiat
+    *   miasta, ośrodki mgejskie, powiaty metropolii/gzm -> miasto_powiat
     *   miejscowości, małe miejscowości, gminy, wsie -> gmina_miejscowosc
     *   Katowice differences/parts -> dzielnica_katowic (inc. zespoły)
     *   Examples: "różnice Katowic" -> dzielnica_katowic; "mieszkańcy mniejszych miejscowości/wsi" -> gmina_miejscowosc; "uczestnicy wg miast", "mieszkańcy miast" -> miasto_powiat; "dzielnice śródmiejskie vs południowe" -> dzielnica_katowic (zespoły)
     *   when user asks to specifically compare Bytom to Tarnowskie Góry, look up miasto_powiat (Bytom) and gmina_miejscowosc (Tarnowskie Góry) accordingly.
-      
-f.  **Special:** Distinguish Subregions "KATOWICE" (city) and "KATOWICKI" (surrounding cities) if subregions are referenced.
+
+h.  **Special:** Distinguish Subregions "KATOWICE" (city) and "KATOWICKI" (surrounding cities) if subregions are referenced.
 
 10. Specific instructions:
 

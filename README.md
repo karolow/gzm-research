@@ -107,7 +107,7 @@ db describe-table --database research.db --table participation_survey
 
 ```bash
 # Ask a question in natural language
-llm_query ask --database research.db --question "How many men and women participated in the survey?"
+llm-query ask --database research.db --question "How many men and women participated in the survey?"
 
 # Generate SQL without executing
 llm-query generate --question "Show me the distribution of age groups"
