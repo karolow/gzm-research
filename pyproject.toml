@@ -39,3 +39,7 @@ db-load = "research.data_preprocessing.preprocess_spss_data:cli"
 [tool.logfire]
 project_name = "gzm"
 project_url = "https://logfire.pydantic.dev/zkme/gzm"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
