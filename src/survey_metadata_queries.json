@@ -76,30 +76,6 @@
         "hints": []
     },
     {
-        "semantic_name": "wojewodztwo",
-        "data_type": "text",
-        "description": "Województwo zamieszkania respondenta.",
-        "possible_values": [
-            "dolnośląskie",
-            "kujawsko-pomorskie",
-            "lubelskie",
-            "lubuskie",
-            "łódzkie",
-            "małopolskie",
-            "mazowieckie",
-            "opolskie",
-            "podkarpackie",
-            "podlaskie",
-            "pomorskie",
-            "śląskie",
-            "świętokrzyskie",
-            "warmińsko-mazurskie",
-            "wielkopolskie",
-            "zachodniopomorske"
-        ],
-        "hints": []
-    },
-    {
         "semantic_name": "miasto_powiat",
         "data_type": "text",
         "description": "Miasto na prawach powiatu lub powiat zamieszkania respondenta w GZM.",
@@ -552,13 +528,6 @@
         "hints": []
     },
     {
-        "semantic_name": "definicja_kultury_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź respondenta na pytanie, co rozumie przez pojęcie kultury.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
         "semantic_name": "definicja_kultury_kategoria",
         "data_type": "text",
         "description": "Skategoryzowana odpowiedź tekstowa na pytanie o definicję kultury.",
@@ -939,13 +908,6 @@
         "hints": []
     },
     {
-        "semantic_name": "bariera_inne_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa dla bariery: inne problemy.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
         "semantic_name": "bariera_inne_kategoria",
         "data_type": "text",
         "description": "Skategoryzowana odpowiedź tekstowa dla bariery: inne problemy.",
@@ -1096,35 +1058,6 @@
         "hints": []
     },
     {
-        "semantic_name": "nazwa_artysty_koncertowego",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Nazwa artysty/zespołu z ostatniego koncertu.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "kategoria_artysty_koncertowego",
-        "data_type": "text",
-        "description": "Skategoryzowana nazwa artysty/zespołu z ostatniego koncertu.",
-        "possible_values": [
-            "Agnieszka Chylińska",
-            "Andrea Boccelli",
-            "Bajm",
-            "Dawid Podsiadło",
-            "Rammstein",
-            "sanah",
-            "Smolasty",
-            "Mrozu",
-            "Dżem",
-            "Dni miasta / Festiwal",
-            "muzyka rozrywkowa",
-            "Kult",
-            "inne",
-            "nie wiem/trudno powiedzieć"
-        ],
-        "hints": []
-    },
-    {
         "semantic_name": "nazwa_odwiedzonego_muzeum",
         "data_type": "text",
         "description": "Otwarta odpowiedź tekstowa: Nazwa ostatnio odwiedzonego muzeum/galerii.",
@@ -1190,35 +1123,6 @@
             "inne",
             "nie wiem/trudno powiedzieć"
         ],
-        "hints": []
-    },
-    {
-        "semantic_name": "nazwa_artysty_ze_spotkania",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Nazwisko artysty z ostatniego spotkania autorskiego.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "kategoria_artysty_ze_spotkania",
-        "data_type": "text",
-        "description": "Skategoryzowane nazwisko artysty z ostatniego spotkania autorskiego.",
-        "possible_values": [
-            "Andrzej Poniedzielski",
-            "Filip Springer",
-            "Artur Rojek",
-            "Zbigniew Rokita",
-            "Sylwia Chutnik",
-            "inne",
-            "nie wiem/trudno powiedzieć"
-        ],
-        "hints": []
-    },
-    {
-        "semantic_name": "inna_aktywnosc_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Opis innej ostatnio podejmowanej aktywności kulturalnej.",
-        "possible_values": null,
         "hints": []
     },
     {
@@ -1325,13 +1229,6 @@
         "semantic_name": "dom_kultury_inne",
         "data_type": "boolean",
         "description": "Czy respondent korzysta z domu kultury w innym celu.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "powod_braku_uczestnictwa_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Powód braku uczestnictwa w wydarzeniach kulturalnych (jeśli nie uczestniczył).",
         "possible_values": null,
         "hints": []
     },
@@ -1467,41 +1364,6 @@
         "hints": []
     },
     {
-        "semantic_name": "skojarzenia_wydarzenia_gzm_1_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Pierwsze skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "skojarzenia_wydarzenia_gzm_2_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Drugie skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "skojarzenia_wydarzenia_gzm_3_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Trzecie skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "skojarzenia_wydarzenia_gzm_4_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Czwarte skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "skojarzenia_wydarzenia_gzm_5_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Piąte skojarzenie respondenta z wydarzeniami kulturalnymi GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
         "semantic_name": "skojarzenia_wydarzenia_gzm_1_kategoria",
         "data_type": "text",
         "description": "Skategoryzowane pierwsze skojarzenie z wydarzeniami kulturalnymi GZM.",
@@ -1519,41 +1381,6 @@
             "inne",
             "nie wiem/trudno powiedzieć"
         ],
-        "hints": []
-    },
-    {
-        "semantic_name": "skojarzenia_miejsca_gzm_1_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Pierwsze skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "skojarzenia_miejsca_gzm_2_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Drugie skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "skojarzenia_miejsca_gzm_3_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Trzecie skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "skojarzenia_miejsca_gzm_4_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Czwarte skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "skojarzenia_miejsca_gzm_5_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Piąte skojarzenie respondenta z instytucjami/miejscami kultury GZM.",
-        "possible_values": null,
         "hints": []
     },
     {
@@ -1845,13 +1672,6 @@
         "hints": []
     },
     {
-        "semantic_name": "miejsce_kultury_inne_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Nazwa innego miasta/gminy GZM, gdzie respondent odwiedza miejsca kultury.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
         "semantic_name": "miejsce_kultury_inne_kategoria",
         "data_type": "text",
         "description": "Skategoryzowana nazwa innego miasta/gminy GZM, gdzie respondent odwiedza miejsca kultury.",
@@ -1978,13 +1798,6 @@
         "hints": []
     },
     {
-        "semantic_name": "miejsce_poza_gzm_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Lokalizacja poza GZM, gdzie respondent korzystał z kultury.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
         "semantic_name": "miejsce_poza_gzm_kategoria",
         "data_type": "text",
         "description": "Skategoryzowana lokalizacja poza GZM, gdzie respondent korzystał z kultury.",
@@ -2039,13 +1852,6 @@
             "Inne",
             "Nie wiem, trudno powiedzić"
         ],
-        "hints": []
-    },
-    {
-        "semantic_name": "aktywnosc_poza_gzm_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Rodzaj aktywności kulturalnej podejmowanej poza GZM.",
-        "possible_values": null,
         "hints": []
     },
     {
@@ -2132,128 +1938,6 @@
             "tak, wielokrotnie",
             "tak, raz czy dwa",
             "nie zetknąłe(a)m się"
-        ],
-        "hints": []
-    },
-    {
-        "semantic_name": "nazwa_artysty_lokalnego",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Nazwisko/nazwa znanego lokalnego artysty z GZM.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "kategoria_artysty_lokalnego",
-        "data_type": "text",
-        "description": "Skategoryzowane nazwisko/nazwa znanego lokalnego artysty z GZM.",
-        "possible_values": [
-            "Andrea Bocelli",
-            "C-Bool",
-            "Ewa Uryga",
-            "Kabaret",
-            "Lokalny/uliczny artysta",
-            "Malarz",
-            "Rawa Blues",
-            "Rojek",
-            "Styrna",
-            "Weronika  Maksimowicz",
-            "Bajm",
-            "OSTR",
-            "Piotr Klima",
-            "Myslovitz",
-            "Dawid Koczur",
-            "Piosenkarz",
-            "Muzyk",
-            "Pisarz",
-            "Fotograf",
-            "Marek Motyka",
-            "Inne",
-            "Nie wiem, trudno powiedzić"
-        ],
-        "hints": []
-    },
-    {
-        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_1",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Pierwsza osoba/instytucja wpływająca na wybory kulturalne respondenta.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_2",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Druga osoba/instytucja wpływająca na wybory kulturalne respondenta.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_3",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Trzecia osoba/instytucja wpływająca na wybory kulturalne respondenta.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_4",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Czwarta osoba/instytucja wpływająca na wybory kulturalne respondenta.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "osoba_wplywajaca_na_wybory_kulturalne_5",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Piąta osoba/instytucja wpływająca na wybory kulturalne respondenta.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "kategoria_osoby_wplywajacej_1",
-        "data_type": "text",
-        "description": "Skategoryzowana pierwsza osoba/instytucja wpływająca na wybory kulturalne.",
-        "possible_values": [
-            "Aktorzy",
-            "Arkadiusz Chęciński",
-            "Arena Gliwice",
-            "Artur Rojek",
-            "Artyści",
-            "Dawid Podsiadło",
-            "Kościół",
-            "Becek",
-            "Biblioteka",
-            "Burmistrz",
-            "C-Bool",
-            "Celebryci",
-            "Centrum Kultury",
-            "Doda",
-            "Dom Kultury",
-            "Dom muzyki i tańca",
-            "Dziennikarze",
-            "Filharmonia",
-            "Jurek Owsiak",
-            "Kabarety",
-            "Kina",
-            "Muzycy",
-            "Nospr",
-            "Koncerty",
-            "Lewandowski",
-            "Opera",
-            "Muzeum",
-            "Pałac Kultury",
-            "Paprocany",
-            "Piosenkarze",
-            "Prezydent",
-            "Rada Osiedla",
-            "Sanah",
-            "Socha",
-            "Spodek",
-            "Sportowcy",
-            "Stadion",
-            "Teatr",
-            "Urząd gminy/miasta",
-            "Park",
-            "Inne",
-            "Nie wiem, trudno powiedzić"
         ],
         "hints": []
     },
@@ -2455,83 +2139,6 @@
         "hints": []
     },
     {
-        "semantic_name": "znajomosc_tworcy_cyfrowego_1",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Pierwszy znany respondentowi twórca kultury cyfrowej.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "znajomosc_tworcy_cyfrowego_2",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Drugi znany respondentowi twórca kultury cyfrowej.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "znajomosc_tworcy_cyfrowego_3",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Trzeci znany respondentowi twórca kultury cyfrowej.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "znajomosc_tworcy_cyfrowego_4",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Czwarty znany respondentowi twórca kultury cyfrowej.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "znajomosc_tworcy_cyfrowego_5",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Piąty znany respondentowi twórca kultury cyfrowej.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "kategoria_tworcy_cyfrowego_1",
-        "data_type": "text",
-        "description": "Skategoryzowany pierwszy znany twórca kultury cyfrowej.",
-        "possible_values": [
-            "Muzeum",
-            "Biblioteka",
-            "Arkadiusz Chęciński",
-            "Artur Rojek",
-            "Cbool",
-            "Ennzi",
-            "Frele",
-            "Frizz",
-            "Kabarety",
-            "Kazimierz Kutz",
-            "Łukasz Folda",
-            "Mama na obrotach",
-            "Marlena Sojek",
-            "Mediateka",
-            "Dom Kultury",
-            "MiKlaus",
-            "Miuosh",
-            "Mirosław Szołtysek",
-            "Myslovitz",
-            "Niklaus",
-            "Opera",
-            "Piotr Jakowenko",
-            "Polsat",
-            "Sanah",
-            "Socha",
-            "Sosnowiec Łączy",
-            "Spodek",
-            "Teatr",
-            "Telewizja",
-            "Tvp",
-            "Youtube",
-            "Bonkol",
-            "Inne",
-            "Nie wiem, trudno powiedzić"
-        ],
-        "hints": []
-    },
-    {
         "semantic_name": "tworczosc_gra_na_instrumencie",
         "data_type": "boolean",
         "description": "Czy respondent podejmuje aktywność twórczą: granie na instrumencie.",
@@ -2592,39 +2199,6 @@
         "data_type": "boolean",
         "description": "Czy respondent wskazał: żadne z powyższych aktywności twórczych.",
         "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "tworczosc_inna_tekst",
-        "data_type": "text",
-        "description": "Otwarta odpowiedź tekstowa: Opis innej aktywności twórczej respondenta.",
-        "possible_values": null,
-        "hints": []
-    },
-    {
-        "semantic_name": "tworczosc_inna_kategoria",
-        "data_type": "text",
-        "description": "Skategoryzowana inna aktywność twórcza respondenta.",
-        "possible_values": [
-            "Gram na instrumencie",
-            "Piszę teksty",
-            "Robię zdjęcia",
-            "Rysuję lub maluję",
-            "Szyję / haftuję",
-            "Śpiewam",
-            "Komponuję muzykę",
-            "Inna twórczość",
-            "Żadne z powyższych",
-            "Ogrodnictwo",
-            "Taniec",
-            "Stolrstwo, rzeźbienie w drewnie",
-            "Szydełkowanie",
-            "Piszę wiersze",
-            "Czytanie",
-            "Rower",
-            "Inne",
-            "Nie wiem, trudno powiedzieć"
-        ],
         "hints": []
     },
     {
