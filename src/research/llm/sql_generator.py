@@ -10,6 +10,7 @@ import jinja2
 
 from research.config import get_config
 from research.llm.gemini import GeminiClient
+from research.llm.reranker import prepare_examples_for_prompt, semantic_rerank
 from research.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
@@ -181,8 +182,20 @@ def natural_language_to_sql(
     metadata_content = load_metadata(metadata_path)
     logger.debug(f"Loaded metadata from {metadata_path}")
 
+    # Retrieve similar examples
+    try:
+        logger.info("Attempting to retrieve and prepare similar examples.")
+        similar_cases = semantic_rerank(question)
+        examples_for_prompt = prepare_examples_for_prompt(similar_cases)
+        print(f"Retrieved and prepared {len(similar_cases)} examples.")
+    except Exception as e:
+        logger.warning(f"Could not retrieve examples for prompt: {e}")
+        examples_for_prompt = ""
+
     # Create the system instruction
-    system_instruction = create_system_prompt(metadata_content, template_path)
+    system_instruction = create_system_prompt(
+        metadata_content, template_path, examples=examples_for_prompt
+    )
 
     # Initialize Gemini client
     client = GeminiClient(

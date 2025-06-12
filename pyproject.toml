@@ -9,6 +9,8 @@ dependencies = [
     "google-genai>=1.10.0",
     "jinja2>=3.1.6",
     "joblib>=1.4.2",
+    "openai>=1.50.0",
+    "openai-api-blueprint>=0.1.0",
     "openpyxl>=3.1.5",
     "pandas>=2.2.3",
     "pydantic-ai-slim[groq,openai]>=0.1.2",
@@ -17,6 +19,7 @@ dependencies = [
     "pytest>=8.3.5",
     "pytest-asyncio>=0.26.0",
     "python-dotenv>=1.1.0",
+    "tabulate>=0.9.0",
     "pyyaml>=6.0.1",
 ]
 
@@ -35,6 +38,7 @@ db = "research.cli.db_cli:cli"
 llm-query = "research.cli.llm_cli:cli"
 evals = "evals.evaluation:cli"
 db-load = "research.data_preprocessing.preprocess_spss_data:cli"
+api-server = "research.api.app:main"
 
 [tool.logfire]
 project_name = "gzm"
@@ -43,3 +47,6 @@ project_url = "https://logfire.pydantic.dev/zkme/gzm"
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
+
+[tool.uv.sources]
+openai-api-blueprint = { git = "https://github.com/karolow/openai-api-blueprint" }

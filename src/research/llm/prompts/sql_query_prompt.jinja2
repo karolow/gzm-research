@@ -73,11 +73,8 @@ Make sure to round results to 2 decimal places.
 For questions represented by multiple related boolean columns where a respondent could select more than one option (e.g., column prefixes like bariera_*, informacja_*, tworczosc_*, miejsce_kultury_*, kultura_domowa_*, cyfrowa_kultura_*, transport_*, dom_kultury_*, biblioteka_*, niepelnosprawnosc_*, zatrudnienie_*, internet_*), follow these guidelines:
 
 a. CRITICAL: NEVER use a sequential CASE WHEN option_A_bool = TRUE THEN 'Label A' WHEN option_B_bool = TRUE THEN 'Label B' ... END structure to categorize respondents based on the first option they selected. This method incorrectly undercounts options listed later in the sequence.
-
 b. Instead, calculate the percentage for each boolean option independently to show the proportion of the target group that selected that specific option.
-
 c. Preferred Method (UNION ALL): Use a UNION ALL structure to combine results for each option, calculating the percentage relative to the total weight of the target group (defined by the WHERE clause). Ensure the WHERE clause is identical in all parts of the UNION ALL and in the CTE/subquery calculating the total weight denominator. See Example 1 below.
-
 d. Alternative Method (Multiple Columns): If the question asks for a wide comparison table, calculating the percentage for each option in a separate column is acceptable (e.g., Case 16, Case 20). Ensure each calculation uses the correct denominator for the group being analyzed.
 
 Example 1 (Using UNION ALL - Preferred for listing popularity):
@@ -318,6 +315,19 @@ Uses CTEs to organize the logic clearly
 Calculates the percentage of women and men who participate in at least one cultural activity at home
 References the CTEs properly for the denominator calculations
 Returns a simple comparison between genders
+
+Example 3:
+
+User question: "Jaka jest korelacja między barierami a uczestnictwem w kulturze?"
+Generated query:
+
+```sql 
+WITH NumericData AS (SELECT id_uczestnika, CAST(SPLIT_PART(istotnosc_uczestnictwa_w_kulturze, ' ', 1) AS DOUBLE) AS istotnosc_num, bariera_wysokie_ceny, bariera_dojazd, bariera_nieatrakcyjna_oferta, bariera_brak_informacji, bariera_dostep_fizyczny, bariera_godziny_otwarcia, bariera_brak_czasu, bariera_opieka, bariera_niska_jakosc, bariera_dostepnosc_biletow, bariera_brak_oferty_lokalnej, bariera_nieznajomosc_oferty FROM participation_survey WHERE istotnosc_uczestnictwa_w_kulturze IS NOT NULL), UnpivotedBarriers AS (SELECT id_uczestnika, istotnosc_num, 'Wysokie ceny' AS bariera, CAST(bariera_wysokie_ceny AS INTEGER) AS jest_bariera FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Problemy z dojazdem' AS bariera, CAST(bariera_dojazd AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Mało atrakcyjna oferta' AS bariera, CAST(bariera_nieatrakcyjna_oferta AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Brak informacji' AS bariera, CAST(bariera_brak_informacji AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Dostęp fizyczny' AS bariera, CAST(bariera_dostep_fizyczny AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Godziny otwarcia' AS bariera, CAST(bariera_godziny_otwarcia AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Brak czasu' AS bariera, CAST(bariera_brak_czasu AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Opieka nad inną osobą' AS bariera, CAST(bariera_opieka AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Niska jakość' AS bariera, CAST(bariera_niska_jakosc AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Niska dostępność biletów' AS bariera, CAST(bariera_dostepnosc_biletow AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Brak oferty lokalnej' AS bariera, CAST(bariera_brak_oferty_lokalnej AS INTEGER) FROM NumericData UNION ALL SELECT id_uczestnika, istotnosc_num, 'Nieznajomość oferty' AS bariera, CAST(bariera_nieznajomosc_oferty AS INTEGER) FROM NumericData) SELECT bariera, ROUND(CORR(istotnosc_num, jest_bariera), 2) AS korelacja FROM UnpivotedBarriers GROUP BY bariera ORDER BY korelacja;
+```
+This query:
+- Pivots boolean columns into a single column with category and value
+- Uses CORR() function to calculate correlations
+- Groups by barrier and orders by correlation
 
 8. More examples:
 
