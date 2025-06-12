@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.13-slim
 
 # Install security updates and curl for health checks
 RUN apt-get update && \
