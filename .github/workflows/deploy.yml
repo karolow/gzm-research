@@ -1,0 +1,61 @@
+name: Deploy FastAPI to Hetzner VPS
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Create source archive
+      run: |
+        tar -czvf source.tar.gz \
+          src \
+          pyproject.toml \
+          uv.lock \
+          Dockerfile \
+          .dockerignore
+
+    - name: Copy source to VPS
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        source: "source.tar.gz"
+        target: "/home/${{ secrets.VPS_USER }}/gzm-api/"
+        overwrite: true
+
+    - name: Deploy on VPS
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        script: |
+          set -e
+          cd /home/${{ secrets.VPS_USER }}/gzm-api
+          tar -xzf source.tar.gz
+          docker build -t gzm-api:latest .
+          docker stop gzm-api || true
+          docker rm gzm-api || true
+          docker run -d \
+            --name gzm-api \
+            -p 80:8001 \
+            --env-file .env \
+            --restart unless-stopped \
+            --health-cmd="curl -f http://localhost:8001/health || exit 1" \
+            --health-interval=30s \
+            --health-timeout=10s \
+            --health-retries=3 \
+            gzm-api:latest
+          rm -f source.tar.gz
+          docker image prune -f --filter "dangling=true"
+          docker ps --filter "name=gzm-api" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+          sleep 10
+          docker exec gzm-api curl -f http://localhost:8001/health || echo "Health check failed"
