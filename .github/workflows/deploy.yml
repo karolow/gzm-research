@@ -53,6 +53,7 @@ jobs:
             --health-interval=30s \
             --health-timeout=10s \
             --health-retries=3 \
+            -v /home/${{ secrets.VPS_USER }}/gzm-api/research.db:/app/research.db \
             gzm-api:latest
           rm -f source.tar.gz
           docker image prune -f --filter "dangling=true"
