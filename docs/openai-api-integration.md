@@ -131,7 +131,7 @@ llm-query ask \
   --use-api \
   --api-url "http://127.0.0.1:8001/v1" \
   --api-key "test-key" \
-  --model "blueprint-standard"
+  --model "gzm-research"
 
 # Generate only using API
 llm-query generate --question "Show table schema" --use-api
@@ -142,7 +142,7 @@ llm-query generate --question "Show table schema" --use-api
 - `--use-api`: Enable OpenAI-compatible API mode
 - `--api-url`: API base URL (default: `http://127.0.0.1:8001/v1`)
 - `--api-key`: API authentication key (default: `test-key`)
-- `--model`: Model name (default: `blueprint-standard`)
+- `--model`: Model name (default: `gzm-research`)
 
 ### Direct API Usage
 
@@ -156,7 +156,7 @@ curl http://127.0.0.1:8001/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer test-key" \
   -d '{
-    "model": "blueprint-standard",
+    "model": "gzm-research",
     "messages": [
       {
         "role": "user",
@@ -170,7 +170,7 @@ curl http://127.0.0.1:8001/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer test-key" \
   -d '{
-    "model": "blueprint-standard",
+    "model": "gzm-research",
     "messages": [
       {
         "role": "user",
@@ -194,7 +194,7 @@ client = OpenAI(
 
 # Generate completion
 response = client.chat.completions.create(
-    model="blueprint-standard",
+    model="gzm-research",
     messages=[
         {"role": "user", "content": "Generate SQL to show all tables"}
     ]
@@ -204,7 +204,7 @@ print(response.choices[0].message.content)
 
 # Streaming example
 stream = client.chat.completions.create(
-    model="blueprint-standard",
+    model="gzm-research",
     messages=[
         {"role": "user", "content": "Generate SQL to count records"}
     ],
@@ -289,7 +289,7 @@ lsof -ti:8001 | xargs kill -9
 #### 4. Model Not Found
 
 **Error**: `Model 'xyz' is not available`
-**Solution**: Use `blueprint-standard` as the model name when calling the API.
+**Solution**: Use `gzm-research` as the model name when calling the API.
 
 ### Debugging
 

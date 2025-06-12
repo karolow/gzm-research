@@ -33,7 +33,7 @@ class LLMConfig(BaseModel):
         default_factory=lambda: float(os.getenv("LLM_TEMPERATURE", "0"))
     )
     max_tokens: int = Field(
-        default_factory=lambda: int(os.getenv("LLM_MAX_TOKENS", "2048"))
+        default_factory=lambda: int(os.getenv("LLM_MAX_TOKENS", "4096"))
     )
     provider: str = Field(default_factory=lambda: os.getenv("LLM_PROVIDER", "api"))
     base_url: Optional[str] = Field(default_factory=lambda: os.getenv("LLM_BASE_URL"))

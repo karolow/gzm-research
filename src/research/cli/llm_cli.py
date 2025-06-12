@@ -22,13 +22,13 @@ def natural_language_to_sql_openai(
     question: str,
     base_url: str = "http://127.0.0.1:8001/v1",
     api_key: str = "test-key",
-    model: str = "blueprint-standard",
+    model: str = "gzm-research",
     temperature: float = 0.0,
     verbose: bool = False,
 ) -> str:
     """
     Convert natural language to SQL using OpenAI-compatible API endpoint.
-    
+
     Args:
         question: Natural language question
         base_url: Base URL for the OpenAI-compatible API
@@ -36,7 +36,7 @@ def natural_language_to_sql_openai(
         model: Model name to use
         temperature: Model temperature
         verbose: Enable verbose logging
-        
+
     Returns:
         Generated SQL query
     """
@@ -45,32 +45,32 @@ def natural_language_to_sql_openai(
             base_url=base_url,
             api_key=api_key,
         )
-        
+
         if verbose:
             logger.info(f"Using OpenAI-compatible endpoint: {base_url}")
             logger.info(f"Model: {model}")
-        
+
         # Create a simple system message for SQL generation
         system_message = """You are a SQL expert. Convert natural language questions to SQL queries.
 Return only the SQL query without any explanations or markdown formatting."""
-        
+
         response = client.chat.completions.create(
             model=model,
             messages=[
                 {"role": "system", "content": system_message},
-                {"role": "user", "content": question}
+                {"role": "user", "content": question},
             ],
             temperature=temperature,
             max_tokens=1000,
         )
-        
+
         sql_query = response.choices[0].message.content.strip()
-        
+
         if verbose:
             logger.info(f"Generated SQL via OpenAI API: {sql_query}")
-        
+
         return sql_query
-        
+
     except Exception as e:
         logger.error(f"Error generating SQL via OpenAI API: {e}")
         return ""
@@ -147,7 +147,7 @@ def cli(ctx: click.Context, verbose: bool) -> None:
 )
 @click.option(
     "--model",
-    default="blueprint-standard",
+    default="gzm-research",
     help="Model name for OpenAI-compatible endpoint",
 )
 @click.pass_context
@@ -165,7 +165,7 @@ def ask(
     use_api: bool = False,
     api_url: str = "http://127.0.0.1:8001/v1",
     api_key: str = "test-key",
-    model: str = "blueprint-standard",
+    model: str = "gzm-research",
 ) -> None:
     """Ask a natural language question and convert it to SQL using LLM."""
     try:
@@ -273,7 +273,7 @@ def ask(
 )
 @click.option(
     "--model",
-    default="blueprint-standard",
+    default="gzm-research",
     help="Model name for OpenAI-compatible endpoint",
 )
 @click.pass_context
@@ -286,7 +286,7 @@ def generate(
     use_api: bool = False,
     api_url: str = "http://127.0.0.1:8001/v1",
     api_key: str = "test-key",
-    model: str = "blueprint-standard",
+    model: str = "gzm-research",
 ) -> None:
     """Generate SQL from natural language without executing it."""
     try:
