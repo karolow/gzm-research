@@ -57,7 +57,7 @@ jobs:
             --network web \
             --network app-network \
             -v /home/${{ secrets.VPS_USER }}/gzm-api/research.db:/app/research.db \
-            gzm-api:latest`
+            gzm-api:latest
 
           # Cleanup
           rm -f source.tar.gz
