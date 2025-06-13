@@ -7,56 +7,79 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Create source archive
-      run: |
-        tar -czvf source.tar.gz \
-          src \
-          pyproject.toml \
-          uv.lock \
-          Dockerfile \
-          .dockerignore
-
-    - name: Copy source to VPS
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_SSH_KEY }}
-        source: "source.tar.gz"
-        target: "/home/${{ secrets.VPS_USER }}/gzm-api/"
-        overwrite: true
-
-    - name: Deploy on VPS
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_SSH_KEY }}
-        script: |
-          set -e
-          cd /home/${{ secrets.VPS_USER }}/gzm-api
-          tar -xzf source.tar.gz
-          docker build -t gzm-api:latest .
-          docker stop gzm-api || true
-          docker rm gzm-api || true
-          docker run -d \
-            --name gzm-api \
-            -p 80:8001 \
-            --env-file .env \
-            --restart unless-stopped \
-            --health-cmd="curl -f http://localhost:8001/health || exit 1" \
-            --health-interval=30s \
-            --health-timeout=10s \
-            --health-retries=3 \
-            -v /home/${{ secrets.VPS_USER }}/gzm-api/research.db:/app/research.db \
-            gzm-api:latest
-          rm -f source.tar.gz
-          docker image prune -f --filter "dangling=true"
-          docker ps --filter "name=gzm-api" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
-          sleep 10
-          docker exec gzm-api curl -f http://localhost:8001/health || echo "Health check failed"
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Create source archive
+        run: |
+          tar -czvf source.tar.gz \
+            src \
+            pyproject.toml \
+            uv.lock \
+            Dockerfile \
+            .dockerignore
+            
+      - name: Copy source to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "source.tar.gz"
+          target: "/home/${{ secrets.VPS_USER }}/gzm-api/"
+          overwrite: true
+          
+      - name: Deploy on VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            cd /home/${{ secrets.VPS_USER }}/gzm-api
+            tar -xzf source.tar.gz
+            
+            # Build the image
+            docker build -t gzm-api:latest .
+            
+            # Stop and remove existing container
+            docker stop gzm-api || true
+            docker rm gzm-api || true
+            
+            # Create networks if they don't exist
+            docker network create web || true
+            docker network create app-network || true
+            
+            # Run with Traefik labels and networks
+            docker run -d \
+              --name gzm-api \
+              --env-file .env \
+              --restart unless-stopped \
+              --network web \
+              --network app-network \
+              --label "traefik.enable=true" \
+              --label "traefik.http.routers.fastapi.rule=Host(\`gzm-api.kpiekarski.pl\`)" \
+              --label "traefik.http.routers.fastapi.entrypoints=websecure" \
+              --label "traefik.http.routers.fastapi.tls.certresolver=myresolver" \
+              --label "traefik.http.services.fastapi.loadbalancer.server.port=8001" \
+              --label "traefik.http.middlewares.fastapi-headers.headers.customRequestHeaders.X-Forwarded-Proto=https" \
+              --label "traefik.http.routers.fastapi.middlewares=fastapi-headers" \
+              -v /home/${{ secrets.VPS_USER }}/gzm-api/research.db:/app/research.db \
+              gzm-api:latest
+              
+            # Connect to app-network for OpenWebUI communication
+            docker network connect app-network gzm-api
+            
+            # Cleanup
+            rm -f source.tar.gz
+            docker image prune -f --filter "dangling=true"
+            
+            # Status check
+            docker ps --filter "name=gzm-api" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+            
+            # Health check
+            sleep 10
+            docker exec gzm-api curl -f http://localhost:8001/health || echo "Health check failed"
