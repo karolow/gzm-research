@@ -60,13 +60,13 @@ jobs:
               --restart unless-stopped \
               --network web \
               --network app-network \
-              --label "traefik.enable=true" \
-              --label "traefik.http.routers.fastapi.rule=Host(\`gzm-api.kpiekarski.pl\`)" \
-              --label "traefik.http.routers.fastapi.entrypoints=websecure" \
-              --label "traefik.http.routers.fastapi.tls.certresolver=myresolver" \
-              --label "traefik.http.services.fastapi.loadbalancer.server.port=8001" \
-              --label "traefik.http.middlewares.fastapi-headers.headers.customRequestHeaders.X-Forwarded-Proto=https" \
-              --label "traefik.http.routers.fastapi.middlewares=fastapi-headers" \
+              # --label "traefik.enable=true" \
+              # --label "traefik.http.routers.fastapi.rule=Host(\`gzm-api.kpiekarski.pl\`)" \
+              # --label "traefik.http.routers.fastapi.entrypoints=websecure" \
+              # --label "traefik.http.routers.fastapi.tls.certresolver=myresolver" \
+              # --label "traefik.http.services.fastapi.loadbalancer.server.port=8001" \
+              # --label "traefik.http.middlewares.fastapi-headers.headers.customRequestHeaders.X-Forwarded-Proto=https" \
+              # --label "traefik.http.routers.fastapi.middlewares=fastapi-headers" \
               -v /home/${{ secrets.VPS_USER }}/gzm-api/research.db:/app/research.db \
               gzm-api:latest
               
