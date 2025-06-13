@@ -329,6 +329,21 @@ This query:
 - Uses CORR() function to calculate correlations
 - Groups by barrier and orders by correlation
 
+Example 4:
+
+User question: "JJaka jest mediana wydatków na kulturę w regionie tyskim i sosnowieckim GZM?"
+Generated query:
+
+```sql
+SELECT subregion_metropolii_gzm, PERCENTILE_DISC(0.5) WITHIN GROUP (ORDER BY wydatki_na_kulture_kwota) OVER (PARTITION BY subregion_metropolii_gzm) AS mediana_wazona FROM (SELECT subregion_metropolii_gzm, wydatki_na_kulture_kwota, waga_proby FROM participation_survey WHERE subregion_metropolii_gzm IN ('TYSKI', 'SOSNOWIECKI') AND wydatki_na_kulture_kwota IS NOT NULL) AS data GROUP BY subregion_metropolii_gzm, mediana_wazona;
+```
+This query:
+- Calculates the median of the wydatki_na_kulture_kwota column for the Tyski and Sosnowiecki subregions
+- Uses PERCENTILE_DISC() to calculate the median (including weights)
+- Uses OVER() to partition the data by subregion
+- Uses GROUP BY to group the results by subregion and median
+
+
 8. More examples:
 
 <examples>
